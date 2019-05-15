@@ -30,13 +30,9 @@ global.UserLog = log => {
 };
 
 //-- Custom middleware for server log request
-function ShowServerContent() {
-  
-  return "";
-}
 app.use((req, res, next) => {
   var now = new Date().toString();
-  var log = `${now}: ${req.method} ${req.url}`;
+  var log = `Url: ${req.method} ${req.url} \nDate: ${now}`;
   ServerLog(log);
   next();
 });
