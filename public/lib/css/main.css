@@ -1,0 +1,67 @@
+body{
+    background-color: #eee8;
+}
+
+*{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.object{
+    min-width: 10px;
+    min-height: 10px;
+    background-color: #e7e7e7;
+    border-radius: 3px;
+}
+
+.win-pad{
+    border: 1px solid blue;
+    padding: 10px 50px;
+}
+/* SIDEBAR */
+.sideBar {
+    border: 1px solid red;
+    margin-left: 50px;
+    padding: 10px;
+}
+/* SIDEBAR Header */
+.sideBar .header {
+    padding: 5px;
+}
+
+.sideBar .header .logo{
+    height: 50px;
+    margin-bottom: 20px;
+}
+/* SIDEBAR Profile */
+.sideBar .profile{
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 20px 0 20px 0;
+    margin-top: 10px;
+}
+
+.sideBar .profile ul{
+    padding-left: 20px;
+    list-style-type: none;
+}
+
+.sideBar .profile .p-info #dp-image{
+    border-radius: 100%;
+    height: 50px;
+}
+
+.sideBar .profile .p-package #packicon{
+    border-radius: 100%;
+    height: 50px;
+    width: 50px;
+}
+
+.mainWindow {
+    border: 1px solid red;
+}
+
+.statusBar {
+    border: 1px solid red;
+}
