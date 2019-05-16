@@ -11,19 +11,21 @@ const expressLayouts = require("express-ejs-layouts");
 const expressValidator = require("express-validator");
 const session = require("express-session");
 const passport = require("passport");
-const multer = require("multer");
 const LocalStrategy = require("passport-local").Strategy;
+
+// ## DB CONNECTION
+require("./db/db_conn"); //-- for db connection
 
 // ## LOGGING
 //-- Log Server's activities to Server Log file 
-global.ServerLog = log => {
+global.serverLog = log => {
   fs.appendFile("./log/server.log", log + "\n", err => {
     if (err) console.log("Unable to write to server.log");
   });
 };
 
 //-- Log User's activities to UserActivity Log file
-global.UserLog = log => {
+global.userLog = log => {
   fs.appendFile("./log/userActivity.log", log + "\n", err => {
     if (err) console.log("Unable to write to userActivity.log");
   });
@@ -32,13 +34,13 @@ global.UserLog = log => {
 //-- Custom middleware for server log request
 app.use((req, res, next) => {
   var now = new Date().toString();
-  var log = `Url: ${req.method} ${req.url} \nDate: ${now}`;
-  ServerLog(log);
+  var log = `${req.method} ${req.url}: @ ${now}`;
+  serverLog(log);
   next();
 });
 
 // ## VIEW ENGINE
-app.set('views', path.join(__dirname, '/public/views'));
+app.set('views', path.join(__dirname, './public/views/'));
 app.engine("html", require("ejs").renderFile);
 app.set("view engine", "html");
 
@@ -49,7 +51,7 @@ app.use(cookieParser()); // use cookieParser
 app.use(expressLayouts); // use expressLayouts
 app.use(express.json()); // use express.json
 app.use(express.urlencoded({ extended: false })); // use express.urlencoded
-app.use(express.static(path.join(__dirname, './public'))); // set static directory
+app.use(express.static(path.join(__dirname, './public/'))); // set static directory
 
 //-- Express-session Middleware
 app.use(
