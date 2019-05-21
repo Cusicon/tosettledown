@@ -2,7 +2,7 @@
   "name": "tosettledown",
   "version": "1.0.0",
   "description": "A web app from God.",
-  "main": "./bin/www",
+  "main": "./app.js",
   "dependencies": {
     "address": "^1.0.3",
     "body-parser": "^1.18.3",
@@ -40,8 +40,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "nodemon ./bin/www",
-    "start": "node ./bin/www"
+    "test": "nodemon ./app.js",
+    "start": "node ./app.js"
   },
   "keywords": [
     "to",

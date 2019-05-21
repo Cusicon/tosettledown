@@ -13,6 +13,11 @@ const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
+// -- PORT
+var port = process.env.PORT || "3030";
+app.set('port', port);
+
+
 // ## DB CONNECTION
 require("./db/db_conn"); //-- for db connection
 
@@ -115,4 +120,7 @@ app.use(function (err, req, res, next) {
   res.render('error/404');
 });
 
-module.exports = app;
+// ## SERVER LISTENING
+app.listen(port, () => {
+  console.log(`Server listening at port ${port}`);
+});
