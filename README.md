@@ -1,2 +1,2 @@
 # Tosettledown
-A Web-based App e-commerce, matchmaking site
+A Web-based App e-commerce and matchmaking site
