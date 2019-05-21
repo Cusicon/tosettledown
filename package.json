@@ -43,11 +43,10 @@
     "start": "node ./app.js"
   },
   "keywords": [
-    "to",
-    "settle",
-    "down",
     "tosettledown",
-    "God"
+    "e-commerce",
+    "matchmaking",
+    "dating"
   ],
   "author": "Success Chukwu",
   "license": "ISC"
