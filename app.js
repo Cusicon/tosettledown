@@ -19,7 +19,7 @@ app.set('port', port);
 
 
 // ## DB CONNECTION
-require("./db/db_conn"); //-- for db connection
+// require("./db/db_conn"); //-- for db connection
 
 // ## LOGGING
 //-- Log Server's activities to Server Log file 
