@@ -45,13 +45,13 @@ app.engine("html", require("ejs").renderFile);
 app.set("view engine", "html");
 
 // ## MIDDLEWARES
-app.use(logger("dev")); // use logger
-app.use(bodyParser()); // use bodyParser
-app.use(cookieParser()); // use cookieParser
-app.use(expressLayouts); // use expressLayouts
-app.use(express.json()); // use express.json
-app.use(express.urlencoded({ extended: false })); // use express.urlencoded
-app.use(express.static(path.join(__dirname, './public/'))); // set static directory
+app.use(logger("dev")); //-- use logger
+app.use(bodyParser()); //-- use bodyParser
+app.use(cookieParser()); //-- use cookieParser
+app.use(expressLayouts); //-- use expressLayouts
+app.use(express.json()); //-- use express.json
+app.use(express.urlencoded({ extended: false })); //-- use express.urlencoded
+app.use(express.static(path.join(__dirname, './public/'))); //-- set static directory
 
 //-- Express-session Middleware
 app.use(
@@ -95,7 +95,7 @@ app.use((req, res, next) => {
 
 // ROUTERS
 app.get('/', (req, res) => { //-- Test home route
-  res.send("Welcome");
+  res.render("index");
 });
 
 // ## ERROR HANDLING
@@ -112,7 +112,7 @@ app.use(function (err, req, res, next) {
 
   //- render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error/404');
 });
 
 module.exports = app;
