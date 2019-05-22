@@ -14,7 +14,7 @@
                     </center>
                     <br><br>
                     <div class="btnCon">
-                        <a href="/login" role="button" class="btn" id="loginBtn">Sign In</a>
+                        <a href="javascript: void(0);" role="button" class="btn" id="loginBtn">Sign In</a>
                     </div>
                 </nav>
             </header>
@@ -43,64 +43,104 @@
                     </a>
                 </center>
             </div>
-            <br>
         </div>
-        <div class="col-lg-4 col-sm-12 registerCon" id="registerCon">
-            <div class="regBody" style="padding: 25px; padding-top: 10px;">
+        <div class="col-lg-4 col-sm-12 detailsCon" id="detailsCon">
+            <!-- SIGN UP -->
+            <form action="/#!/signup" method="POST" name="regForm" id="regForm" class="regBody">
                 <!-- Header -->
                 <header class="regHead" style="margin-bottom: 50px;">
                     <h2 style="font-weight: lighter;">SIGN UP</h2>
                     <div style="width: 30px; height: 2px; background-color: #dd3b3b;"></div>
                 </header>
-                <!-- Name -->
-                <div class="form-group mb-3">
-                    <input type="text" class="form-control" id="newUserName" name="newUserName"
-                        placeholder="Enter full name" autofocus>
-                </div>
-                <!-- Email -->
-                <div class="form-group mb-3">
-                    <input type="email" class="form-control" id="newUserEmail" name="newUserEmail"
-                        placeholder="Enter email">
-                </div>
-                <!-- Password -->
-                <div class="form-group mb-4">
-                    <input type="password" class="form-control" id="newUserPassword" name="newUserPassword"
-                        aria-describedby="newUserPasswordHelp" placeholder="Create a password">
-                    <small id="newUserPasswordHelp" class="form-text text-muted">Password must be 6 characters and
-                        above.</small>
-                </div>
-                <div class="form-row align-items-center mb-3">
-                    <!-- DOB -->
-                    <div class="col-auto">
-                        <input type="date" class="form-control" id="newUserDOB" name="newUserDOB">
+                <!-- Full Name -->
+                <div class="details">
+                    <div class="form-group mb-3">
+                        <input type="text" name="fullname" id="fullname" class="form-control"
+                            placeholder="Enter full name" required>
                     </div>
-                    <!-- Gender -->
-                    <div class="col-auto">
-                        <select name="newUserGender" class="form-control" id="newUserGender">
-                            <option role="heading">Gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                        </select>
+                    <!-- Email -->
+                    <div class="form-group mb-3">
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Enter email"
+                            required>
+                    </div>
+                    <!-- Password -->
+                    <div class="form-group mb-4">
+                        <input type="password" name="password" id="password" class="form-control"
+                            aria-describedby="passwordHelp" placeholder="Create a password" minlength="6" maxlength="30" required>
+                        <small id="passwordHelp" class="form-text text-muted">Password must be up to 6 - 30 characters.</small>
+                    </div>
+                    <!-- Gender & DOB -->
+                    <div class="form-row align-items-center mb-3">
+                        <!-- DOB -->
+                        <div class="col-auto">
+                            <input type="date" name="dob" id="dob" class="form-control" required>
+                        </div>
+                        <!-- Gender -->
+                        <div class="col-auto">
+                            <select name="gender" id="gender" class="form-control" required>
+                                <option value="" label="Gender">Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Location -->
+                    <div class="form-group mb-3">
+                        <input type="text" name="location" id="location" class="form-control"
+                            placeholder="Enter location" aria-describedby="locationHelp" required>
+                        <small id="locationHelp" class="form-text text-muted">ie. Lagos, Nigeria.</small>
                     </div>
                 </div>
-                <div class="form-group mb-3">
-                    <input type="text" class="form-control" id="newUserLocation" name="newUserLocation"
-                        placeholder="Enter location" aria-describedby="newUserLocationHelp">
-                    <small id="newUserLocationHelp" class="form-text text-muted">ie. Lagos, Nigeria.</small>
-                </div>
+                <!-- Sign Btn -->
                 <div class="regFoot">
                     <div class="form-group">
-                        <input type="submit" class="form-control btn btn-success"
-                            style="background-color: #28a745 !important; color: #fff; padding: 20px;" id="submitForm"
+                        <input type="submit" id="submitForm" class="form-control btn btn-success" style="padding: 20px;"
                             aria-describedby="submitFormHelp" value="Sign up with ToSettleDown">
                         <small id="submitFormHelp" class="form-text text-muted">By clicking
-                            <i><b>"Sign up with ToSettleDown"</b></i>,
-                            you agree to our <a href="#">terms of services</a> and <a href="#">privacy and
-                                policy statement</a> and <a href="#">cookie policy</a>.
+                            <i>"Sign up with ToSettleDown"</i>,
+                            you agree to our <a href="#">terms of services</a>, <a href="#">privacy policy</a> and <a
+                                href="#">cookie policy</a>.
                         </small>
                     </div>
                 </div>
-            </div>
+            </form>
+            <!-- END OF SIGN UP -->
+
+            <!-- SIGN IN -->
+            <form action="/#!/signIn" method="POST" name="loginForm" id="loginForm" class="loginBody">
+                <!-- Header -->
+                <header class="loginHead" style="margin-bottom: 50px;">
+                    <h2 style="font-weight: lighter;">SIGN IN</h2>
+                    <div style="width: 30px; height: 2px; background-color: #dd3b3b;"></div>
+                </header>
+                <div class="details" style="padding: 80px 0px;">
+                    <p style="padding: 10px; text-align: center;">Enter login details, and let's go search...</p>
+                    <!-- Email -->
+                    <div class="form-group mb-3">
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+                    </div>
+                    <!-- Password -->
+                    <div class="form-group mb-5">
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Password"
+                            required>
+                    </div>
+                    <!-- Sign Btn -->
+                    <div class="loginFoot">
+                        <div class="form-group">
+                            <input type="submit" class="form-control btn btn-success" style="padding: 15px;"
+                                value="Sign in">
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+            </form>
+            <!-- END OF SIGN IN -->
+
+            <!-- Footer -->
+            <footer class="footer text-muted float-right" style="padding: 10px; padding-right: 40px;">
+                <small>&copy; <%= new Date().getFullYear(); %>, ToSettleDown, Inc.</small>
+            </footer>
+            <br><br>
         </div>
     </section>
 </div>

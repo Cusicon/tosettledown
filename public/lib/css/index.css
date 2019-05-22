@@ -12,7 +12,8 @@ a[href]:hover {
 }
 .form-control,
 .btn {
-  border-radius: 0px !important;
+  padding: 10px;
+  border-radius: 20px !important;
 }
 
 button,
@@ -28,15 +29,20 @@ a[role="button"] {
 button:hover,
 input[type="submit"]:hover,
 a[role="button"]:hover {
-  transition: ease !important;
-  background-color: #f5f5f5 !important;
-  padding: 10px 8px;
+  color: #fff;
+}
+
+button:active,
+input[type="submit"]:active,
+a[role="button"]:active {
+  box-shadow: 0px 1px 20px #0000002a inset;
 }
 
 body {
   padding: 0px;
   margin: 0px;
   padding-top: 20px;
+  padding-bottom: 20px;
   background-image: url("/lib/img/bg1.jpg");
 }
 
@@ -68,6 +74,7 @@ section.Frame {
 
 section.Frame .infoCon div#jb {
   padding: 70px 50px 20px;
+  /* color: transparent; */
 }
 
 section.Frame .infoCon div#jb h1 {
@@ -84,15 +91,36 @@ section.Frame .infoCon div#otherSignupMethod a {
   padding: 10px 20px;
 }
 
-section.Frame div.registerCon {
-  padding: 20px 10px;
+section.Frame div.detailsCon {
+  position: relative;
+  padding: 0px;
   background-color: #fff;
   border-radius: 0px 5px 5px 0px;
+  overflow: hidden !important;
 }
 
-section.Frame div.registerCon input, section.Frame div.registerCon select{
+section.Frame div.detailsCon form {
+  padding: 40px;
+  width: 100%;
+  transition: ease 0.2s;
+}
+
+section.Frame div.detailsCon .details input,
+section.Frame div.detailsCon .details select {
   border: none;
   background-color: #f5f5f5;
+}
+
+section.Frame div.detailsCon input[type="submit"] {
+  background-color: #28a745;
+}
+
+section.Frame div.detailsCon form#loginForm {
+  position: absolute;
+  top: 0px;
+  left: -100%;
+  transition: ease .5s;
+  background-color: #fff;
 }
 
 /* END OF REGSITER (HOME) */
@@ -130,10 +158,13 @@ section.Frame div.registerCon input, section.Frame div.registerCon select{
   section.Frame .infoCon div#otherSignupMethod a {
     padding: 10px 20px !important;
   }
+
+  section.Frame div.detailsCon form {
+    padding: 22px !important;
+  }
 }
 
 /* END OF REGISTER MOBILE VIEW */
-
 
 /* LOGIN */
 
