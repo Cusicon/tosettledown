@@ -13,7 +13,7 @@ const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
-// -- PORT
+//-- PORT
 var port = process.env.PORT || "3020";
 app.set('port', port);
 
@@ -98,10 +98,25 @@ app.use((req, res, next) => {
   next();
 });
 
-// ROUTERS
-app.get('/', (req, res) => { //-- Test home route
-  res.render("index");
+//-- VIEW [Sign up and Sign in.]
+app.get('/', (req, res) => {
+  res.render("./index");
 });
+
+// ## ROUTERS
+
+//-- Router [SIGN UP]
+var signup = require('./routes/auth/signup');
+app.use('/#!/signup', signup);
+
+//-- Router [SIGN IN]
+var signin = require('./routes/auth/signin');
+app.use('/#!/signin', signin);
+
+//-- APP ROUTERS [Encounters, favourites, so on...]
+var index = require('./routes/index');
+app.use('/app/', index);
+
 
 // ## ERROR HANDLING
 //-- Catch 404 and forward to error handler
