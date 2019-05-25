@@ -74,7 +74,7 @@ section.Frame {
 
 section.Frame .infoCon div#jb {
   padding: 70px 50px 20px;
-  color: transparent;
+  /* color: transparent; */
 }
 
 section.Frame .infoCon div#jb h1 {
