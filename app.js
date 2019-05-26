@@ -13,7 +13,7 @@ const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
-//-- PORT
+// ## PORT
 var port = process.env.PORT || "3020";
 app.set('port', port);
 
@@ -45,7 +45,7 @@ app.use((req, res, next) => {
 });
 
 // ## VIEW ENGINE
-app.set('views', path.join(__dirname, './public/views/'));
+app.set('views', path.join(__dirname, './views/'));
 app.engine("html", require("ejs").renderFile);
 app.set("view engine", "html");
 
@@ -56,7 +56,7 @@ app.use(cookieParser()); //-- use cookieParser
 app.use(expressLayouts); //-- use expressLayouts
 app.use(express.json()); //-- use express.json
 app.use(express.urlencoded({ extended: false })); //-- use express.urlencoded
-app.use(express.static(path.join(__dirname, './public/'))); //-- set static directory
+app.use(express.static(path.join(__dirname, './public/'))); //-- set public static directory
 
 //-- Express-session Middleware
 app.use(
@@ -107,11 +107,11 @@ app.get('/', (req, res) => {
 
 //-- Router [SIGN UP]
 var signup = require('./routes/auth/signup');
-app.use('/#!/signup', signup);
+app.use("/auth/0/signup", signup);
 
 //-- Router [SIGN IN]
 var signin = require('./routes/auth/signin');
-app.use('/#!/signin', signin);
+app.use("/auth/0/signin", signin);
 
 //-- APP ROUTERS [Encounters, favourites, so on...]
 var index = require('./routes/index');
@@ -120,20 +120,20 @@ app.use('/app/', index);
 
 // ## ERROR HANDLING
 //-- Catch 404 and forward to error handler
-// app.use(function (req, res, next) {
-//   next(createError(404));
-// });
+app.use(function (req, res, next) {
+  next(createError(404));
+});
 
-// //-- Error handler
-// app.use(function (err, req, res, next) {
-//   //- set locals, only providing error in development
-//   res.locals.message = err.message;
-//   res.locals.error = req.app.get('env') === 'development' ? err : {};
+//-- Error handler
+app.use(function (err, req, res, next) {
+  //- set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-//   //- render the error page
-//   res.status(err.status || 500);
-//   res.render('error/404');
-// });
+  //- render the error page
+  res.status(err.status || 500);
+  res.render('./error/404');
+});
 
 // ## SERVER LISTENING
 app.listen(port, () => {

@@ -95,7 +95,7 @@ section.Frame div.detailsCon {
   position: relative;
   padding: 0px;
   background-color: #fff;
-  border-radius: 0px 5px 5px 0px;
+  border-radius: 5px;
   overflow: hidden !important;
 }
 
@@ -119,7 +119,7 @@ section.Frame div.detailsCon form#loginForm {
   position: absolute;
   top: 0px;
   left: -100%;
-  transition: ease .5s;
+  transition: ease 0.5s;
   background-color: #fff;
 }
 
@@ -127,7 +127,7 @@ section.Frame div.detailsCon form#loginForm {
 
 /* REGISTER MOBILE VIEW */
 
-@media (max-width: 768px) {
+@media (max-width: 576px) {
   body {
     padding: 0px;
     margin: 0px;

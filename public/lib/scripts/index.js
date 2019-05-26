@@ -6,12 +6,12 @@ function toggleSignIn() {
     loginBtn.click(() => {
         if (loginBtn.text().toLowerCase() == "sign in") {
             loginBtn.text("Sign up");
-            // regForm.css({ "filter": "blur('5px')" });
+            loginBtn.attr("href", "#loginForm");
             loginForm.css({ "left": "0%" });
         } else {
             loginBtn.text("Sign in");
+            loginBtn.attr("href", "#regForm");
             loginForm.css({ "left": "-100%" });
-            // regForm.css({ "filter": "none" });
         }
     });
 } toggleSignIn();

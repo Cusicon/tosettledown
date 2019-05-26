@@ -9,31 +9,31 @@ var router = express();
 // ## INITIATE ROUTER(S)
 
 //-- encounters Router
-var encounters = require('./menu/encounters');
+var encounters = require('./app/menu/encounters');
 router.use('/encounters', encounters);
 
 //-- chats Router
-var chats = require('./menu/chats');
+var chats = require('./app/menu/chats');
 router.use('/chats', chats);
 
 //-- matched Router
-var matched = require('./menu/matched');
+var matched = require('./app/menu/matched');
 router.use('/matched', matched);
 
 //-- likes Router
-var likes = require('./menu/likes');
+var likes = require('./app/menu/likes');
 router.use('/likes', likes);
 
 //-- views Router
-var views = require('./menu/views');
+var views = require('./app/menu/views');
 router.use('/views', views);
 
 //-- favourites Router
-var favourites = require('./menu/favourites');
+var favourites = require('./app/menu/favourites');
 router.use('/favourites', favourites);
 
 //-- weddings Router
-var weddings = require('./menu/weddings');
+var weddings = require('./app/menu/weddings');
 router.use('/weddings', weddings);
 
 
