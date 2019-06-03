@@ -1,2 +1,96 @@
-<h2>Weddings</h2>
-<p class="text-muted">E-commerce section for "About to Wed!" People.</p>
+<section class="windowFrame container row" id="windowFrame">
+    <!-- ProfileBar -->
+    <%- include('../partials/profileBar.html'); %>
+    <!-- MainBody -->
+    <section class="mainBody col-lg-9 col-md-8" id="mainBody">
+        <!-- SearchBar -->
+        <div class="searchBar">
+            <center>
+                <a href="javascript: void(0);" class="col-lg-5" id="search">
+                    <i class="fa fa-search"></i>
+                    <span>Search...</span>
+                </a>
+            </center>
+        </div>
+        <div class="row">
+            <div class="displayWindow col-lg-11 row">
+                <!-- ImageWindow -->
+                <div class="imageWindow col-lg-8" style="background-image: url('/lib/img/icon.jpg');">
+                    <div class="overlayNav">
+                        <div class="navTop">
+                            <div class="imageCounter float-right">
+                                <p>
+                                    <span id="currentNumber">1</span>/
+                                    <span id="TotalNumber">4</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="navMiddle">
+                            <div>
+                                <a href="javascript: void(0);" id="previous" title="Previous..." style="float: left;">
+                                    <i class="icon-arrow-left"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="javascript: void(0);" id="next" title="Next..." style="float: right;">
+                                    <i class="icon-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="navBottom">
+                            <ul>
+                                <li>
+                                    <a href="javascript: void(0);" id="sendAMessage" title="Send a message...">
+                                        <i class="icon-speech"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript: void(0);" id="like" title="Like">
+                                        <i class="fa fa-heart"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript: void(0);" id="dislike" title="Dislike">
+                                        <i class="dripicons-cross"></i>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="javascript: void(0);" id="sendCrush"
+                                        title="Send a crush, and add to favourites.">
+                                        <i class="fi-open"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="detailsCon col-lg-4 col-md-12" id="detailsCon">
+                    <div class="detailsHeader">
+                        <h3>
+                            <span id="Name" style="color: #1a1a1a;">Hope Stone, </span>
+                            <span id="Age">22</span>
+                        </h3>
+                    </div>
+                    <div class="bio">
+                        <h6 class="text-muted">Bio</h6>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi, commodi explicabo tempora
+                            reprehenderit aliquid vel distinctio?
+                        </p>
+                    </div>
+                    <div class="personalInfo">
+                        <h6 class="text-muted">Personal Information</h6>
+                        <ul>
+                            <li>Religion</li>
+                            <li>Language</li>
+                            <li>Height and others...</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- StatusBar -->
+            <%- include('../partials/statusBar.html'); %>
+        </div>
+    </section>
+</section>

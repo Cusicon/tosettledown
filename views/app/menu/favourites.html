@@ -1,2 +1,14 @@
-<h2>Favourites</h2>
-<p class="text-muted">See all your favourites, and begin a conversation.</p>
+<section class="windowFrame container row" id="windowFrame">
+    <!-- ProfileBar -->
+    <%- include('../partials/profileBar.html'); %>
+    <!-- MainBody -->
+    <section class="mainBody col-lg-9 col-md-8" id="mainBody">
+        <div class="row">
+            <div class="displayWindow col-lg-12"
+                style="box-shadow: none; border-left: 1px solid #eee; border-radius: 0px; padding: 10px;">
+                <h3 class="text-muted"><%= title %></h3>
+                <p class="text-muted">See all your favourites, and begin a conversation.</p>
+            </div>
+        </div>
+    </section>
+</section>

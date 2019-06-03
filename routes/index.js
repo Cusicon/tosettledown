@@ -36,5 +36,13 @@ router.use('/favourites', favourites);
 var weddings = require('./app/menu/weddings');
 router.use('/weddings', weddings);
 
+//-- weddings Router
+var wallet = require('./app/extras/wallet');
+router.use('/wallet', wallet);
+
+//-- weddings Router
+var packages = require('./app/extras/packages');
+router.use('/packages', packages);
+
 
 module.exports = router;
