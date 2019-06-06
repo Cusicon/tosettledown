@@ -69,7 +69,34 @@ a:active {
 
 .borderEffect {
   border: 2px dashed #ff6878;
+  animation: rollover 2s linear infinite;
 }
+
+/* ROLLOVER ANIMATION */
+
+@keyframes rollover {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(5deg);
+  }
+
+  50% {
+    transform: rotate(0deg);
+  }
+
+  75% {
+    transform: rotate(-5deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* END OF ROLLOVER ANIMATION */
 
 /* END OF GLOBAL */
 
@@ -203,7 +230,7 @@ a:active {
 }
 
 .mainBody .displayWindow .imageWindow .overlayNav .navTop {
-  border: 1px solid #ff6878;
+  /* border: 1px solid #ff6878; */
   margin-bottom: 10%;
 }
 
@@ -226,7 +253,7 @@ a:active {
   padding-top: 100px;
   padding-bottom: 100px;
   transform: scaleX(0.7);
-  border: 1px solid #ff6878;
+  /* border: 1px solid #ff6878; */
   transition: 0.2s linear;
 }
 
@@ -236,7 +263,7 @@ a:active {
 }
 
 .mainBody .displayWindow .imageWindow .overlayNav .navBottom {
-  border: 1px solid #ff6878;
+  /* border: 1px solid #ff6878; */
   padding: 0% 22.5%;
 }
 
@@ -311,3 +338,12 @@ a:active {
 /* End of StatusBar */
 
 /* END OF ENCOUNTERS */
+
+/* CHATS */
+
+.profileImg{
+  width: 50px;
+  height: 50px;
+}
+
+/* END OF CHATS */

@@ -8,8 +8,7 @@
                 <nav>
                     <center>
                         <a href="/" style="display: block;" class="logoCon" style="box-sizing: content-box;">
-                            <img src="/lib/img/logo/logo2-single.png" id="logo" width="50" alt="logo">
-                            <img src="/lib/img/logo/logo2-letter.png" id="logo" width="125" alt="logo">
+                            <img src="/lib/img/logo/logoLandscape.png" id="logo" width="200" alt="logo">
                         </a>
                     </center>
                     <br><br>
@@ -23,7 +22,7 @@
                 <h1>Built for Lovers</h1>
                 <br>
                 <p>
-                    ToSettleDown is a <b>Matchmaking</b> and <b>Dating</b> platform inspired by the way you singles
+                    Tosettledown is a <b>Matchmaking</b> and <b>Dating</b> platform inspired by the way you singles
                     communicate.
                     From been single to getting married, you can promote and sell marriage related items and
                     contents, ie. Wedding Rings, Wedding Gowns, Suit Blazzers etc, alongside other interested
@@ -52,16 +51,22 @@
                     <h2 style="font-weight: lighter;">SIGN UP</h2>
                     <div style="width: 30px; height: 2px; background-color: #ff6878;"></div>
                 </header>
-                <!-- Full Name -->
                 <div class="details">
+                    <!-- Full Name -->
                     <div class="form-group mb-3">
                         <input type="text" name="fullname" id="fullname" class="form-control"
                             placeholder="Enter full name" required>
                     </div>
-                    <!-- Email -->
-                    <div class="form-group mb-3">
-                        <input type="email" name="email" id="email" class="form-control" placeholder="Enter email"
-                            required>
+                    <div class="form-row align-items-center">
+                         <!-- Username -->
+                        <div class="col-lg-6 mb-3">
+                            <input type="text" name="username" id="username" class="form-control" placeholder="Pick a username" required>
+                        </div>
+                        <!-- Email -->
+                        <div class="col-lg-6 mb-3">
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Enter email"
+                                required>
+                        </div>
                     </div>
                     <!-- Password -->
                     <div class="form-group mb-4">
@@ -74,11 +79,11 @@
                     <!-- Gender & DOB -->
                     <div class="form-row align-items-center mb-3">
                         <!-- DOB -->
-                        <div class="col-auto">
+                        <div class="col-lg-7 col-auto">
                             <input type="date" name="dob" id="dob" class="form-control" required>
                         </div>
                         <!-- Gender -->
-                        <div class="col-auto">
+                        <div class="col-lg-5 col-auto">
                             <select name="gender" id="gender" class="form-control" required>
                                 <option value="" label="Gender">Gender</option>
                                 <option value="male">Male</option>
@@ -98,9 +103,9 @@
                     <div class="form-group">
                         <input type="submit" id="submitForm" class="form-control btn btn-success"
                             style="padding: 20px; margin-bottom: 5px;" aria-describedby="submitFormHelp"
-                            value="Sign up with ToSettleDown">
+                            value="Sign up with Tosettledown">
                         <small id="submitFormHelp" class="form-text text-muted">By clicking
-                            <i>"Sign up with ToSettleDown"</i>,
+                            <i>"Sign up with Tosettledown"</i>,
                             you agree to our <a href="#">terms of services</a>, <a href="#">privacy policy</a> and <a
                                 href="#">cookie policy</a>.
                         </small>
@@ -118,9 +123,9 @@
                 </header>
                 <div class="details" style="padding: 80px 0px;">
                     <p style="padding: 10px; text-align: center;">Enter login details, and let's go search...</p>
-                    <!-- Email -->
+                    <!-- Username -->
                     <div class="form-group mb-3">
-                        <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+                        <input type="text" name="username" id="username" class="form-control" placeholder="Username" required>
                     </div>
                     <!-- Password -->
                     <div class="form-group mb-5">
@@ -141,7 +146,7 @@
 
             <!-- Footer -->
             <footer class="footer text-muted float-right" style="padding: 10px; padding-right: 40px;">
-                <small>&copy; <%= new Date().getFullYear(); %>, ToSettleDown, Inc.</small>
+                <small>&copy; <%= new Date().getFullYear(); %>, Tosettledown, Inc.</small>
             </footer>
             <br><br>
         </div>
