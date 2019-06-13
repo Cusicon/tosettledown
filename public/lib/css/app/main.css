@@ -62,7 +62,7 @@ a {
 
 a:hover,
 a:active {
-  color: #ff6878 !important;
+  color: #ff6878;
   text-decoration: none;
 }
 
