@@ -27,7 +27,6 @@ a[role="button"] {
   color: #fff;
   padding: 10px;
   border: 0px !important;
-  transition: 0.2s linear;
 }
 
 button:hover,
@@ -39,11 +38,17 @@ a[role="button"]:hover {
 button:active,
 input[type="submit"]:active,
 a[role="button"]:active {
-  box-shadow: 0px 1px 20px #0000002a inset;
+  box-shadow: 0px 1px 20px #0000002a inset !important;
 }
 
 body {
   background-color: #f6f6f6;
+  transition: 0.2s linear !important;
+}
+
+*:active,
+*:hover {
+  transition: 0.15s linear !important;
 }
 
 ul {
@@ -53,12 +58,11 @@ ul {
 
 a {
   color: #4b4948;
-  transition: 0.2s linear;
 }
 
 a:hover,
 a:active {
-  color: #ff6878;
+  color: #ff6878 !important;
   text-decoration: none;
 }
 
@@ -68,32 +72,9 @@ a:active {
 }
 
 .borderEffect {
-  border: 2px dashed #ff6878;
-  animation: rollover 2s linear infinite;
-}
-
-/* ROLLOVER ANIMATION */
-
-@keyframes rollover {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  25% {
-    transform: rotate(5deg);
-  }
-
-  50% {
-    transform: rotate(0deg);
-  }
-
-  75% {
-    transform: rotate(-5deg);
-  }
-
-  100% {
-    transform: rotate(0deg);
-  }
+  border: 2px solid #ff6878;
+  padding: 3px !important;
+  /* transform: translate3d(50px); */
 }
 
 /* END OF ROLLOVER ANIMATION */
@@ -138,8 +119,8 @@ a:active {
   width: 50px;
   height: 50px;
   border-radius: 100%;
-  border: 2px solid #eee;
   float: left;
+  border: 2px solid #eee;
 }
 
 .profileBar .profileCon .profileSection ul {
@@ -179,9 +160,6 @@ a:active {
 
 /* MainBody */
 
-.mainBody {
-}
-
 .mainBody .searchBar {
   padding: 10px;
   margin: 2px 0px;
@@ -195,13 +173,12 @@ a:active {
   border-radius: 15px;
   border: 1px solid #eee;
   cursor: text;
-  transition: 0.2s linear;
 }
 
 .mainBody .searchBar a:hover,
 .mainBody .searchBar a:active {
   background-color: #f5f5f5;
-  color: #1a1a1a8a;
+  color: #1a1a1a8a !important;
 }
 
 .mainBody .displayWindow {
@@ -209,31 +186,34 @@ a:active {
   padding: 0px;
   border-radius: 10px;
   box-shadow: 0px 3px 10px #ddd;
-  height: 500px;
+  min-height: 550px;
+  overflow: hidden;
 }
 
 .mainBody .displayWindow .imageWindow {
   border-radius: 10px 0 0 10px;
   background-color: #303030;
   padding: 0px;
-  min-height: 560px;
+  min-height: 550px;
 }
 
 .mainBody .displayWindow .imageWindow .overlayNav {
   height: 100%;
-  padding: 10px;
   color: #fff !important;
 }
 
 .mainBody .displayWindow .imageWindow .overlayNav .navTop {
-  /* border: 1px solid #ff6878; */
-  margin-bottom: 10%;
+  margin-bottom: 50px;
+  padding: 10px;
+  padding-right: 15px;
 }
 
 .mainBody .displayWindow .imageWindow .overlayNav .imageCounter {
-  border-radius: 20px;
+  border-radius: 5px;
   padding: 2.2px 10px;
-  background-color: #0000007c;
+  background-color: #706c6c44;
+  font-weight: lighter;
+  float: right;
 }
 
 .mainBody .displayWindow .imageWindow .overlayNav .imageCounter p {
@@ -241,49 +221,99 @@ a:active {
 }
 
 .mainBody .displayWindow .imageWindow .overlayNav .navMiddle {
-  height: 55%;
+  height: 65%;
 }
 
-.mainBody .displayWindow .imageWindow .overlayNav .navMiddle a {
+.mainBody .displayWindow .imageWindow .overlayNav .navMiddle a#next,
+.mainBody .displayWindow .imageWindow .overlayNav .navMiddle a#previous {
   font-size: 50px;
-  padding-top: 100px;
-  padding-bottom: 100px;
-  transform: scaleX(0.7);
-  /* border: 1px solid #ff6878; */
-  transition: 0.2s linear;
+  padding: 7px;
+  padding-top: 150px;
+  padding-bottom: 150px;
+  transform: scaleX(0.5);
+  color: #fff4;
 }
 
-.mainBody .displayWindow .imageWindow .overlayNav .navMiddle a:hover,
-.mainBody .displayWindow .imageWindow .overlayNav .navMiddle a:active {
-  transform: scaleX(0.6);
-}
-
-.mainBody .displayWindow .imageWindow .overlayNav .navBottom {
-  /* border: 1px solid #ff6878; */
-  padding: 0% 22.5%;
+.mainBody .displayWindow .imageWindow .overlayNav .navMiddle a#next:active,
+.mainBody .displayWindow .imageWindow .overlayNav .navMiddle a#previous:active {
+  transform: scaleX(0.4);
 }
 
 .mainBody .displayWindow .imageWindow .overlayNav .navBottom ul li {
   display: inline-block;
-  border: 1px solid #ff6878;
-  border-radius: 100%;
-  background-color: #0000007c;
+  padding: 5px;
 }
 
 .mainBody .displayWindow .imageWindow .overlayNav .navBottom ul li a {
   display: block;
-  font-size: 30px;
-  padding: 20px 25px;
+  font-size: 19px;
+  min-width: 35px;
+  min-height: 35px;
+  border-radius: 100%;
+  border: 1px solid #fff;
+  color: #fff !important;
+}
+
+.mainBody
+  .displayWindow
+  .imageWindow
+  .overlayNav
+  .navBottom
+  ul
+  li
+  a#sendAMessage:active,
+.mainBody
+  .displayWindow
+  .imageWindow
+  .overlayNav
+  .navBottom
+  ul
+  li
+  a#sendCrush:active {
+  transform: scale(1.1555);
+}
+
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom ul li a#like,
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom ul li a#dislike {
+  display: block;
+  font-size: 45px;
+  min-width: 85px;
+  min-height: 85px;
+  padding-top: 3px;
+  border-radius: 100%;
+  box-shadow: 0px 5px 20px #1a1a1a;
+  background-color: #fff;
+}
+
+.mainBody
+  .displayWindow
+  .imageWindow
+  .overlayNav
+  .navBottom
+  ul
+  li
+  a#like:active,
+.mainBody
+  .displayWindow
+  .imageWindow
+  .overlayNav
+  .navBottom
+  ul
+  li
+  a#dislike:active {
+  transform: scale(1.25) translateY(-3px);
 }
 
 .mainBody .displayWindow .detailsCon {
+  padding: 20px;
   padding-top: 30px;
+  background-color: #fff;
 }
 
 .mainBody .displayWindow .detailsCon .detailsHeader {
   padding-bottom: 10px;
   margin-bottom: 30px;
-  border-bottom: 1px solid #f5f5f5;
+  border-bottom: 1px solid #eee;
 }
 
 .mainBody .displayWindow .detailsCon .detailsHeader span {
@@ -337,9 +367,93 @@ a:active {
 
 /* CHATS */
 
-.profileImg{
+.profileImg {
   width: 50px;
   height: 50px;
 }
 
 /* END OF CHATS */
+
+/* MATCHED AND LIKES */
+
+.likes,
+.matched {
+  padding: 20px 50px;
+}
+
+.likes .card,
+.matched .card {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 40px;
+}
+
+.likes .card:hover,
+.matched .card:hover {
+  box-shadow: -0px 2px 8px #ddd;
+}
+
+.likes .card #handle,
+.matched .card #handle {
+  background-color: #312f2f44;
+  width: 30%;
+  padding: 2px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.likes .card .img,
+.matched .card .img {
+  border-radius: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+  min-height: 150px;
+  max-height: 150px;
+}
+
+/* END OF MATCHED AND LIKES */
+
+/* VISITORS AND FAVOURITES */
+
+.visitors,
+.favourites {
+  padding: 20px 50px;
+}
+
+.visitors .card,
+.favourites .card {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 40px;
+}
+
+.visitors .card:hover,
+.favourites .card:hover {
+  box-shadow: -0px 2px 8px #ddd;
+}
+
+.visitors .card #handle,
+.favourites .card #handle {
+  background-color: #312f2f44;
+  width: 30%;
+  padding: 2px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.visitors .card .img,
+.favourites .card .img {
+  border-radius: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+  min-height: 150px;
+  max-height: 150px;
+}
+
+/* END OF VISITORS AND FAVOURITES */

@@ -14,10 +14,14 @@
         <!-- Profile -->
         <div class="profileCon" id="profileCon">
             <div class="profileSection">
-                <div class="profileImg" style="background-image: url('/lib/img/assets/user.png')"></div>
+                <a href="/app/profile/:profileID">
+                    <div class="profileImg" style="background-image: url('/lib/img/assets/user.png');"></div>
+                </a>
                 <ul>
                     <li id="username">James Clark</li>
-                    <li id="popularity">Popularity: <b class="text-muted">Calculating...</b></li>
+                    <li id="popularity">
+                        Popularity: <a href="/app/popularity/"><b class="text-muted">Calculating...</b></a>
+                    </li>
                 </ul>
             </div>
             <div class="profileOthers">
@@ -74,8 +78,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/app/views" class="<%= title.toLowerCase() == 'views' ? 'activeMenu' : '' %>" id="views">
-                        <span>Views</span>
+                    <a href="/app/visitors" class="<%= title.toLowerCase() == 'visitors' ? 'activeMenu' : '' %>" id="visitors">
+                        <span>Visitors</span>
                     </a>
                 </li>
                 <li>
@@ -85,9 +89,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/app/weddings" class="<%= title.toLowerCase() == 'weddings' ? 'activeMenu' : '' %>"
-                        id="weddings">
-                        <span>Weddings</span>
+                    <a href="/app/shop" class="<%= title.toLowerCase() == 'shop' ? 'activeMenu' : '' %>"
+                        id="shop">
+                        <span>Shop</span>
                         <span class="badge float-right" style"padding: 5px 10px; color: #fff;">New</span>
                     </a>
                 </li>

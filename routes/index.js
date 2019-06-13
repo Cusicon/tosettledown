@@ -24,23 +24,23 @@ router.use('/matched', matched);
 var likes = require('./app/menu/likes');
 router.use('/likes', likes);
 
-//-- views Router
-var views = require('./app/menu/views');
-router.use('/views', views);
+//-- visitors Router
+var visitors = require('./app/menu/visitors');
+router.use('/visitors', visitors);
 
 //-- favourites Router
 var favourites = require('./app/menu/favourites');
 router.use('/favourites', favourites);
 
-//-- weddings Router
-var weddings = require('./app/menu/weddings');
-router.use('/weddings', weddings);
+//-- shop Router
+var shop = require('./app/menu/shop');
+router.use('/shop', shop);
 
-//-- weddings Router
+//-- shop Router
 var wallet = require('./app/extras/wallet');
 router.use('/wallet', wallet);
 
-//-- weddings Router
+//-- shop Router
 var packages = require('./app/extras/packages');
 router.use('/packages', packages);
 

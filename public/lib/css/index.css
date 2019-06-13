@@ -69,13 +69,13 @@ body {
 section.Frame {
   margin: 0 auto;
   width: 90%;
-  border-radius: 5px;
+  border-radius: 15px;
   background-color: #f9f9f9;
 }
 
 section.Frame .infoCon div#jb {
   padding: 70px 50px 20px;
-  /* visibility: hidden; */
+  visibility: hidden;
 }
 
 section.Frame .infoCon div#jb h1 {
@@ -96,7 +96,7 @@ section.Frame div.detailsCon {
   position: relative;
   padding: 0px;
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 15px;
   overflow: hidden !important;
 }
 
