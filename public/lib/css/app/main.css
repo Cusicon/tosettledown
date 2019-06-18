@@ -14,9 +14,35 @@
 
 .form-control,
 .btn {
-  padding: 10px;
+  padding: 10px 20px;
   border-radius: 20px !important;
-  color: #fff;
+  color: unset;
+}
+
+.form-control:focus {
+  border: 1px solid #ddd !important;
+  box-shadow: 0px 1px 3px #ddd;
+}
+.card {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  color: #303030;
+}
+
+.card #card-handle {
+  background-color: #312f2f44;
+  width: 30%;
+  padding: 2px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  border-radius: 50px;
+}
+
+.card .card-body {
+  padding: 0px;
 }
 
 button,
@@ -39,6 +65,7 @@ button:active,
 input[type="submit"]:active,
 a[role="button"]:active {
   box-shadow: 0px 1px 20px #0000002a inset !important;
+  transform: scale(0.95);
 }
 
 body {
@@ -71,13 +98,14 @@ a:active {
   color: #ff6878;
 }
 
-.borderEffect {
+.activeProfile {
   border: 2px solid #ff6878;
   padding: 3px !important;
-  /* transform: translate3d(50px); */
 }
 
-/* END OF ROLLOVER ANIMATION */
+/* ANIMATIONS */
+
+/* END OF ANIMATIONS */
 
 /* END OF GLOBAL */
 
@@ -116,10 +144,13 @@ a:active {
 }
 
 .profileBar .profileCon .profileSection .profileImg {
-  width: 50px;
-  height: 50px;
+  width: 46px;
+  height: 46px;
   border-radius: 100%;
   float: left;
+}
+
+.profileBar .profileCon .profileSection .profileImg:active {
   border: 2px solid #eee;
 }
 
@@ -134,7 +165,6 @@ a:active {
 }
 
 .profileBar .profileCon .profileSection ul li#popularity {
-  color: #ccc;
   font-size: 12px;
 }
 
@@ -186,20 +216,21 @@ a:active {
   padding: 0px;
   border-radius: 10px;
   box-shadow: 0px 3px 10px #ddd;
-  min-height: 550px;
+  min-height: 560px;
   overflow: hidden;
 }
 
 .mainBody .displayWindow .imageWindow {
   border-radius: 10px 0 0 10px;
   background-color: #303030;
+  background-position: top center;
   padding: 0px;
-  min-height: 550px;
+  min-height: 560px;
 }
 
 .mainBody .displayWindow .imageWindow .overlayNav {
+  box-shadow: 0px -130px 100px #00000036 inset;
   height: 100%;
-  color: #fff !important;
 }
 
 .mainBody .displayWindow .imageWindow .overlayNav .navTop {
@@ -214,6 +245,7 @@ a:active {
   background-color: #706c6c44;
   font-weight: lighter;
   float: right;
+  color: #fff;
 }
 
 .mainBody .displayWindow .imageWindow .overlayNav .imageCounter p {
@@ -224,8 +256,8 @@ a:active {
   height: 65%;
 }
 
-.mainBody .displayWindow .imageWindow .overlayNav .navMiddle a#next,
-.mainBody .displayWindow .imageWindow .overlayNav .navMiddle a#previous {
+.mainBody .displayWindow .imageWindow .overlayNav .navMiddle a,
+.mainBody .displayWindow .imageWindow .overlayNav .navMiddle a {
   font-size: 50px;
   padding: 7px;
   padding-top: 150px;
@@ -234,8 +266,8 @@ a:active {
   color: #fff4;
 }
 
-.mainBody .displayWindow .imageWindow .overlayNav .navMiddle a#next:active,
-.mainBody .displayWindow .imageWindow .overlayNav .navMiddle a#previous:active {
+.mainBody .displayWindow .imageWindow .overlayNav .navMiddle a:active {
+  color: #706c6c88;
   transform: scaleX(0.4);
 }
 
@@ -250,8 +282,8 @@ a:active {
   min-width: 35px;
   min-height: 35px;
   border-radius: 100%;
-  border: 1px solid #fff;
-  color: #fff !important;
+  border: 1px solid #fff !important;
+  color: #fff;
 }
 
 .mainBody
@@ -271,6 +303,7 @@ a:active {
   li
   a#sendCrush:active {
   transform: scale(1.1555);
+  background-color: #706c6c44;
 }
 
 .mainBody .displayWindow .imageWindow .overlayNav .navBottom ul li a#like,
@@ -281,8 +314,8 @@ a:active {
   min-height: 85px;
   padding-top: 3px;
   border-radius: 100%;
-  box-shadow: 0px 5px 20px #1a1a1a;
   background-color: #fff;
+  /* box-shadow: 0px 5px 50px #24212144; */
 }
 
 .mainBody
@@ -301,7 +334,102 @@ a:active {
   ul
   li
   a#dislike:active {
-  transform: scale(1.25) translateY(-3px);
+  transform: scale(1.15) translateY(-3px);
+}
+
+.mainBody
+  .displayWindow
+  .imageWindow
+  .overlayNav
+  .navBottom
+  .quickMessagePopUp {
+  display: none;
+  position: absolute;
+  width: 100% !important;
+  bottom: -10%;
+}
+
+.mainBody
+  .displayWindow
+  .imageWindow
+  .overlayNav
+  .navBottom
+  .quickMessagePopUp
+  .card {
+  height: 250px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.mainBody
+  .displayWindow
+  .imageWindow
+  .overlayNav
+  .navBottom
+  .quickMessagePopUp
+  .card
+  #card-handle {
+  width: 10%;
+}
+
+.mainBody
+  .displayWindow
+  .imageWindow
+  .overlayNav
+  .navBottom
+  .quickMessagePopUp
+  .card
+  .card-body
+  .top {
+  padding: 0px 20px;
+  height: 60px;
+}
+.mainBody
+  .displayWindow
+  .imageWindow
+  .overlayNav
+  .navBottom
+  .quickMessagePopUp
+  .card
+  .card-body
+  .top
+  .profileImg {
+  background-color: #eee;
+  float: left;
+  border: 2px solid #eee;
+  border-radius: 100%;
+  margin-right: 10px;
+}
+
+.mainBody
+  .displayWindow
+  .imageWindow
+  .overlayNav
+  .navBottom
+  .quickMessagePopUp
+  .card
+  .card-body
+  .bottom {
+  background-color: #f9f9f9;
+  height: 100px;
+  padding: 20px;
+  padding-top: 0px;
+  border-top: 1px solid #eee;
+}
+
+.mainBody
+  .displayWindow
+  .imageWindow
+  .overlayNav
+  .navBottom
+  .quickMessagePopUp
+  .card
+  .card-body
+  .bottom
+  input {
+  font-size: 14px;
+  border: 1px solid #eee;
+  padding: 15px 20px;
 }
 
 .mainBody .displayWindow .detailsCon {
@@ -383,26 +511,13 @@ a:active {
 
 .likes .card,
 .matched .card {
-  width: 100%;
-  height: auto;
-  padding: 20px;
-  border: 1px solid #ddd;
-  background-color: #fff;
   border-radius: 40px;
+  border: 1px solid #ddd;
 }
 
 .likes .card:hover,
 .matched .card:hover {
   box-shadow: -0px 2px 8px #ddd;
-}
-
-.likes .card #handle,
-.matched .card #handle {
-  background-color: #312f2f44;
-  width: 30%;
-  padding: 2px;
-  margin: 0 auto;
-  margin-bottom: 20px;
 }
 
 .likes .card .img,
@@ -412,6 +527,7 @@ a:active {
   width: 100%;
   min-height: 150px;
   max-height: 150px;
+  background-color: #eee;
 }
 
 /* END OF MATCHED AND LIKES */
@@ -425,26 +541,13 @@ a:active {
 
 .visitors .card,
 .favourites .card {
-  width: 100%;
-  height: auto;
-  padding: 20px;
-  border: 1px solid #ddd;
-  background-color: #fff;
   border-radius: 40px;
+  border: 1px solid #ddd;
 }
 
 .visitors .card:hover,
 .favourites .card:hover {
   box-shadow: -0px 2px 8px #ddd;
-}
-
-.visitors .card #handle,
-.favourites .card #handle {
-  background-color: #312f2f44;
-  width: 30%;
-  padding: 2px;
-  margin: 0 auto;
-  margin-bottom: 20px;
 }
 
 .visitors .card .img,
@@ -454,6 +557,7 @@ a:active {
   width: 100%;
   min-height: 150px;
   max-height: 150px;
+  background-color: #eee;
 }
 
 /* END OF VISITORS AND FAVOURITES */

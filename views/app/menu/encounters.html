@@ -7,7 +7,7 @@
         <div class="row">
             <div class="displayWindow col-lg-11 row">
                 <!-- ImageWindow -->
-                <div class="imageWindow col-lg-8" style="background-image: url('/lib/img/Mojave_Day.jpg');">
+                <div class="imageWindow col-lg-8" style="background-image: url('/lib/img/52.jpg');">
                     <div class="overlayNav">
                         <div class="navTop">
                             <div class="imageCounter">
@@ -34,12 +34,13 @@
                                 <ul>
                                     <li>
                                         <a href="javascript: void(0);" id="sendAMessage"
-                                            title="Send a message...">
+                                            title="Start a conversation...">
                                             <i class="typcn typcn-location-arrow"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript: void(0);" id="like" title="Like" style="color: #ff6878 !important;">
+                                        <a href="javascript: void(0);" id="like" title="Like"
+                                            style="color: #ff6878 !important;">
                                             <i class="typcn typcn-heart-full-outline"></i>
                                         </a>
                                     </li>
@@ -57,14 +58,58 @@
                                     </li>
                                 </ul>
                             </center>
+                            <div class="quickMessagePopUp popUp" id="quickMessagePopUp">
+                                <div class="card" style="border: none;">
+                                    <div id="card-handle"></div>
+                                    <section class="card-body">
+                                        <div class="form-group">
+                                            <div class="top">
+                                                <div class="container">
+                                                    <div class="float-right">
+                                                        <a href="javascript: void(0);" id="closeQuickMessagePopUp"
+                                                            style="font-size: 20px;" class="text-dark" title="Close">
+                                                            <i class="typcn typcn-times"></i>
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="profileImg"
+                                                        style="background-image: url('/lib/img/52.jpg');">
+                                                    </div>
+                                                    <div style="margin-bottom: -10px;">
+                                                        <span>Hope Stone</span>
+                                                        <div style="font-size: 12px;" class="text-muted">
+                                                            Popularity: <b class="text-danger">Very popular</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bottom">
+                                                <div class="container">
+                                                    <form action="#" method="POST">
+                                                        <div class="form-row align-items-center">
+                                                            <!-- Input -->
+                                                            <div class="col-lg-12 mt-3">
+                                                                <!-- Check Chats for Dynamic Input -->
+                                                                <input type="text" name="quickMessage" id="quickMessage" class="form-control" placeholder="Start a conversation with Hope"
+                                                                    title="Press 'Enter' to send" required>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                    </section>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="detailsCon col-lg-4 col-md-12" id="detailsCon">
                     <div class="detailsHeader">
-                        <h3>
-                            <span id="Name" style="color: #1a1a1a;">Hope Stone, </span>
-                            <span id="Age">22</span>
+                        <h3 style="margin-bottom: 0px;">
+                            <span id="NameandAge" style="color: #1a1a1a;">Hope Stone, 22</span>
+                            <div id="username" style="font-size: 15px; margin-top: 10px;">
+                                <a href="/app/profile/:profileID" title="Visit Hope Stone's profile">@iam.stone</a>
+                            </div>
                         </h3>
                     </div>
                     <div class="bio">
@@ -75,7 +120,7 @@
                         </p>
                     </div>
                     <div class="personalInfo">
-                        <h6 class="text-muted">Personal Information</h6>
+                        <h6 class="text-muted">Personal Info</h6>
                         <ul>
                             <li>Religion</li>
                             <li>Language</li>

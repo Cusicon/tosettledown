@@ -12,7 +12,7 @@ a[href]:hover {
 }
 .form-control,
 .btn {
-  padding: 10px;
+  padding: 10px 20px;
   border-radius: 20px !important;
   color: unset;
 }
@@ -36,7 +36,8 @@ a[role="button"]:hover {
 button:active,
 input[type="submit"]:active,
 a[role="button"]:active {
-  box-shadow: 0px 1px 20px #0000002a inset;
+  box-shadow: 0px 1px 20px #0000002a inset !important;
+  transform: scale(0.95);
 }
 
 body {
