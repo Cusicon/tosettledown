@@ -4,14 +4,7 @@
     <!-- MainBody -->
     <section class="mainBody col-lg-9 col-md-8" id="mainBody">
         <!-- SearchBar -->
-        <div class="searchBar">
-            <center>
-                <a href="javascript: void(0);" class="col-lg-5" id="search">
-                    <i class="fa fa-search"></i>
-                    <span>Search...</span>
-                </a>
-            </center>
-        </div>
+        <%- include('../partials/searchBar.html'); %>
         <div class="row">
             <div class="displayWindow col-lg-11 row">
                 <!-- ImageWindow -->
@@ -52,7 +45,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript: void(0);" id="dislike" title="Dislike"
+                                        <a href="javascript: void(0);" id="skip" title="Skip"
                                             style="color: #303030 !important;">
                                             <i class="typcn typcn-times"></i>
                                         </a>

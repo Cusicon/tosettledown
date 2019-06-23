@@ -4,10 +4,130 @@
     <!-- MainBody -->
     <section class="mainBody col-lg-9 col-md-8" id="mainBody">
         <div class="row">
-            <div class="displayWindow col-lg-12" style="box-shadow: none; border-radius: 0px; padding: 20px;">
-                <h3 class="text-muted"><%= title %>(Messages)</h3>
-                <p class="text-muted">View and start all conversations here.</p>
-                <div class="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
+            <div class="displayWindow col-lg-12 row Chat"
+                style="box-shadow: none; border-radius: 0px; padding: 20px 30px;">
+                <section class="col-lg-4 ChatList">
+                    <div class="ChatHead">
+                        <h3 class="text-muted text-center"><%= title %></h3>
+                        <input type="text" name="searchUsers" id="searchUsers" class="form-control"
+                            style="background-color: #eee; border: none; padding: 10px 15px !important; margin-top: 20px;"
+                            placeholder="Search...">
+                    </div>
+                    <div class="ChatBody">
+                        <ul>
+                            <li>
+                                <a href="#" id="user">
+                                    <div id="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
+                                    <div id="time" class="text-muted">Today, 4:32pm
+                                    </div>
+                                    <div id="username" class="text-dark">Grace Philips</div>
+                                    <div id="lastest_message" class="text-muted">How are you doing?</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" id="user">
+                                    <div id="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
+                                    <div id="time" class="text-muted">Today, 4:32pm
+                                    </div>
+                                    <div id="username" class="text-dark">Grace Philips</div>
+                                    <div id="lastest_message" class="text-muted">How are you doing?</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" id="user">
+                                    <div id="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
+                                    <div id="time" class="text-muted">Today, 4:32pm
+                                    </div>
+                                    <div id="username" class="text-dark">Grace Philips</div>
+                                    <div id="lastest_message" class="text-muted">How are you doing?</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" id="user">
+                                    <div id="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
+                                    <div id="time" class="text-muted">Today, 4:32pm
+                                    </div>
+                                    <div id="username" class="text-dark">Grace Philips</div>
+                                    <div id="lastest_message" class="text-muted">How are you doing?</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" id="user">
+                                    <div id="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
+                                    <div id="time" class="text-muted">Today, 4:32pm
+                                    </div>
+                                    <div id="username" class="text-dark">Grace Philips</div>
+                                    <div id="lastest_message" class="text-muted">How are you doing?</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" id="user">
+                                    <div id="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
+                                    <div id="time" class="text-muted">Today, 4:32pm
+                                    </div>
+                                    <div id="username" class="text-dark">Grace Philips</div>
+                                    <div id="lastest_message" class="text-muted">How are you doing?</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" id="user">
+                                    <div id="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
+                                    <div id="time" class="text-muted">Today, 4:32pm
+                                    </div>
+                                    <div id="username" class="text-dark">Grace Philips</div>
+                                    <div id="lastest_message" class="text-muted">How are you doing?</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" id="user">
+                                    <div id="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
+                                    <div id="time" class="text-muted">Today, 4:32pm
+                                    </div>
+                                    <div id="username" class="text-dark">Grace Philips</div>
+                                    <div id="lastest_message" class="text-muted">How are you doing?</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" id="user">
+                                    <div id="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
+                                    <div id="time" class="text-muted">Today, 4:32pm
+                                    </div>
+                                    <div id="username" class="text-dark">Grace Philips</div>
+                                    <div id="lastest_message" class="text-muted">How are you doing?</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" id="user">
+                                    <div id="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
+                                    <div id="time" class="text-muted">Today, 4:32pm
+                                    </div>
+                                    <div id="username" class="text-dark">Grace Philips</div>
+                                    <div id="lastest_message" class="text-muted">How are you doing?</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section class="col-lg-8 ChatWindow">
+                    <div class="ChatWindowHead">
+                        <div id="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
+                        <div id="username" class="text-dark">Grace Philips</div>
+                        <div id="status" class="is-online"></div>
+                    </div>
+                    <div class="ChatWindowBody">
+                        <ul>
+                            <li>
+                                <div>
+                                    <span id="message">Message</span>
+                                    <span id="time">1:37pm</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="ChatWindowFooter" style="padding: 5px 15px;">
+                        <%- include('../partials/dynamicInput.html'); %>
+                    </div>
+                </section>
             </div>
         </div>
         <!-- Footer -->

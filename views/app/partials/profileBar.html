@@ -1,5 +1,5 @@
 <!-- PROFILEBAR -->
-<section class="profileBar col-lg-3 col-sm-4" id="profileBar" style="color: #9e9997;">
+<section class="profileBar col-lg-3 col-sm-4" id="profileBar" style="color: #9e9997; visibility: visible;">
     <div class="container">
         <!-- logo -->
         <div class="logoCon" id="logoCon">
@@ -15,12 +15,13 @@
         <div class="profileCon" id="profileCon">
             <div class="profileSection">
                 <a href="/app/profile/:profileID" title="See your profile...">
-                    <div class="profileImg" style="background-image: url('/lib/img/assets/user.jpg');"></div>
+                    <div class="profileImg" style="background-image: url('/lib/img/assets/user.png');"></div>
                 </a>
                 <ul>
                     <li id="username">James Clark</li>
                     <li id="popularity" class="text-muted">
-                        Popularity: <a href="/app/popularity/" title="See your popularity..."><b class="text-muted">Calculating...</b></a>
+                        Popularity: <a href="/app/popularity/" title="See your popularity..."><b
+                                class="text-muted">Calculating...</b></a>
                     </li>
                 </ul>
             </div>
@@ -32,7 +33,7 @@
                             <center>
                                 <img src="/lib/img/assets/settle-topup.png" alt="settlesLogo" width="35" id="settleImg">
                                 <div>
-                                    <small class="text-muted">Settles</small><br>
+                                    <small style="font-weight: 500;" class="text-muted">Settles</small><br>
                                     <span id="balance">Top Up</span>
                                 </div>
                             </center>
@@ -43,7 +44,7 @@
                             <center>
                                 <img src="/lib/img/assets/premium-topup.png" alt="premiumLogo" width="37" id="premium">
                                 <div>
-                                    <small class="text-muted">Premium</small><br>
+                                    <small style="font-weight: 500;" class="text-muted">Premium</small><br>
                                     <span id="is-active">Activate</span>
                                 </div>
                             </center>
@@ -58,41 +59,47 @@
                 <li>
                     <a href="/app/encounters" class="<%= title.toLowerCase() == 'encounters' ? 'activeMenu' : '' %>"
                         id="encounters">
-                        <span>Encounters</span>
+                        <span><i class="typcn typcn-compass"></i> &nbsp; Encounters</span>
+                        <span class="badge float-right hide">New</span>
                     </a>
                 </li>
                 <li>
                     <a href="/app/chats" class="<%= title.toLowerCase() == 'chats' ? 'activeMenu' : '' %>" id="chats">
-                        <span>Chats</span>
+                        <span><i class="typcn typcn-messages"></i> &nbsp; Chats</span>
+                        <span class="badge float-right hide">New</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/app/shop" class="<%= title.toLowerCase() == 'shop' ? 'activeMenu' : '' %>" id="shop">
+                        <span><i class="typcn typcn-shopping-bag"></i> &nbsp; Shop</span>
+                        <span class="badge float-right">New</span>
                     </a>
                 </li>
                 <li>
                     <a href="/app/matched" class="<%= title.toLowerCase() == 'matched' ? 'activeMenu' : '' %>"
                         id="matched">
-                        <span>Matched</span>
+                        <span><i class="typcn typcn-point-of-interest"></i> &nbsp; Matched</span>
+                        <span class="badge float-right hide">New</span>
                     </a>
                 </li>
                 <li>
                     <a href="/app/likes" class="<%= title.toLowerCase() == 'likes' ? 'activeMenu' : '' %>" id="likes">
-                        <span>Likes</span>
+                        <span><i class="typcn typcn-heart-half-outline"></i> &nbsp; Likes</span>
+                        <span class="badge float-right hide">New</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/app/visitors" class="<%= title.toLowerCase() == 'visitors' ? 'activeMenu' : '' %>" id="visitors">
-                        <span>Visitors</span>
+                    <a href="/app/visitors" class="<%= title.toLowerCase() == 'visitors' ? 'activeMenu' : '' %>"
+                        id="visitors">
+                        <span><i class="typcn typcn-group"></i> &nbsp; Visitors</span>
+                        <span class="badge float-right hide">New</span>
                     </a>
                 </li>
                 <li>
                     <a href="/app/favourites" class="<%= title.toLowerCase() == 'favourites' ? 'activeMenu' : '' %>"
                         id="favourites">
-                        <span>Favourites</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/app/shop" class="<%= title.toLowerCase() == 'shop' ? 'activeMenu' : '' %>"
-                        id="shop">
-                        <span>Shop</span>
-                        <span class="badge float-right" style"padding: 5px 10px; color: #fff;">New</span>
+                        <span><i class="typcn typcn-star-full-outline"></i> &nbsp; Favourites</span>
+                        <span class="badge float-right hide">New</span>
                     </a>
                 </li>
             </ul>

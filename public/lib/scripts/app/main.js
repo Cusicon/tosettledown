@@ -4,9 +4,9 @@ function closeOnEscBtn() {
     $('body').keyup((e) => {
         var popUp = $(".popUp");
         if (e.keyCode == 27) {
-            popUp.children("input").val("");
+            $(".popUp input[type='text']").val("");
             $(".overlayNav").css({ "background-color": "transparent" });
-            popUp.css({ "bottom": "-50%" }).hide(500);
+            $(".popUp").css({ "bottom": "-50%" }).hide(500);
         }
     });
 } closeOnEscBtn();
@@ -21,7 +21,7 @@ function quickMessagePopUp() {
 
     // Close on Click 'x' button
     $('#closeQuickMessagePopUp').click(() => {
-        $(".quickMessagePopUp input").val("");
+        $(".quickMessagePopUp input[type='text']").val("");
         $(".overlayNav").css({ "background-color": "transparent" });
         $(".quickMessagePopUp").css({ "bottom": "-50%" }).hide(500);
     });
@@ -39,12 +39,6 @@ function navigateImages() {
     });
 } navigateImages();
 
-// function generateDynamicInput(element) {
-//     var diHtml = `<>`
-//     return alert(element);
-// }
-
-// function dynamicInput() {
-//     var parent = $('input[data-type="dynamicInput"]');
-//     generateDynamicInput(parent.get());
-// } dynamicInput();
+function name() {
+    
+}
