@@ -10,10 +10,19 @@
                 <div class="imageWindow col-lg-8" style="background-image: url('/lib/img/52.jpg');">
                     <div class="overlayNav">
                         <div class="navTop">
-                            <div class="imageCounter">
+                            <div class="imageCounter float-left">
                                 <p>
                                     <span id="currentNumber" style="padding-right: 5px;">1</span>/
                                     <span id="TotalNumber">4</span>
+                                </p>
+                            </div>
+                            <div class="imageCounter reportFlag">
+                                <p>
+                                    <span>
+                                        <a href="#" style="color: #fff;">
+                                            <i class="typcn typcn-flag"></i>
+                                        </a>
+                                    </span>
                                 </p>
                             </div>
                         </div>
@@ -86,7 +95,25 @@
                                             <div class="bottom">
                                                 <div class="container">
                                                     <!-- Dynamic Input -->
-                                                    <%- include('../partials/dynamicInput.html'); %>
+                                                    <form action="#" method="POST">
+                                                        <!-- Input -->
+                                                        <div class="dynamicInput row col-lg-12 mt-3"
+                                                            style="margin: 0px; border: 1px solid #eee; box-shadow: 1px -0px 3px #eee; padding: 6px !important; border-radius: 15px; background-color: #fff;">
+                                                            <div class="inputCon col-lg-10">
+                                                                <input type="text" name="message" id="message"
+                                                                    class="form-control" placeholder="Type a message"
+                                                                    required
+                                                                    style="border: none !important; background-color: transparent; border-radius: 0px !important;">
+                                                            </div>
+                                                            <!-- Others -->
+                                                            <div class="OthersCon col-lg-2">
+                                                                <span>
+                                                                    <input type="submit" value="Send" class="btn"
+                                                                        style="border: none !important;">
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                     </section>

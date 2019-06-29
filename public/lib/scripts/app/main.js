@@ -11,6 +11,8 @@ function closeOnEscBtn() {
     });
 } closeOnEscBtn();
 
+// function floatIn(element, bottomPercentage)
+
 // show quickMessagePopUp
 function quickMessagePopUp() {
     var sendAMessageBtn = $("#sendAMessage");
