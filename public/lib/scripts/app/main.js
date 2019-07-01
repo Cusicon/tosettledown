@@ -1,3 +1,11 @@
+
+// Alert perfect
+function Palert(){
+    var ans = prompt("How is it?");
+    alert(ans);
+    return ans;
+}
+
 // Close any popUp, by hitting 'Esc' button
 function closeOnEscBtn() {
     // Close on Hit 'Esc' button

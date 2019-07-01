@@ -9,12 +9,38 @@
   color: #ff6878;
 }
 
+.btn.bg-color {
+  background-color: #ff6878 !important;
+  color: #fff !important;
+}
+
 .is-online {
+  position: relative;
+  right: -13px;
+  width: 13px;
+  height: 13px;
+  float: left;
+  border: 1.5px solid #fff;
+  border-radius: 100%;
   background-color: #32c861 !important;
 }
 
 .is-offline {
-  background-color: #eee !important;
+  position: relative;
+  right: -13px;
+  width: 13px;
+  height: 13px;
+  float: left;
+  border: 1.5px solid #fff;
+  border-radius: 100%;
+  background-color: #aaa !important;
+}
+
+.borderBottom {
+  padding: 1px;
+  background-color: #ff6878;
+  width: 5%;
+  margin-bottom: 5px;
 }
 
 .badge {
@@ -66,6 +92,7 @@
   padding: 10px 15px !important;
   border-radius: 15px !important;
   font-size: 14px;
+  border: none !important;
   box-shadow: none !important;
   transition: none !important;
 }
@@ -536,13 +563,13 @@ a:active {
 .Chat .ChatList .ChatBody {
   background-color: #fff;
   overflow: scroll;
-  max-height: 450px;
+  max-height: 460px;
 }
 
 .Chat .ChatList .ChatBody ul li a#user {
   display: block;
   border-bottom: 1px solid #f8f9f8;
-  padding: 20px;
+  padding: 20px 10px;
   height: 90px;
 }
 
@@ -581,14 +608,14 @@ a:active {
 
 .Chat .ChatWindow {
   padding: 0px !important;
-  border-right: 1px solid #eee;
+  /* border: 1px solid red; */
 }
 
 .Chat .ChatWindow .ChatWindowHead {
   display: block;
   border-bottom: 1px solid #eee;
-  padding: 20px;
-  height: 90px;
+  padding: 10px 20px;
+  height: 70px;
 }
 
 .Chat .ChatWindow .ChatWindowHead div#profileImg {
@@ -607,28 +634,39 @@ a:active {
   display: inline-block;
 }
 
-.Chat .ChatWindow .ChatWindowHead div#status {
-  display: inline-block;
-  margin-left: 5px;
-  width: 8px;
-  height: 8px;
-  border-radius: 100%;
-}
-
 .Chat .ChatWindow .ChatWindowBody {
   padding: 10px;
-  height: 415px;
+  height: 420px;
   /* border: 1px solid red; */
   overflow: scroll;
 }
 
-.Chat .ChatWindow .ChatWindowBody ul li div {
-  padding: 10px 15px;
+.Chat .ChatWindow .ChatWindowBody ul li {
+  /* border: 1px solid red; */
+  padding: 10px;
+  min-height: 65px;
+}
+
+.Chat .ChatWindow .ChatWindowBody ul li.inbox div {
+  border-radius: 0px 25px 25px 25px;
+  background-color: #f1f1f1;
+  color: #2b2b2b;
+  float: left;
+}
+
+.Chat .ChatWindow .ChatWindowBody ul li.outbox div {
+  border-radius: 25px 0px 25px 25px;
   background-color: #ff6878;
+  float: right;
+}
+
+.Chat .ChatWindow .ChatWindowBody ul li div {
+  display: inline-block;
+  padding: 10px 15px;
   color: #fff;
-  border-radius: 15px;
-  max-width: 200px;
-  word-wrap: break-word;
+  max-width: 250px;
+  overflow: hidden;
+  word-break: break-all;
 }
 
 .Chat .ChatWindow .ChatWindowBody ul li div #message {

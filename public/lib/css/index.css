@@ -16,9 +16,6 @@ a[href]:hover {
   border-radius: 15px !important;
   color: unset;
   box-shadow: none !important;
-}
-
-.form-control:focus {
   border: none !important;
 }
 

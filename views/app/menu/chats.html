@@ -2,21 +2,24 @@
     <!-- ProfileBar -->
     <%- include('../partials/profileBar.html'); %>
     <!-- MainBody -->
-    <section class="mainBody col-lg-9 col-md-8" id="mainBody">
+    <section class="mainBody col-md-9 col-md-8" id="mainBody">
         <div class="row">
-            <div class="displayWindow col-lg-12 row Chat"
+            <div class="displayWindow col-md-12 row Chat"
                 style="box-shadow: none; border-radius: 0px; padding: 20px 30px; overflow: visible;">
-                <section class="col-lg-4 ChatList">
+                <section class="col-md-4 ChatList">
                     <div class="ChatHead">
                         <h3 class="text-muted text-center"><%= title %></h3>
-                        <input type="text" name="searchUsers" id="searchUsers" class="form-control"
-                            style="background-color: #eee; border: none; padding: 10px 15px !important; margin-top: 20px;"
-                            placeholder="Search...">
+                        <select name="searchUsers" id="searchUsers" class="form-control mb-2"
+                            style="border: 1px solid #eee !important; cursor: pointer;">
+                            <option value="all">All</option>
+                            <option value="online">Online</option>
+                        </select>
                     </div>
                     <div class="ChatBody">
                         <ul>
                             <li>
                                 <a href="#" id="user">
+                                    <div id="status" class="is-online"></div>
                                     <div id="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
                                     <div id="time" class="text-muted">Today, 4:32pm
                                     </div>
@@ -26,6 +29,7 @@
                             </li>
                             <li>
                                 <a href="#" id="user">
+                                    <div id="status" class="is-offline"></div>
                                     <div id="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
                                     <div id="time" class="text-muted">Today, 4:32pm
                                     </div>
@@ -35,6 +39,7 @@
                             </li>
                             <li>
                                 <a href="#" id="user">
+                                    <div id="status" class="is-offline"></div>
                                     <div id="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
                                     <div id="time" class="text-muted">Today, 4:32pm
                                     </div>
@@ -44,6 +49,7 @@
                             </li>
                             <li>
                                 <a href="#" id="user">
+                                    <div id="status" class="is-online"></div>
                                     <div id="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
                                     <div id="time" class="text-muted">Today, 4:32pm
                                     </div>
@@ -53,6 +59,7 @@
                             </li>
                             <li>
                                 <a href="#" id="user">
+                                    <div id="status" class="is-offline"></div>
                                     <div id="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
                                     <div id="time" class="text-muted">Today, 4:32pm
                                     </div>
@@ -62,6 +69,7 @@
                             </li>
                             <li>
                                 <a href="#" id="user">
+                                    <div id="status" class="is-online"></div>
                                     <div id="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
                                     <div id="time" class="text-muted">Today, 4:32pm
                                     </div>
@@ -71,6 +79,7 @@
                             </li>
                             <li>
                                 <a href="#" id="user">
+                                    <div id="status" class="is-online"></div>
                                     <div id="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
                                     <div id="time" class="text-muted">Today, 4:32pm
                                     </div>
@@ -80,6 +89,7 @@
                             </li>
                             <li>
                                 <a href="#" id="user">
+                                    <div id="status" class="is-offline"></div>
                                     <div id="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
                                     <div id="time" class="text-muted">Today, 4:32pm
                                     </div>
@@ -89,6 +99,7 @@
                             </li>
                             <li>
                                 <a href="#" id="user">
+                                    <div id="status" class="is-online"></div>
                                     <div id="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
                                     <div id="time" class="text-muted">Today, 4:32pm
                                     </div>
@@ -98,6 +109,7 @@
                             </li>
                             <li>
                                 <a href="#" id="user">
+                                    <div id="status" class="is-offline"></div>
                                     <div id="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
                                     <div id="time" class="text-muted">Today, 4:32pm
                                     </div>
@@ -108,15 +120,72 @@
                         </ul>
                     </div>
                 </section>
-                <section class="col-lg-8 ChatWindow">
+                <section class="col-md-8 ChatWindow">
                     <div class="ChatWindowHead">
-                        <div id="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
-                        <div id="username" class="text-dark">Grace Philips</div>
-                        <div id="status" class="is-online"></div>
+                        <div class="float-left">
+                            <div id="status" class="is-online"></div>
+                            <div id="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
+                            <div id="username" class="text-dark">Grace Philips</div>
+                        </div>
+                        <div class="float-right">
+                            <span class="videoChat">
+                                <a href="#" id="videoChatBtn" style="font-size: 30px; margin: 0px 10px;"
+                                    title="Start a video call.">
+                                    <i class="typcn typcn-video"></i>
+                                </a>
+                            </span>
+                            <span class="moreOptions">
+                                <a href="#" id="moreOptionsBtn" style="font-size: 20px; margin: 0px 10px;">
+                                    <i class="pe-7s-more"></i>
+                                </a>
+                            </span>
+                        </div>
                     </div>
                     <div class="ChatWindowBody">
                         <ul>
-                            <li>
+                            <li class="inbox">
+                                <div>
+                                    <span id="message">Message</span>
+                                    <span id="time">1:37pm</span>
+                                </div>
+                            </li>
+                            <li class="outbox">
+                                <div>
+                                    <span id="message">Message Message Message Message Message</span>
+                                    <span id="time">1:37pm</span>
+                                </div>
+                            </li>
+                            <li class="inbox">
+                                <div>
+                                    <span id="message">Message</span>
+                                    <span id="time">1:37pm</span>
+                                </div>
+                            </li>
+                            <li class="outbox">
+                                <div>
+                                    <span id="message">Message</span>
+                                    <span id="time">1:37pm</span>
+                                </div>
+                            </li>
+                            <li class="inbox">
+                                <div>
+                                    <span id="message">Message</span>
+                                    <span id="time">1:37pm</span>
+                                </div>
+                            </li>
+                            <li class="outbox">
+                                <div>
+                                    <span id="message">Message</span>
+                                    <span id="time">1:37pm</span>
+                                </div>
+                            </li>
+                            <li class="inbox">
+                                <div>
+                                    <span id="message">Message</span>
+                                    <span id="time">1:37pm</span>
+                                </div>
+                            </li>
+                            <li class="outbox">
                                 <div>
                                     <span id="message">Message</span>
                                     <span id="time">1:37pm</span>
@@ -124,7 +193,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="ChatWindowFooter" style="padding: 5px 15px;">
+                    <div class="ChatWindowFooter" style="padding: 0px 15px;">
                         <%- include('../partials/dynamicInput.html'); %>
                     </div>
                 </section>
