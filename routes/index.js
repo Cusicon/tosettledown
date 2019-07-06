@@ -8,6 +8,14 @@ var router = express();
 
 // ## INITIATE ROUTER(S)
 
+//-- profile Router
+var profile = require('./app/menu/profile');
+router.use('/profile', profile);
+
+//-- encounters Router
+var encounters = require('./app/menu/encounters');
+router.use('/encounters', encounters);
+
 //-- encounters Router
 var encounters = require('./app/menu/encounters');
 router.use('/encounters', encounters);
@@ -36,11 +44,11 @@ router.use('/favourites', favourites);
 var shop = require('./app/menu/shop');
 router.use('/shop', shop);
 
-//-- shop Router
+//-- wallet Router
 var wallet = require('./app/extras/wallet');
 router.use('/wallet', wallet);
 
-//-- shop Router
+//-- packages Router
 var packages = require('./app/extras/packages');
 router.use('/packages', packages);
 

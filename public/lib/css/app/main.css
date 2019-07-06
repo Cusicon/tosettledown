@@ -39,7 +39,7 @@
 .borderBottom {
   padding: 1px;
   background-color: #ff6878;
-  width: 5%;
+  width: 4%;
   margin-bottom: 5px;
 }
 
@@ -51,7 +51,7 @@
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }
 
 .show {
@@ -526,6 +526,7 @@ a:active {
   display: block;
   border-radius: 100%;
   padding: 2px;
+  cursor: default;
 }
 
 .statusBar ul li a div.image {
@@ -629,9 +630,14 @@ a:active {
 
 .Chat .ChatWindow .ChatWindowHead div#username {
   font-size: 15px;
-  margin-top: 15px;
+  margin-top: 12px;
   font-weight: 500;
   display: inline-block;
+}
+
+.Chat .ChatWindow .ChatWindowHead small#typing {
+  font-weight: 500;
+  display: block;
 }
 
 .Chat .ChatWindow .ChatWindowBody {
@@ -642,9 +648,9 @@ a:active {
 }
 
 .Chat .ChatWindow .ChatWindowBody ul li {
-  /* border: 1px solid red; */
   padding: 10px;
-  min-height: 65px;
+  width: 100%;
+  float: left;
 }
 
 .Chat .ChatWindow .ChatWindowBody ul li.inbox div {
@@ -667,6 +673,7 @@ a:active {
   max-width: 250px;
   overflow: hidden;
   word-break: break-all;
+  box-shadow: 0.5px 1.5px 1px #dddddd !important;
 }
 
 .Chat .ChatWindow .ChatWindowBody ul li div #message {
@@ -739,3 +746,11 @@ a:active {
 }
 
 /* END OF VISITORS AND FAVOURITES */
+
+/* PROFILE */
+
+.profileMain h3{
+  color: red;
+}
+
+/* END OF PROFILE */
