@@ -43,12 +43,12 @@ router.get('/google/return',
 //-- Sign out
 router.get("/out", (req, res) => {
     if (req.user) {
-        console.log("Signing out...");
-        userLog(`"${req.user.username}" has signed out.`);
+        console.log(`${req.user.username} is signing out...`);
         req.session.destroy(err => {
             //-- Inside a callback… bulletproof!
             res.redirect("/#loginForm"); 
-            console.log("Signed out!");
+            userLog(`"${req.user.username}" has signed out.`);
+            console.log(`${req.user.username} has signed out!`);
         });
     } else {
         res.redirect("/#loginForm");
