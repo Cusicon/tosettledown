@@ -78,7 +78,7 @@ section.Frame {
 
 section.Frame .infoCon div#jb {
   padding: 70px 50px 20px;
-  visibility: hidden;
+  /* visibility: hidden; */
 }
 
 section.Frame .infoCon div#jb h1 {
