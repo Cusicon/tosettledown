@@ -1,5 +1,5 @@
 node_modules
-/log/*
+logs
 public/components/emoticon/png
 public/components/emoticon/sprites/*.png
 config/keys.js

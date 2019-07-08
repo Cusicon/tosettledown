@@ -23,14 +23,14 @@ require("./db/db_conn"); //-- for db connection
 // ## LOGGING
 //-- Log Server's activities to Server Log file 
 global.serverLog = log => {
-  fs.appendFile("./log/server.log", `@ ${new Date().toString()} -- [ ${log} ]\n`, err => {
+  fs.appendFile("./logs/server.log", `@ ${new Date().toString()} -- [ ${log} ]\n`, err => {
     if (err) console.log("Unable to write to server.log");
   });
 };
 
 //-- Log User's activities to UserActivity Log file
 global.userLog = log => {
-  fs.appendFile("./log/userActivity.log", `@ ${new Date().toString()} -- [ ${log} ]\n`, err => {
+  fs.appendFile("./logs/userActivity.log", `@ ${new Date().toString()} -- [ ${log} ]\n`, err => {
     if (err) console.log("Unable to write to userActivity.log");
   });
 };
