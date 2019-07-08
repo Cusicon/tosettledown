@@ -1,5 +1,6 @@
 const uniq = require('uniqid');
 const passport = require('passport');
+const RememberMeStrategy = require('passport-remember-me').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const keys = require('./keys');
@@ -55,7 +56,7 @@ passport.use(
         {
             callbackURL: '/auth/0/signin/google/return',
             clientID: keys.auth.google.clientID,
-            clientSecret: keys.auth.google.clientSecret,
+            clientSecret: keys.auth.google.clientSecret
         }, (accessToken, refreshToken, profile, done) => {
             var googleId = profile.id;
             var fullname = profile.displayName;
@@ -79,12 +80,12 @@ passport.use(
             //-- Create User
             User.getUserByGoogleId(googleId, (err, user) => {
                 if (err) throw err;
-                else{
+                else {
                     if (user) {
                         //-- if user exists go to [encounters]
                         res.location("/app/encounters");
                         res.redirect("/app/encounters");
-                    } else{
+                    } else {
                         //-- else create user and go to [encounters]
                         User.createUser(newUser, (err, user) => {
                             if (err) throw err;
@@ -101,3 +102,21 @@ passport.use(
         }
     )
 );
+
+//-- REMEMBER-ME STRATEGY
+passport.use(new RememberMeStrategy(
+    function (token, done) {
+        Token.consume(token, function (err, user) {
+            if (err) { return done(err); }
+            if (!user) { return done(null, false); }
+            return done(null, user);
+        });
+    },
+    function (user, done) {
+        var token = utils.generateToken(64);
+        Token.save(token, { userId: user.id }, function (err) {
+            if (err) { return done(err); }
+            return done(null, token);
+        });
+    }
+));

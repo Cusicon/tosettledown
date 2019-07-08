@@ -56,7 +56,6 @@ app.use(expressLayouts); //-- use expressLayouts
 app.use(express.json()); //-- use express.json
 app.use(express.urlencoded({ extended: false })); //-- use express.urlencoded
 app.use(express.static(path.join(__dirname, './public/'))); //-- set public static directory
-
 //-- Express-session Middleware
 app.use(
   session({
@@ -65,11 +64,10 @@ app.use(
     saveUninitialized: true
   })
 );
-
-//-- Passport Middleware
+//-- Passport Middlewares
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(passport.authenticate('remember-me')); //-- Passport RememberMe Middleware 
 //-- Express-validator middleware
 app.use(
   expressValidator({
@@ -89,7 +87,6 @@ app.use(
     }
   })
 );
-
 //-- Express Messages Middleware
 app.use(require("connect-flash")());
 app.use((req, res, next) => {
@@ -97,7 +94,8 @@ app.use((req, res, next) => {
   next();
 });
 
-//-- VIEW [Sign up and Sign in.]
+
+// ## VIEW [Sign up and Sign in.]
 app.get('/', (req, res) => {
   if (!req.user) {
     res.render("./index", { title: 'Welcome' });
@@ -107,7 +105,7 @@ app.get('/', (req, res) => {
   }
 });
 
-//-- GLOBAL ROUTERS
+// ## GLOBAL ROUTERS
 
 // Get any Route and send Global variables
 global.User;
