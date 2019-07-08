@@ -1,7 +1,12 @@
 <link rel="stylesheet" href="/lib/css/index.css">
 <div class="body">
-    <!-- Register -->
+    <!-- Welcome Page -->
     <section class="Frame row">
+        <!-- Messaging -->
+        <div class="sr-only">
+            <%- messages() %>
+        </div>
+        <!-- Info container -->
         <div class="col-md-8 col-sm-12 infoCon" id="infoCon">
             <!-- Header -->
             <header class="header" id="header">
@@ -30,23 +35,8 @@
                 </p>
                 <br>
             </div>
-            <div class="otherSignupMethod" id="otherSignupMethod" class="mb-3">
-                <center>
-                    <i id="infoText" class="text-muted">Sign in via</i>
-                    <a href="javascript: void(0);" role="button" id="google" class="btn" title="Sign in via Instagram">
-                        <i class="fa fa-instagram" style="color: #ff68ae;"></i>
-                    </a>
-                    <span style="background-color: #0000000a; padding: 0.5px 1px;"></span>
-                    <a href="javascript: void(0);" role="button" id="facebook" class="btn" title="Sign in via Facebook">
-                        <i class="fa fa-facebook" style="color: #1475ad;"></i>
-                    </a>
-                    <span style="background-color: #0000000a; padding: 0.5px 1px;"></span>
-                    <a href="javascript: void(0);" role="button" id="google" class="btn" title="Sign in via Google">
-                        <i class="fa fa-google" style="color: #ff6878;"></i>
-                    </a>
-                </center>
-            </div>
         </div>
+        <!-- Forms container -->
         <div class="col-md-4 col-sm-12 detailsCon" id="detailsCon">
             <!-- SIGN UP -->
             <form action="/auth/0/signup" method="POST" name="regForm" id="regForm" class="regBody">
@@ -62,9 +52,10 @@
                             placeholder="Enter full name" required>
                     </div>
                     <div class="form-row align-items-center">
-                         <!-- Username -->
+                        <!-- Username -->
                         <div class="col-md-6 mb-3">
-                            <input type="text" name="username" id="username" class="form-control" placeholder="Pick a username" required>
+                            <input type="text" name="username" id="reg_username" class="form-control"
+                                placeholder="Pick a username" required>
                         </div>
                         <!-- Email -->
                         <div class="col-md-6 mb-3">
@@ -74,10 +65,10 @@
                     </div>
                     <!-- Password -->
                     <div class="form-group mb-4">
-                        <input type="password" name="password" id="password" class="form-control"
-                            aria-describedby="passwordHelp" placeholder="Create a password" minlength="6" maxlength="30"
+                        <input type="password" name="password" id="reg_password" class="form-control"
+                            aria-describedby="passwordHelp" placeholder="Create a password" minlength="8" maxlength="30"
                             required>
-                        <small id="passwordHelp" class="form-text text-muted">Password must be up to 6 - 30
+                        <small id="passwordHelp" class="form-text text-muted">Password must be up to 8 - 30
                             characters.</small>
                     </div>
                     <!-- Gender & DOB -->
@@ -98,7 +89,8 @@
                     <!-- Location -->
                     <div class="form-group mb-3">
                         <input type="text" name="location" id="location" class="form-control"
-                            placeholder="Enter location" aria-describedby="locationHelp" required>
+                            placeholder="Enter location" aria-describedby="locationHelp" value=""
+                            required>
                         <small id="locationHelp" class="form-text text-muted">ie. Lagos, Nigeria.</small>
                     </div>
                 </div>
@@ -125,11 +117,32 @@
                     <h2 style="font-weight: lighter;">SIGN IN</h2>
                     <div style="width: 30px; height: 2px; background-color: #ff6878;"></div>
                 </header>
-                <div class="details" style="padding: 80px 0px;">
-                    <p style="padding: 10px; text-align: center;">Enter login details, and let's go search...</p>
+                <div class="details" style="padding: 80px 0px; padding-top: 10px;">
+                    <div class="otherSignupMethod" id="otherSignupMethod" style="margin-bottom: 50px;">
+                        <center>
+                            <i id="infoText" class="text-muted" style="display: block;">Sign in via </i>
+                            <br>
+                            <a href="/auth/0/signin/google" role="button" id="google"
+                                style="background-color: transparent; border: 1px solid #eee !important; margin: 0px 5px;"
+                                class="btn" title="Sign in via Google">
+                                <i class="fa fa-google" style="color: #ff6878; font-size: 18px;"></i>
+                            </a>
+                            <a href="/auth/0/signin/facebook/" role="button" id="facebook"
+                                style="background-color: transparent; border: 1px solid #eee !important; margin: 0px 5px;"
+                                class="btn" title="Sign in via Facebook">
+                                <i class="fa fa-facebook" style="color: #1475ad; font-size: 18px;"></i>
+                            </a>
+                            <a href="/auth/0/signin/instagram/" role="button" id="instagram"
+                                style="background-color: transparent; border: 1px solid #eee !important; margin: 0px 5px;"
+                                class="btn" title="Sign in via Instagram">
+                                <i class="fa fa-instagram" style="color: #ff68ae; font-size: 18px;"></i>
+                            </a>
+                        </center>
+                    </div>
                     <!-- Username -->
                     <div class="form-group mb-3">
-                        <input type="text" name="username" id="username" class="form-control" placeholder="Username" required>
+                        <input type="text" name="username" id="username" class="form-control" placeholder="Username"
+                            required>
                     </div>
                     <!-- Password -->
                     <div class="form-group mb-5">
@@ -148,11 +161,10 @@
             </form>
             <!-- END OF SIGN IN -->
 
-            <!-- Footer -->
             <footer class="footer text-muted float-right" style="padding: 10px; padding-right: 40px;">
-                <small>&copy; <%= new Date().getFullYear(); %>, Tosettledown, Inc.</small>
+                <!-- Footer -->
+                <%- include('app/partials/footer.html'); %>
             </footer>
-            <br><br>
         </div>
     </section>
 </div>

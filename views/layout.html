@@ -56,7 +56,7 @@
             z-index: 1;
         }
 
-        *:focus{
+        *:focus {
             border: 0px !important;
             outline: 0px !important;
         }
@@ -65,10 +65,9 @@
             padding: 0px !important;
         }
 
-        body{
+        body {
             overflow-x: hidden;
         }
-
     </style>
     <!-- <script src="/components/js/modernizr.min.js"></script> -->
 </head>
@@ -77,14 +76,21 @@
 
     <%- body %>
 
+    <!-- Components  -->
     <!-- jQuery  -->
     <script src="/components/js/jquery.min.js"></script>
     <script src="/components/js/popper.min.js"></script>
 
-    <!-- App Scripts -->
-    <script src="/lib/scripts/app/main.js"></script>
+    <!-- Sweetalert  -->
+    <script src="/components/js/sweetalert.js"></script>
+    
+    <!-- Library  -->
     <!-- Index Scripts -->
     <script src="/lib/scripts/index.js"></script>
+
+    <!-- App Scripts -->
+    <script src="/lib/scripts/app/main.js"></script>
+    <script src="/lib/scripts/app/alert.js"></script>
 </body>
 
 </html>

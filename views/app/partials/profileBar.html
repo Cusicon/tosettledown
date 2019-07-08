@@ -15,13 +15,17 @@
         <div class="profileCon" id="profileCon">
             <div class="profileSection">
                 <a href="/app/profile/123" title="See your profile...">
-                    <div class="profileImg" style="background-image: url('/lib/img/assets/user.png'); border: 2px solid #eee;"></div>
+                    <div class="profileImg"
+                        style="background-image: url('/lib/img/assets/user.png'); border: 2px solid #eee;"></div>
                 </a>
                 <ul>
-                    <li id="username">James</li>
+                    <li id="username">
+                        <% var fullname = user.fullname.split(' '); var firstname = fullname[0].replace(fullname[0].charAt(0), fullname[0].charAt(0).toUpperCase()); var lastname = fullname[1].replace(fullname[1].charAt(0), fullname[1].charAt(0).toUpperCase()); %>
+                        <%= firstname %> <%= lastname %>
+                    </li>
                     <li id="popularity" class="text-muted">
                         Popularity: <a href="/app/popularity/" title="See your popularity..."><b
-                                class="color">Very Popular</b></a>
+                                class="text-muted">Calculating...</b></a>
                     </li>
                 </ul>
             </div>
@@ -29,11 +33,11 @@
                 <ul class="row">
                     <li class="col-md-1 col-sm-0" style="width: unset;"></li>
                     <li class="col-md-5 col-sm-5" style="width: unset;">
-                        <a href="/app/wallet/balance" id="settlesBalance" title="Settles wallet and balance.">
+                        <a href="/app/wallet/balance" id="settlesBalance" title="Settle wallet and balance.">
                             <center>
                                 <img src="/lib/img/assets/settle-topup.png" alt="settlesLogo" width="35" id="settleImg">
                                 <div>
-                                    <small style="font-weight: 500;" class="text-muted">Settles</small><br>
+                                    <small style="font-weight: 500;" class="text-muted">Settle</small><br>
                                     <span id="balance">Top Up</span>
                                 </div>
                             </center>

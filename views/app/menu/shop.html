@@ -86,7 +86,10 @@
                                                         style="background-image: url('/lib/img/assets/user.png');">
                                                     </div>
                                                     <div style="margin-bottom: -10px;">
-                                                        <span>James</span>
+                                                        <span>
+                                                            <% var fullname = user.fullname.split(' '); var firstname = fullname[0].replace(fullname[0].charAt(0), fullname[0].charAt(0).toUpperCase()); var lastname = fullname[1].replace(fullname[1].charAt(0), fullname[1].charAt(0).toUpperCase()); %>
+                                                            <%= firstname %> <%= lastname %>
+                                                        </span>
                                                         <div style="font-size: 12px;" class="text-muted">
                                                             Start a conversation with <b class="color">Hope Stone</b>
                                                         </div>

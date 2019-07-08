@@ -11,7 +11,6 @@ const expressLayouts = require("express-ejs-layouts");
 const expressValidator = require("express-validator");
 const session = require("express-session");
 const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
 
 // ## PORT
 var port = process.env.PORT || "3020";
@@ -19,19 +18,19 @@ app.set('port', port);
 
 
 // ## DB CONNECTION
-// require("./db/db_conn"); //-- for db connection
+require("./db/db_conn"); //-- for db connection
 
 // ## LOGGING
 //-- Log Server's activities to Server Log file 
 global.serverLog = log => {
-  fs.appendFile("./log/server.log", log + "\n", err => {
+  fs.appendFile("./log/server.log", `@ ${new Date().toString()} -- [ ${log} ]\n`, err => {
     if (err) console.log("Unable to write to server.log");
   });
 };
 
 //-- Log User's activities to UserActivity Log file
 global.userLog = log => {
-  fs.appendFile("./log/userActivity.log", log + "\n", err => {
+  fs.appendFile("./log/userActivity.log", `@ ${new Date().toString()} -- [ ${log} ]\n`, err => {
     if (err) console.log("Unable to write to userActivity.log");
   });
 };
@@ -39,7 +38,7 @@ global.userLog = log => {
 //-- Custom middleware for server log request
 app.use((req, res, next) => {
   var now = new Date().toString();
-  var log = `${req.method} ${req.url}: @ ${now}`;
+  var log = `${req.method} ${req.url}`;
   serverLog(log);
   next();
 });
@@ -50,7 +49,7 @@ app.engine("html", require("ejs").renderFile);
 app.set("view engine", "html");
 
 // ## MIDDLEWARES
-app.use(logger("dev")); //-- use logger
+// app.use(logger("dev")); //-- use logger
 app.use(bodyParser()); //-- use bodyParser
 app.use(cookieParser()); //-- use cookieParser
 app.use(expressLayouts); //-- use expressLayouts
@@ -100,7 +99,49 @@ app.use((req, res, next) => {
 
 //-- VIEW [Sign up and Sign in.]
 app.get('/', (req, res) => {
-  res.render("./index", { title: 'Welcome' });
+  if (!req.user) {
+    res.render("./index", { title: 'Welcome' });
+  } else {
+    res.location('/app/encounters');
+    res.redirect('/app/encounters');
+  }
+});
+
+//-- GLOBAL ROUTERS
+
+// Get any Route and send Global variables
+global.User;
+app.get("*", (req, res, next) => {
+  User = req.user || null;
+  res.locals.user = req.user || null;
+  res.locals.url = req.originalUrl || null;
+  next();
+});
+
+// Get any app "GET" Route and check if user is signed in
+// else redirect to sign out!
+app.get("/app/*", (req, res, next) => {
+  if (!req.user) {
+    // Sign Out
+    res.location("/auth/0/signin/out");
+    res.redirect("/auth/0/signin/out");
+  } else {
+    userLog(`"${User.username || null}" is active`);
+  }
+  next();
+});
+
+// Get any app "POST" Route and check if user is signed in
+// else redirect to sign out!
+app.post("/app/*", (req, res, next) => {
+  if (!req.user) {
+    // Sign Out
+    res.location("/auth/0/signin/out");
+    res.redirect("/auth/0/signin/out");
+  } else {
+    userLog(`"${User.username || null}" is active`);
+  }
+  next();
 });
 
 // ## ROUTERS
@@ -113,27 +154,27 @@ app.use("/auth/0/signup", signup);
 var signin = require('./routes/auth/signin');
 app.use("/auth/0/signin", signin);
 
-//-- APP ROUTERS [Encounters, favourites, so on...]
+//-- APP ROUTERS [encounters, chats and so on...]
 var index = require('./routes/index');
 app.use('/app/', index);
 
 
 // ## ERROR HANDLING
-//-- Catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
-});
+// //-- Catch 404 and forward to error handler
+// app.use(function (req, res, next) {
+//   next(createError(404));
+// });
 
-//-- Error handler
-app.use(function (err, req, res, next) {
-  //- set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+// //-- Error handler
+// app.use(function (err, req, res, next) {
+//   //- set locals, only providing error in development
+//   res.locals.message = err.message;
+//   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  //- render the error page
-  res.status(err.status || 500);
-  res.render('./error/404', {title: "Error"});
-});
+//   //- render the error page
+//   res.status(err.status || 500);
+//   res.render('./error/404', { title: "Error" });
+// });
 
 // ## SERVER LISTENING
 app.listen(port, () => {
