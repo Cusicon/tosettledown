@@ -18,25 +18,27 @@ router.post(
     }),
     (req, res) => {
         userLog(`"${req.user.username}" is signed in...`);
-        res.redirect(200, `/app/encounters`);
+        res.location(`/app/encounters`);
+        res.redirect(200,`/app/encounters`);
     }
 );
 
 //-- GOOGLE signin
 router.get('/google', passport.authenticate('google', {
-    scope: ['profile', 'emails']
+    scope: ['profile']
 }));
 
 // Return route for Google to redirect to...
-router.get('/google/return',
-    passport.authenticate('google', {
-        successRedirect: "/app/encounters",
-        failureRedirect: '/#loginForm',
+router.get(
+    "/google/return",
+    passport.authenticate("google", {
+        successRedirect: `/app/encounters`,
+        failureRedirect: "/#loginForm",
         failureFlash: "It seems we got nothing, Try again."
     }),
     (req, res) => {
-        userLog(`"${req.user.username}" signed in via Google...`);
-        res.redirect(200, `/app/encounters`);
+        res.location(`/app/encounters`);
+        res.redirect(200,`/app/encounters`);
     }
 );
 
@@ -46,7 +48,7 @@ router.get("/out", (req, res) => {
         console.log(`${req.user.username} is signing out...`);
         req.session.destroy(err => {
             //-- Inside a callback… bulletproof!
-            res.redirect("/#loginForm"); 
+            res.redirect("/#loginForm");
             userLog(`"${req.user.username}" has signed out.`);
             console.log(`${req.user.username} has signed out!`);
         });

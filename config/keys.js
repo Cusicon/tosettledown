@@ -7,6 +7,9 @@ module.exports = {
             clientSecret: '0DYh4lfyKv24ePYADtP0bFTh'
         }
     },
+    session: {
+        cookieKey: 'tosettldownisthebest'
+    },
     mongodb: {
         localURI: 'mongodb://localhost/tosettledown',
         onlineURI: 'mongodb://success:0123456789jehova.@ds135433.mlab.com:35433/heroku_5m6mvm1g',

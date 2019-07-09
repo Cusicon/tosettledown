@@ -64,6 +64,7 @@ passport.use(
             var password = uniq.time();
             var agreed_terms = true;
             var remember_me = true;
+            var profileImage = profile._json.picture;
             var joined = new Date().toDateString();
 
             //-- Add values to "Model's(User)" parameters 
@@ -74,6 +75,7 @@ passport.use(
                 password: password || null,
                 agreed_terms: agreed_terms || null,
                 remember_me: remember_me || null,
+                images: [{ location: profileImage, isDisplayPicture: true }] || null,
                 joined: joined || null
             });
 
@@ -83,17 +85,16 @@ passport.use(
                 else {
                     if (user) {
                         //-- if user exists go to [encounters]
-                        res.location("/app/encounters");
-                        res.redirect("/app/encounters");
+                        userLog(`"${user.username}" signed in via Google...`);
+                        done(null, user);
                     } else {
                         //-- else create user and go to [encounters]
                         User.createUser(newUser, (err, user) => {
                             if (err) throw err;
                             else {
-                                userLog(`A new account just signed up, "@${result.username}"`);
-                                console.log(`A new account just signed up, "@${result.username}"`);
-                                res.location("/app/encounters");
-                                res.redirect("/app/encounters");
+                                userLog(`A new account just signed up, "@${user.username}"`);
+                                console.log(`A new account just signed up, "@${user.username}"`);
+                                done(null, user);
                             }
                         });
                     }
