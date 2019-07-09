@@ -8,7 +8,8 @@ module.exports = {
         }
     },
     session: {
-        cookieKey: 'tosettldownisthebest'
+        sessionSecret: 'tosettledownisthebestappintheworld',
+        cookieKey: 'tosettledownisthebestappintheworld'
     },
     mongodb: {
         localURI: 'mongodb://localhost/tosettledown',

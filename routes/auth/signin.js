@@ -18,8 +18,7 @@ router.post(
     }),
     (req, res) => {
         userLog(`"${req.user.username}" is signed in...`);
-        res.location(`/app/encounters`);
-        res.redirect(200,`/app/encounters`);
+        res.redirect(`/app/encounters`);
     }
 );
 
@@ -31,14 +30,14 @@ router.get('/google', passport.authenticate('google', {
 // Return route for Google to redirect to...
 router.get(
     "/google/return",
-    passport.authenticate("google", {
-        successRedirect: `/app/encounters`,
-        failureRedirect: "/#loginForm",
-        failureFlash: "It seems we got nothing, Try again."
-    }),
+    passport.authenticate("google",
+        {
+            successRedirect: '/app/encounters',
+            failureRedirect: '/#loginForm',
+            failureFlash: 'It seems we got nothing, Try again.'
+        }),
     (req, res) => {
-        res.location(`/app/encounters`);
-        res.redirect(200,`/app/encounters`);
+        res.redirect(`/app/encounters`);
     }
 );
 

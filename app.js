@@ -11,6 +11,7 @@ const expressLayouts = require("express-ejs-layouts");
 const expressValidator = require("express-validator");
 const session = require("express-session");
 const passport = require("passport");
+const keys = require("./config/keys");
 
 // ## PORT
 var port = process.env.PORT || "3020";
@@ -59,9 +60,13 @@ app.use(express.static(path.join(__dirname, './public/'))); //-- set public stat
 //-- Express-session Middleware
 app.use(
   session({
-    secret: "keyboard cat",
+    secret: keys.session.sessionSecret,
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true, 
+    cookie: {
+      httpOnly: true,
+      maxAge: 7*24*60*60*1000 //-- 7days
+    }
   })
 );
 //-- Passport Middlewares
