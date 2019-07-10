@@ -1,4 +1,3 @@
 node_modules
-logs/*
 public/components/emoticon/png
 public/components/emoticon/sprites/*.png
