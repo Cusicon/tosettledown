@@ -3,6 +3,8 @@ const passport = require('passport');
 const RememberMeStrategy = require('passport-remember-me').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
+const InstagramStrategy = require('passport-instagram');
 const keys = require('./keys');
 
 // ## MODELS
@@ -99,6 +101,79 @@ passport.use(
         }
     )
 );
+
+//-- FACEBOOK STRATEGY
+passport.use(
+    new FacebookStrategy(
+        {
+            callbackURL: '/auth/0/signin/facebook/return',
+            clientID: keys.auth.facebook.clientID,
+            clientSecret: keys.auth.facebook.clientSecret
+        }, (accessToken, refreshToken, profile, done) => {
+            var facebookId = profile.id;
+            var fullname = profile.displayName;
+            var username = uniq.time(profile.name.givenName.toLowerCase());
+            var password = uniq.time();
+            var agreed_terms = true;
+            var remember_me = true;
+            var profileImage = profile._json.picture;
+            var joined = new Date().toDateString();
+            //-- Create User
+            User.getUserByFacebookId(facebookId, (err, user) => {
+                if (err) throw err;
+                else {
+                    if (user) { //-- if user exists go to [encounters]
+                        userLog(`"${user.username}" signed in via Facebook...`);
+                        done(null, user);
+                    } else { //-- else create user and go to [encounters]
+                        //-- Add values to "Model's(User)" parameters 
+                        var newUser = new User({
+                            facebookId: facebookId || null,
+                            fullname: fullname || null,
+                            username: username || null,
+                            password: password || null,
+                            agreed_terms: agreed_terms || null,
+                            remember_me: remember_me || null,
+                            images: [{ location: profileImage, isDisplayPicture: true }] || null,
+                            joined: joined || null
+                        });
+                        User.createUser(newUser, (err, user) => {
+                            if (err) throw err;
+                            else {
+                                userLog(`A new account just signed up, "@${user.username}"`);
+                                console.log(`A new account just signed up, "@${user.username}"`);
+                                done(null, user);
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    )
+);
+
+//-- INSTAGRAM STRATEGY
+passport.use(
+    new InstagramStrategy(
+        {
+            callbackURL: '/auth/0/signin/instagram/return',
+            clientID: keys.auth.instagram.clientID,
+            clientSecret: keys.auth.instagram.clientSecret
+        }, (accessToken, refreshToken, profile, done) => {
+            // var instagramId = profile.id;
+            // var fullname = profile.displayName;
+            // var username = uniq.time(profile.name.givenName.toLowerCase());
+            // var password = uniq.time();
+            // var agreed_terms = true;
+            // var remember_me = true;
+            // var profileImage = profile._json.picture;
+            // var joined = new Date().toDateString();
+            //-- Create User
+            
+        }
+    )
+);
+
 
 //-- REMEMBER-ME STRATEGY
 passport.use(new RememberMeStrategy(

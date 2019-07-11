@@ -41,6 +41,44 @@ router.get(
     }
 );
 
+//-- FACEBOOK signin
+router.get('/facebook', passport.authenticate('facebook', {
+    scope: ['profile']
+}));
+
+// Return route for Facebook to redirect to...
+router.get(
+    "/facebook/return",
+    passport.authenticate("facebook",
+        {
+            successRedirect: '/app/encounters',
+            failureRedirect: '/#loginForm',
+            failureFlash: 'It seems we got nothing, Try again.'
+        }),
+    (req, res) => {
+        res.redirect(`/app/encounters`);
+    }
+);
+
+//-- INSTAGRAM signin
+router.get('/instagram', passport.authenticate('instagram', {
+    scope: ['basic'],
+}));
+
+// Return route for Instagram to redirect to...
+router.get(
+    "/instagram/return",
+    passport.authenticate("instagram",
+        {
+            successRedirect: '/app/encounters',
+            failureRedirect: '/#loginForm',
+            failureFlash: 'It seems we got nothing, Try again.'
+        }),
+    (req, res) => {
+        res.redirect(`/app/encounters`);
+    }
+);
+
 //-- Sign out
 router.get("/out", (req, res) => {
     if (req.user) {
