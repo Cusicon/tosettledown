@@ -113,6 +113,7 @@ passport.use(
             var facebookId = profile.id;
             var fullname = profile.displayName;
             var username = uniq.time(profile.name.givenName.toLowerCase());
+            var email = profile.emails[0].value;
             var password = uniq.time();
             var agreed_terms = true;
             var remember_me = true;
@@ -131,6 +132,7 @@ passport.use(
                             facebookId: facebookId || null,
                             fullname: fullname || null,
                             username: username || null,
+                            email: email || null,
                             password: password || null,
                             agreed_terms: agreed_terms || null,
                             remember_me: remember_me || null,
