@@ -161,6 +161,19 @@ app.use("/auth/0/signin", signin);
 var index = require('./routes/index');
 app.use('/app/', index);
 
+//-- TERMS & POLICIES ROUTERS
+
+//-- cookie Router
+var cookie = require('./routes/docs/cookie');
+app.use('/cookie', cookie);
+
+//-- policy Router
+var policy = require('./routes/docs/policy');
+app.use('/policy', policy);
+
+//-- terms Router
+var terms = require('./routes/docs/terms');
+app.use('/terms', terms);
 
 // ## ERROR HANDLING
 // //-- Catch 404 and forward to error handler
