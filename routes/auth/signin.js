@@ -17,6 +17,11 @@ router.post(
         failureFlash: "Invalid username or password"
     }),
     (req, res) => {
+        if (req.body.remember) {
+            req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000; //-- Cookie expires after 30 days
+        } else {
+            req.session.cookie.expires = false; //-- Cookie expires at end of session
+        }
         userLog(`"${req.user.username}" is signed in...`);
         res.redirect(`/app/encounters`);
     }
@@ -30,53 +35,25 @@ router.get('/google', passport.authenticate('google', {
 // Return route for Google to redirect to...
 router.get(
     "/google/return",
-    passport.authenticate("google",
-        {
-            successRedirect: '/app/encounters',
-            failureRedirect: '/#loginForm',
-            failureFlash: 'It seems we got nothing, Try again.'
-        }),
-    (req, res) => {
-        res.redirect(`/app/encounters`);
-    }
+    passport.authenticate("google", {
+        successRedirect: '/app/encounters',
+        failureRedirect: '/#loginForm',
+        failureFlash: 'It seems we got nothing, Try again.'
+    })
 );
 
 //-- FACEBOOK signin
 router.get('/facebook', passport.authenticate('facebook', {
-    scope: ['profile']
+    scope: ['read_stream']
 }));
 
 // Return route for Facebook to redirect to...
-router.get(
-    "/facebook/return",
-    passport.authenticate("facebook",
-        {
-            successRedirect: '/app/encounters',
-            failureRedirect: '/#loginForm',
-            failureFlash: 'It seems we got nothing, Try again.'
-        }),
-    (req, res) => {
-        res.redirect(`/app/encounters`);
-    }
-);
-
-//-- INSTAGRAM signin
-router.get('/instagram', passport.authenticate('instagram', {
-    scope: ['basic'],
-}));
-
-// Return route for Instagram to redirect to...
-router.get(
-    "/instagram/return",
-    passport.authenticate("instagram",
-        {
-            successRedirect: '/app/encounters',
-            failureRedirect: '/#loginForm',
-            failureFlash: 'It seems we got nothing, Try again.'
-        }),
-    (req, res) => {
-        res.redirect(`/app/encounters`);
-    }
+router.get("/facebook/return",
+    passport.authenticate("facebook", {
+        successRedirect: '/app/encounters',
+        failureRedirect: '/#loginForm',
+        failureFlash: 'It seems we got nothing, Try again.'
+    })
 );
 
 //-- Sign out

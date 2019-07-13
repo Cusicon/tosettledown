@@ -89,8 +89,7 @@
                     <!-- Location -->
                     <div class="form-group mb-4">
                         <input type="text" name="location" id="location" class="form-control"
-                            placeholder="Enter location" aria-describedby="locationHelp" value=""
-                            required>
+                            placeholder="Enter location" aria-describedby="locationHelp" value="" required>
                         <small id="locationHelp" class="form-text text-muted">ie. Lagos, Nigeria.</small>
                     </div>
                 </div>
@@ -102,8 +101,8 @@
                             value="Sign up with Tosettledown">
                         <small id="submitFormHelp" class="form-text text-muted">By clicking
                             <i>"Sign up with Tosettledown"</i>,
-                            you agree to our <a href="/terms">terms of services</a>, <a href="/policy">privacy policy</a> and <a
-                                href="/cookie">cookie policy</a>.
+                            you agree to our <a href="/terms">terms of services</a>, <a href="/policy">privacy
+                                policy</a> and <a href="/cookie">cookie policy</a>.
                         </small>
                     </div>
                 </div>
@@ -113,11 +112,11 @@
             <!-- SIGN IN -->
             <form action="/auth/0/signin" method="POST" name="loginForm" id="loginForm" class="loginBody">
                 <!-- Header -->
-                <header class="loginHead" style="margin-bottom: 50px;">
+                <header class="loginHead" style="margin-bottom: 40px;">
                     <h2 style="font-weight: lighter;">SIGN IN</h2>
                     <div style="width: 30px; height: 2px; background-color: #ff6878;"></div>
                 </header>
-                <div class="details" style="padding: 80px 0px; padding-top: 10px;">
+                <div class="details" style="padding: 60px 0px; padding-top: 20px;">
                     <div class="otherSignupMethod" id="otherSignupMethod" style="margin-bottom: 50px;">
                         <center>
                             <i id="infoText" class="text-muted" style="display: block;">Sign in via </i>
@@ -145,9 +144,14 @@
                             required>
                     </div>
                     <!-- Password -->
-                    <div class="form-group mb-5">
+                    <div class="form-group mb-3">
                         <input type="password" name="password" id="password" class="form-control" placeholder="Password"
                             required>
+                    </div>
+                    <!-- Remember me -->
+                    <div class="custom-control custom-radio mb-4" style="padding-left: 30px;">
+                        <input type="radio" id="remember" name="remember" class="custom-control-input" value="remember" checked>
+                        <label class="custom-control-label" for="remember">Remember me</label>
                     </div>
                     <!-- Sign Btn -->
                     <div class="loginFoot">

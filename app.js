@@ -62,11 +62,7 @@ app.use(
   session({
     secret: keys.session.sessionSecret,
     resave: true,
-    saveUninitialized: true, 
-    cookie: {
-      httpOnly: true,
-      maxAge: 7*24*60*60*1000 //-- 7days
-    }
+    saveUninitialized: true
   })
 );
 //-- Passport Middlewares
@@ -105,8 +101,8 @@ app.get('/', (req, res) => {
   if (!req.user) {
     res.render("./index", { title: 'Welcome' });
   } else {
-    res.location('/app/encounters');
     res.redirect('/app/encounters');
+    res.location('/app/encounters');
   }
 });
 
@@ -126,8 +122,8 @@ app.get("*", (req, res, next) => {
 app.get("/app/*", (req, res, next) => {
   if (!req.user) {
     // Sign Out
-    res.location("/auth/0/signin/out");
     res.redirect("/auth/0/signin/out");
+    res.location("/auth/0/signin/out");
   } else {
     userLog(`"${User.username || null}" is active`);
   }
@@ -139,8 +135,8 @@ app.get("/app/*", (req, res, next) => {
 app.post("/app/*", (req, res, next) => {
   if (!req.user) {
     // Sign Out
-    res.location("/auth/0/signin/out");
     res.redirect("/auth/0/signin/out");
+    res.location("/auth/0/signin/out");
   } else {
     userLog(`"${User.username || null}" is active`);
   }
@@ -176,21 +172,21 @@ var terms = require('./routes/docs/terms');
 app.use('/terms', terms);
 
 // ## ERROR HANDLING
-// //-- Catch 404 and forward to error handler
-// app.use(function (req, res, next) {
-//   next(createError(404));
-// });
+//-- Catch 404 and forward to error handler
+app.use(function (req, res, next) {
+  next(createError(404));
+});
 
-// //-- Error handler
-// app.use(function (err, req, res, next) {
-//   //- set locals, only providing error in development
-//   res.locals.message = err.message;
-//   res.locals.error = req.app.get('env') === 'development' ? err : {};
+//-- Error handler
+app.use(function (err, req, res, next) {
+  //- set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-//   //- render the error page
-//   res.status(err.status || 500);
-//   res.render('./error/404', { title: "Error" });
-// });
+  //- render the error page
+  res.status(err.status || 500);
+  res.render('./error/404', { title: "Error" });
+});
 
 // ## SERVER LISTENING
 app.listen(port, () => {

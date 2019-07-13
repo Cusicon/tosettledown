@@ -7,8 +7,8 @@ module.exports = {
             clientSecret: '0DYh4lfyKv24ePYADtP0bFTh'
         },
         facebook: {
-            clientID: '888678421496127',
-            clientSecret: '696462eecd27f8b0538952ec6ea945d1'
+            clientID: '385674132078160',
+            clientSecret: 'b45bce387055e974f02cbd1f752d8e1b'
         },
         instagram: {
             clientID: '9e73082c39e64b11bb7bd5908a2e8753',
