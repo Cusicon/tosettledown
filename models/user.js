@@ -50,7 +50,7 @@ module.exports.getUserByFacebookId = function (facebookId, callback) {
 };
 
 //-- GetUserByInstagramId
-module.exports.GetUserByInstagramId = function (instagramId, callback) {
+module.exports.getUserByInstagramId = function (instagramId, callback) {
     var query = { instagramId: instagramId }
     User.findOne(query, callback);
 };

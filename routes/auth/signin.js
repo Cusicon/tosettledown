@@ -39,22 +39,40 @@ router.get(
         successRedirect: '/app/encounters',
         failureRedirect: '/#loginForm',
         failureFlash: 'It seems we got nothing, Try again.'
-    })
+    }), (req, res) => {
+        req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000; //-- Cookie expires after 30 days
+        userLog(`"${req.user.username}" is signed in...`);
+        res.redirect(`/app/encounters`);
+    }
 );
 
-//-- FACEBOOK signin
-router.get('/facebook', passport.authenticate('facebook', {
-    scope: ['read_stream']
-}));
+// //-- FACEBOOK signin
+// router.get('/facebook', passport.authenticate('facebook', {
+//     scope: ['read_stream']
+// }));
 
-// Return route for Facebook to redirect to...
-router.get("/facebook/return",
-    passport.authenticate("facebook", {
-        successRedirect: '/app/encounters',
-        failureRedirect: '/#loginForm',
-        failureFlash: 'It seems we got nothing, Try again.'
-    })
-);
+// // Return route for Facebook to redirect to...
+// router.get("/facebook/return",
+//     passport.authenticate("facebook", {
+//         successRedirect: '/app/encounters',
+//         failureRedirect: '/#loginForm',
+//         failureFlash: 'It seems we got nothing, Try again.'
+//     })
+// );
+
+// //-- INSTAGRAM signin
+// router.get('/instagram', passport.authenticate('instagram', {
+//     scope: ['basic']
+// }));
+
+// // Return route for instagram to redirect to...
+// router.get("/instagram/return",
+//     passport.authenticate("instagram", {
+//         successRedirect: '/app/encounters',
+//         failureRedirect: '/#loginForm',
+//         failureFlash: 'It seems we got nothing, Try again.'
+//     })
+// );
 
 //-- Sign out
 router.get("/out", (req, res) => {
