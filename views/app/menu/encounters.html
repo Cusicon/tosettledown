@@ -7,7 +7,7 @@
         <div class="row">
             <div class="displayWindow col-md-11 row">
                 <!-- ImageWindow -->
-                <div class="imageWindow col-lg-8 col-md-8 col-sm-12" style="background-image: url('/lib/img/52.jpg');">
+                <div class="imageWindow col-md-8 col-sm-12" style="background-image: url('/lib/img/52.jpg');">
                     <div class="overlayNav">
                         <div class="navTop">
                             <div class="imageCounter float-left">
@@ -42,26 +42,22 @@
                             <center>
                                 <ul>
                                     <li>
-                                        <a href="javascript: void(0);" id="sendAMessage"
-                                            title="Start a conversation...">
-                                            <i class="typcn typcn-location-arrow"></i>
+                                        <a href="javascript: void(0);" id="sendAMessage">
+                                            <i class="typcn typcn-message"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript: void(0);" id="like" title="Like"
-                                            style="color: #ff6878 !important;">
+                                        <a href="javascript: void(0);" id="like" style="color: #ff6878 !important;">
                                             <i class="typcn typcn-heart-full-outline"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript: void(0);" id="skip" title="Skip"
-                                            style="color: #303030 !important;">
+                                        <a href="javascript: void(0);" id="skip" style="color: #303030 !important;">
                                             <i class="typcn typcn-times"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript: void(0);" id="sendCrush"
-                                            title="Send a crush, and add to favourites.">
+                                        <a href="javascript: void(0);" id="sendCrush">
                                             <i class="typcn typcn-star"></i>
                                         </a>
                                     </li>
@@ -81,12 +77,15 @@
                                                         </a>
                                                     </div>
 
-                                                    <div class="profileImg"
-                                                        style="background-image: url('<%= user.profileImage || `/lib/img/assets/user.png` %>');">
-                                                    </div>
+                                                    <a href="javascript:void(0);"
+                                                        class="activeProfile hasStatus float-left"
+                                                        style="cursor: default; margin-right: 10px;">
+                                                        <div class="profileImg"
+                                                            style="background-image: url('/lib/img/52.jpg');"></div>
+                                                    </a>
                                                     <div style="margin-bottom: -10px;">
                                                         <span>
-                                                            <%= user.fullname %>
+                                                            <%= user.fullname.split(" ")[0] %>
                                                         </span>
                                                         <div style="font-size: 12px;" class="text-muted">
                                                             Start a conversation with <b class="color">Hope Stone</b>
@@ -102,13 +101,16 @@
                                                         <div class="dynamicInput row col-md-12 mt-3"
                                                             style="margin: 0px; border: 1px solid #eee; box-shadow: 1px -0px 3px #eee; padding: 6px !important; border-radius: 15px; background-color: #fff;">
                                                             <div class="inputCon col-md-10">
-                                                                <input type="text" name="message" id="message" class="form-control" placeholder="Type a message" required
+                                                                <input type="text" name="message" id="message"
+                                                                    class="form-control" placeholder="Type a message"
+                                                                    required
                                                                     style="border: none !important; background-color: transparent; border-radius: 0px !important;">
                                                             </div>
                                                             <!-- Others -->
                                                             <div class="OthersCon col-md-2">
                                                                 <span>
-                                                                    <input type="submit" value="Send" class="btn bg-color" style="border: none !important;">
+                                                                    <input type="submit" value="Send" class="btn bg-color"
+                                                                        style="border: none !important;">
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -140,9 +142,9 @@
                     <div class="personalInfo">
                         <h6 class="text-muted">Personal Info</h6>
                         <ul>
-                            <li>Religion</li>
-                            <li>Language</li>
-                            <li>Height and others...</li>
+                            <li><small class="text-muted">Religion:</small> Christainity</li>
+                            <li><small class="text-muted">Language:</small> English</li>
+                            <li><small class="text-muted">Height:</small> 5'10</li>
                         </ul>
                     </div>
                 </div>

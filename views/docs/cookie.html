@@ -1,3 +1,53 @@
-<center><img src="/public/lib/img/logo/logo-icon.png" width="60" alt="logo"></center>
+<link rel="stylesheet" href="/lib/css/index.css">
+<style>
+    section.logoCon {
+        margin-bottom: 80px;
+    }
 
-<h1>Cookie Policy</h1>
+    .cookieCon {
+        border-radius: 15px;
+        padding: 50px 20px;
+        margin: 0 auto;
+        width: 90%;
+        background-color: #f6f6f6;
+        font-size: 15px;
+    }
+
+    p {
+        margin: 10px;
+        margin-bottom: 20px;
+        line-height: 30px;
+    }
+
+    a {
+        color: #ff6878;
+    }
+</style>
+
+
+<section class="cookieCon">
+    <section class="logoCon">
+        <!-- Header -->
+        <header class="header" id="header">
+            <nav>
+                <center>
+                    <a href="javascript:void(0);" style="display: block;" class="logoCon"
+                        style="box-sizing: content-box;">
+                        <img src="/lib/img/logo/logoLandscape.png" id="logo" width="200" alt="logo">
+                    </a>
+                </center>
+                <br><br>
+                <div class="btnCon">
+                    <a href="/" role="button" class="btn float-right">Back to Home</a>
+                </div>
+            </nav>
+        </header>
+        <br>
+    </section>
+    
+    <section class="cookieMessage">
+        <h1>Cookie Policy</h1>
+    </section>
+    <br><br>
+    <%- include('../app/partials/footer.html'); %>
+</section>

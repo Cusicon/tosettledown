@@ -1,5 +1,5 @@
 <!-- PROFILEBAR -->
-<section class="profileBar col-md-3 col-sm-4" id="profileBar" style="color: #9e9997; visibility: visible;">
+<section class="profileBar col-md-3 col-sm-4" id="profileBar">
     <div class="container">
         <!-- logo -->
         <div class="logoCon" id="logoCon">
@@ -11,21 +11,19 @@
                 </center>
             </div>
         </div>
-        
+
         <!-- Profile -->
         <div class="profileCon" id="profileCon">
             <div class="profileSection">
-                <a href="/app/profile/123" title="See your profile...">
-                    <div class="profileImg"
-                        style="background-image: url('/lib/img/assets/user.png'); border: 2px solid #eee;"></div>
+                <a href="/app/profile/123" class="activeProfile hasStatus" title="See your profile...">
+                    <div class="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
                 </a>
                 <ul>
                     <li id="username">
-                        <%= user.fullname %>
+                        <%= user.fullname.split(" ")[0] %>
                     </li>
                     <li id="popularity" class="text-muted">
-                        Popularity: <a href="/app/popularity/" title="See your popularity..."><b
-                                class="text-muted">Calculating...</b></a>
+                        <b class="text-muted"><%= user.username %></b>
                     </li>
                 </ul>
             </div>
@@ -35,7 +33,8 @@
                     <li class="col-md-5 col-sm-5" style="width: unset;">
                         <a href="/app/wallet/balance" id="settlesBalance" title="Settle wallet and balance.">
                             <center>
-                                <img src="/lib/img/assets/settle-topup.png" alt="settlesLogo" width="35" id="settleImg">
+                                <img src="/lib/img/assets/reduced/settle-topup.png" alt="settlesLogo" width="35"
+                                    id="settleImg">
                                 <div>
                                     <small style="font-weight: 500;" class="text-muted">Settle</small><br>
                                     <span id="balance">Top Up</span>
@@ -46,7 +45,8 @@
                     <li class="col-md-5 col-sm-5" style="width: unset;">
                         <a href="/app/packages/premium" id="getPremium" title="Activate premium.">
                             <center>
-                                <img src="/lib/img/assets/premium-topup.png" alt="premiumLogo" width="37" id="premium">
+                                <img src="/lib/img/assets/reduced/premium-topup.png" alt="premiumLogo" width="37"
+                                    id="premium">
                                 <div>
                                     <small style="font-weight: 500;" class="text-muted">Premium</small><br>
                                     <span id="is-active">Activate</span>

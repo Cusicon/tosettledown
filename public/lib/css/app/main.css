@@ -6,7 +6,10 @@
 */
 
 .color {
-  color: #ff6878;
+  color: #ff6878 !important; /* Pinkish_red */
+}
+.basic-color {
+  color: #ff661b; /* Orange */
 }
 
 .btn.bg-color {
@@ -55,7 +58,7 @@
 }
 
 .show {
-  display: block;
+  display: block !important;
 }
 
 .card {
@@ -80,6 +83,149 @@
   padding: 0px;
 }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownContent {
+  display: none;
+  position: absolute;
+  margin-top: 7px;
+  padding: 10px 0px;
+  background-color: #fff;
+  min-width: 180px;
+  overflow: auto;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  box-shadow: 0px 1px 15px #eeeeee63;
+  font-size: 14px;
+  right: -15px;
+}
+
+.dropdownContent div.separator {
+  margin-top: 10px;
+  border-top: 1px solid #eee;
+}
+
+.dropdownContent a {
+  display: block;
+  color: #0f0f0f;
+  padding: 5px 20px;
+  text-decoration: none;
+}
+
+.dropdownContent a.dropdownBottom span {
+  font-size: 16px !important;
+}
+
+.dropdownContent a:hover {
+  color: #0f0f0f;
+  background-color: #f9f9f9;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  -webkit-animation-name: fadeIn; /* Fade in the background */
+  -webkit-animation-duration: 0.4s;
+  animation-name: fadeIn;
+  animation-duration: 0.4s;
+}
+
+/* Modal Content */
+.modalContent {
+  position: fixed;
+  bottom: 0;
+  background-color: #fefefe;
+  width: 100%;
+  -webkit-animation-name: slideIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: slideIn;
+  animation-duration: 0.4s;
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modalHeader {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.modalBody {
+  padding: 2px 16px;
+}
+
+.modalFooter {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+  from {
+    bottom: -300px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    bottom: -300px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .btn {
   padding: 10px 15px !important;
   border-radius: 15px !important;
@@ -97,12 +243,34 @@
   transition: none !important;
 }
 
+a.activeProfile {
+  display: inline-block;
+  border-radius: 100%;
+  padding: 2px;
+}
+
+a.activeProfile.hasStatus {
+  background-image: linear-gradient(#006870a2, #ff6878);
+}
+
+a.activeProfile.noStatus {
+  background-image: none;
+  background-color: #cecece;
+}
+
+a div.image {
+  border: 2px solid #f6f6f6;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  background-color: #eee;
+}
+
 button,
 input[type="submit"],
 a[role="button"] {
   text-decoration: none;
   background-color: transparent;
-  border: 2px solid #ff6878 !important;
   color: #ff6878;
 }
 
@@ -163,7 +331,8 @@ a:active {
 
 /* ProfileBar */
 .profileBar .container {
-  padding: 0px 30px;
+  /* padding: 0px 30px; */
+  color: #9e9997;
 }
 
 .profileBar .logoCon {
@@ -184,25 +353,33 @@ a:active {
   padding: 10px;
 }
 
-.profileBar .profileCon .profileSection .profileImg {
-  width: 46px;
-  height: 46px;
-  border-radius: 100%;
+.profileBar .profileCon .profileSection a.activeProfile {
   float: left;
 }
 
-.profileBar .profileCon .profileSection .profileImg:active {
+.profileBar .profileCon .profileSection a.activeProfile:active {
+  transform: scale(0.95);
+}
+
+.profileBar .profileCon .profileSection .profileImg {
+  width: 45px;
+  height: 45px;
+  border-radius: 100%;
   border: 2px solid #eee;
+  float: left;
 }
 
 .profileBar .profileCon .profileSection ul {
   display: inline-block;
-  padding: 0px 10px;
+  padding: 0px 0px;
+  margin-left: 5px;
+  width: auto;
 }
 
 .profileBar .profileCon .profileSection ul li#username {
   color: #000;
   font-size: 15px;
+  display: inline;
 }
 
 .profileBar .profileCon .profileSection ul li#popularity {
@@ -253,6 +430,7 @@ a:active {
 }
 
 .mainBody .displayWindow {
+  /* visibility: hidden; */
   background-color: #fff;
   padding: 0px;
   border-radius: 10px;
@@ -437,10 +615,8 @@ a:active {
   width: 50px;
   height: 50px;
   background-color: #eee;
-  float: left;
   border: 2px solid #eee;
   border-radius: 100%;
-  margin-right: 10px;
 }
 
 .mainBody
@@ -501,7 +677,6 @@ a:active {
 }
 
 .mainBody .displayWindow .detailsCon .personalInfo ul li {
-  margin-bottom: 5px;
   padding: 5px 0px;
 }
 
@@ -516,10 +691,6 @@ a:active {
 
 .statusBar ul li {
   display: inline-block;
-}
-
-.statusBar ul li a.activeProfile {
-  background-image: linear-gradient(#006870a2, #ff6878);
 }
 
 .statusBar ul li a {
@@ -575,7 +746,7 @@ a:active {
 }
 
 .Chat .ChatList .ChatBody ul li a#user:hover {
-  box-shadow: 0px 1px 200px #0000002a !important;
+  box-shadow: 0px 1px 100px #0000002a !important;
 }
 
 .Chat .ChatList .ChatBody ul li a#user div#profileImg {
@@ -637,6 +808,7 @@ a:active {
 
 .Chat .ChatWindow .ChatWindowHead small#typing {
   font-weight: 500;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   display: block;
 }
 
@@ -691,11 +863,17 @@ a:active {
 
 .likes,
 .matched {
-  padding: 20px 50px;
+  padding: 20px 20px;
+}
+
+.likes ul li,
+.matched ul li {
+  display: inline-block;
 }
 
 .likes .card,
 .matched .card {
+  width: 200px;
   border-radius: 40px;
   border: 1px solid #ddd;
 }
@@ -709,7 +887,7 @@ a:active {
 .matched .card .img {
   border-radius: 10px;
   margin-bottom: 15px;
-  width: 100%;
+  width: 150px;
   min-height: 150px;
   max-height: 150px;
   background-color: #eee;
@@ -721,11 +899,17 @@ a:active {
 
 .visitors,
 .favourites {
-  padding: 20px 50px;
+  padding: 20px 20px;
+}
+
+.visitors ul li,
+.favourites ul li {
+  display: inline-block;
 }
 
 .visitors .card,
 .favourites .card {
+  width: 200px;
   border-radius: 40px;
   border: 1px solid #ddd;
 }
@@ -739,7 +923,7 @@ a:active {
 .favourites .card .img {
   border-radius: 10px;
   margin-bottom: 15px;
-  width: 100%;
+  width: 150px;
   min-height: 150px;
   max-height: 150px;
   background-color: #eee;
@@ -749,8 +933,150 @@ a:active {
 
 /* PROFILE */
 
-.profileMain h3{
-  color: red;
+.profileMain {
+  padding: 5px;
+}
+
+.profileMain .profileHeader header ul {
+  padding: 0px;
+  margin: 0px;
+  float: right;
+}
+
+.profileMain .profileHeader header ul li {
+  display: inline-block;
+}
+
+.profileMain .profileHeader header ul li a#chatBtn,
+.profileMain .profileHeader header ul li a#dropBtn {
+  border: transparent !important;
+}
+
+.profileMain .profileHeader header ul li .dropdown .dropdownContent {
+  right: -15px;
+}
+
+.profileMain .profileHeader header ul li a i {
+  font-size: 25px;
+}
+
+.profileMain .profileHeader footer a.activeProfile {
+  margin: 0px 20px;
+  float: left;
+}
+
+.profileMain .profileHeader footer div.profileImage {
+  border-width: 3px;
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  background-color: #eee;
+}
+
+.profileMain .profileHeader footer div.left {
+  padding-top: 25px;
+}
+
+.profileMain .profileHeader footer ul {
+  padding: 0px 5px;
+}
+
+.profileMain .profileHeader footer ul li a {
+  display: block;
+  font-size: 35px;
+  min-width: 70px;
+  min-height: 70px;
+  padding-top: 3px;
+  border-radius: 100%;
+  background-color: #fff;
+  line-height: 55px;
+  text-align: center;
+  border: 1px solid transparent;
+}
+
+.profileMain .profileHeader footer ul li a:active {
+  transform: scale(1.15) translateY(-3px);
+  box-shadow: 0px -2px 30px #dedede;
+}
+
+.profileMain .profileHeader footer div.left .bio {
+  width: 260px;
+  height: 90px;
+  overflow: hidden;
+  word-break: break-all;
+  font-size: 14px;
+  color: #777;
+}
+
+.profileMain .editProfile,
+.profileMain .viewProfile {
+  padding: 10px;
+}
+
+.profileMain .editProfile .editProfileLeft,
+.profileMain .editProfile .editProfileRight {
+  padding: 10px 20px;
+}
+
+.profileMain .editProfile input,
+.profileMain .editProfile textarea,
+.profileMain .editProfile select {
+  border: 1px solid #ededed !important;
+}
+
+.profileMain .viewProfile .viewProfileLeft,
+.profileMain .viewProfile .viewProfileRight {
+  padding: 10px 20px;
+}
+
+.profileMain .profileFooter {
+  border-top: 1px solid #ededed;
+  margin-top: 110px;
+}
+
+.profileMain .profileFooter header {
+  margin-bottom: 10px;
+}
+
+.profileMain .profileFooter header ul li {
+  display: inline-block;
+  padding: 0px 0px;
+}
+
+.profileMain .profileFooter header ul li a span.active {
+  border-bottom: 1px solid #303030 !important;
+}
+
+.profileMain .profileFooter header ul li a {
+  border: 1px solid transparent;
+  display: block;
+  padding: 10px 0px;
+}
+
+.profileMain .profileFooter header ul li a.addImages {
+  width: auto;
+  padding: 0px;
+  margin: 0px;
+  border: none !important;
+}
+
+.profileMain .profileFooter header ul li a span {
+  font-size: 13px;
+  padding: 10px;
+}
+
+.profileMain .profileFooter header ul li a i {
+  font-size: 17px;
+}
+
+.profileMain .profileFooter footer ul li {
+  padding: 10px;
+}
+
+.profileMain .profileFooter footer ul li a img#image {
+  display: block;
+  width: 100%;
+  border: 1px solid #eee;
 }
 
 /* END OF PROFILE */

@@ -83,11 +83,11 @@
                                                     </div>
 
                                                     <div class="profileImg"
-                                                        style="background-image: url('<%= user.profileImage || `/lib/img/assets/user.png` %>');">
+                                                        style="background-image: url('<%= user.profileImage || `/lib/img/assets/reduced/user.png` %>');">
                                                     </div>
                                                     <div style="margin-bottom: -10px;">
                                                         <span>
-                                                            <%= user.fullname %>
+                                                            <%= user.fullname.split(" ")[0] %>
                                                         </span>
                                                         <div style="font-size: 12px;" class="text-muted">
                                                             Start a conversation with <b class="color">Hope Stone</b>

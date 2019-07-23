@@ -18,7 +18,6 @@ router.post("/", (req, res) => {
         var password = req.body.password.trim();
         var dob = req.body.dob;
         var gender = req.body.gender;
-        var location = req.body.location.trim().toLowerCase();
         var agreed_terms = true;
         var remember_me = true;
         var joined = new Date().toDateString();
@@ -30,7 +29,6 @@ router.post("/", (req, res) => {
         req.checkBody("password", "Password is Needed!.").notEmpty();
         req.checkBody("dob", "Date of Birth is Essential!.").notEmpty();
         req.checkBody("gender", "Gender is Needed!.").notEmpty();
-        req.checkBody("location", "Location is Needed!.").notEmpty();
 
         //-- Check for validation Error
         var errors = req.validationErrors();
@@ -46,7 +44,6 @@ router.post("/", (req, res) => {
                 password: password || null,
                 dob: dob || null,
                 gender: gender || null,
-                location: location || null,
                 agreed_terms: agreed_terms || null,
                 remember_me: remember_me || null,
                 joined: joined || null

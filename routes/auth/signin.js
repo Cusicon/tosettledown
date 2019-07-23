@@ -22,7 +22,6 @@ router.post(
         } else {
             req.session.cookie.expires = false; //-- Cookie expires at end of session
         }
-        userLog(`"${req.user.username}" is signed in...`);
         res.redirect(`/app/encounters`);
     }
 );

@@ -3,6 +3,7 @@ var router = express();
 
 // Home [Profile]
 router.get("/:profileID", (req, res) => {
+    var id = req.params.profileID;
     res.render('./app/menu/profile', { title: `${req.params.profileID} - Profile` });
 });
 

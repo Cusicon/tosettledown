@@ -99,7 +99,7 @@ app.use((req, res, next) => {
 // ## VIEW [Sign up and Sign in.]
 app.get('/', (req, res) => {
   if (!req.user) {
-    res.render("./index", { title: 'Welcome' });
+    res.render("./index", { title: 'Built for lovers' });
   } else {
     res.redirect('/app/encounters');
     res.location('/app/encounters');

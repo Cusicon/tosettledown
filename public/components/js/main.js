@@ -1,12 +1,3 @@
-/*
-
-Project     : DAdmin - Responsive Bootstrap HTML Admin Dashboard
-Version     : 1.1
-Author      : ThemeLooks
-Author URI  : https://themeforest.net/user/themelooks
-
-*/
-
 (function(b){b(window);var f=b(document),g=b("body");b(function(){b("[data-bg-img]").css("background-image",function(){return'url("'+b(this).data("bg-img")+'")'}).addClass("bg--img").removeAttr("data-bg-img");var a=b('[data-toggle="tooltip"]');a.length&&a.tooltip();a=b('[data-trigger="selectmenu"]');a.length&&a.select2();f.on("change",'input[type="file"]',function(c){c.$el=b(this);c.$txt=0===c.target.files.length?"Choose File":c.target.files[0].name;c.$el.hasClass("custom-file-input")&&c.$el.next("span").text(c.$txt)});
 a=b('[data-trigger="scrollbar"]');a.each(function(){var c=new PerfectScrollbar(this);var a=localStorage.getItem("ps."+this.classList[0]);null!==a&&(c.element.scrollTop=a)});a.on("ps-scroll-y",function(){localStorage.setItem("ps."+this.classList[0],this.scrollTop)});a=b('[data-trigger="range-slider"]');a.length&&a.ionRangeSlider();b('[data-trigger="sparkline"]').each(function(){var a=b(this);a.sparkline("html",{type:a.data("type"),barColor:a.data("color"),barWidth:a.data("width"),height:a.data("height"),
 values:a.data("value")})});a=b('[data-trigger="sparklineChart01"]');a.length&&a.sparkline("html",{width:"100%",height:"100px",lineColor:"#ebebea",fillColor:"#ebebea",spotColor:"#2bb3c0",minSpotColor:"#2bb3c0",maxSpotColor:"#2bb3c0",spotRadius:"3"});(a=document.getElementById("morrisLineChart01"))&&new Morris.Line({element:a.id,data:[{degree:"30.05",a:46},{degree:"31.05",a:46},{degree:"01.06",a:42},{degree:"02.06",a:50},{degree:"03.06",a:22},{degree:"04.06",a:46},{degree:"05.06",a:52}],xkey:"degree",

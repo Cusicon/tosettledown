@@ -5,19 +5,18 @@ $(document).ready(() => {
   var mode = $("div#messages ul").attr("class");
 
   if (text != "") {
-    alert(mode, text);
+    alert(mode, mode, text);
   }
   message.html("");
 });
 
-var alert = (mode, msg) => {
+function alert(icon, mode, msg) {
   var upperMode = mode.replace(mode.charAt(0), mode.charAt(0).toUpperCase());
   swal({
     title: upperMode,
     text: msg,
-    icon: mode || null,
+    icon: icon || null,
     closeOnEsc: true,
     closeOnClickOutside: true
   });
 }
-
