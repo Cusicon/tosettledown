@@ -94,10 +94,9 @@ module.exports.createUser = function (newUser, callback) {
     //-- Create User root directory
     function createUserDirectory(username, userID) {
         var loc = path.join(__dirname, `../public/store/users/${username}-${userID}`);
-        fs.mkdir(loc, err => {
+        fs.mkdir(loc, { recursive: true }, err => {
             var msg = `A new account signing up...`;
-            if (err) console.log(err)
-            else console.log(msg)
+            err ? console.log(err) : console.log(msg);
         });
         return loc;
     }

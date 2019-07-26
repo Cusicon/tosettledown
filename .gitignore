@@ -1,5 +1,6 @@
-config/*
-log/*
+config/keys.js
+logs/*
+public/store
 node_modules
 public/components/emoticon/png
 public/components/emoticon/sprites/*.png
