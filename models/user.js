@@ -7,21 +7,33 @@ var Schema = mongoose.Schema;
 
 var UserSchema = Schema({
     googleId: String,
-    fullname: String,
+    fullname: {
+        firstname: String,
+        lastname: String,
+        all: String
+    },
     username: String,
     email: String,
     password: String,
-    dob: String,
+    dob: {
+        date: String,
+        age: String
+    },
     gender: String,
-    location: String,
     agreed_terms: Boolean,
-    remember_me: Boolean,
     joined: String,
-    settleBalance: String,
-    premium: Boolean,
-    premium_expiryDate: String,
+    personalInfo: {
+        bio: String,
+        height: String,
+        language: String,
+        religion: String,
+        location: String,
+        work: String,
+        education: String
+    },
     userDirectoriesLocation: String,
-    images: [{ location: String, isDisplayPicture: Boolean }]
+    settlesBalance: String,
+    dp: String
 });
 
 // Export UserSchema
@@ -37,30 +49,40 @@ module.exports.getUserById = function (id, callback) {
 
 //-- GetUserByGoogleId
 module.exports.getUserByGoogleId = function (googleId, callback) {
-    var query = { googleId: googleId }
+    var query = {
+        googleId: googleId
+    }
     User.findOne(query, callback);
 };
 
 //-- GetUserByFacebookId
 module.exports.getUserByFacebookId = function (facebookId, callback) {
-    var query = { facebookId: facebookId }
+    var query = {
+        facebookId: facebookId
+    }
     User.findOne(query, callback);
 };
 
 //-- GetUserByInstagramId
 module.exports.getUserByInstagramId = function (instagramId, callback) {
-    var query = { instagramId: instagramId }
+    var query = {
+        instagramId: instagramId
+    }
     User.findOne(query, callback);
 };
 
 //-- GetUserByIdandUpdate
 module.exports.getUserByIdandUpdate = function (id, update, callback) {
-    User.findByIdAndUpdate(id, update, { useFindAndModify: false }, callback);
+    User.findByIdAndUpdate(id, update, {
+        useFindAndModify: false
+    }, callback);
 };
 
 //-- GetUserByUsername
 module.exports.getUserByUsername = function (username, callback) {
-    var query = { username: username };
+    var query = {
+        username: username
+    };
     User.findOne(query, callback);
 };
 
@@ -86,6 +108,7 @@ module.exports.createUser = function (newUser, callback) {
             bcrypt.hash(newUser.password, salt, (err, hash) => {
                 newUser.password = hash;
                 newUser.userDirectoriesLocation = createUserDirectory(newUser.username, newUser._id);
+                newUser.dob.age = getAge(newUser.dob.age);
                 newUser.save(callback);
             });
         }
@@ -93,11 +116,38 @@ module.exports.createUser = function (newUser, callback) {
 
     //-- Create User root directory
     function createUserDirectory(username, userID) {
-        var loc = path.join(__dirname, `../public/store/users/${username}-${userID}`);
-        fs.mkdir(loc, { recursive: true }, err => {
+        var loc = path.join(__dirname, `../public/store/users/${username}_${userID}`);
+        fs.mkdir(loc, {
+            recursive: true
+        }, err => {
             var msg = `A new account signing up...`;
             err ? console.log(err) : console.log(msg);
         });
         return loc;
+    }
+
+    function getAge(dob) {
+        if (typeof dob == "string") {
+            var dobArr = dob.split("-");
+            var dobArrObj = {
+                year: Number(dobArr[0]),
+                month: Number(dobArr[1]),
+                day: Number(dobArr[2])
+            }
+            // Get current date
+            var currentDate = {
+                year: new Date().getFullYear(),
+                month: new Date().getMonth(),
+                day: new Date().getDate()
+            }
+
+            // now the maths...
+            var result = {
+                year: currentDate.year - dobArrObj.year,
+                month: currentDate.month - dobArrObj.month,
+                day: currentDate.day - dobArrObj.day
+            };
+        }
+        return result.year;
     }
 };

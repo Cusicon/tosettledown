@@ -5,6 +5,15 @@
         <!-- Messaging -->
         <div class="sr-only">
             <%- messages() %>
+
+            <% if(typeof errors != "undefined") { %>
+            <% errors.forEach(err => { %>
+            <div id="messages">
+                <ul class="error">
+                    <li><%= err.msg %></li>
+                </ul>
+            </div>
+            <% })} %>
         </div>
         <!-- Info container -->
         <div class="col-md-8 col-sm-12 infoCon" id="infoCon">
@@ -24,10 +33,10 @@
             </header>
             <br>
             <div class="jb" id="jb">
-                <h1>Built for Lovers</h1>
+                <h1>Built for <span id="jb_lovers" class="bg-color">Lovers</span></h1>
                 <br>
                 <p>
-                    Tosettledown is a <b>Matchmaking</b> and <b>Dating</b> platform inspired by the way you singles
+                    Toast (TSD) is a <b>Matchmaking</b> and <b>Dating</b> platform inspired by the way singles
                     communicate.
                     From been single to getting married, you can promote and sell marriage related items and
                     contents, ie. Wedding Rings, Wedding Gowns, Suit Blazzers etc, alongside other interesting items.
@@ -92,9 +101,9 @@
                     <div class="form-group">
                         <input type="submit" id="submitForm" class="form-control btn btn-success"
                             style="padding: 20px !important; margin-bottom: 5px;" aria-describedby="submitFormHelp"
-                            value="Sign up with Tosettledown">
+                            value="Sign up with Tosettledown (TSD)">
                         <small id="submitFormHelp" class="form-text text-muted">By clicking
-                            <i>"Sign up with Tosettledown"</i>,
+                            <i>"Sign up with Tosettledown (TSD)"</i>,
                             you agree to our <a href="/terms">terms of services</a>, <a href="/policy">privacy
                                 policy</a> and <a href="/cookie">cookie policy</a>.
                         </small>
@@ -118,7 +127,8 @@
                             <a href="/auth/0/signin/google" role="button" id="google"
                                 style="background-color: transparent; border: 1px solid #eee !important; margin: 0px 5px;"
                                 class="btn" title="Sign in via Google">
-                                <i class="fa fa-google" style="color: #ff6878; font-size: 18px; margin-right: 20px;"></i>
+                                <i class="fa fa-google"
+                                    style="color: #ff6878; font-size: 18px; margin-right: 20px;"></i>
                                 <span class="text-muted">Sign in via Google</span>
                             </a>
                             <!-- <a href="/auth/0/signin/facebook/" role="button" id="facebook"
@@ -145,7 +155,8 @@
                     </div>
                     <!-- Remember me -->
                     <div class="custom-control custom-radio mb-4" style="padding-left: 30px;">
-                        <input type="radio" id="remember" name="remember" class="custom-control-input" value="remember" checked>
+                        <input type="radio" id="remember" name="remember" class="custom-control-input" value="remember"
+                            checked>
                         <label class="custom-control-label" for="remember">Remember me</label>
                     </div>
                     <!-- Sign Btn -->

@@ -1,167 +1,27 @@
+<style>
+    .displayWindow {
+        padding: 20px 30px !important;
+    }
+</style>
 <section class="windowFrame container row" id="windowFrame">
     <!-- ProfileBar -->
     <%- include('../partials/profileBar.html'); %>
     <!-- MainBody -->
     <section class="mainBody col-md-9 col-sm-8" id="mainBody">
-        <!-- SearchBar -->
-        <%- include('../partials/searchBar.html'); %>
         <div class="row">
-            <div class="displayWindow col-md-11 row">
-                <!-- ImageWindow -->
-                <div class="imageWindow col-md-8" style="background-image: url('/lib/img/52.jpg');">
-                    <div class="overlayNav">
-                        <div class="navTop">
-                            <div class="imageCounter float-left">
-                                <p>
-                                    <span id="currentNumber" style="padding-right: 5px;">1</span>/
-                                    <span id="TotalNumber">4</span>
-                                </p>
-                            </div>
-                            <div class="imageCounter reportFlag">
-                                <p>
-                                    <span>
-                                        <a href="#" style="color: #fff;">
-                                            <i class="typcn typcn-flag"></i>
-                                        </a>
-                                    </span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="navMiddle">
-                            <div>
-                                <a href="javascript: void(0);" id="previous" title="Previous..." style="float: left;">
-                                    <i class="icon-arrow-left"></i>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="javascript: void(0);" id="next" title="Next..." style="float: right;">
-                                    <i class="icon-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="navBottom">
-                            <center>
-                                <ul>
-                                    <li>
-                                        <a href="javascript: void(0);" id="sendAMessage"
-                                            title="Start a conversation...">
-                                            <i class="typcn typcn-location-arrow"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript: void(0);" id="like" title="Like"
-                                            style="color: #ff6878 !important;">
-                                            <i class="typcn typcn-heart-full-outline"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript: void(0);" id="skip" title="Skip"
-                                            style="color: #303030 !important;">
-                                            <i class="typcn typcn-times"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript: void(0);" id="sendCrush"
-                                            title="Send a crush, and add to favourites.">
-                                            <i class="typcn typcn-star"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </center>
-                            <div class="quickMessagePopUp popUp" id="quickMessagePopUp">
-                                <div class="card" style="border: none;">
-                                    <div id="card-handle"></div>
-                                    <section class="card-body">
-                                        <div class="form-group">
-                                            <div class="top">
-                                                <div class="container">
-                                                    <div class="float-right">
-                                                        <a href="javascript: void(0);" id="closeQuickMessagePopUp"
-                                                            style="font-size: 20px;" class="text-dark" title="Close">
-                                                            <i class="typcn typcn-times"></i>
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="profileImg"
-                                                        style="background-image: url('<%= user.profileImage || `/lib/img/assets/reduced/user.png` %>');">
-                                                    </div>
-                                                    <div style="margin-bottom: -10px;">
-                                                        <span>
-                                                            <%= user.fullname.split(" ")[0] %>
-                                                        </span>
-                                                        <div style="font-size: 12px;" class="text-muted">
-                                                            Start a conversation with <b class="color">Hope Stone</b>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="bottom">
-                                                <div class="container">
-                                                    <!-- Dynamic Input -->
-                                                    <form action="#" method="POST">
-                                                        <!-- Input -->
-                                                        <div class="dynamicInput row col-md-12 mt-3"
-                                                            style="margin: 0px; border: 1px solid #eee; box-shadow: 1px -0px 3px #eee; padding: 6px !important; border-radius: 15px; background-color: #fff;">
-                                                            <div class="inputCon col-md-10">
-                                                                <input type="text" name="message" id="message"
-                                                                    class="form-control" placeholder="Type a message"
-                                                                    required
-                                                                    style="border: none !important; background-color: transparent; border-radius: 0px !important;">
-                                                            </div>
-                                                            <!-- Others -->
-                                                            <div class="OthersCon col-md-2">
-                                                                <span>
-                                                                    <input type="submit" value="Send"
-                                                                        class="btn bg-color"
-                                                                        style="border: none !important;">
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                    </section>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="displayWindow col-md-11 row" style="height: 620px; overflow: hidden; overflow-y: scroll; box-shadow: none; border-radius: 0px; padding: 20px 30px; border-left: 1px solid #eee;">
+                <div style="margin-bottom: 50px; width: 100%;">
+                    <h3 class="text-muted">
+                        <%= title %>
+                    </h3>
+                    <div class="borderBottom"></div>
                 </div>
-                <div class="detailsCon col-md-4 col-sm-12" id="detailsCon">
-                    <div class="detailsHeader">
-                        <h3 style="margin-bottom: 0px;">
-                            <span id="NameandAge" style="color: #1a1a1a;">Hope Stone, 22</span>
-                            <div id="username" style="font-size: 15px; margin-top: 10px;">
-                                <a href="/app/profile/123" title="Visit Hope Stone's profile">@iam.stone</a>
-                            </div>
-                        </h3>
-                    </div>
-                    <div class="bio">
-                        <h6 class="text-muted">Bio</h6>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi, commodi explicabo tempora
-                            reprehenderit aliquid vel distinctio?
-                        </p>
-                    </div>
-                    <div class="personalInfo">
-                        <h6 class="text-muted">Personal Info</h6>
-                        <ul>
-                            <li>Religion</li>
-                            <li>Language</li>
-                            <li>Height and others...</li>
-                        </ul>
-                    </div>
-                </div>
+                <!-- Container -->
             </div>
-            <!-- StatusBar -->
-            <%- include('../partials/statusBar.html'); %>
+            <!-- ShopAds -->
+            <%- include('../partials/shopAds.html'); %>
         </div>
-        <div class="googleAds"
-            style="display: none; width: 100%; height: 100px; border: 1px solid #ccc; padding: 5px; margin: 10px -30px;">
-            <!-- <iframe src="javascript: void(0);" style="width: 100%; height: 90px; border: 2px solid #eee; margin: 6px 0px;"></iframe> -->
-            <center>
-                <p>Ads By Google</p>
-            </center>
-        </div>
+
         <!-- Footer -->
         <%- include('../partials/footer.html'); %>
     </section>

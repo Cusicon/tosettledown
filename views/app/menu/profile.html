@@ -4,7 +4,8 @@
     <!-- MainBody -->
     <section class="mainBody col-md-9 col-md-8" id="mainBody">
         <div class="row">
-            <div class="displayWindow col-md-12" style="box-shadow: none; border-radius: 0px; padding: 10px 15px;">
+            <div class="displayWindow col-md-12"
+                style="height: 620px; overflow: hidden; overflow-y: scroll; box-shadow: none; border-radius: 0px; padding: 10px 15px; border-left: 1px solid #eee;">
                 <div class="profileMain">
                     <!-- Space for modals -->
                     <div class="modalCon">
@@ -32,9 +33,11 @@
                         <header>
                             <ul>
                                 <li>
-                                    <a href="/app/chats" class="btn bg-color" id="chatBtn" role="button"
+                                    <% if (user.username != profile_user.username) { %>
+                                    <a href="/app/chats/<%= profile_user.username %>" class="btn bg-color" id="chatBtn" role="button"
                                         style="color: #1a1a1a; padding: 10px 25px !important; margin-right: 10px; text-align: center;">
-                                        Chat <b class=""><%= user.fullname.split(" ")[0] %></b> up</a>
+                                        Chat <b class=""><%= profile_user.fullname.firstname %></b> up</a>
+                                    <% } %>
                                 </li>
                                 <li>
                                     <div class="dropdown">
@@ -45,13 +48,17 @@
                                         <div class="dropdownContent" id="dropdownContent">
                                             <a href="#">Add to favourites</a>
                                             <a href="#">Share</a>
-                                            <a href="#" id="myBtn">Edit profile</a>
+                                            <% if (user.username == profile_user.username) { %>
+                                                <a href="#" id="myBtn">Edit profile</a>
+                                            <% } %>
                                             <a href="#" class="color">Block or Report</a>
-                                            <div class="separator"></div>
-                                            <a href="#" class="dropdownBottom" style="color: #000;">
-                                                Settings
+                                            <% if (user.username == profile_user.username) { %>
+                                                <div class="separator"></div>
+                                                <a href="/auth/0/signin/out" class="dropdownBottom" style="color: #000;">
+                                                Sign out
                                                 <span class="typcn typcn-cog float-right"></span>
                                             </a>
+                                            <% } %>
                                         </div>
                                     </div>
                                 </li>
@@ -62,9 +69,9 @@
                         <footer>
                             <div class="profileFooterHead">
                                 <div style="float: left; margin: 0px 5px;">
-                                    <a href=javascript:void(0); class="activeProfile hasStatus">
+                                    <a href=javascript:void(0); class="activeProfile hasStories">
                                         <div class="image profileImage"
-                                            style="background-image: url('/lib/img/52.jpg');">
+                                            style="background-image: url('/lib/img/assets/reduced/user.png');">
                                         </div>
                                     </a>
                                     <ul style="display: block; margin: 0px 45px;">
@@ -85,11 +92,11 @@
                                 <div class="left">
                                     <div class="fullname">
                                         <h1 style="font-weight: lighter;">
-                                            <span><%= user.fullname %>, 26</span>
+                                            <span><%= profile_user.fullname.all %>, <%= profile_user.dob.age %></span>
                                         </h1>
                                     </div>
                                     <div class="username text-muted">
-                                        <small><b><%= user.username %></b></small>
+                                        <small><b><%= profile_user.username %></b></small>
                                     </div>
                                     <div class="bio float-left">
                                         <p>
@@ -108,8 +115,7 @@
                         </footer>
                     </section>
                     <section class="profileFooter">
-                        <div class="OtherForms">
-                            <!-- This shows input controls if {user.id} != "req.params.id" -->
+                        <div class="moreDetails">
                             <div class="editProfile hide">
                                 <form action="#" method="POST" class="row">
                                     <div class="editProfileLeft col-md-8">
@@ -222,32 +228,32 @@
                                 <ul class="row">
                                     <li class="col-4 col-md-4 col-sm-4">
                                         <a href="javascript:void(0);">
-                                            <img src="/lib/img/52.jpg" id="image" alt="image">
+                                            <img src="/lib/img/assets/reduced/user.png" id="image" alt="image">
                                         </a>
                                     </li>
                                     <li class="col-4 col-md-4 col-sm-4">
                                         <a href="javascript:void(0);">
-                                            <img src="/lib/img/52.jpg" id="image" alt="image">
+                                            <img src="/lib/img/assets/reduced/user.png" id="image" alt="image">
                                         </a>
                                     </li>
                                     <li class="col-4 col-md-4 col-sm-4">
                                         <a href="javascript:void(0);">
-                                            <img src="/lib/img/52.jpg" id="image" alt="image">
+                                            <img src="/lib/img/assets/reduced/user.png" id="image" alt="image">
                                         </a>
                                     </li>
                                     <li class="col-4 col-md-4 col-sm-4">
                                         <a href="javascript:void(0);">
-                                            <img src="/lib/img/52.jpg" id="image" alt="image">
+                                            <img src="/lib/img/assets/reduced/user.png" id="image" alt="image">
                                         </a>
                                     </li>
                                     <li class="col-4 col-md-4 col-sm-4">
                                         <a href="javascript:void(0);">
-                                            <img src="/lib/img/52.jpg" id="image" alt="image">
+                                            <img src="/lib/img/assets/reduced/user.png" id="image" alt="image">
                                         </a>
                                     </li>
                                     <li class="col-4 col-md-4 col-sm-4">
                                         <a href="javascript:void(0);">
-                                            <img src="/lib/img/52.jpg" id="image" alt="image">
+                                            <img src="/lib/img/assets/reduced/user.png" id="image" alt="image">
                                         </a>
                                     </li>
                                 </ul>

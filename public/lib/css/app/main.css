@@ -8,11 +8,11 @@
 .color {
   color: #ff6878 !important; /* Pinkish_red */
 }
-.basic-color {
+.orange-color {
   color: #ff661b; /* Orange */
 }
 
-.btn.bg-color {
+.bg-color {
   background-color: #ff6878 !important;
   color: #fff !important;
 }
@@ -48,9 +48,10 @@
 
 .badge {
   padding: 5px 7px;
-  background-color: #ff661b;
+  border: 1px solid #ff661b;
+  color: #ff661b;
   border-radius: 10px !important;
-  color: #fff;
+  font-weight: lighter;
 }
 
 .hide {
@@ -91,21 +92,21 @@
 .dropdownContent {
   display: none;
   position: absolute;
-  margin-top: 7px;
+  /* margin-top: 7px; */
   padding: 10px 0px;
   background-color: #fff;
   min-width: 180px;
   overflow: auto;
-  border: 1px solid #eee;
+  border: 1px solid #ccc;
   border-radius: 10px;
-  box-shadow: 0px 1px 15px #eeeeee63;
+  box-shadow: -2px 5px 20px #00000044;
   font-size: 14px;
   right: -15px;
 }
 
 .dropdownContent div.separator {
   margin-top: 10px;
-  border-top: 1px solid #eee;
+  border: 1px solid #eee;
 }
 
 .dropdownContent a {
@@ -249,11 +250,11 @@ a.activeProfile {
   padding: 2px;
 }
 
-a.activeProfile.hasStatus {
+a.activeProfile.hasStories {
   background-image: linear-gradient(#006870a2, #ff6878);
 }
 
-a.activeProfile.noStatus {
+a.activeProfile.noStories {
   background-image: none;
   background-color: #cecece;
 }
@@ -376,7 +377,7 @@ a:active {
   width: auto;
 }
 
-.profileBar .profileCon .profileSection ul li#username {
+.profileBar .profileCon .profileSection ul li#_fullname {
   color: #000;
   font-size: 15px;
   display: inline;
@@ -630,24 +631,7 @@ a:active {
   .bottom {
   background-color: #f9f9f9;
   height: 100px;
-  padding: 20px;
-  padding-top: 0px;
   border-top: 1px solid #eee;
-}
-
-.mainBody
-  .displayWindow
-  .imageWindow
-  .overlayNav
-  .navBottom
-  .quickMessagePopUp
-  .card
-  .card-body
-  .bottom
-  input {
-  font-size: 14px;
-  border: 1px solid #eee;
-  padding: 15px 20px;
 }
 
 .mainBody .displayWindow .detailsCon {
@@ -664,6 +648,7 @@ a:active {
 
 .mainBody .displayWindow .detailsCon .detailsHeader span {
   font-weight: lighter;
+  color: #1a1a1a;
 }
 
 .mainBody .displayWindow .detailsCon .bio {
@@ -685,12 +670,15 @@ a:active {
 /* StatusBar */
 
 .statusBar {
+  height: 360px;
+  overflow: hidden;
   margin-left: 30px;
   padding: 10px;
 }
 
 .statusBar ul li {
   display: inline-block;
+  margin-left: -5px;
 }
 
 .statusBar ul li a {
@@ -709,6 +697,37 @@ a:active {
 }
 
 /* End of StatusBar */
+
+/* shopAds */
+
+.shopAds {
+  height: 360px;
+  overflow: hidden;
+  margin-left: 30px;
+  padding: 10px;
+}
+
+.shopAds ul li {
+  display: inline-block;
+  margin-left: -5px;
+}
+
+.shopAds ul li a {
+  display: block;
+  border-radius: 100%;
+  padding: 2px;
+  cursor: default;
+}
+
+.shopAds ul li a div.image {
+  border: 2px solid #f6f6f6;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  background-color: #eee;
+}
+
+/* End of shopAds */
 
 /* END OF ENCOUNTERS */
 
@@ -735,7 +754,7 @@ a:active {
 .Chat .ChatList .ChatBody {
   background-color: #fff;
   overflow: scroll;
-  max-height: 460px;
+  height: 490px;
 }
 
 .Chat .ChatList .ChatBody ul li a#user {
@@ -786,6 +805,7 @@ a:active {
 .Chat .ChatWindow .ChatWindowHead {
   display: block;
   border-bottom: 1px solid #eee;
+  background-color: #fff;
   padding: 10px 20px;
   height: 70px;
 }
@@ -813,28 +833,31 @@ a:active {
 }
 
 .Chat .ChatWindow .ChatWindowBody {
-  padding: 10px;
-  height: 420px;
-  /* border: 1px solid red; */
+  border-bottom: 1px solid #eee;
+  margin-bottom: 7px;
+  background-color: #eee;
+  height: 480px;
   overflow: scroll;
+  padding-bottom: 30px;
 }
 
 .Chat .ChatWindow .ChatWindowBody ul li {
-  padding: 10px;
+  padding: 5px 10px;
   width: 100%;
   float: left;
 }
 
 .Chat .ChatWindow .ChatWindowBody ul li.inbox div {
   border-radius: 0px 25px 25px 25px;
-  background-color: #f1f1f1;
+  background-color: #fff;
   color: #2b2b2b;
   float: left;
 }
 
 .Chat .ChatWindow .ChatWindowBody ul li.outbox div {
   border-radius: 25px 0px 25px 25px;
-  background-color: #ff6878;
+  background-color: #f55e5e;
+  /* color: #000; */
   float: right;
 }
 
@@ -845,16 +868,19 @@ a:active {
   max-width: 250px;
   overflow: hidden;
   word-break: break-all;
-  box-shadow: 0.5px 1.5px 1px #dddddd !important;
+  box-shadow: 0.5px 0.5px 0.5px #ccc !important;
 }
 
 .Chat .ChatWindow .ChatWindowBody ul li div #message {
-  padding: 10px;
+  padding: 5px 10px;
+  font-size: 14px;
 }
 
 .Chat .ChatWindow .ChatWindowBody ul li div #time {
-  font-size: 12px;
+  font-size: 11px;
+  font-weight: lighter;
   float: right;
+  margin-top: 5px;
 }
 
 /* END OF CHATS */
@@ -888,8 +914,7 @@ a:active {
   border-radius: 10px;
   margin-bottom: 15px;
   width: 150px;
-  min-height: 150px;
-  max-height: 150px;
+  height: 150px;
   background-color: #eee;
 }
 
@@ -924,8 +949,7 @@ a:active {
   border-radius: 10px;
   margin-bottom: 15px;
   width: 150px;
-  min-height: 150px;
-  max-height: 150px;
+  height: 150px;
   background-color: #eee;
 }
 

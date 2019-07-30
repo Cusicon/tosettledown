@@ -19,7 +19,6 @@ router.post("/", (req, res) => {
         var dob = req.body.dob;
         var gender = req.body.gender;
         var agreed_terms = true;
-        var remember_me = true;
         var joined = new Date().toDateString();
 
         //-- Form Validation
@@ -34,18 +33,27 @@ router.post("/", (req, res) => {
         var errors = req.validationErrors();
         if (errors) {
             console.log(`Errors: ${errors}`);
-            res.render("./index", { title: 'Error', errors: errors });
+            res.render("./index", {
+                title: 'Error',
+                errors: errors
+            });
         } else {
             //-- Add values to "Model's(User)" parameters 
             var newUser = new User({
-                fullname: fullname || null,
+                fullname: {
+                    firstname: fullname.split(" ")[0] || null,
+                    lastname: fullname.split(" ")[1] || null,
+                    all: fullname
+                },
                 username: username || null,
                 email: email || null,
                 password: password || null,
-                dob: dob || null,
+                dob: {
+                    date: dob || null,
+                    age: dob || null
+                },
                 gender: gender || null,
                 agreed_terms: agreed_terms || null,
-                remember_me: remember_me || null,
                 joined: joined || null
             });
 
@@ -56,7 +64,6 @@ router.post("/", (req, res) => {
                     if (user) {
                         var message = `Username taken!, Try adding "_" or "." `;
                         req.flash("error", message);
-                        res.location("/#regForm");
                         res.redirect("/#regForm");
                     } else {
                         //-- Create User
@@ -67,7 +74,6 @@ router.post("/", (req, res) => {
                                 console.log(`A new account just signed up, "@${user.username}"`);
                                 userLog(`A new account just signed up, "@${user.username}"`);
                                 req.flash("success", message);
-                                res.location("/#loginForm");
                                 res.redirect("/#loginForm");
                             }
                         });

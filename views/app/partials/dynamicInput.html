@@ -1,161 +1,21 @@
-<link rel="stylesheet" href="/components/emoticon/sprites/joypixels-sprite-24.min.css">
-
-<style>
-    .emojisDisplayCon {
-        position: absolute !important;
-        background-color: #fff;
-        bottom: 7%;
-        left: 0px;
-        width: 95.4%;
-        height: 200px;
-        padding: 10px;
-        border-radius: 15px 15px 0px 0px;
-        margin: 0px 15px;
-        border: 1px solid #eee;
-        border-bottom: none;
-    }
-
-    .emojisDisplayCon header nav ul {
-        padding: 0px;
-        margin: 0px;
-        border-bottom: 1px solid #eee;
-    }
-
-    .emojisDisplayCon header nav ul li {
-        display: inline-block;
-        margin: 0px;
-    }
-
-    .emojisDisplayCon header nav ul li a {
-        display: block;
-        padding: 2.5px 5px;
-    }
-
-    .emojisDisplayCon header nav ul li a i {
-        font-size: 20px;
-    }
-
-    .emojisDisplayCon .emojisDisplayConBody {
-        margin: 0px;
-        height: 155px;
-        cursor: default;
-        overflow: scroll !important;
-    }
-
-    .emojisDisplayCon .emojisDisplayConBody .scroller {
-        width: 1200%;
-        height: 100%;
-    }
-
-    .emojisDisplayCon .emojisDisplayConBody ul {
-        display: inline-block;
-        padding: 5px;
-        width: 8.5%;
-        height: auto;
-        overflow-y: scroll;
-        overflow-x: scroll;
-    }
-
-    .emojisDisplayCon .emojisDisplayConBody ul li {
-        display: inline-block;
-        padding: 0px;
-        margin: 0px;
-    }
-
-    .emojisDisplayCon .emojisDisplayConBody ul li a {
-        display: block;
-        border: none !important;
-        padding: 2.5px !important;
-        border-radius: 10px;
-    }
-
-    .emojisDisplayCon .emojisDisplayConBody ul li a img {
-        width: 25px;
-        height: 25px;
-    }
-
-
-
-    .dynamicInput {
-        margin: 0px;
-        border: 1px solid #eee;
-        padding: 6px !important;
-        border-radius: 15px;
-        background-color: #fff;
-    }
-
-    .dynamicInput.planeUp {
-        box-shadow: 1px -0px 3px #eee;
-    }
-</style>
-
-<!-- Dynamic Input -->
-<form action="#" method="POST">
-    <!-- Emojis Container -->
-    <div class="emojisDisplayCon hide popUp">
-        <header>
-            <nav>
-                <ul>
-                    <li><a href="#"><i class="mdi mdi-history"></i></a></li>
-                    <li><a href="#"><i class="mdi mdi-emoticon"></i></a></li>
-                    <li><a href="#"><i class="mdi mdi-emoticon"></i></a></li>
-                    <li><a href="#"><i class="mdi mdi-emoticon"></i></a></li>
-                    <li><a href="#"><i class="mdi mdi-emoticon"></i></a></li>
-                    <li><a href="#"><i class="mdi mdi-emoticon"></i></a></li>
-                    <li><a href="#"><i class="mdi mdi-emoticon"></i></a></li>
-                    <li><a href="#"><i class="mdi mdi-emoticon"></i></a></li>
-                    <li><a href="#"><i class="mdi mdi-emoticon"></i></a></li>
-                    <li><a href="#"><i class="mdi mdi-emoticon"></i></a></li>
-                    <li><a href="#"><i class="mdi mdi-emoticon"></i></a></li>
-                    <li><a href="#"><i class="mdi mdi-emoticon"></i></a></li>
-                    <input type="text" name="searchEmoji" id="searchEmoji" class="form-control float-right"
-                        placeholder="Search for Emoji"
-                        style="border: none; padding: 5px 7px !important; text-align: center; width: 180px !important; display: inline-block !important; margin-top: -5px;">
-                </ul>
-            </nav>
-        </header>
-        <section class="emojisDisplayConBody">
-            <div class="scroller">
-                <ul id="emojiHistory">
-                    <li><a href="#" class="emoticon" role="button"><img src="/lib/img/logo/favicon.png" alt="logo"></a>
-                    </li>
-                </ul>
-
-                <ul id="emojiPeople">
-                    <li><a href="#" class="emoticon" role="button"><img src="/lib/img/logo/favicon.png" alt="logo"></a>
-                    </li>
-                </ul>
+<center>
+    <div class="container">
+        <!-- Dynamic Input -->
+        <form action="#" method="POST">
+            <!-- Input -->
+            <div class="dynamicInput row mt-1"
+                style=" box-shadow: none; padding: 5px !important; border-radius: 15px;">
+                <div class="inputCon col-md-10 col-sm-10  col-xs-9">
+                    <textarea name="message" id="message" class="form-control" placeholder="Type a message"
+                        style="padding: 0px; resize: none; height: 45px; border: 1px solid #eee !important;" required></textarea>
+                </div>
+                <!-- Others -->
+                <div class="OthersCon col-md-2 col-sm-2 col-xs-3">
+                    <span>
+                        <input type="submit" value="Send" class="btn bg-color">
+                    </span>
+                </div>
             </div>
-        </section>
+        </form>
     </div>
-    <!-- DyInput Container -->
-    <div class="dynamicInput planeUp row col-md-12 mt-3">
-        <!-- Input -->
-        <div class="inputCon col-md-8 col-sm-8">
-            <textarea name="message" id="message" class="form-control" placeholder="Type a message"
-                style="padding: 0px; resize: none; height: 45px;" required></textarea>
-        </div>
-        <!-- Others -->
-        <div class="OthersCon col-md-4 col-sm-4 row" style="margin-top: 3px; height: 42px;">
-            <span class="col-md-2 col-md-2"></span>
-            <span class="emojiBtnCon col-md-3 col-sm-3">
-                <button type="button" class="btn" id="emojiBtn"
-                    style="border: none !important; padding: 7px 10px !important;">
-                    <i class="mdi mdi-emoticon" style="font-size: 27px;"></i>
-                </button>
-            </span>
-            <span class="gifBtn col-md-3 col-sm-3">
-                <button type="button" class="btn" id="gifBtn"
-                    style="border: none !important; padding: 8.5px 10px !important;">
-                    <i
-                        style="font-style: unset; font-size: 12px; padding: 3px; border: 1.5px solid #000000a7; border-radius: 5px;">GIF</i>
-                </button>
-            </span>
-            <span class="sendBtn col-md-4 col-sm-4">
-                <input type="submit" value="Send" class="btn bg-color" id="sendBtn"
-                    style="border: none !important; padding: 8.5px 10px !important;">
-            </span>
-        </div>
-    </div>
-    <br>
-</form>
+</center>

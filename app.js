@@ -22,17 +22,32 @@ app.set('port', port);
 require("./db/db_conn"); //-- for db connection
 
 // ## LOGGING
-//-- Log Server's activities to Server Log file 
+//-- Log Server's activities to "server.log" Log file 
+var logsLoc = path.join(__dirname, "./logs");
 global.serverLog = log => {
-  fs.appendFile("./logs/server.log", `@ ${new Date().toString()} -- [ ${log} ]\n`, err => {
-    if (err) console.log("Unable to write to server.log");
-  });
+  fs.mkdir(logsLoc, {
+    recursive: true
+  }, err => {
+    if (err) console.log(err);
+    else {
+      fs.appendFile("./logs/server.log", `@ ${new Date().toString()} -- [ ${log} ]\n`, err => {
+        if (err) console.log("Unable to write to server.log");
+      });
+    }
+  })
 };
 
-//-- Log User's activities to UserActivity Log file
+//-- Log User's activities to "userActivity.log" Log file
 global.userLog = log => {
-  fs.appendFile("./logs/userActivity.log", `@ ${new Date().toString()} -- [ ${log} ]\n`, err => {
-    if (err) console.log("Unable to write to userActivity.log");
+  fs.mkdir(logsLoc, {
+    recursive: true
+  }, err => {
+    if (err) console.log(err);
+    else {
+      fs.appendFile("./logs/userActivity.log", `@ ${new Date().toString()} -- [ ${log} ]\n`, err => {
+        if (err) console.log("Unable to write to userActivity.log");
+      });
+    }
   });
 };
 
@@ -55,7 +70,9 @@ app.use(bodyParser()); //-- use bodyParser
 app.use(cookieParser()); //-- use cookieParser
 app.use(expressLayouts); //-- use expressLayouts
 app.use(express.json()); //-- use express.json
-app.use(express.urlencoded({ extended: false })); //-- use express.urlencoded
+app.use(express.urlencoded({
+  extended: false
+})); //-- use express.urlencoded
 app.use(express.static(path.join(__dirname, './public/'))); //-- set public static directory
 //-- Express-session Middleware
 app.use(
@@ -99,10 +116,11 @@ app.use((req, res, next) => {
 // ## VIEW [Sign up and Sign in.]
 app.get('/', (req, res) => {
   if (!req.user) {
-    res.render("./index", { title: 'Built for lovers' });
+    res.render("./index", {
+      title: 'Built for lovers'
+    });
   } else {
     res.redirect('/app/encounters');
-    res.location('/app/encounters');
   }
 });
 
@@ -120,10 +138,10 @@ app.get("*", (req, res, next) => {
 // Get any app "GET" Route and check if user is signed in
 // else redirect to sign out!
 app.get("/app/*", (req, res, next) => {
-  if (!req.user) {
+  if (!User) {
     // Sign Out
-    res.redirect("/auth/0/signin/out");
     res.location("/auth/0/signin/out");
+    res.redirect("/auth/0/signin/out");
   } else {
     userLog(`"${User.username || null}" is active`);
   }
@@ -133,10 +151,10 @@ app.get("/app/*", (req, res, next) => {
 // Get any app "POST" Route and check if user is signed in
 // else redirect to sign out!
 app.post("/app/*", (req, res, next) => {
-  if (!req.user) {
+  if (!User) {
     // Sign Out
-    res.redirect("/auth/0/signin/out");
     res.location("/auth/0/signin/out");
+    res.redirect("/auth/0/signin/out");
   } else {
     userLog(`"${User.username || null}" is active`);
   }
@@ -185,7 +203,9 @@ app.use(function (err, req, res, next) {
 
   //- render the error page
   res.status(err.status || 500);
-  res.render('./error/404', { title: "Error" });
+  res.render('./error/404', {
+    title: "Error"
+  });
 });
 
 // ## SERVER LISTENING

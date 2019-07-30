@@ -15,15 +15,15 @@
         <!-- Profile -->
         <div class="profileCon" id="profileCon">
             <div class="profileSection">
-                <a href="/app/profile/123" class="activeProfile hasStatus" title="See your profile...">
-                    <div class="profileImg" style="background-image: url('/lib/img/52.jpg');"></div>
+                <a href="/app/profile/<%= user.username %>" class="activeProfile hasStories" title="See your profile...">
+                    <div class="profileImg" style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
                 </a>
                 <ul>
-                    <li id="username">
-                        <%= user.fullname.split(" ")[0] %>
+                    <li id="_fullname">
+                        <%= user.fullname.firstname %>
                     </li>
                     <li id="popularity" class="text-muted">
-                        <b class="text-muted"><%= user.username %></b>
+                        <b class="text-muted">@<%= user.username %></b>
                     </li>
                 </ul>
             </div>

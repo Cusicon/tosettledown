@@ -7,7 +7,8 @@
         <div class="row">
             <div class="displayWindow col-md-11 row">
                 <!-- ImageWindow -->
-                <div class="imageWindow col-md-8 col-sm-12" style="background-image: url('/lib/img/52.jpg');">
+                <div class="imageWindow col-lg-8 col-md-12 col-sm-12"
+                    style="background-image: url('/lib/img/assets/reduced/user.png');">
                     <div class="overlayNav">
                         <div class="navTop">
                             <div class="imageCounter float-left">
@@ -78,43 +79,26 @@
                                                     </div>
 
                                                     <a href="javascript:void(0);"
-                                                        class="activeProfile hasStatus float-left"
+                                                        class="activeProfile hasStories float-left"
                                                         style="cursor: default; margin-right: 10px;">
                                                         <div class="profileImg"
-                                                            style="background-image: url('/lib/img/52.jpg');"></div>
+                                                            style="background-image: url('/lib/img/assets/reduced/user.png');">
+                                                        </div>
                                                     </a>
                                                     <div style="margin-bottom: -10px;">
                                                         <span>
-                                                            <%= user.fullname.split(" ")[0] %>
+                                                            <%= user.fullname.firstname %>
                                                         </span>
                                                         <div style="font-size: 12px;" class="text-muted">
-                                                            Start a conversation with <b class="color">Hope Stone</b>
+                                                            Start a conversation with <b class="color"><span
+                                                                    id="fullname"></span></b>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="bottom">
-                                                <div class="container">
-                                                    <!-- Dynamic Input -->
-                                                    <form action="#" method="POST">
-                                                        <!-- Input -->
-                                                        <div class="dynamicInput row col-md-12 mt-3"
-                                                            style="margin: 0px; border: 1px solid #eee; box-shadow: 1px -0px 3px #eee; padding: 6px !important; border-radius: 15px; background-color: #fff;">
-                                                            <div class="inputCon col-md-10">
-                                                                <input type="text" name="message" id="message"
-                                                                    class="form-control" placeholder="Type a message"
-                                                                    required
-                                                                    style="border: none !important; background-color: transparent; border-radius: 0px !important;">
-                                                            </div>
-                                                            <!-- Others -->
-                                                            <div class="OthersCon col-md-2">
-                                                                <span>
-                                                                    <input type="submit" value="Send" class="btn bg-color"
-                                                                        style="border: none !important;">
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </form>
+                                                <div style="padding: 0px 20px;" class="pt-2">
+                                                    <%- include('../partials/dynamicInput.html'); %>
                                                 </div>
                                             </div>
                                     </section>
@@ -123,12 +107,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="detailsCon col-lg-4 col-md-4 col-sm-12" id="detailsCon">
+                <div class="detailsCon col-lg-4 col-md-12 col-sm-12" id="detailsCon">
                     <div class="detailsHeader">
                         <h3 style="margin-bottom: 0px;">
-                            <span id="NameandAge" style="color: #1a1a1a;">Hope Stone, 22</span>
-                            <div id="username" style="font-size: 15px; margin-top: 10px;">
-                                <a href="/app/profile/123" title="Visit Hope Stone's profile">@iam.stone</a>
+                            <span>
+                                <span id="fullname"></span>,
+                                <span id="age"></span>
+                            </span>
+                            <div style="font-size: 15px; margin-top: 10px;">
+                                <a href="#" id="username" title=""></a>
                             </div>
                         </h3>
                     </div>
@@ -142,9 +129,9 @@
                     <div class="personalInfo">
                         <h6 class="text-muted">Personal Info</h6>
                         <ul>
-                            <li><small class="text-muted">Religion:</small> Christainity</li>
-                            <li><small class="text-muted">Language:</small> English</li>
                             <li><small class="text-muted">Height:</small> 5'10</li>
+                            <li><small class="text-muted">Speaking:</small> English</li>
+                            <li><small class="text-muted">Location:</small> Lagos, Nigeria</li>
                         </ul>
                     </div>
                 </div>
@@ -152,8 +139,8 @@
             <!-- StatusBar -->
             <%- include('../partials/statusBar.html'); %>
         </div>
-        <div class="googleAds"
-            style="display: none; width: 100%; height: 100px; border: 1px solid #ccc; padding: 5px; margin: 10px -30px;">
+        <div class="googleAds hide"
+            style="width: 100%; height: 100px; border: 1px solid #ccc; margin: 10px -30px; overflow: hidden;">
             <!-- <iframe src="javascript: void(0);" style="width: 100%; height: 90px; border: 2px solid #eee; margin: 6px 0px;"></iframe> -->
             <center>
                 <p>Ads By Google</p>

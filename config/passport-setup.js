@@ -66,7 +66,6 @@ passport.use(
                 var username = uniq.time(profile.name.givenName.toLowerCase());
                 var password = uniq.time();
                 var agreed_terms = true;
-                var remember_me = true;
                 var profileImage = profile._json.picture;
                 var joined = new Date().toDateString();
                 //-- Create User
@@ -84,7 +83,6 @@ passport.use(
                                 username: username || null,
                                 password: password || null,
                                 agreed_terms: agreed_terms || null,
-                                remember_me: remember_me || null,
                                 images: [{ location: profileImage, isDisplayPicture: true }] || null,
                                 joined: joined || null
                             });
