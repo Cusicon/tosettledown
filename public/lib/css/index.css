@@ -32,15 +32,14 @@ a[role="button"] {
 
 button:hover,
 input[type="submit"]:hover,
-a[role="button"]:hover,
-button:focus,
-input[type="submit"]:focus,
-a[role="button"]:focus {
+a[role="button"]:hover {
   color: #fff;
-  box-shadow: -0px 1px 2px #0000002a inset !important;
-  transform: scale(0.95);
+  background-color: #ff6877cc;
 }
 
+button:focus,
+input[type="submit"]:focus,
+a[role="button"]:focus,
 button:active,
 input[type="submit"]:active,
 a[role="button"]:active {
@@ -89,6 +88,11 @@ section.Frame .infoCon div#jb {
 
 section.Frame .infoCon div#jb h1 {
   font-size: 70px;
+}
+
+section.Frame .infoCon div#jb p {
+  font-size: 15px;
+
 }
 
 section.Frame .infoCon div#otherSignupMethod {

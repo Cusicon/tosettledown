@@ -40,7 +40,8 @@ router.get(
         failureFlash: 'It seems we got nothing, Try again.'
     }), (req, res) => {
         req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000; //-- Cookie expires after 30 days
-        userLog(`"${req.user.username}" is signed in...`);
+        userLog(`"${user.username}" has signed in.`);
+        console.log(`"@${user.username}" has signed in!, @ ${new Date().toTimeString()}`);
         res.redirect(`/app/encounters`);
     }
 );
@@ -76,12 +77,11 @@ router.get(
 //-- Sign out
 router.get("/out", (req, res) => {
     if (req.user) {
-        console.log(`${req.user.username} is signing out...`);
         req.session.destroy(err => {
             //-- Inside a callback… bulletproof!
             res.redirect("/#loginForm");
             userLog(`"${req.user.username}" has signed out.`);
-            console.log(`${req.user.username} has signed out!`);
+            console.log(`@${req.user.username} has signed out!, @ ${new Date().toTimeString()}`);
         });
     } else {
         res.redirect("/#loginForm");

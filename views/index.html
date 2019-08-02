@@ -1,4 +1,11 @@
 <link rel="stylesheet" href="/lib/css/index.css">
+<script>
+    this.onload = ((e) => {
+        var styleLink = document.getElementById("styleLink");
+        styleLink.setAttribute('href', "");
+        console.log(styleLink);
+    });
+</script>
 <div class="body">
     <!-- Welcome Page -->
     <section class="Frame row">
@@ -27,7 +34,8 @@
                     </center>
                     <br><br>
                     <div class="btnCon">
-                        <a href="#loginForm" role="button" class="btn" id="loginBtn">Sign in</a>
+                        <a href="#loginForm" role="button" class="btn waves-effect waves-light" id="loginBtn">Sign
+                            in</a>
                     </div>
                 </nav>
             </header>
@@ -99,9 +107,9 @@
                 <!-- Sign Btn -->
                 <div class="regFoot">
                     <div class="form-group">
-                        <input type="submit" id="submitForm" class="form-control btn btn-success"
-                            style="padding: 20px !important; margin-bottom: 5px;" aria-describedby="submitFormHelp"
-                            value="Sign up with Tosettledown (TSD)">
+                        <button type="submit" id="submitForm"
+                            class="form-control btn waves-effect waves-light btn-success text-light"
+                            style="padding: 20px !important; margin-bottom: 5px;" aria-describedby="submitFormHelp">Sign up with Tosettledown (TSD)</button>
                         <small id="submitFormHelp" class="form-text text-muted">By clicking
                             <i>"Sign up with Tosettledown (TSD)"</i>,
                             you agree to our <a href="/terms">terms of services</a>, <a href="/policy">privacy
@@ -126,19 +134,19 @@
                             <br>
                             <a href="/auth/0/signin/google" role="button" id="google"
                                 style="background-color: transparent; border: 1px solid #eee !important; margin: 0px 5px;"
-                                class="btn" title="Sign in via Google">
+                                class="btn waves-effect waves-light" title="Sign in via Google">
                                 <i class="fa fa-google"
                                     style="color: #ff6878; font-size: 18px; margin-right: 20px;"></i>
                                 <span class="text-muted">Sign in via Google</span>
                             </a>
                             <!-- <a href="/auth/0/signin/facebook/" role="button" id="facebook"
                                 style="background-color: transparent; border: 1px solid #eee !important; margin: 0px 5px;"
-                                class="btn" title="Sign in via Facebook">
+                                class="btn waves-effect waves-light" title="Sign in via Facebook">
                                 <i class="fa fa-facebook" style="color: #1475ad; font-size: 18px;"></i>
                             </a>
                             <a href="/auth/0/signin/instagram/" role="button" id="instagram"
                                 style="background-color: transparent; border: 1px solid #eee !important; margin: 0px 5px;"
-                                class="btn" title="Sign in via Instagram">
+                                class="btn waves-effect waves-light" title="Sign in via Instagram">
                                 <i class="fa fa-instagram" style="color: #ff68ae; font-size: 18px;"></i>
                             </a> -->
                         </center>
@@ -162,8 +170,9 @@
                     <!-- Sign Btn -->
                     <div class="loginFoot">
                         <div class="form-group">
-                            <input type="submit" class="form-control btn btn-success" style="padding: 15px !important;"
-                                value="Sign in">
+                            <button type="submit"
+                                class="form-control btn waves-effect waves-light btn-success text-light"
+                                style="padding: 15px !important;">Sign in</button>
                         </div>
                     </div>
                 </div>

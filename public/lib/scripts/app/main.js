@@ -9,7 +9,7 @@ function closeOnEscBtn() {
             });
             $(".popUp").css({
                 "bottom": "-50%"
-            }).hide(500);
+            }).hide();
         }
     });
 }
@@ -102,7 +102,6 @@ function encounterDisplayingAndShuffling() {
 
             // Assign variables to html tags
             $("span#fullname" || "#fullname").text(`${fullname}`);
-            console.log(fullname);
             $("#age").text(`${age}`);
             $("#username").text(`@${username}`).attr({
                 "title": `Visit ${fullname}'s profile`,

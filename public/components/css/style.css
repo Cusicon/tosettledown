@@ -71,14 +71,10 @@ small.rejected {
 	height: 2px;
 }
 
-a {
-	color: #30dc27;
-}
-
 a:hover,
 a:active,
 a:focus {
-	color: #29b922;
+	color: #ff6878;
 }
 
 .loader {
@@ -2932,19 +2928,22 @@ a:focus {
 
 .modal .modal-dialog .modal-title {
 	margin: 0;
+	font-weight: lighter;
 }
 
 .modal .modal-dialog .modal-content {
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
 	border-color: transparent;
-	border-radius: 5px;
+	border-radius: 15px !important;
+	overflow: hidden;
 	box-shadow: none;
 }
 
 .modal .modal-dialog .modal-content .modal-header {
 	/* border-bottom-width: 2px; */
 	margin: 0;
+	padding: 20px;
 }
 
 .modal .modal-dialog .modal-content .modal-body {
