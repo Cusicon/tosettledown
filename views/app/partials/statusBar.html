@@ -10,7 +10,7 @@
                 data-bio="<%= _user.personalInfo.bio %>" data-height="<%= _user.personalInfo.height %>"
                 data-language="<%= _user.personalInfo.language %>" data-location="<%= _user.personalInfo.location %>">
                 <div class="image"
-                    style="background-image: url('<%= _user.dp || new String(`/lib/img/assets/reduced/user.png`) %>');">
+                    style="background-image: url('<%= _user.dp || new String(`/lib/img/assets/reduced/${_user.gender}.png`) %>');">
                 </div>
             </a>
         </li>
