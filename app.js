@@ -12,6 +12,7 @@ const expressValidator = require("express-validator");
 const session = require("express-session");
 const passport = require("passport");
 const keys = require("./config/keys");
+require('module-alias/register')
 
 // ## PORT
 var port = process.env.PORT || "3020";
@@ -188,6 +189,28 @@ app.use('/policy', policy);
 //-- terms Router
 var terms = require('./routes/docs/terms');
 app.use('/terms', terms);
+
+
+//Verify Route
+app.get("/verify", (req, res) => {
+  res.render('./verify', { title: "Terms of Service" });
+});
+
+const VerficationMail = require('./app/mails/SendVerficationMail')
+
+app.get('/verify/resend', (req, res) => {
+  console.log("her");
+  console.log(VerficationMail)
+  let mail = new VerficationMail({
+    name: "Emmanuel",
+    age: 24
+  });
+  mail.send()
+  res.redirect("/verify");
+});
+
+
+
 
 // ## ERROR HANDLING
 //-- Catch 404 and forward to error handler

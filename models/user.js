@@ -33,7 +33,10 @@ var UserSchema = Schema({
     },
     userDirectoriesLocation: String,
     settlesBalance: String,
-    dp: String
+    dp: String,
+    email_verified_at: {
+        type : Date, default: null
+    }
 });
 
 // Export UserSchema

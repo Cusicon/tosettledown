@@ -28,10 +28,12 @@
     "jimp": "^0.6.0",
     "jquery": "^3.3.1",
     "logger": "^0.0.1",
+    "module-alias": "^2.2.1",
     "mongo": "^0.1.0",
     "mongoose": "^5.1.0",
     "morgan": "^1.9.1",
     "multer": "^1.4.1",
+    "nodemailer": "^6.3.0",
     "passport": "^0.4.0",
     "passport-facebook": "^3.0.0",
     "passport-google": "^0.3.0",
@@ -60,5 +62,10 @@
     "dating"
   ],
   "author": "Success Chukwu",
-  "license": "ISC"
+  "license": "ISC",
+
+  "_moduleAliases": {
+    "@app"      : "./app",
+    "@config"   : "./config"
+  }
 }

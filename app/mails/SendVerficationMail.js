@@ -8,7 +8,7 @@ module.exports = class SendVerficationMail{
 
   send()
   {
-    console.log('mail sent')
+    console.log('mails sent')
   }
 
 }

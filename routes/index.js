@@ -4,25 +4,27 @@
 
 // ## REQUIRE MODULES
 var express = require('express');
-var router = express();
+var router =  express();
+const MustVerify =  require('@app/middlewares/MustVerify')
 
 // ## INITIATE ROUTER(S)
 
 //-- profile Router
-var profile = require('./app/menu/profile');
-router.use('/profile', profile);
+  router.get("/profile/:username", (require('@app/controllers/ProfileController')).show );
+  router.get("/profile/update/:username", (require('@app/controllers/ProfileController')).update);
+  router.get("/profile", (req, res) => res.redirect("/app/encounters"));
 
 //-- encounters Router
-var encounters = require('./app/menu/encounters');
-router.use('/encounters', encounters);
+  router.get("/encounters", MustVerify,(require('@app/controllers/EncounterController')).index);
+  router.get("/encounters/getUsers",  (require('@app/controllers/EncounterController')).getUsers);
 
-//-- encounters Router
-var encounters = require('./app/menu/encounters');
-router.use('/encounters', encounters);
+
+
+
 
 //-- chats Router
 var chats = require('./app/menu/chats');
-router.use('/chats', chats);
+router.use('/chats', MustVerify, chats);
 
 //-- matched Router
 var matched = require('./app/menu/matched');
