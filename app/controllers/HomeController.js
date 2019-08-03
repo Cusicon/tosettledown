@@ -1,38 +1,67 @@
 var User = require('../../models/user');
 
-const ProfileController = class ProfileController{
+const HomeController = class HomeController{
   constructor()
   {
   }
 
-  show(req, res)
+  chats(req, res)
+  {
+    res.render('./app/menu/chats', {
+      title: "Chats"
+    });
+  }
+
+  showChat(req, res)
   {
     var username = req.params.username;
     User.getUserByUsername(username, (err, profile_user) => {
       if (err) console.log(err);
       else {
-        res.render('./app/menu/profile', {
-          title: `${profile_user.fullname.firstname}'s profile`,
+        res.render('./app/menu/chats', {
+          title: "Chats",
           profile_user: profile_user
         });
       }
     });
   }
 
-  update(req, res)
+  matched(req, res)
   {
-    var username = req.params.username;
-    User.getUserByUsername(username, (err, profile_user) => {
-      if (err) console.log(err);
-      else {
-        res.render('./app/menu/profile', {
-          title: `${profile_user.fullname.firstname}'s profile`,
-          profile_user: profile_user
-        });
-      }
-    });
+    res.render('./app/menu/matched', { title: "Matched" });
+  }
+
+  likes(req, res)
+  {
+    res.render('./app/menu/likes', { title: "Likes" });
+  }
+
+  visitors(req, res)
+  {
+    res.render('./app/menu/visitors', { title: "Visitors" });
+  }
+
+  favourites(req, res)
+  {
+    res.render('./app/menu/favourites', { title: "Favourites" });
+  }
+
+  shop(req, res)
+  {
+    res.render('./app/menu/shop', { title: "Shop" });
+  }
+
+  wallet(req, res)
+  {
+    res.render('./app/extras/wallet', { title: "Wallet" });
+  }
+
+  packages(req, res)
+  {
+    res.render('./app/extras/packages', { title: "Package" });
   }
 
 }
 
-module.exports = new ProfileController();
+
+module.exports = new HomeController();

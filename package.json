@@ -66,6 +66,8 @@
 
   "_moduleAliases": {
     "@app"      : "./app",
-    "@config"   : "./config"
+    "@config"   : "./config",
+    "@routes"   : "./routes",
+    "@bootstrap"   : "./bootstrap"
   }
 }

@@ -9,50 +9,39 @@ const MustVerify =  require('@app/middlewares/MustVerify')
 
 // ## INITIATE ROUTER(S)
 
-//-- profile Router
-  router.get("/profile/:username", (require('@app/controllers/ProfileController')).show );
-  router.get("/profile/update/:username", (require('@app/controllers/ProfileController')).update);
-  router.get("/profile", (req, res) => res.redirect("/app/encounters"));
-
 //-- encounters Router
-  router.get("/encounters", MustVerify,(require('@app/controllers/EncounterController')).index);
-  router.get("/encounters/getUsers",  (require('@app/controllers/EncounterController')).getUsers);
+router.get("/encounters", MustVerify,(require('@app/controllers/EncounterController')).index);
+router.get("/encounters/getUsers",  (require('@app/controllers/EncounterController')).getUsers);
 
-
-
-
+//-- profile Router
+router.get("/profile/:username", (require('@app/controllers/ProfileController')).show );
+router.get("/profile/update/:username", (require('@app/controllers/ProfileController')).update);
+router.get("/profile", (req, res) => res.redirect("/app/encounters"));
 
 //-- chats Router
-var chats = require('./app/menu/chats');
-router.use('/chats', MustVerify, chats);
+router.get("/chats",(require('@app/controllers/HomeController')).chats);
+router.get("/chats/:username",(require('@app/controllers/HomeController')).showChat);
 
 //-- matched Router
-var matched = require('./app/menu/matched');
-router.use('/matched', matched);
+router.get("/matched",(require('@app/controllers/HomeController')).matched);
 
 //-- likes Router
-var likes = require('./app/menu/likes');
-router.use('/likes', likes);
+router.get("/likes",(require('@app/controllers/HomeController')).likes);
 
 //-- visitors Router
-var visitors = require('./app/menu/visitors');
-router.use('/visitors', visitors);
+router.get("/visitors",(require('@app/controllers/HomeController')).visitors);
 
 //-- favourites Router
-var favourites = require('./app/menu/favourites');
-router.use('/favourites', favourites);
+router.get("/favourites",(require('@app/controllers/HomeController')).favourites);
 
 //-- shop Router
-var shop = require('./app/menu/shop');
-router.use('/shop', shop);
+router.get("/shop",(require('@app/controllers/HomeController')).shop);
 
 //-- wallet Router
-var wallet = require('./app/extras/wallet');
-router.use('/wallet', wallet);
+router.get("/wallet",(require('@app/controllers/HomeController')).wallet);
 
 //-- packages Router
-var packages = require('./app/extras/packages');
-router.use('/packages', packages);
+router.get("/packages",(require('@app/controllers/HomeController')).packages);
 
 
 
