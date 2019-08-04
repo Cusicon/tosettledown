@@ -1,30 +1,19 @@
-const WelcomeController = class WelcomeController{
+module["exports"] = class WelcomeController{
 
-    constructor()
-    {
-    }
-
-    index(req, res)
-    {
+    static index (req, res) {
         res.render("./index", { title: 'Built for lovers' });
-    }
+    };
 
-    cookie(req, res)
-    {
+    static cookie(req, res) {
         res.render('./docs/cookie', { title: "Cookie Policy" });
-    }
+    };
 
-    policy(req, res)
-    {
+    static policy(req, res) {
         res.render('./docs/policy', { title: "Privacy Policy" });
-    }
+    };
 
-    terms(req, res)
-    {
+    static terms(req, res) {
         res.render('./docs/terms', { title: "Terms of Service" });
-    }
+    };
 
-}
-
-
-module.exports = new WelcomeController();
+};

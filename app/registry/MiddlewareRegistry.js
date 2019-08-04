@@ -1,12 +1,7 @@
-const path = require("path");
 const keys = require("@config/keys");
 
-module.exports = {
-  /**
-   * The application's global HTTP middleware stack.
-   * These middleware are run during every request to your application.
-   */
-  me: "efwewe",
+module["exports"] = {
+
    globalMiddleware : [
         require("morgan")("dev"), //-- use logger
         require("body-parser")(), //-- use bodyParser
@@ -26,8 +21,6 @@ module.exports = {
         require('@bootstrap/Middleware').setGlobalVariable,
         require('@bootstrap/Middleware').serverlog,
        require("connect-flash")(),
-
-
   ],
 
   nameMiddleware : {

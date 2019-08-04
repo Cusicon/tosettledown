@@ -1,11 +1,7 @@
-var router =  require('express')();
-
-//Route Level MiddleWare
-router.use(...applyMiddleware(['auth', 'verify']));
-
+let router =  require('express')();
 
 //-- encounters Router
-router.get("/encounters",(require('@app/controllers/EncounterController')).index);
+router.get("/encounters", (require('@app/controllers/EncounterController')).index);
 router.get("/encounters/getUsers",  (require('@app/controllers/EncounterController')).getUsers);
 
 //-- profile Router
@@ -38,6 +34,4 @@ router.get("/wallet",(require('@app/controllers/HomeController')).wallet);
 //-- packages Router
 router.get("/packages",(require('@app/controllers/HomeController')).packages);
 
-
-
-module.exports = router;
+module["exports"] = router;
