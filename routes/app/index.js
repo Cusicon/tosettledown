@@ -1,7 +1,7 @@
 var router =  require('express')();
-const Authenticate =  require('@app/middlewares/Authenticate')
 
-router = applyRouterMiddleware(router, ['auth', 'verify'] );
+//Route Level MiddleWare
+router.use(...applyMiddleware(['auth', 'verify']));
 
 
 //-- encounters Router

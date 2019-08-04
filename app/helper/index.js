@@ -2,16 +2,16 @@ const path = require("path");
 const fs = require('fs');
 
 
-global.storage_path = (path_join = "") => { return path.join(base_path, "storage", path_join)};
-global.public_path = (path_join = "") => { return path.join(base_path, "public", path_join)};
+global["storage_path"] = (path_join = "") => { return path.join(base_path, "storage", path_join)};
+global["public_path"] = (path_join = "") => { return path.join(base_path, "public", path_join)};
 
-global.config = () =>
+global["config"] = () =>
 {
-    console.log(r);
-}
+    console.log();
+};
 
 //-- Log User's activities to "userActivity.log" Log file
-global.userLog = log => {
+global["userLog"] = log => {
     fs.mkdir(storage_path('logs'), {
         recursive: true
     }, err => {
@@ -24,9 +24,9 @@ global.userLog = log => {
     });
 };
 
-global.User;
+global["User"] = null;
 
-global.serverLog = log => {
+global["serverLog"] = log => {
     fs.mkdir(storage_path('logs'), {
         recursive: true
     }, err => {
@@ -39,23 +39,24 @@ global.serverLog = log => {
     })
 };
 
-global.applyRouterMiddleware = (router, middleware) => {
-    let nameMiddleware = require('@app/registry/MiddlewareRegistry').nameMiddleware;
 
-    console.log(nameMiddleware);
+global["applyMiddleware"] = (middleware) => {
+    let nameMiddleware = require('@app/registry/MiddlewareRegistry').nameMiddleware;
+    let resolveMiddleware = [];
 
     if(middleware instanceof Array){
 
         middleware.forEach(function(value){
-            router.use(nameMiddleware[value]);
+            resolveMiddleware.push(nameMiddleware[value]);
         });
     }
     else if(middleware instanceof String)
     {
-        router.use(nameMiddleware[middleware]);
+        resolveMiddleware.push(nameMiddleware[middleware]);
     }
     else
     {
+        console.log("i reach here")
     }
-    return router
+    return resolveMiddleware;
 };

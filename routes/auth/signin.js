@@ -26,12 +26,14 @@ router.post(
     }
 );
 
+
+
 //-- GOOGLE signin
 router.get('/google', passport.authenticate('google', {
     scope: ['profile']
 }));
 
-// Return route for Google to redirect to...
+// Return route for Google to redirect to... Callback Url
 router.get(
     "/google/return",
     passport.authenticate("google", {
