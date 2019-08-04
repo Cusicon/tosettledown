@@ -1,16 +1,11 @@
-// ## MAIN ROUTER FILE
-//-- This file will be only be called in "app.js" file. 
-//-- All other routers will be called here.
+var router =  require('express')();
+const Authenticate =  require('@app/middlewares/Authenticate')
 
-// ## REQUIRE MODULES
-var express = require('express');
-var router =  express();
-const MustVerify =  require('@app/middlewares/MustVerify')
+router = applyRouterMiddleware(router, ['auth', 'verify'] );
 
-// ## INITIATE ROUTER(S)
 
 //-- encounters Router
-router.get("/encounters", MustVerify,(require('@app/controllers/EncounterController')).index);
+router.get("/encounters",(require('@app/controllers/EncounterController')).index);
 router.get("/encounters/getUsers",  (require('@app/controllers/EncounterController')).getUsers);
 
 //-- profile Router

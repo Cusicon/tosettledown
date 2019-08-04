@@ -6,4 +6,4 @@ module.exports = function (req, res, next) {
         userLog(`"${req.user.username || null}" is active`);
     }
     next();
-}
+};

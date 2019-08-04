@@ -1,26 +1,21 @@
-let express = require('express');
 const createError = require("http-errors");
-let router =  express();
-const app = express();
-const VerficationMail = require('./app/mails/SendVerficationMail');
+var app = require('express')();
+// const VerficationMail = require('./app/mails/SendVerficationMail');
 
+let authRoute = null
+
+console.log("i ran")
 
 //-- Router [SIGN UP]
-var signup = require('./routes/auth/signup');
+var signup = require('@routes/auth/signup');
 app.use("/auth/0/signup", signup);
-
 //-- Router [SIGN IN]
-var signin = require('./routes/auth/signin');
+var signin = require('@routes/auth/signin');
 app.use("/auth/0/signin", signin);
-
-
 //Verify Route
 app.get("/verify", (req, res) => {
     res.render('./verify', { title: "Terms of Service" });
 });
-
-
-
 app.get('/verify/resend', (req, res) => {
     console.log("her");
     console.log(VerficationMail)
@@ -31,42 +26,16 @@ app.get('/verify/resend', (req, res) => {
     mail.send()
     res.redirect("/verify");
 });
-
-
+// Auth Route Ends Here
 
 
 
 //-- APP ROUTERS [encounters, chats and so on...] That Must Have Verification Middleware and auth middleware
-var index = require('./routes/index');
-app.use('/app/', index);
-
-
-
+app.use('/app/', require('@routes/app'));
 
 //-- TERMS & POLICIES ROUTERS
 
-//-- cookie Router
-var cookie = require('./routes/docs/cookie');
-app.use('/cookie', cookie);
-
-//-- policy Router
-var policy = require('./routes/docs/policy');
-app.use('/policy', policy);
-
-//-- terms Router
-var terms = require('./routes/docs/terms');
-app.use('/terms', terms);
-
-app.get('/', (req, res) => {
-    if (!req.user) {
-        res.render("./index", {
-            title: 'Built for lovers'
-        });
-    } else {
-        res.redirect('/app/encounters');
-    }
-});
-
+app.use(require('@routes/docs'));
 
 
 
@@ -89,6 +58,8 @@ app.use(function (err, req, res, next) {
         title: "Error"
     });
 });
+
+module.exports = app;
 
 
 // Route Defination End
