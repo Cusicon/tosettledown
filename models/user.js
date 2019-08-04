@@ -143,9 +143,9 @@ module.exports.createUser = function (newUser, callback) {
 
             // now the maths...
             var result = {
-                year: currentDate.year - dobArrObj.year,
-                month: currentDate.month - dobArrObj.month,
-                day: currentDate.day - dobArrObj.day
+                year: currentDate.year - dobArrObj.year || null,
+                month: currentDate.month - dobArrObj.month || null,
+                day: currentDate.day - dobArrObj.day || null
             };
         }
         return result.year;
