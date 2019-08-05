@@ -2,32 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8770b3a-089e-4276-ad59-11880f2a7481" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/mails/SendVerificationMail.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bootstrap/Mailer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bootstrap/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dictionaries/mario.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/mario.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exception/Handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exception/Handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/auth/VerifyController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/auth/VerifyController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helper/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/Helper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helper/storage/logs/server.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/mails/SendVerficationMail.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/middlewares/Authenticate.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/middlewares/Authenticate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/middlewares/Verify.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/middlewares/Verify.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/registry/MiddlewareRegistry.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/registry/MiddlewareRegistry.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/registry/RouteRegistry.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/registry/RouteRegistry.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/mail.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/mail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/passport-setup.js" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/Passport-setup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/db_conn.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/db_conn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/Helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/Helper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/auth/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/auth/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/docs/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/docs/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/server.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/server.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/userActivity.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/userActivity.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/mail/auth/verify.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/mail/auth/verify.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/verify.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/auth/verify.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -40,47 +25,50 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+            <state relative-caret-position="180">
+              <caret line="12" column="3" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/registry/RouteRegistry.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/middlewares/Verify.js">
+        <entry file="file://$PROJECT_DIR$/.env">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="8" column="8" lean-forward="true" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Exception/Handler.js">
+        <entry file="file://$PROJECT_DIR$/config/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="2" lean-forward="true" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
+            <state relative-caret-position="1035">
+              <caret line="69" column="9" selection-start-line="69" selection-start-column="5" selection-end-line="69" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/auth/verify.html">
+        <entry file="file://$PROJECT_DIR$/bootstrap/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+            <state relative-caret-position="338">
+              <caret line="48" column="56" selection-start-line="48" selection-start-column="29" selection-end-line="48" selection-end-column="56" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bootstrap/Helper.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="299">
+              <caret line="65" column="43" lean-forward="true" selection-start-line="65" selection-start-column="43" selection-end-line="65" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -101,10 +89,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/views/mail/auth/verify.html" />
-        <option value="$PROJECT_DIR$/app/mail/VerificationNotification.js" />
-        <option value="$PROJECT_DIR$/views/verify.html" />
-        <option value="$PROJECT_DIR$/app/mail/SendVerficationMail.js" />
         <option value="$PROJECT_DIR$/app/controllers/EncounterController.js" />
         <option value="$PROJECT_DIR$/routes/app/menu/encounters.js" />
         <option value="$PROJECT_DIR$/app/controllers/ProfileController.js" />
@@ -134,7 +118,6 @@
         <option value="$PROJECT_DIR$/views/mail/auth/verify.ejs" />
         <option value="$PROJECT_DIR$/app/helper/index.js" />
         <option value="$PROJECT_DIR$/app/middlewares/Verify.js" />
-        <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/bootstrap/bootstrap.js" />
         <option value="$PROJECT_DIR$/config/app.js" />
         <option value="$PROJECT_DIR$/bootstrap/Mailer.js" />
@@ -150,8 +133,13 @@
         <option value="$PROJECT_DIR$/routes/auth/index.js" />
         <option value="$PROJECT_DIR$/app/mails/SendVerificationMail.js" />
         <option value="$PROJECT_DIR$/views/auth/verify.html" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/db/db_conn.js" />
+        <option value="$PROJECT_DIR$/config/application.js" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/node_modules/nodejs-config/lib/config/FileLoader.js" />
+        <option value="$PROJECT_DIR$/bootstrap/index.js" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/bootstrap/Helper.js" />
       </list>
     </option>
   </component>
@@ -254,6 +242,22 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="Node Start" type="ChromiumRemoteDebugType" factoryName="Chromium Remote" port="9229">
+      <method v="2">
+        <option name="NpmBeforeRunTask" enabled="true">
+          <package-json value="$PROJECT_DIR$/package.json" />
+          <command value="run" />
+          <scripts>
+            <script value="dev" />
+          </scripts>
+          <node-interpreter value="project" />
+          <package-manager value="npm" />
+          <envs />
+        </option>
+      </method>
+    </configuration>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -268,18 +272,18 @@
       <workItem from="1564833090986" duration="24815000" />
       <workItem from="1564922836750" duration="19316000" />
       <workItem from="1565025986510" duration="30000" />
-      <workItem from="1565026050140" duration="6867000" />
+      <workItem from="1565026050140" duration="16861000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72913000" />
+    <option name="totallyTimeSpent" value="82907000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1600" height="851" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24984147" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24984147" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -294,7 +298,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32907802" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32907802" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.9574468" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3319149" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -304,12 +308,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/routes/app/menu/likes.js" />
-    <entry file="file://$PROJECT_DIR$/routes/app/menu/visitors.js" />
-    <entry file="file://$PROJECT_DIR$/routes/docs/cookie.js" />
-    <entry file="file://$PROJECT_DIR$/routes/docs/policy.js" />
-    <entry file="file://$PROJECT_DIR$/routes/docs/terms.js" />
-    <entry file="file://$PROJECT_DIR$/app/helper/storage/logs/server.log" />
     <entry file="file://$PROJECT_DIR$/node_modules/ejs/ejs.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="11264">
@@ -388,13 +386,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/mail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="930">
-          <caret line="62" column="77" lean-forward="true" selection-start-line="62" selection-start-column="77" selection-end-line="62" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bootstrap/bootstrap.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -415,13 +406,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -501,13 +485,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/middlewares/Verify.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="8" lean-forward="true" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/auth/VerifyController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -564,24 +541,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bootstrap/Helper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bootstrap/Passport-setup.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1252">
           <caret line="15" column="22" lean-forward="true" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/registry/RouteRegistry.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
@@ -592,10 +555,86 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/middlewares/Verify.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="8" lean-forward="true" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/registry/RouteRegistry.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/mail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="70" lean-forward="true" selection-start-line="23" selection-start-column="70" selection-end-line="23" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/nodejs-config/lib/support/helper.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/nodejs-config/lib/config/FileLoader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="102" column="45" lean-forward="true" selection-start-line="102" selection-start-column="45" selection-end-line="102" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/nodejs-config/lib/config/Config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2250">
+          <caret line="150" lean-forward="true" selection-start-line="150" selection-end-line="150" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/nodejs-config/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+        <state relative-caret-position="180">
+          <caret line="12" column="3" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1035">
+          <caret line="69" column="9" selection-start-line="69" selection-start-column="5" selection-end-line="69" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bootstrap/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="48" column="56" selection-start-line="48" selection-start-column="29" selection-end-line="48" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bootstrap/Helper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="65" column="43" lean-forward="true" selection-start-line="65" selection-start-column="43" selection-end-line="65" selection-end-column="43" />
         </state>
       </provider>
     </entry>

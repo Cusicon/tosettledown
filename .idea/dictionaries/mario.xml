@@ -6,11 +6,13 @@
       <w>homesbay</w>
       <w>lastname</w>
       <w>letiables</w>
+      <w>mailtrap</w>
       <w>mariogotze</w>
       <w>nodemailer</w>
       <w>resave</w>
       <w>signin</w>
       <w>signup</w>
+      <w>smtp</w>
     </words>
   </dictionary>
 </component>

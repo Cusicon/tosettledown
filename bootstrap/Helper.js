@@ -4,6 +4,7 @@ const fs = require('fs');
 global["storage_path"] = (path_join = "") => { return path.join(base_path, "storage", path_join)};
 global["public_path"] = (path_join = "") => { return path.join(base_path, "public", path_join)};
 global["view_path"] = (path_join = "") => { return path.join(base_path, "views", path_join)};
+global["config_path"] = (path_join = "") => { return path.join(base_path, "config", path_join)};
 
 //-- Log User's activities to "userActivity.log" Log file
 global["userLog"] = log => {
@@ -55,3 +56,12 @@ global["applyMiddleware"] = (middleware) => {
     }
     return resolveMiddleware;
 };
+
+global["get_env"] = (env_name, default_value = null) => {
+    return process.env[env_name] || default_value;
+};
+
+global['config'] = (fileName, configVar, defaultName) => {
+    let items = require(config_path(fileName));
+    return items[configVar] || defaultName;
+}

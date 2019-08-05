@@ -1,6 +1,6 @@
 //-- All keys to this project lives Here.
 
-module.exports = {
+module["exports"] = {
     auth: {
         google: {
             clientID: '154146660831-rms4t4kuj2ltpj5ct3g03b04g4akn6tc.apps.googleusercontent.com',
