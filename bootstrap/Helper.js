@@ -1,14 +1,9 @@
 const path = require("path");
 const fs = require('fs');
 
-
 global["storage_path"] = (path_join = "") => { return path.join(base_path, "storage", path_join)};
 global["public_path"] = (path_join = "") => { return path.join(base_path, "public", path_join)};
-
-global["config"] = () =>
-{
-    console.log();
-};
+global["view_path"] = (path_join = "") => { return path.join(base_path, "views", path_join)};
 
 //-- Log User's activities to "userActivity.log" Log file
 global["userLog"] = log => {

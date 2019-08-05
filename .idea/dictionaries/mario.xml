@@ -3,8 +3,12 @@
     <words>
       <w>firstname</w>
       <w>fullname</w>
+      <w>homesbay</w>
       <w>lastname</w>
       <w>letiables</w>
+      <w>mariogotze</w>
+      <w>nodemailer</w>
+      <w>resave</w>
       <w>signin</w>
       <w>signup</w>
     </words>

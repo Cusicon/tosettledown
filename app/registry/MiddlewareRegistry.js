@@ -5,6 +5,7 @@ module["exports"] = {
    globalMiddleware : [
         require("morgan")("dev"), //-- use logger
         require("body-parser")(), //-- use bodyParser
+        require("connect-flash")(),
         require("cookie-parser")(), //-- use cookieParser
         require("express-ejs-layouts"),//-- use expressLayouts
         require("express").json(), //-- use express.json
@@ -20,7 +21,7 @@ module["exports"] = {
         require('@bootstrap/Middleware').message,
         require('@bootstrap/Middleware').setGlobalVariable,
         require('@bootstrap/Middleware').serverlog,
-       require("connect-flash")(),
+
   ],
 
   nameMiddleware : {

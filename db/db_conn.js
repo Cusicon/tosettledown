@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const keys = require("../config/keys");
+const keys = require("@config/keys");
 const connectionUrl = process.env.MONGODB_URI || keys.mongodb.localURI || keys.mongodb.onlineURI;
 
 // ## DB CONNECTION 

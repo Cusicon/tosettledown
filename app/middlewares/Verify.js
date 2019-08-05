@@ -1,7 +1,13 @@
 module["exports"] = function (req, res, next) {
-  if(req.user.email_verified_at == null)
+  if(req.user)
   {
-    res.redirect("/auth/0/verify");
+    if(req.user.email_verified_at == null)
+    {
+      res.redirect("/auth/0/verify");
+    }
+    next();
+  }else{
+    res.redirect("/");
   }
-  next();
+
 };

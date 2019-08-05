@@ -1,19 +1,23 @@
+let SendVerificationMail = require('@app/mails/SendVerificationMail');
+
 module['exports'] = class VerifyController {
 
-    static show(req, res)
+    static notice(req, res)
     {
-        res.render('./verify', { title: "Terms of Service" });
+        let verify = new SendVerificationMail({email : "akinjole@yahoo.com", subject: "Verification"}).send();
+        res.render('./auth/verify', { title: "Terms of Service" });
     }
 
-    static send(req, res)
+    static resend(req, res)
+    {
+        if(req.user){
+            new SendVerificationMail({email : "akinjole@yahoo.com", subject: "Verification"}).send()
+        }
+        res.redirect("/verify");
+    }
+
+    static verify(req, res)
     {
 
-        console.log(VerficationMail)
-        let mail = new VerficationMail({
-            name: "Emmanuel",
-            age: 24
-        });
-        mail.send()
-        res.redirect("/verify");
     }
 }

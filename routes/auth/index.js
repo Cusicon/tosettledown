@@ -1,6 +1,5 @@
 let router =  require('express')();
 const passport = require("passport");
-const passportSetUp = require('@config/passport-setup');
 
 /*
 * SignIn Routes Begins
@@ -63,16 +62,13 @@ router.get("/signin/google/return",
 //-- Sign out
 router.get("/signin/out", ...applyMiddleware(['auth']), require('@app/controllers/auth/LoginController').logout);
 
-
 router.get("/signup", (req, res) => req.user ? res.redirect("/app/encounters") : res.redirect('/#regForm'));
 router.post("/signup", require('@app/controllers/auth/RegisterController').register);
 
 
 //-- Verify Route
-router.get("/verify", require('@app/controllers/auth/VerifyController').show);
-router.get('/verify/resend', require('@app/controllers/auth/VerifyController').send);
-
-
-
+router.get("/verify", ...applyMiddleware(['auth']), require('@app/controllers/auth/VerifyController').notice);
+router.get('/verify/resend', ...applyMiddleware(['auth']), require('@app/controllers/auth/VerifyController').resend);
+router.get("/verify/:id", ...applyMiddleware(['auth']), require('@app/controllers/auth/VerifyController').verify);
 
 module["exports"] = router;

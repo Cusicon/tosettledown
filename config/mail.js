@@ -1,4 +1,4 @@
-module.exports = {
+module["exports"] = {
   /*
   |--------------------------------------------------------------------------
   | Mail Driver
@@ -26,7 +26,7 @@ module.exports = {
   |
   */
 
-  host: process.env.MAIL_HOST || 'smtp.mailgun.org',
+  host: process.env.MAIL_HOST || 'smtp.mailtrap.io',
 
   /*
   |--------------------------------------------------------------------------
@@ -39,7 +39,7 @@ module.exports = {
   |
   */
 
-  port: process.env.MAIL_PORT || 587,
+  port: process.env.MAIL_PORT || 2525,
 
   /*
   |--------------------------------------------------------------------------
@@ -68,7 +68,7 @@ module.exports = {
   |
   */
 
-  encryption: process.env.MAIL_ENCRYPTION || 'tls',
+  encryption: process.env.MAIL_ENCRYPTION || false,
 
   /*
   |--------------------------------------------------------------------------
@@ -81,9 +81,9 @@ module.exports = {
   |
   */
 
-  username: process.env.MAIL_USERNAME || null,
+  username: process.env.MAIL_USERNAME || "0b09454d7de706",
 
-  password: process.env.MAIL_PASSWORD || null,
+  password: process.env.MAIL_PASSWORD || "fd739d44c64fc0",
 
   /*
   |--------------------------------------------------------------------------
@@ -111,7 +111,7 @@ module.exports = {
 
   template : {
     theme :'default',
-    paths : resource_path('views/vendor/mails'),
+    paths : view_path('mail'),
   },
 
   /*
@@ -127,4 +127,4 @@ module.exports = {
 
   log_channel: process.env.MAIL_LOG_CHANNEL || null,
 
-}
+};

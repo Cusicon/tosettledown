@@ -1,14 +1,14 @@
 const uniq = require('uniqid');
-const passport = require('passport');
-const RememberMeStrategy = require('passport-remember-me').Strategy;
-const LocalStrategy = require('passport-local').Strategy;
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const keys = require('./keys');
-const express = require("express");
-const app = express();
+const passport = require('passport/lib');
+const RememberMeStrategy = require('passport-remember-me/lib').Strategy;
+const LocalStrategy = require('passport-local/lib').Strategy;
+const GoogleStrategy = require('passport-google-oauth20/lib').Strategy;
+const keys = require('@config/keys');
+// const express = require("express");
+// const app = express();
 
 // ## MODELS
-const User = require('../models/user');
+const User = require('@models/user');
 
 
 // ## PASSPORT STRATEGIES
@@ -65,17 +65,17 @@ passport.use(
         callbackURL: '/auth/0/signin/google/return'
     }, (accessToken, refreshToken, profile, done) => {
         process.nextTick(() => {
-            var googleId = profile.id;
-            var fullname = {
+            let googleId = profile.id;
+            let fullname = {
                 firstname: profile.displayName.split(" ")[0] || null,
                 lastname: profile.displayName.split(" ")[1] || null,
                 all: profile.displayName
             };
-            var username = uniq.time(profile.name.givenName.toLowerCase());
-            var password = uniq.time();
-            var agreed_terms = true;
-            var profileImage = profile._json.picture;
-            var joined = new Date().toDateString();
+            let username = uniq.time(profile.name.givenName.toLowerCase());
+            let password = uniq.time();
+            let agreed_terms = true;
+            let profileImage = profile._json.picture;
+            let joined = new Date().toDateString();
             //-- Create User
             User.getUserByGoogleId(googleId, (err, user) => {
                 if (err) throw err;
@@ -85,7 +85,7 @@ passport.use(
                         done(null, user);
                     } else { //-- else create user and go to [encounters]
                         //-- Add values to "Model's(User)" parameters 
-                        var newUser = new User({
+                        let newUser = new User({
                             googleId: googleId || null,
                             fullname: fullname || null,
                             username: username || null,
@@ -123,7 +123,7 @@ passport.use(new RememberMeStrategy(
         });
     },
     function (user, done) {
-        var token = utils.generateToken(64);
+        let token = utils.generateToken(64);
         Token.save(token, {
             userId: user.id
         }, function (err) {
