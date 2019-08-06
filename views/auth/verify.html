@@ -1,10 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-  click here to send verification mail <a href="/auth/0/verify/resend">Send Now</a>
-</body>
-</html>
+<link rel="stylesheet" href="/lib/css/index.css">
+<style>
+  section.logoCon {
+    margin-bottom: 80px;
+  }
+
+  .cookieCon {
+    border-radius: 15px;
+    padding: 50px 20px;
+    margin: 0 auto;
+    width: 90%;
+    background-color: #f6f6f6;
+    font-size: 15px;
+  }
+
+  p {
+    margin: 10px;
+    margin-bottom: 20px;
+    line-height: 30px;
+  }
+
+  a {
+    color: #ff6878;
+  }
+</style>
+
+
+<section class="body">
+  <section class="logoCon">
+    <!-- Header -->
+    <header class="header" id="header">
+      <nav>
+        <div style="text-align: center;">
+          <a href="javascript:void(0);" style="display: block;" class="logoCon"
+             style="box-sizing: content-box;">
+            <img src="/lib/img/logo/logoLandscape.png" id="logo" width="200" alt="logo">
+          </a>
+        </div>
+      </nav>
+    </header>
+    <br>
+  </section>
+
+  <section class="text-center">
+    <p>Your Account Has Not Been Verified, Please Check your Email for verification link</p>
+
+    <p>click here to send another verification mail <a href="/auth/0/verify/resend">Send Now</a></p>
+  </section>
+  <br><br>
+  <%- include('../app/partials/footer.html'); %>
+</section>

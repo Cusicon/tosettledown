@@ -1,67 +1,63 @@
 let User = require('@models/user');
 
-const HomeController = class HomeController{
-  constructor()
-  {
-  }
+module["exports"] = class HomeController{
 
-  chats(req, res)
-  {
-    res.render('./app/menu/chats', {
-      title: "Chats"
-    });
-  }
-
-  showChat(req, res)
-  {
-    let username = req.params.username;
-    User.getUserByUsername(username, (err, profile_user) => {
-      if (err) console.log(err);
-      else {
+    static chats(req, res)
+    {
         res.render('./app/menu/chats', {
-          title: "Chats",
-          profile_user: profile_user
+            title: "Chats"
         });
-      }
-    });
-  }
+    }
 
-  matched(req, res)
-  {
-    res.render('./app/menu/matched', { title: "Matched" });
-  }
+    static showChat(req, res)
+    {
+        let username = req.params.username;
+        User.getUserByUsername(username, (err, profile_user) => {
+            if (err) console.log(err);
+            else {
+                res.render('./app/menu/chats', {
+                    title: "Chats",
+                    profile_user: profile_user
+                });
+            }
+        });
+    }
 
-  likes(req, res)
-  {
-    res.render('./app/menu/likes', { title: "Likes" });
-  }
+    static matched(req, res)
+    {
+        res.render('./app/menu/matched', { title: "Matched" });
+    }
 
-  visitors(req, res)
-  {
-    res.render('./app/menu/visitors', { title: "Visitors" });
-  }
+    static likes(req, res)
+    {
+        res.render('./app/menu/likes', { title: "Likes" });
+    }
 
-  favourites(req, res)
-  {
-    res.render('./app/menu/favourites', { title: "Favourites" });
-  }
+    static visitors(req, res)
+    {
+        res.render('./app/menu/visitors', { title: "Visitors" });
+    }
 
-  shop(req, res)
-  {
-    res.render('./app/menu/shop', { title: "Shop" });
-  }
+    static favourites(req, res)
+    {
+        res.render('./app/menu/favourites', { title: "Favourites" });
+    }
 
-  wallet(req, res)
-  {
-    res.render('./app/extras/wallet', { title: "Wallet" });
-  }
+    static shop(req, res)
+    {
+        res.render('./app/menu/shop', { title: "Shop" });
+    }
 
-  packages(req, res)
-  {
-    res.render('./app/extras/packages', { title: "Package" });
-  }
+    static wallet(req, res)
+    {
+        res.render('./app/extras/wallet', { title: "Wallet" });
+    }
 
-}
+    static packages(req, res)
+    {
+        res.render('./app/extras/packages', { title: "Package" });
+    }
+
+};
 
 
-module["exports"] = new HomeController();

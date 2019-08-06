@@ -21,23 +21,24 @@ module['exports'] = class Mailer{
         this.options = {
             from: mailConfig.from.address,
             to: notifiable.email,
-            subject: notifiable.subject,
         };
+    }
+
+    subject(subject)
+    {
+        this.options.subject = subject;
+        return this;
     }
 
     view(view, data)
     {
-       let local_options = this.options;
-       let local_transporter = this.transporter;
-
-        ejs.renderFile(path.join(mailConfig.template.paths, view), data, function (err, data) {
+        ejs.renderFile(path.join(mailConfig.template.paths, view), data, (err, data) => {
 
             if (err) {
                 console.log(err);
             } else {
-                local_options.html = data;
-
-                local_transporter.sendMail(local_options, function (err, info) {
+                this.options.html = data;
+                this.transporter.sendMail(this.options, function (err, info) {
                     if (err) {
                         console.log(err);
                     } else {

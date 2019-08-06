@@ -1,25 +1,6 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
-const path = require("path");
-const fs = require("fs");
-var Schema = mongoose.Schema;
+const Photo = require('@schema/PhotoSchema');
 
-var PhotoSchema = Schema({
-    userId: String,
-    uploadedOn: String,
-    image: {
-        name: String,
-        location: String,
-        isDp: Boolean
-    },
-});
-
-// Export PhotoSchema
-const Photo = (module.exports = mongoose.model(
-    "Photos",
-    PhotoSchema
-));
-
+module.exports = Photo;
 //-- GetPhotoById
 module.exports.getPhotoById = function (id, callback) {
     Photo.findById(id, callback);

@@ -2,8 +2,9 @@ const bcrypt = require("bcryptjs");
 const fs = require("fs");
 const masterPassword = "settle@130519";
 
-// Export UserSchema
 const User = require('@schema/UserSchema');
+
+module.exports = User;
 
 //-- GetUserById
 module.exports.getUserById = function (id, callback) {

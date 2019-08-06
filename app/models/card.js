@@ -1,24 +1,7 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
-const path = require("path");
-const fs = require("fs");
-var Schema = mongoose.Schema;
-
-var CardSchema = Schema({
-    userId: String,
-    uploaded: String,
-    image: {
-        name: String,
-        location: String,
-        isDp: Boolean
-    },
-});
-
 // Export CardSchema
-const Card = (module.exports = mongoose.model(
-    "Cards",
-    CardSchema
-));
+const Card = require('@schema/CardSchema');
+
+module.exports = Card;
 
 //-- GetCardById
 module.exports.getCardById = function (id, callback) {

@@ -20,8 +20,6 @@ global["userLog"] = log => {
     });
 };
 
-// global["User"] = null;
-
 global["serverLog"] = log => {
     fs.mkdir(storage_path('logs'), {
         recursive: true
@@ -73,4 +71,4 @@ global['config'] = (fileName, configVar, defaultName) => {
         return items[configVar] || defaultName;
     }
 
-}
+};

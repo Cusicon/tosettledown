@@ -3,6 +3,7 @@
     <words>
       <w>bcrypt</w>
       <w>firstname</w>
+      <w>formater</w>
       <w>fullname</w>
       <w>homesbay</w>
       <w>lastname</w>
@@ -11,6 +12,7 @@
       <w>mariogotze</w>
       <w>nodemailer</w>
       <w>resave</w>
+      <w>serverlog</w>
       <w>signin</w>
       <w>signup</w>
       <w>smtp</w>

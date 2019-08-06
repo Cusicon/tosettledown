@@ -10,7 +10,7 @@ router.get("/profile/update/:username", (require('@app/controllers/ProfileContro
 router.get("/profile", (req, res) => res.redirect("/app/encounters"));
 
 //-- chats Router
-router.get("/chats",(require('@app/controllers/HomeController')).chats);
+router.get("/chats",HomeController.chats);
 router.get("/chats/:username",(require('@app/controllers/HomeController')).showChat);
 
 //-- matched Router

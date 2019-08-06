@@ -38,6 +38,20 @@ module['exports'] = class Bootstrap {
         require('@app/registry/MiddlewareRegistry').globalMiddleware.forEach((value) => { this.app.use(value) });
     }
 
+    registerFacade()
+    {
+
+        let facade = require('@app/registry/FacadeRegistry');
+        Object.keys(facade).forEach(key => {
+            global[key] = facade[key];
+        });
+
+        // let facade = require('@app/registry/FacadeRegistry');
+        // for(let value in facade)global[value] = facade[value]
+
+
+    }
+
     registerRoutes()
     {
         this.app.use(require('@app/registry/RouteRegistry'));
@@ -60,6 +74,7 @@ module['exports'] = class Bootstrap {
     {
         this.requireAllImportantModules();
         this.registerGlobalMiddleware();
+        this.registerFacade();
         this.register();
         this.registerRoutes();
         this.registerExceptionHandler();

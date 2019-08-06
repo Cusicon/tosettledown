@@ -1,11 +1,8 @@
 let User = require('@models/user');
 
-const ProfileController = class ProfileController{
-  constructor()
-  {
-  }
+module["exports"] = class ProfileController{
 
-  show(req, res)
+  static show(req, res)
   {
     let username = req.params.username;
     User.getUserByUsername(username, (err, profile_user) => {
@@ -19,7 +16,7 @@ const ProfileController = class ProfileController{
     });
   }
 
-  update(req, res)
+  static update(req, res)
   {
     let username = req.params.username;
     User.getUserByUsername(username, (err, profile_user) => {
@@ -33,5 +30,3 @@ const ProfileController = class ProfileController{
     });
   }
 };
-
-module["exports"] = new ProfileController();

@@ -1,5 +1,5 @@
 let router =  require('express')();
-const passport = require("passport");
+const passport = require("passport/lib");
 
 /*
 * SignIn Routes Begins
@@ -69,6 +69,6 @@ router.post("/signup", require('@app/controllers/auth/RegisterController').regis
 //-- Verify Route
 router.get("/verify", ...applyMiddleware(['auth']), require('@app/controllers/auth/VerifyController').notice);
 router.get('/verify/resend', ...applyMiddleware(['auth']), require('@app/controllers/auth/VerifyController').resend);
-router.get("/verify/:id", ...applyMiddleware(['auth']), require('@app/controllers/auth/VerifyController').verify);
+router.get("/verify/:id", require('@app/controllers/auth/VerifyController').verify);
 
 module["exports"] = router;

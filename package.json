@@ -11,6 +11,7 @@
     "cookie-parser": "^1.4.3",
     "cookie-session": "^1.3.3",
     "crypt": "^0.0.2",
+    "dotenv": "^8.0.0",
     "ejs": "^2.5.7",
     "env2": "^2.2.2",
     "express": "^4.16.4",
@@ -70,6 +71,6 @@
     "@config": "./config",
     "@routes": "./routes",
     "@bootstrap": "./bootstrap",
-    "@schema" : "./database/schema"
+    "@schema": "./database/schema"
   }
 }
