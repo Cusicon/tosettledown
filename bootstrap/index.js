@@ -1,4 +1,5 @@
 const express = require("express");
+const fs = require('fs');
 module['exports'] = class Bootstrap {
 
     constructor(base_path)
@@ -15,7 +16,7 @@ module['exports'] = class Bootstrap {
         require('module-alias/register');
         require('@bootstrap/Helper');
         require('@bootstrap/Passport-setup');
-        require("../db/db_conn"); //-- for db connection
+        require("@bootstrap/Database");
     }
 
     setBasePath(base_path)
@@ -25,7 +26,9 @@ module['exports'] = class Bootstrap {
 
     loadEnvironmentalVariables()
     {
-       require('env2')(`${base_path}/.env`);
+        if (fs.existsSync(`${base_path}/.env`)) {
+            require('env2')(`${base_path}/.env`);
+        }
     }
 
     registerGlobalMiddleware()
@@ -45,7 +48,6 @@ module['exports'] = class Bootstrap {
 
     register()
     {
-        // const port = process.env.APP_PORT || "3020";
         this.app.set('port', config('app','port','3020'));
         this.app.set('views', view_path());
         this.app.engine("html", require("ejs").renderFile);

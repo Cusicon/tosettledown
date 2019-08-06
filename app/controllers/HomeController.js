@@ -1,4 +1,4 @@
-var User = require('../../models/user');
+let User = require('@models/user');
 
 const HomeController = class HomeController{
   constructor()
@@ -14,7 +14,7 @@ const HomeController = class HomeController{
 
   showChat(req, res)
   {
-    var username = req.params.username;
+    let username = req.params.username;
     User.getUserByUsername(username, (err, profile_user) => {
       if (err) console.log(err);
       else {
@@ -64,4 +64,4 @@ const HomeController = class HomeController{
 }
 
 
-module.exports = new HomeController();
+module["exports"] = new HomeController();

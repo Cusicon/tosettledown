@@ -3,9 +3,6 @@ const passport = require('passport/lib');
 const RememberMeStrategy = require('passport-remember-me/lib').Strategy;
 const LocalStrategy = require('passport-local/lib').Strategy;
 const GoogleStrategy = require('passport-google-oauth20/lib').Strategy;
-const keys = require('@config/keys');
-// const express = require("express");
-// const app = express();
 
 // ## MODELS
 const User = require('@models/user');
@@ -13,7 +10,7 @@ const User = require('@models/user');
 
 // ## PASSPORT STRATEGIES
 
-//-- Passort serialize
+//-- Passport serialize
 passport.serializeUser(function (user, done) {
     done(null, user.id);
 });
@@ -60,8 +57,8 @@ passport.use(new LocalStrategy({
 //-- GOOGLE STRATEGY
 passport.use(
     new GoogleStrategy({
-        clientID: keys.auth.google.clientID,
-        clientSecret: keys.auth.google.clientSecret,
+        clientID: config('services',(items)=>{return items.google.clientID}),
+        clientSecret: config('services',(items)=>{return items.google.clientSecret}),
         callbackURL: '/auth/0/signin/google/return'
     }, (accessToken, refreshToken, profile, done) => {
         process.nextTick(() => {

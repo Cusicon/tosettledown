@@ -1,4 +1,4 @@
-var User = require('../../models/user');
+let User = require('@models/user');
 
 const EncounterController = class EncounterController{
   constructor()
@@ -30,6 +30,6 @@ const EncounterController = class EncounterController{
     });
   }
 
-}
+};
 
-module.exports = new EncounterController();
+module["exports"] = new EncounterController();

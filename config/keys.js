@@ -1,5 +1,4 @@
 //-- All keys to this project lives Here.
-
 module["exports"] = {
     auth: {
         google: {
@@ -10,9 +9,5 @@ module["exports"] = {
     session: {
         sessionSecret: 'tosettledownisthebestappintheworld',
         cookieKey: 'tosettledownisthebestappintheworld'
-    },
-    mongodb: {
-        localURI: 'mongodb://localhost/tosettledown',
-        onlineURI: 'mongodb://success:0123456789jehova.@ds135433.mlab.com:35433/heroku_5m6mvm1g',
     }
-}
+};

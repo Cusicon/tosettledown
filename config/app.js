@@ -10,7 +10,7 @@ module["exports"] = {
     |
     */
 
-    'name': get_env('APP_NAME', 'Settle'),
+    'name': get_env('APP_NAME', 'ToSettleDown'),
 
     /*
     |--------------------------------------------------------------------------
@@ -49,7 +49,7 @@ module["exports"] = {
     |
     */
 
-    'key': get_env('APP_KEY'),
+    'key': get_env('APP_KEY', 'kXWzrAF1HIqUXHmJ8nXKp8OPKz2Y+sleV3mvcF+iufM='),
 
     'cipher': 'AES-256-CBC',
 

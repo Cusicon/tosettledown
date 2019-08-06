@@ -63,5 +63,14 @@ global["get_env"] = (env_name, default_value = null) => {
 
 global['config'] = (fileName, configVar, defaultName) => {
     let items = require(config_path(fileName));
-    return items[configVar] || defaultName;
+
+    if( typeof configVar === 'function')
+    {
+        return configVar(items) || defaultName;
+    }
+    else
+    {
+        return items[configVar] || defaultName;
+    }
+
 }

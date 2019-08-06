@@ -1,4 +1,4 @@
-var User = require('../../models/user');
+let User = require('@models/user');
 
 const ProfileController = class ProfileController{
   constructor()
@@ -7,7 +7,7 @@ const ProfileController = class ProfileController{
 
   show(req, res)
   {
-    var username = req.params.username;
+    let username = req.params.username;
     User.getUserByUsername(username, (err, profile_user) => {
       if (err) console.log(err);
       else {
@@ -21,7 +21,7 @@ const ProfileController = class ProfileController{
 
   update(req, res)
   {
-    var username = req.params.username;
+    let username = req.params.username;
     User.getUserByUsername(username, (err, profile_user) => {
       if (err) console.log(err);
       else {
@@ -32,7 +32,6 @@ const ProfileController = class ProfileController{
       }
     });
   }
+};
 
-}
-
-module.exports = new ProfileController();
+module["exports"] = new ProfileController();

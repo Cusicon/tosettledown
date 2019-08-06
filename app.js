@@ -3,7 +3,7 @@
  */
 let Bootstrap = require("./bootstrap/index");
 
-let app  = new Bootstrap(__dirname);
+let app = new Bootstrap(__dirname);
 
 /* LISTEN TO ANY APPLICATION EXCEPTION AND CATCH IT */
 app.on('uncaughtException', function(err) { console.log('Caught exception: ' + err) });
