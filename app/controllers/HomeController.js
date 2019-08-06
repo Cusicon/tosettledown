@@ -55,7 +55,7 @@ module["exports"] = class HomeController{
 
     static packages(req, res)
     {
-        res.render('./app/extras/packages', { title: "Package" });
+        res.render('./app/extras/premium', { title: "Package" });
     }
 
 };

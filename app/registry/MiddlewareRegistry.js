@@ -1,5 +1,3 @@
-const keys = require("@config/keys");
-
 module["exports"] = {
 
    globalMiddleware : [
@@ -12,7 +10,7 @@ module["exports"] = {
         require("express").urlencoded({extended: false}), //-- use express.urlencoded
         require("express").static( public_path()), //-- set public static directory
         //-- Express-session Middleware
-        require("express-session")({secret: keys.session.sessionSecret, resave: true, saveUninitialized: true}),
+        require("express-session")({secret: config('app', 'key'), resave: true, saveUninitialized: true}),
         //-- Passport Middlewares
         require("passport").initialize(),
         require("passport").session(),

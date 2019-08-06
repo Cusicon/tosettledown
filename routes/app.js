@@ -6,7 +6,7 @@ router.get("/encounters/getUsers",  (require('@app/controllers/EncounterControll
 
 //-- profile Router
 router.get("/profile/:username", (require('@app/controllers/ProfileController')).show );
-router.get("/profile/update/:username", (require('@app/controllers/ProfileController')).update);
+router.post("/profile/update/:username", (require('@app/controllers/ProfileController')).update);
 router.get("/profile", (req, res) => res.redirect("/app/encounters"));
 
 //-- chats Router
@@ -29,9 +29,9 @@ router.get("/favourites", (require('@app/controllers/HomeController')).favourite
 router.get("/shop", (require('@app/controllers/HomeController')).shop);
 
 //-- wallet Router
-router.get("/wallet", (require('@app/controllers/HomeController')).wallet);
+router.get("/wallet/balance", (require('@app/controllers/HomeController')).wallet);
 
 //-- packages Router
-router.get("/packages", (require('@app/controllers/HomeController')).packages);
+router.get("/packages/premium", (require('@app/controllers/HomeController')).packages);
 
 module["exports"] = router;
