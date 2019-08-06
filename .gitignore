@@ -1,3 +1,4 @@
+.idea/*
 config/keys.js
 storage/logs/*
 public/store
