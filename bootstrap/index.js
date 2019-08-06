@@ -4,10 +4,8 @@ module['exports'] = class Bootstrap {
 
     constructor(base_path)
     {
-        this.app = express();
         this.setBasePath(base_path);
-        this.init();
-        return this.app;
+        return this;
     }
 
     requireAllImportantModules()
@@ -41,16 +39,10 @@ module['exports'] = class Bootstrap {
 
     registerFacade()
     {
-
         let facade = require('@app/registry/FacadeRegistry');
         Object.keys(facade).forEach(key => {
             global[key] = facade[key];
         });
-
-        // let facade = require('@app/registry/FacadeRegistry');
-        // for(let value in facade)global[value] = facade[value]
-
-
     }
 
     registerRoutes()
@@ -71,13 +63,25 @@ module['exports'] = class Bootstrap {
         this.app.set("view engine", "html");
     }
 
-    init()
+    initHttp()
     {
+        this.app = express();
         this.requireAllImportantModules();
         this.registerGlobalMiddleware();
         this.registerFacade();
         this.register();
         this.registerRoutes();
         this.registerExceptionHandler();
+        return this.app;
+    }
+
+    initConsole()
+    {
+        this.loadEnvironmentalVariables();
+        require('module-alias/register');
+        require('@bootstrap/Helper');
+        // require('@bootstrap/Passport-setup');
+        require("@bootstrap/Database");
+        this.registerFacade()
     }
 };

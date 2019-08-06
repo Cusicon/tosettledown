@@ -5,6 +5,9 @@ module['exports'] = class VerifyController {
 
     static notice(req, res)
     {
+        if(req.user && req.user.email_verified_at != null){
+            res.redirect('/');
+        }
         res.render('./auth/verify', { title: "Verification Mail" });
     }
 

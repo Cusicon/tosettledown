@@ -93,6 +93,7 @@ module.exports.createUser = function (newUser, callback) {
     function getAge(dob) {
         if (typeof dob == "string") {
             let dobArr = dob.split("-");
+
             let dobArrObj = {
                 year: Number(dobArr[0]),
                 month: Number(dobArr[1]),
@@ -111,7 +112,13 @@ module.exports.createUser = function (newUser, callback) {
                 month: currentDate.month - dobArrObj.month,
                 day: currentDate.day - dobArrObj.day
             };
+            return result.year;
+
+            // console.log(result)
+        }else
+        {
+            return null;
         }
-        return result.year;
+
     }
 };

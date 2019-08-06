@@ -54,7 +54,8 @@
   "devDependencies": {},
   "scripts": {
     "start": "node ./app.js",
-    "dev": "nodemon ./app.js"
+    "dev": "nodemon ./app.js",
+    "seed": "node ./database/seeder/DatabaseSeeder.js"
   },
   "keywords": [
     "tosettledown",
@@ -71,6 +72,9 @@
     "@config": "./config",
     "@routes": "./routes",
     "@bootstrap": "./bootstrap",
-    "@schema": "./database/schema"
+    "@schema": "./database/schema",
+    "@factory": "./database/factory",
+    "@seeder": "./database/seeder",
+    "@database": "./database"
   }
 }

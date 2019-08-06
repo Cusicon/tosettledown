@@ -59,16 +59,16 @@ global["get_env"] = (env_name, default_value = null) => {
     return process.env[env_name] || default_value;
 };
 
-global['config'] = (fileName, configVar, defaultName) => {
+global['config'] = (fileName, configVar, defaultVar) => {
     let items = require(config_path(fileName));
 
     if( typeof configVar === 'function')
     {
-        return configVar(items) || defaultName;
+        return configVar(items) || defaultVar;
     }
     else
     {
-        return items[configVar] || defaultName;
+        return items[configVar] || defaultVar;
     }
 
 };
