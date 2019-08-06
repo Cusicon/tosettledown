@@ -29,7 +29,8 @@ module['exports'] = class Bootstrap {
     loadEnvironmentalVariables()
     {
         if (fs.existsSync(`${base_path}/.env`)) {
-            require('env2')(`${base_path}/.env`);
+            require('dotenv').config({ path: `${base_path}/.env` })
+            // require('env2')(`${base_path}/.env`);
         }
     }
 
