@@ -4,7 +4,7 @@ module["exports"] = {
 
    globalMiddleware : [
         require("morgan")("dev"), //-- use logger
-        require("body-parser")(), //-- use bodyParser
+        require("body-parser").urlencoded({extended: true}), //-- use bodyParser
         require("connect-flash")(),
         require("cookie-parser")(), //-- use cookieParser
         require("express-ejs-layouts"),//-- use expressLayouts

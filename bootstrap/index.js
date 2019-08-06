@@ -19,11 +19,13 @@ module['exports'] = class Bootstrap {
         require("@bootstrap/Database");
     }
 
+    // noinspection JSMethodCanBeStatic
     setBasePath(base_path)
     {
         global["base_path"] = base_path;
     }
 
+    // noinspection JSMethodCanBeStatic
     loadEnvironmentalVariables()
     {
         if (fs.existsSync(`${base_path}/.env`)) {
@@ -56,10 +58,10 @@ module['exports'] = class Bootstrap {
 
     init()
     {
-        this.requireAllImportantModules()
-        this.registerGlobalMiddleware()
-        this.register()
-        this.registerRoutes()
-        this.registerExceptionHandler()
+        this.requireAllImportantModules();
+        this.registerGlobalMiddleware();
+        this.register();
+        this.registerRoutes();
+        this.registerExceptionHandler();
     }
-}
+};

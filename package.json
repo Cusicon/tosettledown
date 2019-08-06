@@ -69,6 +69,7 @@
     "@models": "./app/models",
     "@config": "./config",
     "@routes": "./routes",
-    "@bootstrap": "./bootstrap"
+    "@bootstrap": "./bootstrap",
+    "@schema" : "./database/schema"
   }
 }

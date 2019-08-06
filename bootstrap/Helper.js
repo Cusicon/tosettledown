@@ -20,7 +20,7 @@ global["userLog"] = log => {
     });
 };
 
-global["User"] = null;
+// global["User"] = null;
 
 global["serverLog"] = log => {
     fs.mkdir(storage_path('logs'), {
