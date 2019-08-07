@@ -64,8 +64,8 @@ passport.use(
         process.nextTick(() => {
             let googleId = profile.id;
             let fullname = {
-                firstname: profile.displayName.split(" ")[0] || null,
-                lastname: profile.displayName.split(" ")[1] || null,
+                firstname: profile.displayName.split(" ")[0] || '',
+                lastname: profile.displayName.split(" ")[1] || '',
                 all: profile.displayName
             };
             let username = uniq.time(profile.name.givenName.toLowerCase());
@@ -83,13 +83,13 @@ passport.use(
                     } else { //-- else create user and go to [encounters]
                         //-- Add values to "Model's(User)" parameters 
                         let newUser = new User({
-                            googleId: googleId || null,
-                            fullname: fullname || null,
-                            username: username || null,
-                            password: password || null,
-                            agreed_terms: agreed_terms || null,
-                            dp: profileImage || null,
-                            joined: joined || null
+                            googleId: googleId || '',
+                            fullname: fullname || '',
+                            username: username || '',
+                            password: password || '',
+                            agreed_terms: agreed_terms || '',
+                            dp: profileImage || '',
+                            joined: joined || ''
                         });
                         User.createUser(newUser, (err, user) => {
                             if (err) throw err;

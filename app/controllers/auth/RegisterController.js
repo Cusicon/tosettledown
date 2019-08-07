@@ -12,6 +12,16 @@ module['exports'] = class RegisterController {
             let email = req.body.email.trim().toLowerCase();
             let password = req.body.password.trim();
             let dob = req.body.dob;
+
+            let bio = "Hey there, I'm here to find love on TSD";
+            let language = "English";
+            let height = "";
+            let religion = "";
+            let location = "";
+            let work = "";
+            let education = "";
+
+
             let gender = req.body.gender;
             let agreed_terms = true;
             let joined = new Date().toDateString();
@@ -36,20 +46,29 @@ module['exports'] = class RegisterController {
                 //-- Add values to "Model's(User)" parameters
                 let newUser = new User({
                     fullname: {
-                        firstname: fullname.split(" ")[0] || null,
-                        lastname: fullname.split(" ")[1] || null,
+                        firstname: fullname.split(" ")[0] || '',
+                        lastname: fullname.split(" ")[1] || '',
                         all: fullname
                     },
-                    username: username || null,
-                    email: email || null,
-                    password: password || null,
+                    username: username || '',
+                    email: email || '',
+                    password: password || '',
                     dob: {
-                        date: dob || null,
-                        age: dob || null
+                        date: dob || '',
+                        age: dob || ''
                     },
-                    gender: gender || null,
-                    agreed_terms: agreed_terms || null,
-                    joined: joined || null
+                    gender: gender || '',
+                    agreed_terms: agreed_terms || '',
+                    joined: joined || '',
+                    personalInfo: {
+                        bio: bio,
+                        height: height,
+                        language: language,
+                        religion: religion,
+                        location: location,
+                        work: work,
+                        education: education
+                    }
                 });
 
                 //-- Check if username exist? else continue process...
