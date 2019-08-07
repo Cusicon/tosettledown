@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/lib/css/app/main.css">
     <link rel="stylesheet" href="/lib/css/app/mobile.css">
 
-    <script src="/components/js/modernize.min.js"></script>
+    <script src="/components/js/modernizr.min.js"></script>
 
 
     <!-- Defaultly, Let every Element have this styling -->
@@ -78,7 +78,6 @@
     <!-- Components  -->
 
     <script src="/socket.io/socket.io.js"></script>
-
     <!-- jQuery  -->
     <script src="/components/js/jquery.min.js"></script>
     <script src="/components/js/popper.min.js"></script><!-- Popper for Bootstrap -->
@@ -86,18 +85,21 @@
     <script src="/components/js/metisMenu.min.js"></script>
     <script src="/components/js/waves.js"></script>
     <script src="/components/js/jquery.slimscroll.js"></script>
+
+    <!-- Sweetalert  -->
     <script src="/components/js/sweetalert.js"></script>
 
     <!-- Library  -->
-        <!-- Index Scripts -->
-        <script src="/lib/scripts/index.js"></script>
-        <!-- App Scripts -->
-        <script src="/lib/scripts/app/main.js"></script>
-        <script src="/lib/scripts/app/alert.js"></script>
-        <!-- App js -->
-        <script src="/components/js/jquery.core.js"></script>
-        <script src="/components/js/jquery.app.js"></script>
+    <!-- Index Scripts -->
+    <script src="/lib/scripts/index.js"></script>
 
+    <!-- App Scripts -->
+    <script src="/lib/scripts/app/main.js"></script>
+    <script src="/lib/scripts/app/alert.js"></script>
+
+    <!-- App js -->
+    <script src="/components/js/jquery.core.js"></script>
+    <script src="/components/js/jquery.app.js"></script>
 
     <script>
         // noinspection JSUnresolvedFunction
@@ -107,11 +109,11 @@
         $('.encounter-page-send-chat').submit(function(e){
             e.preventDefault();
             let user =  $("#username").text(); //$('#encounter-page-send-message').data('sender-user');
-            let message = $('#encounter-page-send-message').val();
+            let message = $('.encounter-page-send-message').val();
 
             //-- emit --send message
             socket.emit('chat message',{from: auth_user, to: user, message : message });
-            $('#encounter-page-send-message').val('');
+            $('.encounter-page-send-message').val('');
             return false;
         });
 
@@ -122,7 +124,6 @@
         });
 
     </script>
-
 
 </body>
 
