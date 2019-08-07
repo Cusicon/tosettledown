@@ -10,6 +10,7 @@ const EncounterController = class EncounterController{
     User.find((err, users) => {
       if (err) throw err;
       else {
+        console.log(users);
         res.render('./app/menu/encounters', {
           title: "Encounters",
           users: users.sort(() => Math.random() - 0.5) // Shuffle the array

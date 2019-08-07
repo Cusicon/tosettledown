@@ -108,11 +108,6 @@ function encounterDisplayingAndShuffling() {
                 "href": `/app/profile/${username}`
             });
         }
-
-
-
-
-
     }
     displayUserDetails();
 }

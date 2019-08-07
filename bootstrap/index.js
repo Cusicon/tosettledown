@@ -66,13 +66,32 @@ module['exports'] = class Bootstrap {
     initHttp()
     {
         this.app = express();
+        this.http = require('http').createServer(this.app);
+        this.io = require('socket.io')(this.http);
+
+        this.io.on('connection', (socket) => {
+
+            //-- on listen to message from channel
+            socket.on('chat message', (msg) => {
+                console.log('message: ' + msg.user);
+
+                console.log(msg.user);
+            // <%= user.username %>-message
+                this.io.emit(msg.to, msg);
+            });
+
+
+
+            console.log('a user connected');
+        });
+
         this.requireAllImportantModules();
         this.registerGlobalMiddleware();
         this.registerFacade();
         this.register();
         this.registerRoutes();
         this.registerExceptionHandler();
-        return this.app;
+        return this.http;
     }
 
     initConsole()
