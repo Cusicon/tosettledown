@@ -3,7 +3,6 @@
     this.onload = ((e) => {
         var styleLink = document.getElementById("styleLink");
         styleLink.setAttribute('href', "");
-        console.log(styleLink);
     });
 </script>
 <div class="body">
@@ -93,8 +92,8 @@
                     <div class="form-row align-items-center">
                         <!-- DOB -->
                         <div class="col-md-7 col-sm-6 col-auto mb-3">
-                            <input type="date" name="dob" id="dob" min="<%= new Date().getFullYear() - 18 %>-01-02"
-                                max="<%= new Date().getFullYear() - 40 %>-12-31" class="form-control" required>
+                            <input type="date" name="dob" id="dob" max="<%= new Date().getFullYear() - 18 %>-01-31"
+                                min="<%= new Date().getFullYear() - 40 %>-12-31" class="form-control" required>
                         </div>
                         <!-- Gender -->
                         <div class="col-md-5 col-sm-6 col-auto mb-3">
@@ -112,7 +111,7 @@
                 <div class="regFoot">
                     <div class="form-group">
                         <button type="submit" id="submitForm"
-                            class="form-control btn waves-effect waves-light btn-success text-light"
+                            class="form-control btn waves-effect waves-light bg-success text-light"
                             style="padding: 20px !important; margin-bottom: 5px;" aria-describedby="submitFormHelp">Sign
                             up with Tosettledown (TSD)</button>
                         <small id="submitFormHelp" class="form-text text-muted">By clicking
@@ -176,7 +175,7 @@
                     <div class="loginFoot">
                         <div class="form-group">
                             <button type="submit"
-                                class="form-control btn waves-effect waves-light btn-success text-light"
+                                class="form-control btn waves-effect waves-light bg-success text-light"
                                 style="padding: 15px !important;">Sign in</button>
                         </div>
                     </div>

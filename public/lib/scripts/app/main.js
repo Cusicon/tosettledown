@@ -85,33 +85,47 @@ function encounterDisplayingAndShuffling() {
         activeProfileClass();
     }
 
+    function getUsersDetails() {
+        $.ajax({
+            url: "/app/encounters/getUsers",
+            method: "GET",
+            success: (users) => {
+                var usersDetails = users;
+                console.log(usersDetails);
+
+            },
+            
+        });
+    }
+
     function displayUserDetails() {
-        if (location.href.includes("encounters")) {
-            var detailsCon = $(".detailsCon");
+        if (location.href.toLowerCase().includes("encounters")) {
             var activeUserValue;
             activeUserValue = activeProfileClass().context.dataset; // collected all value from the active user.
             // Assign values to the variables
             var fullname = activeUserValue.fullname;
             var username = activeUserValue.username;
             var age = activeUserValue.age;
-            // var bio = activeUserValue.personalInfo.bio;
-            // var height = activeUserValue.personalInfo.height;
-            // var language = activeUserValue.personalInfo.language;
-            // var location = activeUserValue.personalInfo.location;
-            // var userDirectoriesLocation = activeUserValue.userDirectoriesLocation;
+            var bio = activeUserValue.bio;
+            var height = activeUserValue.height;
+            var language = activeUserValue.language;
+            var _location = activeUserValue.location;
+            var userDirectorieslocation = activeUserValue.userDirectorieslocation;
 
             // Assign variables to html tags
-            $("span#fullname" || "#fullname").text(`${fullname}`);
+            $("span#fullname").text(`${fullname}`);
             $("#age").text(`${age}`);
             $("#username").text(`@${username}`).attr({
                 "title": `Visit ${fullname}'s profile`,
                 "href": `/app/profile/${username}`
             });
+            $("#bio").html(`${bio}`);
+            $("#height").html(`${height}`);
+            $("#language").html(`${language}`);
+            $("#location").html(`${_location}`);
+            // console.log(`Values: \nBio: ${bio}\nHeight: ${height}\nLanguage: ${language}\n location: ${_location}`);
         }
-
-
-
-
+        getUsersDetails();
 
     }
     displayUserDetails();

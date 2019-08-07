@@ -16,7 +16,7 @@
         <div class="profileCon" id="profileCon">
             <div class="profileSection">
                 <a href="/app/profile/<%= user.username %>" class="activeProfile hasStories" title="See your profile...">
-                    <div class="profileImg" style="background-image: url('/lib/img/assets/reduced/<%= user.gender %>.png');"></div>
+                    <div class="profileImg image" style="background-image: url('<%= user.dp || new String(`/lib/img/assets/reduced/${user.gender}.png`) %>');"></div>
                 </a>
                 <ul>
                     <li id="_fullname">

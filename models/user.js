@@ -108,7 +108,7 @@ module.exports.createUser = function (newUser, callback) {
             bcrypt.hash(newUser.password, salt, (err, hash) => {
                 newUser.password = hash;
                 newUser.userDirectoriesLocation = createUserDirectory(newUser.username, newUser._id);
-                newUser.dob.age = getAge(newUser.dob.age);
+                newUser.dob.age = typeof getAge(newUser.dob.age).year != 'undefined' ? getAge(newUser.dob.age).year : '';
                 newUser.save(callback);
             });
         }
@@ -143,11 +143,11 @@ module.exports.createUser = function (newUser, callback) {
 
             // now the maths...
             var result = {
-                year: currentDate.year - dobArrObj.year || null,
-                month: currentDate.month - dobArrObj.month || null,
-                day: currentDate.day - dobArrObj.day || null
+                year: currentDate.year - dobArrObj.year || '',
+                month: currentDate.month - dobArrObj.month || '',
+                day: currentDate.day - dobArrObj.day || ''
             };
         }
-        return result.year;
+        return result;
     }
 };

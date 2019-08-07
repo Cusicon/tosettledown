@@ -130,8 +130,10 @@ app.get('/', (req, res) => {
 global.User;
 app.get("*", (req, res, next) => {
   User = req.user || null;
-  res.locals.user = req.user || null;
-  res.locals.url = req.originalUrl || null;
+  if (User) {
+    res.locals.user = req.user || null;
+    res.locals.url = req.originalUrl || null;
+  }
   next();
 });
 
@@ -140,8 +142,8 @@ app.get("*", (req, res, next) => {
 app.get("/app/*", (req, res, next) => {
   if (!User) {
     // Sign Out
-    res.location("/auth/0/signin/out");
-    res.redirect("/auth/0/signin/out");
+    res.location("/#loginForm");
+    res.redirect("/#loginForm");
   } else {
     userLog(`"${User.username || null}" is active`);
   }
@@ -153,8 +155,8 @@ app.get("/app/*", (req, res, next) => {
 app.post("/app/*", (req, res, next) => {
   if (!User) {
     // Sign Out
-    res.location("/auth/0/signin/out");
-    res.redirect("/auth/0/signin/out");
+    res.location("/#loginForm");
+    res.redirect("/#loginForm");
   } else {
     userLog(`"${User.username || null}" is active`);
   }
@@ -197,15 +199,17 @@ app.use(function (req, res, next) {
 
 //-- Error handler
 app.use(function (err, req, res, next) {
+  // if (User) {
   //- set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
   //- render the error page
   res.status(err.status || 500);
+  // res.redirect('/'); // Use this when deployed..!
   res.render('./error/404', {
     title: "Error"
   });
+  // }
 });
 
 // ## SERVER LISTENING

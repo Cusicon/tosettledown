@@ -138,7 +138,7 @@
                             <div id="profileImg" style="background-image: url('/lib/img/assets/reduced/user.png');">
                             </div>
                             <div id="username" class="text-dark">
-                                <%= typeof profile_user.fullname.firstname != 'undefined' ? profile_user.fullname.firstname : null %>
+                                <%= typeof profile_user.fullname.firstname != 'undefined' ? profile_user.fullname.firstname : '' %>
                                 <small id="typing" class="orange-color hide">typing...</small>
                             </div>
                         </div>
@@ -162,7 +162,7 @@
                                         <a href="#">Delete conversation</a>
                                         <a href="#" class="color">Block or Report</a>
                                         <div class="separator"></div>
-                                        <a href="/app/profile/<%= typeof profile_user.username != 'undefined' ? profile_user.username : null %>"
+                                        <a href="/app/profile/<%= typeof profile_user.username != 'undefined' ? profile_user.username : '' %>"
                                             class="dropdownBottom" style="color: #000;">
                                             View profile
                                             <span class="typcn typcn-user float-right"></span>

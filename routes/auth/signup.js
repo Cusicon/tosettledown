@@ -17,6 +17,13 @@ router.post("/", (req, res) => {
         var email = req.body.email.trim().toLowerCase();
         var password = req.body.password.trim();
         var dob = req.body.dob;
+        var bio = "Hey there, I'm here to find love on TSD";
+        var language = "English";
+        var height = "";
+        var religion = "";
+        var location = "";
+        var work = "";
+        var education = "";
         var gender = req.body.gender;
         var agreed_terms = true;
         var joined = new Date().toDateString();
@@ -41,20 +48,29 @@ router.post("/", (req, res) => {
             //-- Add values to "Model's(User)" parameters 
             var newUser = new User({
                 fullname: {
-                    firstname: fullname.split(" ")[0] || null,
-                    lastname: fullname.split(" ")[1] || null,
+                    firstname: fullname.split(" ")[0] || '',
+                    lastname: fullname.split(" ")[1] || '',
                     all: fullname
                 },
-                username: username || null,
-                email: email || null,
-                password: password || null,
+                username: username || '',
+                email: email || '',
+                password: password || '',
                 dob: {
-                    date: dob || null,
-                    age: dob || null
+                    date: dob || '',
+                    age: dob || ''
                 },
-                gender: gender || null,
-                agreed_terms: agreed_terms || null,
-                joined: joined || null
+                gender: gender || '',
+                agreed_terms: agreed_terms || '',
+                joined: joined || '',
+                personalInfo: {
+                    bio: bio,
+                    height: height,
+                    language: language,
+                    religion: religion,
+                    location: location,
+                    work: work,
+                    education: education
+                }
             });
 
             //-- Check if username exist? else continue process...
