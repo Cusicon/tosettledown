@@ -30,8 +30,6 @@ module['exports'] = mongoose.model( "Users",
         userDirectoriesLocation: String,
         settlesBalance: String,
         dp: String,
-        email_verified_at: {
-            type : Date, default: null
-        }
+        email_verified_at: {type : Date, default: null}
     })
 );
