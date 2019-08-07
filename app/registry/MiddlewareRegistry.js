@@ -9,9 +9,7 @@ module["exports"] = {
         require("express").json(), //-- use express.json
         require("express").urlencoded({extended: false}), //-- use express.urlencoded
         require("express").static( public_path()), //-- set public static directory
-        //-- Express-session Middleware
-        require("express-session")({secret: config('app', 'key'), resave: true, saveUninitialized: true}),
-        //-- Passport Middlewares
+        require("express-session")({secret: config('app', 'key'), resave: true, saveUninitialized: true}),//-- Express-session Middleware
         require("passport").initialize(),
         require("passport").session(),
         require("passport").authenticate('remember-me'), //-- Passport RememberMe Middleware

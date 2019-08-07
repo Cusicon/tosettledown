@@ -1,3 +1,3 @@
 module["exports"] = {
-    'url': require('@bootstrap/Helper/Url'),
+    'Url': require('@bootstrap/Helper/Url'),
 };

@@ -9,8 +9,7 @@ const passport = require("passport/lib");
 router.get("/signin", (req, res) => req.user ? res.redirect("/app/encounters") : res.redirect('/'));
 
 //-- LOCAL sign in
-router.post("/signin",
-    passport.authenticate("local", {
+router.post("/signin", passport.authenticate("local", {
         successRedirect: `/app/encounters`,
         failureRedirect: "/#loginForm",
         failureFlash: "Invalid username or password"

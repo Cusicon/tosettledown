@@ -1,6 +1,6 @@
 module["exports"] = class LoginController{
 
-    static login(req, res)
+    static login(req, res, next)
     {
         if (req.body.remember) {
             req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000; //-- Cookie expires after 30 days

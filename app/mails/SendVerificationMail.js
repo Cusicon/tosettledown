@@ -10,7 +10,7 @@ module["exports"] = class SendVerificationMail extends Mailer{
 
     buildUrl()
     {
-        this.notifiable.tempUrl = url.temporaryUrl(`auth/0/verify/${this.notifiable._id}`, Date.now());
+        this.notifiable.tempUrl = Url.temporaryUrl(`auth/0/verify/${this.notifiable._id}`, Date.now());
     }
 
     send()
