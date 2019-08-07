@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a8770b3a-089e-4276-ad59-11880f2a7481" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exception/Handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exception/Handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/EncounterController.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/EncounterController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lib/scripts/app/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/scripts/app/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/server.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/server.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/userActivity.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/userActivity.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/app/menu/encounters.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/app/menu/encounters.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/app/partials/dynamicInput.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/app/partials/dynamicInput.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/layout.html" afterDir="false" />
-    </list>
+    <list default="true" id="a8770b3a-089e-4276-ad59-11880f2a7481" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -392,16 +379,15 @@
       <workItem from="1565026050140" duration="32140000" />
       <workItem from="1565083618818" duration="15174000" />
       <workItem from="1565120441082" duration="9111000" />
-      <workItem from="1565129587320" duration="11590000" />
+      <workItem from="1565129587320" duration="11708000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134061000" />
+    <option name="totallyTimeSpent" value="134179000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1600" height="851" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4992908" visible="true" weight="0.2052767" />
       <window_info id="Structure" order="1" sideWeight="0.50070924" side_tool="true" weight="0.18642993" />
