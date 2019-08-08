@@ -1,20 +1,5 @@
-// Export CardSchema
-const Card = require('@schema/CardSchema');
+const Model = require('@schema/CardSchema').model;
 
-module.exports = Card;
+module["exports"] = class Card extends Model{
 
-//-- GetCardById
-module.exports.getCardById = function (id, callback) {
-    Card.findById(id, callback);
 };
-
-//-- GetCardByCardname
-module.exports.getCardByCardname = function (username, callback) {
-    var query = {
-        username: username
-    };
-    Card.findOne(query, callback);
-};
-
-//-- CreateCard
-module.exports.createCard = function (newCard, callback) {};

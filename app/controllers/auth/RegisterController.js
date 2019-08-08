@@ -13,16 +13,6 @@ module['exports'] = class RegisterController {
             let email = req.body.email.trim().toLowerCase();
             let password = req.body.password.trim();
             let dob = req.body.dob;
-
-            let bio = "Hey there, I'm here to find love on TSD";
-            let language = "English";
-            let height = "";
-            let religion = "";
-            let location = "";
-            let work = "";
-            let education = "";
-
-
             let gender = req.body.gender;
             let agreed_terms = true;
             let joined = new Date().toDateString();
@@ -46,29 +36,16 @@ module['exports'] = class RegisterController {
             } else {
                 //-- Add values to "Model's(User)" parameters
                 let newUser = new User({
-                    fullname: {
-                        firstname: fullname.split(" ")[0] || '',
-                        lastname: fullname.split(" ")[1] || '',
-                        all: fullname
-                    },
+                    name: fullname || '',
                     username: username || '',
                     email: email || '',
                     password: password || '',
-                    dob: {
-                        date: dob || '',
-                        age: dob || ''
-                    },
+                    dob: dob,
                     gender: gender || '',
-                    agreed_terms: agreed_terms || '',
-                    joined: joined || '',
+                    agreed_terms: agreed_terms,
+                    joined: joined,
                     personalInfo: {
-                        bio: bio,
-                        height: height,
-                        language: language,
-                        religion: religion,
-                        location: location,
-                        work: work,
-                        education: education
+                        bio: "Hey there, I'm here to find love on TSD",
                     }
                 });
 

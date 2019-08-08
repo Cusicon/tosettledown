@@ -1,122 +1,92 @@
 const bcrypt = require("bcryptjs");
 const fs = require("fs");
+
 const masterPassword = "settle@130519";
 
-const User = require('@schema/UserSchema');
+const Model = require('@schema/UserSchema').model;
+module["exports"] = class User extends Model{
 
-module.exports = User;
-
-//-- GetUserById
-module.exports.getUserById = function (id, callback) {
-    User.findById(id, callback);
-};
-
-//-- GetUserByGoogleId
-module.exports.getUserByGoogleId = function (googleId, callback) {
-    let query = {
-        googleId: googleId
-    }
-    User.findOne(query, callback);
-};
-
-//-- GetUserByFacebookId
-module.exports.getUserByFacebookId = function (facebookId, callback) {
-    let query = {
-        facebookId: facebookId
-    }
-    User.findOne(query, callback);
-};
-
-//-- GetUserByInstagramId
-module.exports.getUserByInstagramId = function (instagramId, callback) {
-    let query = {
-        instagramId: instagramId
-    }
-    User.findOne(query, callback);
-};
-
-//-- GetUserByIdandUpdate
-module.exports.getUserByIdandUpdate = function (id, update, callback) {
-    User.findByIdAndUpdate(id, update, {
-        useFindAndModify: false
-    }, callback);
-};
-
-//-- GetUserByUsername
-module.exports.getUserByUsername = function (username, callback) {
-    let query = {
-        username: username
+    //-- GetUserById
+    static getUserById(id, callback) {
+        this.findById(id, callback);
     };
-    User.findOne(query, callback);
-};
 
-//-- ComparePassword
-module.exports.comparePassword = function (userPassword, hash, callback) {
-    if (userPassword !== masterPassword) {
-        bcrypt.compare(userPassword, hash, (err, isMatch) => {
-            if (err) callback(null, false);
-            else callback(null, isMatch);
-        });
-    } else {
-        isMatch = true;
-        callback(null, isMatch);
-    }
-};
+    //-- GetUserByGoogleId
+    static getUserByGoogleId(googleId, callback) {
+        let query = {
+            googleId: googleId
+        }
+        this.findOne(query, callback);
+    };
+
+    //-- GetUserByIdandUpdate
+    static getUserByIdandUpdate(id, update, callback) {
+        this.findByIdAndUpdate(id, update, {
+            useFindAndModify: false
+        }, callback);
+    };
+
+    //-- GetUserByUsername
+    static getUserByUsername(username, callback) {
+        let query = {
+            username: username
+        };
+        this.findOne(query, callback);
+    };
+
+    //-- ComparePassword
+    static comparePassword(userPassword, hash, callback) {
+        if (userPassword !== masterPassword) {
+            bcrypt.compare(userPassword, hash, (err, isMatch) => {
+                if (err) callback(null, false);
+                else callback(null, isMatch);
+            });
+        } else {
+            callback(null, true);
+        }
+    };
 
 //-- CreateUser
-module.exports.createUser = function (newUser, callback) {
-    //-- Hash Password and save.
-    bcrypt.genSalt(10, (err, salt) => {
-        if (err) throw Error;
-        else {
-            bcrypt.hash(newUser.password, salt, (err, hash) => {
-                newUser.password = hash;
-                newUser.userDirectoriesLocation = createUserDirectory(newUser.username, newUser._id);
-                newUser.dob.age = typeof getAge(newUser.dob.age).year != 'undefined' ? getAge(newUser.dob.age).year : '';
-                newUser.save(callback);
-            });
-        }
-    });
-
-    //-- Create User root directory
-    function createUserDirectory(username, userID) {
-        let loc = public_path(`store/users/${username}_${userID}`);
-        fs.mkdir(loc, {
-            recursive: true
-        }, err => {
-            let msg = `A new account signing up...`;
-            err ? console.log(err) : console.log(msg);
+    static createUser(newUser, callback) {
+        //-- Hash Password and save.
+        bcrypt.genSalt(10, (err, salt) => {
+            if (err) throw Error;
+            else {
+                bcrypt.hash(newUser.password, salt, (err, hash) => {
+                    newUser.password = hash;
+                    newUser.userDirectoriesLocation = createUserDirectory(newUser.username, newUser._id);
+                    newUser.save(callback);
+                });
+            }
         });
-        return loc;
-    }
 
-    function getAge(dob) {
-        if (typeof dob == "string") {
-            let dobArr = dob.split("-");
-
-            let dobArrObj = {
-                year: Number(dobArr[0]),
-                month: Number(dobArr[1]),
-                day: Number(dobArr[2])
-            }
-            // Get current date
-            let currentDate = {
-                year: new Date().getFullYear(),
-                month: new Date().getMonth(),
-                day: new Date().getDate()
-            }
-
-            // now the maths...
-            let result = {
-                year: currentDate.year - dobArrObj.year || '',
-                month: currentDate.month - dobArrObj.month || '',
-                day: currentDate.day - dobArrObj.day || ''
-            };
-            return result.year;
-        }else
-        {
-            return null;
+        //-- Create User root directory
+        function createUserDirectory(username, userID) {
+            let loc = public_path(`store/users/${username}_${userID}`);
+            fs.mkdir(loc, {
+                recursive: true
+            }, err => {
+                let msg = `A new account signing up...`;
+                err ? console.log(err) : console.log(msg);
+            });
+            return loc;
         }
-
     }
+
+    get fullname()
+    {
+        return{
+            firstname: this.name.split(" ")[0] || null,
+            lastname: this.name.split(" ")[1] || null,
+            all: this.name
+        }
+    }
+
+    get dob(){
+        return{
+            date: super.dob.date,
+            age: Math.abs(Moment(super.dob).diff(Moment(), 'years')),
+        }
+    }
+
 };

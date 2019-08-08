@@ -63,11 +63,11 @@
                                                             <h5 style="font-weight: lighter;">
                                                                 Fullname</h5>
                                                             <input type="text" name="fullname" class="form-control"
-                                                                placeholder="<%= profile_user.fullname.all %>">
+                                                                placeholder="Enter Your Fullname" value="<%= profile_user.fullname.all %>">
                                                             <h5 style="font-weight: lighter;">
                                                                 Bio</h5>
                                                             <textarea type="text" name="bio" class="form-control"
-                                                                placeholder="<%= profile_user.personalInfo.bio || 'Enter Bio here...' %>"></textarea>
+                                                                placeholder="Enter Bio here..."><%= profile_user.personalInfo.bio || '' %></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -77,20 +77,20 @@
                                                         <h5 style="font-weight: lighter;">
                                                             Location</h5>
                                                         <input type="text" name="location" class="form-control"
-                                                            placeholder="<%= profile_user.personalInfo.location || 'Location Here...' %>"">
+                                                            placeholder="Location Here..." value="<%= profile_user.personalInfo.location || '' %>">
                                                     </div>
                                                     <div class=" form-group">
                                                         <h5 style="font-weight: lighter;">
                                                             Work & Occupation
                                                         </h5>
                                                         <input type="text" name="work" class="form-control"
-                                                            placeholder="<%= profile_user.personalInfo.work || 'Work Here...' %>"">
+                                                            placeholder="Work Here..." value="<%= profile_user.personalInfo.work || '' %>">
                                                     </div>
                                                     <div class=" form-group">
                                                         <h5 style="font-weight: lighter;">
                                                             Education</h5>
                                                         <input type="text" name="education" class="form-control"
-                                                            placeholder="<%= profile_user.personalInfo.education || 'Education Here...' %>"">
+                                                            placeholder="Education Here..." value="<%= profile_user.personalInfo.education || '' %>">
                                                     </div>
                                                 </div>
                                                 <div class=" editProfileRight col-md-4">
@@ -98,18 +98,17 @@
                                                         <div class="editPersonalInfo form-group">
                                                             <div class="form-group">
                                                                 <input type="text" name="height" class="form-control"
-                                                                    placeholder="<%= profile_user.personalInfo.height || 'Your height'%>">
+                                                                    placeholder="Your height" value="<%= profile_user.personalInfo.height || ''%>">
                                                             </div>
                                                             <div class="form-group">
                                                                 <input type="text" name="language" class="form-control"
-                                                                    placeholder="<%= profile_user.personalInfo.language || 'What do you speak?' %>">
+                                                                    placeholder="What do you speak?" value="<%= profile_user.personalInfo.language || '' %>">
                                                             </div>
                                                             <div class="form-group">
                                                                 <select name="religion" id="religion"
                                                                     class="form-control">
                                                                     <option label="Your religion"></option>
-                                                                    <option value="christianity">Christianity
-                                                                    </option>
+                                                                    <option value="christianity">Christianity</option>
                                                                     <option value="islam">Islam</option>
                                                                     <option value="others">Others</option>
                                                                 </select>

@@ -4,7 +4,6 @@ const RememberMeStrategy = require('passport-remember-me/lib').Strategy;
 const LocalStrategy = require('passport-local/lib').Strategy;
 const GoogleStrategy = require('passport-google-oauth20/lib').Strategy;
 
-// ## MODELS
 const User = require('@models/user');
 
 
@@ -57,39 +56,40 @@ passport.use(new LocalStrategy({
 //-- GOOGLE STRATEGY
 passport.use(
     new GoogleStrategy({
-        clientID: config('services',(items)=>{return items.google.clientID}),
-        clientSecret: config('services',(items)=>{return items.google.clientSecret}),
+        clientID: config('services',(items)=>{return items.google.client_id}),
+        clientSecret: config('services',(items)=>{return items.google.client_secret}),
         callbackURL: '/auth/0/signin/google/return'
     }, (accessToken, refreshToken, profile, done) => {
         process.nextTick(() => {
             let googleId = profile.id;
-            let fullname = {
-                firstname: profile.displayName.split(" ")[0] || '',
-                lastname: profile.displayName.split(" ")[1] || '',
-                all: profile.displayName
-            };
+            let name = profile.displayName;
             let username = uniq.time(profile.name.givenName.toLowerCase());
             let password = uniq.time();
             let agreed_terms = true;
             let profileImage = profile._json.picture;
+
             let joined = new Date().toDateString();
+
             //-- Create User
             User.getUserByGoogleId(googleId, (err, user) => {
                 if (err) throw err;
                 else {
-                    if (user) { //-- if user exists go to [encounters]
+                    if (user)
+                    {
                         userLog(`"${user.username}" signed in via Google...`);
                         done(null, user);
-                    } else { //-- else create user and go to [encounters]
+                    } else {
+                        //-- else create user and go to [encounters]
                         //-- Add values to "Model's(User)" parameters 
                         let newUser = new User({
                             googleId: googleId || '',
-                            fullname: fullname || '',
+                            name: name || '',
                             username: username || '',
                             password: password || '',
                             agreed_terms: agreed_terms || '',
                             dp: profileImage || '',
-                            joined: joined || ''
+                            joined: joined || '',
+                            email_verified_at: new Date().toDateString(),
                         });
                         User.createUser(newUser, (err, user) => {
                             if (err) throw err;

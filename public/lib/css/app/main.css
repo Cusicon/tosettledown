@@ -568,8 +568,8 @@ a:active {
 /* StatusBar */
 
 .statusBar {
-  height: 360px;
-  /* overflow: hidden; */
+  height: 500px;
+  overflow: overlay;
   margin-left: 20px;
   padding: 10px;
 }

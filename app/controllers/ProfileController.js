@@ -24,11 +24,7 @@ module["exports"] = class ProfileController{
             else {
                 let id = profile_user.id;
                 User.getUserByIdandUpdate(id, {
-                    fullname: {
-                        firstname: req.body.fullname.split(" ")[0],
-                        lastname: req.body.fullname.split(" ")[1],
-                        all: req.body.fullname
-                    },
+                    name : req.body.fullname,
                     personalInfo: {
                         bio: req.body.bio.trim() || '',
                         location: req.body.location.trim() || '',

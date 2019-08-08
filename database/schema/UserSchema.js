@@ -1,37 +1,48 @@
 const mongoose = require("mongoose");
+const media_schema = require('@schema/MediaSchema').schema;
+const card_schema = require('@schema/CardSchema').schema;
+const like_schema = require('@schema/LikeSchema').schema;
+const match_schema = require('@schema/MatchSchema').schema;
+const visitor_schema = require('@schema/VisitorSchema').schema;
+const favourite_schema = require('@schema/FavouriteSchema').schema;
 
-module['exports'] = mongoose.model( "Users",
-    mongoose.Schema({
+
+let user_schema = mongoose.Schema({
         googleId: String,
-        fullname: {
-            firstname: String,
-            lastname: String,
-            all: String
-        },
+        name: String,
         username: String,
-        email: String,
-        password: String,
-        dob: {
-            date: String,
-            age: String
-        },
+        email: {type:String, default: null},
+        password: {type:String, default: null},
+        dob: {type : Date, default: null},
         gender: String,
+        avatar: {type:String, default: null},
+
         agreed_terms: Boolean,
-        joined: String,
-        personalInfo: {
-            bio: String,
-            height: String,
-            language: String,
-            religion: String,
-            location: String,
-            work: String,
-            education: String
-        },
         userDirectoriesLocation: String,
         settlesBalance: String,
-        dp: String,
-        email_verified_at: {type : Date, default: null},
-        media:[],
 
-    })
-);
+
+        email_verified_at: {type : Date, default: null},
+        joined: {type: Date, default: new Date()},
+
+        personalInfo: {
+            bio: {type: String, default: null},
+            height: {type: String, default: null},
+            language: {type: String, default: null},
+            religion: {type: String, default: null},
+            location: {type: String, default: null},
+            work: {type: String, default: null},
+            education: {type: String, default: null}
+        },
+        medias:[media_schema],
+        cards: [card_schema],
+        likes: [like_schema],
+        matches: [match_schema],
+        visitors: [visitor_schema],
+        favourites: [favourite_schema],
+
+    });
+
+
+module['exports'].schema = user_schema;
+module['exports'].model = mongoose.model( "Users", user_schema);
