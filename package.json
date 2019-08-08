@@ -13,7 +13,6 @@
     "crypt": "^0.0.2",
     "dotenv": "^8.0.0",
     "ejs": "^2.5.7",
-    "env2": "^2.2.2",
     "express": "^4.16.4",
     "express-ejs-layouts": "^2.5.0",
     "express-form": "^0.12.6",

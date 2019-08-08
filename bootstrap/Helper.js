@@ -56,7 +56,20 @@ global["applyMiddleware"] = (middleware) => {
 };
 
 global["get_env"] = (env_name, default_value = null) => {
-    return process.env[env_name] || default_value;
+    // noinspection EqualityComparisonWithCoercionJS
+    if(process.env[env_name] == "false") {
+        return false || default_value;
+    }
+    else { // noinspection EqualityComparisonWithCoercionJS
+        if(process.env[env_name] == "true")
+        {
+            return true || default_value;
+        }
+        else
+        {
+            return process.env[env_name] || default_value;
+        }
+    }
 };
 
 global['config'] = (fileName, configVar, defaultVar) => {
