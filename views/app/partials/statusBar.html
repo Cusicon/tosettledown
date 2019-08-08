@@ -1,14 +1,16 @@
 <div class="statusBar col-lg-1 col-md-1 col-sm-12">
     <ul>
         <% if(typeof users != 'undefined'){ 
+            users = users.reverse();
             users.forEach(_user => { 
                 if(_user.username != user.username){ 
                     if(_user.gender != user.gender){ %>
         <li>
-            <a href="javascript: void(0);" data-username="<%= _user.username %>" data-fullname="<%= _user.fullname.firstname %>"
-                data-age="<%= _user.dob.age %>" data-userImages="<%= _user.userDirectoriesLocation %>"
-                data-bio="<%= _user.personalInfo.bio %>" data-height="<%= _user.personalInfo.height %>"
-                data-language="<%= _user.personalInfo.language %>" data-location="<%= _user.personalInfo.location %>">
+            <a href="javascript: void(0);" class="activeProfile" data-username="<%= _user.username %>"
+                data-fullname="<%= _user.fullname.firstname %>" data-age="<%= _user.dob.age %>"
+                data-userImages="<%= _user.userDirectoriesLocation %>" data-bio="<%= _user.personalInfo.bio %>"
+                data-height="<%= _user.personalInfo.height %>" data-language="<%= _user.personalInfo.language %>"
+                data-location="<%= _user.personalInfo.location %>">
                 <div class="image"
                     style="background-image: url('<%= _user.dp || new String(`/lib/img/assets/reduced/${_user.gender}.png`) %>');">
                 </div>

@@ -10,4 +10,5 @@ let app = new Bootstrap(__dirname).initHttp();
 
 app.listen(config('app','port','3020'), () => {
     console.log(`Server listening at port: ${config('app','port','3020')}`)
+
 });

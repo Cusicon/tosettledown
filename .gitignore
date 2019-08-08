@@ -1,8 +1,6 @@
 .idea/*
-config/keys.js
 storage/logs/*
 public/store
 node_modules
-public/components/emoticon/png
-public/components/emoticon/sprites/*.png
 .env
+yarn.lock
