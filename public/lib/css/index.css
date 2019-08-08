@@ -34,7 +34,7 @@ button:hover,
 input[type="submit"]:hover,
 a[role="button"]:hover {
   color: #fff;
-  transform: scale(1.05);
+  background-color: #ff6877cc;
 }
 
 button:focus,

@@ -101,9 +101,7 @@
   border-radius: 10px;
   box-shadow: -2px 5px 20px #00000044;
   font-size: 14px;
-  top: -0px;
   right: -15px;
-  z-index: 5;
 }
 
 .dropdownContent div.separator {
@@ -124,7 +122,7 @@
 
 .dropdownContent a:hover {
   color: #0f0f0f;
-  background-color: #f2f2f2;
+  background-color: #f9f9f9;
 }
 
 .btn {
@@ -148,7 +146,6 @@ a.activeProfile {
   display: inline-block;
   border-radius: 100%;
   padding: 2px;
-  background-color: #eee;
 }
 
 a.activeProfile.hasStories {
@@ -165,7 +162,7 @@ a div.image {
   width: 60px;
   height: 60px;
   border-radius: 100%;
-  background-color: #eee !important;
+  background-color: #eee;
 }
 
 button,
@@ -337,7 +334,7 @@ a:active {
   padding: 0px;
   border-radius: 10px;
   box-shadow: 0px 3px 10px #ddd;
-  min-height: 550px;
+  min-height: 500px;
   overflow: hidden;
 }
 
@@ -549,7 +546,7 @@ a:active {
 
 .mainBody .displayWindow .detailsCon .detailsHeader span {
   font-weight: lighter;
-  /* color: #1a1a1a; */
+  color: #1a1a1a;
 }
 
 .mainBody .displayWindow .detailsCon .bio {
