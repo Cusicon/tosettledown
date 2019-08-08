@@ -2,12 +2,15 @@ module["exports"] = class LoginController{
 
     static login(req, res, next)
     {
-        if (req.body.remember) {
-            req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000; //-- Cookie expires after 30 days
-        } else {
-            req.session.cookie.expires = false; //-- Cookie expires at end of session
-        }
-        res.redirect(`/app/encounters`);
+
+        if (!req.body.remember) { res.redirect(`/app/encounters`); }
+
+        var token = utils.generateToken(64);
+        Token.save(token, { userId: req.user.id }, function(err) {
+            if (err) { return done(err); }
+            res.cookie('remember_me', token, { path: '/', httpOnly: true, maxAge: 30 * 24 * 60 * 60 * 1000 }); // 7 days
+            res.redirect(`/app/encounters`);
+        });
     }
 
     static googleLoginCallback(req, res)
