@@ -1,5 +1,5 @@
 const Model = require('@schema/MatchSchema').model;
 
-module["exports"] = class Card extends Model{
+module["exports"] = class Match extends Model{
 
 };

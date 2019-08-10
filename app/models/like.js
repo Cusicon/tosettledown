@@ -1,5 +1,5 @@
 const Model = require('@schema/LikeSchema').model;
 
-module["exports"] = class Card extends Model{
+module["exports"] = class Like extends Model{
 
 };

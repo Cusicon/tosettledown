@@ -1,5 +1,5 @@
 const Model = require('@schema/PackageSchema').model;
 
-module["exports"] = class Media extends Model{
+module["exports"] = class Package extends Model{
 
 };

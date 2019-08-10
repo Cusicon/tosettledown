@@ -1,16 +1,5 @@
 const mongoose = require("mongoose");
-
-
-// noinspection ES6ModulesDependencies
-let chat_schema = mongoose.Schema({
-    from: {type : String},
-    to: {type : String},
-    format: {type:String, default: null},
-    message: {type: Mixed},
-    sent_at: {type : Date, default: null},
-    delivered_at: {type : Date, default: null},
-    read_at: {type : Date, default: null},
-});
+const chat_schema = require('@schema/ChatSchema').schema;
 
 let meetup_schema = mongoose.Schema({
     user_id: {type : String, },
