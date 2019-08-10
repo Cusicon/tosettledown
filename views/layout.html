@@ -115,14 +115,12 @@
             return false;
         });
 
-        //-- on -- listen for message on channel
+        //-- on -- listen for message on your own channel
         socket.on(auth_user, function(msg){
-
             let options = {
                 body: msg.message, // body part of the notification
                 dir: 'ltr', // use for derection of message
                 icon:'/lib/img/logo/favicon.png' // use for show image
-
             };
 
             var n = new Notification(msg.from, options);
