@@ -1,0 +1,281 @@
+/* GLOBAL */
+
+/* badoo-love-color: #ff661b; */
+/* #006970
+  #ff6878 
+*/
+
+.color {
+  color: #ff6878 !important;
+  /* Pinkish_red */
+}
+
+.orange-color {
+  color: #ff661b;
+  /* Orange */
+}
+
+.bg-color {
+  background-color: #ff6878 !important;
+  color: #fff !important;
+}
+
+.activity_status {
+  position: relative;
+  right: -13px;
+  width: 13px;
+  height: 13px;
+  float: left;
+  border: 1.5px solid #fff;
+  border-radius: 100%;
+}
+
+.is_online {
+  background-color: #32c861 !important;
+}
+
+.is_offline {
+  background-color: #aaa !important;
+}
+
+.borderBottom {
+  padding: 1px;
+  background-color: #ff6878;
+  width: 4%;
+  margin-bottom: 5px;
+}
+
+.badge {
+  padding: 5px 7px;
+  border: 1px solid #ff661b;
+  color: #ff661b;
+  border-radius: 10px !important;
+  font-weight: lighter;
+}
+
+.hide {
+  display: none !important;
+}
+
+.show {
+  display: block !important;
+}
+
+.card {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  color: #303030;
+}
+
+.card #card-handle {
+  background-color: #312f2f44;
+  width: 30%;
+  padding: 2px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  border-radius: 50px;
+}
+
+.card .card-body {
+  padding: 0px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownContent {
+  display: none;
+  position: absolute;
+  /* margin-top: 7px; */
+  padding: 10px 0px;
+  background-color: #fff;
+  min-width: 180px;
+  overflow: auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: -2px 5px 20px #00000044;
+  font-size: 14px;
+  font-weight: lighter;
+  top: -0px;
+  right: -15px;
+  z-index: 5;
+}
+
+.dropdownContent div.separator {
+  margin-bottom: 0px;
+}
+
+.dropdownContent a {
+  display: block;
+  color: #0f0f0f;
+  padding: 5px 20px;
+  text-decoration: none;
+}
+
+.dropdownContent a.dropdownBottom span {
+  font-size: 16px !important;
+}
+
+.dropdownContent a:hover {
+  color: #0f0f0f;
+  background-color: #f2f2f2;
+}
+
+.btn {
+  padding: 10px 15px !important;
+  border-radius: 15px !important;
+  color: unset;
+  font-size: 14px;
+  box-shadow: none !important;
+}
+
+.form-control {
+  padding: 10px 15px !important;
+  border-radius: 15px !important;
+  font-size: 14px;
+  border: none !important;
+  box-shadow: none !important;
+  transition: none !important;
+}
+
+a.activeProfile {
+  display: inline-block;
+  border-radius: 100%;
+  padding: 2px;
+  background-color: #eee;
+}
+
+a.activeProfile.hasStories {
+  background-image: linear-gradient(#006870a2, #ff6878);
+}
+
+a.activeProfile.noStories {
+  background-image: none;
+  background-color: #cecece;
+}
+
+a div.image {
+  border: 2px solid #f6f6f6;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  background-color: #eee !important;
+}
+
+button,
+input[type="submit"],
+a[role="button"] {
+  text-decoration: none;
+  background-color: transparent;
+  color: #ff6878;
+}
+
+button:active,
+input[type="submit"]:active,
+a[role="button"]:active {
+  box-shadow: -0px -5px 10px #0000002a inset !important;
+  transform: scale(0.95);
+}
+
+body {
+  background-color: #f6f6f6;
+  transition: 0.2s linear !important;
+}
+
+*:active,
+*:hover {
+  transition: 0.15s linear !important;
+}
+
+ul {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+}
+
+a {
+  color: #4b4948;
+}
+
+a:hover,
+a:active {
+  color: #ff6878;
+  text-decoration: none;
+}
+
+.activeMenu {
+  font-weight: 500;
+  color: #ff6878;
+}
+
+div.separator {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 0.5px solid #eee;
+}
+
+
+
+body {
+  padding: 0px;
+}
+
+* {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+*::-moz-selection {
+  color: #ffffff;
+  background-color: #ff6878;
+}
+
+/*noinspection CssInvalidPseudoSelector*/
+*::-webkit-selection {
+  color: #ffffff;
+  background-color: #ff6878;
+}
+
+*::selection {
+  color: #ffffff;
+  background-color: #ff6878;
+}
+
+*::-webkit-scrollbar {
+  width: 2px;
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  width: 1.5% !important;
+  border-radius: 5px !important;
+  background: #1d1c1d85;
+  cursor: default;
+  outline: none;
+  z-index: 1;
+}
+
+.row {
+  padding: 0px !important;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+
+
+
+
+/* ANIMATIONS */
+
+/* END OF ANIMATIONS */
+
+/* END OF GLOBAL */
+

@@ -1,11 +1,10 @@
-<link rel="stylesheet" href="/lib/css/index.css">
-<script>
-    this.onload = ((e) => {
-        var styleLink = document.getElementById("styleLink");
-        styleLink.setAttribute('href', "");
-        console.log(styleLink);
-    });
-</script>
+<% layout('auth/layout/auth.html') -%>
+
+<!-- Call Page Style Tag Here -->
+<% stylesheet('/lib/css/auth/index.css') -%>
+<!-- Call Style Script Tag Here -->
+<% script('/lib/scripts/auth/index.js') -%>
+
 <div class="body">
     <!-- Welcome Page -->
     <section class="Frame row">
@@ -184,11 +183,24 @@
                 <br><br>
             </form>
             <!-- END OF SIGN IN -->
-
+<!--            footer-->
             <footer class="footer text-muted float-right" style="padding: 10px; padding-right: 40px;">
-                <!-- Footer -->
-                <%- include('app/partials/footer.html'); %>
+                <br>
+                <footer class="footer text-muted float-right" style="border: none; left: unset;">
+                    <small>All right reserved, &copy; <%= new Date().getFullYear() %> <b class="text-dark">Tosettledown (TSD), Inc.</b></small>
+                </footer>
+                <br><br>
+
+
+                <!-- Authors -->
+                <div id="abramham_lincoln1" class="authors" data-author="abramham lincoln"></div>
+                <!-- Quotes -->
+                <div id="abramham_lincoln2" class="authors" data-author="abramham lincoln"></div>
             </footer>
+
+
         </div>
     </section>
 </div>
+
+

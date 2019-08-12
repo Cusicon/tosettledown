@@ -1,145 +1,143 @@
-<section class="windowFrame container row" id="windowFrame">
-    <!-- ProfileBar -->
-    <%- include('../partials/profileBar.html'); %>
-    <!-- MainBody -->
-    <section class="mainBody col-md-9 col-sm-8" id="mainBody">
-        <br>
-        <div class="row">
-            <div class="displayWindow col-md-11 row">
-                <!-- ImageWindow -->
-                <div class="imageWindow col-lg-8 col-md-12 col-sm-12"
-                    style="background-image: url();">
-                    <div class="overlayNav">
-                        <div class="navTop">
-                            <div class="imageCounter float-left">
-                                <p>
-                                    <span id="currentNumber" style="padding-right: 5px;">1</span>/
-                                    <span id="TotalNumber">4</span>
-                                </p>
-                            </div>
-                            <div class="imageCounter reportFlag">
-                                <p>
-                                    <span>
-                                        <a href="#" style="color: #fff;" title="Report this profile">
-                                            <i class="typcn typcn-flag"></i>
-                                        </a>
-                                    </span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="navMiddle">
-                            <div>
-                                <a href="javascript: void(0);" id="previous" title="Previous..." style="float: left;">
-                                    <i class="icon-arrow-left"></i>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="javascript: void(0);" id="next" title="Next..." style="float: right;">
-                                    <i class="icon-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="navBottom">
-                            <center>
-                                <ul>
-                                    <li>
-                                        <a href="javascript: void(0);" id="sendAMessage">
-                                            <i class="typcn typcn-message"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript: void(0);" id="like" style="color: #ff6878 !important;">
-                                            <i class="typcn typcn-heart-full-outline"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript: void(0);" id="skip" style="color: #303030 !important;">
-                                            <i class="typcn typcn-times"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript: void(0);" id="sendCrush">
-                                            <i class="typcn typcn-star"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </center>
-                            <div class="quickMessagePopUp popUp" id="quickMessagePopUp">
-                                <div class="card" style="border: none;">
-                                    <div id="card-handle"></div>
-                                    <section class="card-body">
-                                        <div class="form-group">
-                                            <div class="top">
-                                                <div class="container">
-                                                    <div class="float-right">
-                                                        <a href="javascript: void(0);" id="closeQuickMessagePopUp"
-                                                            style="font-size: 20px;" class="text-dark" title="Close">
-                                                            <i class="typcn typcn-times"></i>
-                                                        </a>
-                                                    </div>
+<% layout('/app/layout/template.html') -%>
 
-                                                    <a href="javascript:void(0);"
-                                                        class="activeProfile hasStories float-left"
-                                                        style="cursor: default; margin-right: 10px;">
-                                                        <div class="profileImg image"
-                                                            style="background-image: url('<%= user.avatar || new String(`/lib/img/assets/reduced/${user.gender}.png`) %>')">
-                                                        </div>
-                                                    </a>
-                                                    <div style="margin-bottom: -10px;">
-                                                        <span>
-                                                            <%= user.fullname.firstname %>
-                                                        </span>
-                                                        <div style="font-size: 12px;" class="text-muted">
-                                                            Start a conversation with <b class="color"><span
-                                                                    id="fullname"></span></b>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="bottom">
-                                                <div style="padding: 0px 20px;" class="pt-2">
-                                                    <%- include('../partials/dynamicInput.html'); %>
-                                                </div>
-                                            </div>
-                                    </section>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="detailsCon col-lg-4 col-md-12 col-sm-12" id="detailsCon">
-                    <div class="detailsHeader">
-                        <h3 style="margin-bottom: 0px;">
-                            <span>
-                                <span id="fullname"></span>,
-                                <span id="age"></span>
-                            </span>
-                            <div style="font-size: 15px; margin-top: 10px;">
-                                <a href="#" id="username" title=""></a>
-                            </div>
-                        </h3>
-                    </div>
-                    <div class="bio">
-                        <h6 class="text-muted">Bio</h6>
+<!-- Call Page Style Tag Here -->
+<% stylesheet('/lib/css/app/encounter.css') -%>
+<!-- Call Style Script Tag Here -->
+<% script('/lib/scripts/app/encounter.js') -%>
+
+<div class="row">
+    <div class="displayWindow col-md-11 row">
+        <!-- ImageWindow -->
+        <div class="imageWindow col-lg-8 col-md-12 col-sm-12"
+            style="background-image: url();">
+            <div class="overlayNav">
+                <div class="navTop">
+                    <div class="imageCounter float-left">
                         <p>
-                            <span id="bio"></span>
+                            <span id="currentNumber" style="padding-right: 5px;">1</span>/
+                            <span id="TotalNumber">4</span>
                         </p>
                     </div>
-                    <div class="personalInfo">
-                        <h6 class="text-muted">Personal Info</h6>
+                    <div class="imageCounter reportFlag">
+                        <p>
+                            <span>
+                                <a href="#" style="color: #fff;" title="Report this profile">
+                                    <i class="typcn typcn-flag"></i>
+                                </a>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="navMiddle">
+                    <div>
+                        <a href="javascript: void(0);" id="previous" title="Previous..." style="float: left;">
+                            <i class="icon-arrow-left"></i>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="javascript: void(0);" id="next" title="Next..." style="float: right;">
+                            <i class="icon-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="navBottom">
+                    <center>
                         <ul>
-                            <li><small class="text-muted">Height:</small> <span id="height"></span></li>
-                            <li><small class="text-muted">Speaking:</small> <span id="language"></span></li>
-                            <li><small class="text-muted">Location:</small> <span id="location"></span>
+                            <li>
+                                <a href="javascript: void(0);" id="sendAMessage">
+                                    <i class="typcn typcn-message"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);" id="like" style="color: #ff6878 !important;">
+                                    <i class="typcn typcn-heart-full-outline"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);" id="skip" style="color: #303030 !important;">
+                                    <i class="typcn typcn-times"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);" id="sendCrush">
+                                    <i class="typcn typcn-star"></i>
+                                </a>
                             </li>
                         </ul>
+                    </center>
+                    <div class="quickMessagePopUp popUp" id="quickMessagePopUp">
+                        <div class="card" style="border: none;">
+                            <div id="card-handle"></div>
+                            <section class="card-body">
+                                <div class="form-group">
+                                    <div class="top">
+                                        <div class="container">
+                                            <div class="float-right">
+                                                <a href="javascript: void(0);" id="closeQuickMessagePopUp"
+                                                    style="font-size: 20px;" class="text-dark" title="Close">
+                                                    <i class="typcn typcn-times"></i>
+                                                </a>
+                                            </div>
+
+                                            <a href="javascript:void(0);"
+                                                class="activeProfile hasStories float-left"
+                                                style="cursor: default; margin-right: 10px;">
+                                                <div class="profileImg image"
+                                                    style="background-image: url('<%= user.avatar || new String(`/lib/img/assets/reduced/${user.gender}.png`) %>')">
+                                                </div>
+                                            </a>
+                                            <div style="margin-bottom: -10px;">
+                                                <span>
+                                                    <%= user.fullname.firstname %>
+                                                </span>
+                                                <div style="font-size: 12px;" class="text-muted">
+                                                    Start a conversation with <b class="color"><span
+                                                            id="fullname"></span></b>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bottom">
+                                        <div style="padding: 0px 20px;" class="pt-2">
+                                            <%-partial('/app/partials/dynamicInput.html')%>
+                                        </div>
+                                    </div>
+                            </section>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- StatusBar -->
-            <%- include('../partials/statusBar.html'); %>
         </div>
-        <!-- Footer -->
-        <%- include('../partials/footer.html'); %>
-    </section>
-</section>
+        <div class="detailsCon col-lg-4 col-md-12 col-sm-12" id="detailsCon">
+            <div class="detailsHeader">
+                <h3 style="margin-bottom: 0px;">
+                    <span>
+                        <span id="fullname"></span>,
+                        <span id="age"></span>
+                    </span>
+                    <div style="font-size: 15px; margin-top: 10px;">
+                        <a href="#" id="username" title=""></a>
+                    </div>
+                </h3>
+            </div>
+            <div class="bio">
+                <h6 class="text-muted">Bio</h6>
+                <p>
+                    <span id="bio"></span>
+                </p>
+            </div>
+            <div class="personalInfo">
+                <h6 class="text-muted">Personal Info</h6>
+                <ul>
+                    <li><small class="text-muted">Height:</small> <span id="height"></span></li>
+                    <li><small class="text-muted">Speaking:</small> <span id="language"></span></li>
+                    <li><small class="text-muted">Location:</small> <span id="location"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- StatusBar -->
+     <%-partial('/app/partials/statusBar.html')%>
+
+</div>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%= title + ' :: Tosettledown (TSD)' %></title>
+    <!-- Components -->
+    <link href="/components/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/components/css/icons.css" rel="stylesheet" />
+    <link href="/components/css/style.css" id="styleLink" rel="stylesheet" />
+    <link href="/components/css/metismenu.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/lib/img/logo/favicon.png" type="image/x-icon">
+    <!-- Library -->
+
+    <link rel="stylesheet" href="/lib/css/main.css">
+    <link rel="stylesheet" href="/lib/css/mobile.css">
+
+    <!--  Include Page CSS Dynamically  -->
+    <%-stylesheets%>
+
+
+</head>
+
+<body>
+
+    <%- body %>
+
+    <!-- Components  -->
+
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- jQuery  -->
+    <script src="/components/js/jquery.min.js"></script>
+    <script src="/components/js/popper.min.js"></script><!-- Popper for Bootstrap -->
+    <script src="/components/js/bootstrap.min.js"></script>
+
+    <!-- App js -->
+    <script src="/components/js/jquery.core.js"></script>
+    <script src="/components/js/jquery.app.js"></script>
+
+    <script src="/components/js/metisMenu.min.js"></script>
+    <script src="/components/js/waves.js"></script>
+    <script src="/components/js/jquery.slimscroll.js"></script>
+    <script src="/components/js/modernizr.min.js"></script>
+    <!-- Sweetalert  -->
+    <script src="/components/js/sweetalert.js"></script>
+
+    <!-- Components Ends  -->
+
+    <!-- Library  -->
+    <!-- Index Scripts -->
+
+    <!-- App Scripts -->
+    <script src="/lib/scripts/main.js"></script>
+    <script src="/lib/scripts/alert.js"></script>
+
+    <!--  Include Page JS Dynamically  -->
+    <%-scripts%>
+
+
+
+    <script>
+        // noinspection JSUnresolvedFunction
+        let socket = io();
+        let auth_user = $("#activeUser_username b").text();
+
+        $('.encounter-page-send-chat').submit(function(e){
+            e.preventDefault();
+            let user =  $("#username").text(); //$('#encounter-page-send-message').data('sender-user');
+            let message = $('.encounter-page-send-message').val();
+
+            //-- emit --send message
+            socket.emit('chat message',{from: auth_user, to: user, message : message });
+            $('.encounter-page-send-message').val('');
+            return false;
+        });
+
+        //-- on -- listen for message on channel
+        socket.on(auth_user, function(msg){
+
+            let options = {
+                body: msg.message, // body part of the notification
+                dir: 'ltr', // use for derection of message
+                icon:'/lib/img/logo/favicon.png' // use for show image
+
+            };
+
+            var n = new Notification(msg.from, options);
+            console.log(msg);
+            // $('#messages').append($('<li>').text(msg));
+        });
+
+        showNotification();
+
+        function showNotification() {
+            if(window.Notification) {
+                Notification.requestPermission(function(status) {
+                    if(status === "denied")
+                    {
+                        // alert('error','error','You Disable Notifications For TSD, you wont be able to receive notification of incoming chat');
+                    }
+                });
+            }
+            else {
+                // alert('Your browser doesn\'t support notifications.');
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

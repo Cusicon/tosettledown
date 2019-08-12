@@ -1,9 +1,11 @@
-<section class="windowFrame container row" id="windowFrame">
-    <!-- ProfileBar -->
-    <%- include('../partials/profileBar.html'); %>
-    <!-- MainBody -->
-    <section class="mainBody col-md-9 col-md-8" id="mainBody">
-        <div class="row">
+<% layout('/app/layout/template.html') -%>
+
+<!-- Call Page Style Tag Here -->
+<% stylesheet('/lib/css/app/chat.css') -%>
+<!-- Call Style Script Tag Here -->
+<% script('/lib/scripts/app/chat.js') -%>
+
+<div class="row">
             <div class="displayWindow col-md-12 row Chat"
                 style="height: 620px; overflow: hidden; overflow-y: scroll; box-shadow: none; border-radius: 0px; padding: 20px 30px; border-left: 1px solid #eee; overflow: visible;">
                 <section class="col-md-4 ChatList">
@@ -224,7 +226,7 @@
                         </ul>
                     </div>
                     <div class="ChatWindowFooter" style="padding: 0px 20px;">
-                        <%- include('../partials/dynamicInput.html'); %>
+                        <%- partial('/app/partials/dynamicInput.html') %>
                     </div>
                     <% } %>
                     <% if(typeof profile_user == 'undefined') { %>
@@ -237,7 +239,3 @@
                 </section>
             </div>
         </div>
-        <!-- Footer -->
-        <%- include('../partials/footer.html'); %>
-    </section>
-</section>

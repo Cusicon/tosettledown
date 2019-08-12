@@ -1,9 +1,11 @@
-<section class="windowFrame container row" id="windowFrame">
-    <!-- ProfileBar -->
-    <%- include('../partials/profileBar.html'); %>
-    <!-- MainBody -->
-    <section class="mainBody col-md-9 col-md-8" id="mainBody">
-        <div class="row">
+<% layout('/app/layout/template.html') -%>
+
+<!-- Call Page Style Tag Here -->
+<% stylesheet('/lib/css/app/favourite_visitor.css') -%>
+<!-- Call Style Script Tag Here -->
+<% script('/lib/scripts/app/favourite_visitor.js') -%>
+
+<div class="row">
             <div class="displayWindow col-md-12" style="height: 620px; overflow: hidden; overflow-y: scroll; box-shadow: none; border-radius: 0px; padding: 20px 30px; border-left: 1px solid #eee;">
                 <center>
                     <div style="margin-bottom: 50px;">
@@ -112,7 +114,3 @@
                 </div>
             </div>
         </div>
-        <!-- Footer -->
-        <%- include('../partials/footer.html'); %>
-    </section>
-</section>

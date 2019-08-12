@@ -1,14 +1,11 @@
-<style>
-    .displayWindow {
-        padding: 20px 30px !important;
-    }
-</style>
-<section class="windowFrame container row" id="windowFrame">
-    <!-- ProfileBar -->
-    <%- include('../partials/profileBar.html'); %>
-    <!-- MainBody -->
-    <section class="mainBody col-md-9 col-sm-8" id="mainBody">
-        <div class="row">
+<% layout('/app/layout/template.html') -%>
+
+<!-- Call Page Style Tag Here -->
+<% stylesheet('/lib/css/app/shop.css') -%>
+<!-- Call Style Script Tag Here -->
+<% script('/lib/scripts/app/shop.js') -%>
+
+<div class="row">
             <div class="displayWindow col-md-11 row" style="height: 620px; overflow: hidden; overflow-y: scroll; box-shadow: none; border-radius: 0px; padding: 20px 30px; border-left: 1px solid #eee;">
                 <div style="margin-bottom: 50px; width: 100%;">
                     <h3 class="text-muted">
@@ -21,8 +18,3 @@
             <!-- ShopAds -->
             <%- include('../partials/shopAds.html'); %>
         </div>
-
-        <!-- Footer -->
-        <%- include('../partials/footer.html'); %>
-    </section>
-</section>

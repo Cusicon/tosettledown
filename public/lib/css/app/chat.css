@@ -1,0 +1,148 @@
+/* CHATS */
+
+.Chat {
+    padding: 0px;
+}
+
+.Chat .ChatList {
+    padding: 0px;
+    border-right: 1px solid #eee;
+}
+
+.Chat .ChatList .ChatHead {
+    padding: 10px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.Chat .ChatList .ChatHead h3 {
+    margin-top: 20px;
+}
+
+.Chat .ChatList .ChatBody {
+    background-color: #fff;
+    overflow: scroll;
+    height: 490px;
+}
+
+.Chat .ChatList .ChatBody ul li a.user {
+    display: block;
+    border-bottom: 1px solid #f8f9f8;
+    padding: 20px 10px;
+    height: 90px;
+}
+
+.Chat .ChatList .ChatBody ul li a.user:hover {
+    box-shadow: 0px 1px 100px #0000002a !important;
+}
+
+.Chat .ChatList .ChatBody ul li a.user div#profileImg {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 100%;
+    background-color: #eee;
+    float: left;
+}
+
+.Chat .ChatList .ChatBody ul li a.user div#username {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.Chat .ChatList .ChatBody ul li a.user div#lastest_message {
+    font-size: 12px;
+}
+
+.Chat .ChatList .ChatBody ul li a.user div#time {
+    font-size: 12px;
+    float: right;
+    color: #aaa !important;
+}
+
+.Chat .ChatWindow {
+    padding: 0px !important;
+    /* border: 1px solid red; */
+}
+
+.Chat .ChatWindow .ChatWindowHead {
+    display: block;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+    padding: 10px 20px;
+    height: 70px;
+}
+
+.Chat .ChatWindow .ChatWindowHead div#profileImg {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 100%;
+    background-color: #eee;
+    float: left;
+}
+
+.Chat .ChatWindow .ChatWindowHead div#username {
+    font-size: 15px;
+    margin-top: 12px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.Chat .ChatWindow .ChatWindowHead small#typing {
+    font-weight: 500;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: block;
+}
+
+.Chat .ChatWindow .ChatWindowBody {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 7px;
+    background-color: #eee;
+    height: 480px;
+    overflow: scroll;
+    padding-bottom: 30px;
+}
+
+.Chat .ChatWindow .ChatWindowBody ul li {
+    padding: 5px 10px;
+    width: 100%;
+    float: left;
+}
+
+.Chat .ChatWindow .ChatWindowBody ul li.inbox div {
+    border-radius: 0px 25px 25px 25px;
+    background-color: #fff;
+    color: #2b2b2b;
+    float: left;
+}
+
+.Chat .ChatWindow .ChatWindowBody ul li.outbox div {
+    border-radius: 25px 0px 25px 25px;
+    background-color: #f55e5e;
+    /* color: #000; */
+    float: right;
+}
+
+.Chat .ChatWindow .ChatWindowBody ul li div {
+    display: inline-block;
+    padding: 10px 15px;
+    color: #fff;
+    max-width: 250px;
+    overflow: hidden;
+    word-break: break-all;
+    box-shadow: 0.5px 0.5px 0.5px #ccc !important;
+}
+
+.Chat .ChatWindow .ChatWindowBody ul li div #message {
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.Chat .ChatWindow .ChatWindowBody ul li div #time {
+    font-size: 11px;
+    font-weight: lighter;
+    float: right;
+    margin-top: 5px;
+}
+
+/* END OF CHATS */

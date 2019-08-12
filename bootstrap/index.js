@@ -57,9 +57,11 @@ module['exports'] = class Bootstrap {
 
     register()
     {
+
         this.app.set('port', config('app','port','3020'));
         this.app.set('views', view_path());
-        this.app.engine("html", require("ejs").renderFile);
+
+        this.app.engine("html", require('ejs-blocks'));
         this.app.set("view engine", "html");
     }
 

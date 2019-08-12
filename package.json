@@ -13,6 +13,8 @@
     "crypt": "^0.0.2",
     "dotenv": "^8.0.0",
     "ejs": "^2.5.7",
+    "ejs-blocks": "^0.1.4",
+    "ejs-locals": "^1.0.2",
     "express": "^4.16.4",
     "express-ejs-layouts": "^2.5.0",
     "express-form": "^0.12.6",
