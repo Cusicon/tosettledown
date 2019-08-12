@@ -1,5 +1,6 @@
 const Model = require('@schema/MeetUpSchema').model;
 const Chat = require('@models/chat');
+const User = require('@models/user');
 
 module["exports"] = class MeetUp extends Model{
 
@@ -15,14 +16,16 @@ module["exports"] = class MeetUp extends Model{
             let chat = new Chat({
                 from: msg.from,
                 to: msg.to,
-                format: null,
+                format: msg.format,
                 message: msg.message,
-                sent_at: new Date().toDateString(),
+                sent_at: Date.now(),
             });
-            chat.save();
+            /* Might Remove Save Not To Duplicate Table */
+            // chat.save();
 
             if(meetups){
                 meetups.chats.push(chat);
+                meetups.last_encountered = Date.now();
                 meetups.save();
             }
             else
@@ -30,16 +33,53 @@ module["exports"] = class MeetUp extends Model{
                 let meetup = new MeetUp({
                     user_id: msg.from,
                     encountered: msg.to,
-                    meet_at: new Date().toDateString(),
+                    encountered_at: Date.now(),
+                    last_encountered: Date.now(),
                     chats: [chat],
                 });
                 meetup.save();
-
-                console.log("this1")
             }
+            console.log(meetups);
+        });
+    }
 
+    static getMyEncounters(username, callback)
+    {
+        username = `@${username}`;
+        let queries = [
+            { user_id: username},
+            { encountered: username }
+        ];
+
+        // let order_by = { last_encountered : 1 };
+        // $orderby : order_by
+
+        return this.find({ $or: queries} ,(err , meetups) => {
+            this.associate(meetups,callback);
+            // callback(meetups)
+        });
+    }
+
+    static associate(meetups,callback) {
+
+        let queries = [];
+
+        meetups.map(meetup => {
+            if (`@${auth_user.username}` === meetup.user_id) {
+                queries.push(meetup.encountered.slice(1));
+            } else {
+                queries.push(meetup.user_id.slice(1));
+            }
         });
 
+        console.log(queries);
+
+        // { _id: { $in: [ 5, ObjectId("507c35dd8fada716c89d0013") ] } }
+
+        User.find({username:{$in: queries}}, (err, users) => {
+            console.log(users);
+            // callback({meetups, users})
+        });
     }
 
 };

@@ -23,6 +23,15 @@ module["exports"] = {
         next();
     },
 
+    context : (req, res, next) => {
+       auth_user = req.user;
+       // noinspection JSUndeclaredVariable
+        requestContext = req;
+       // noinspection JSUndeclaredVariable
+        responseContext = res;
+        next();
+    },
+
 
     setGlobalVariable : (req, res, next) => {
         // noinspection JSUnusedLocalSymbols

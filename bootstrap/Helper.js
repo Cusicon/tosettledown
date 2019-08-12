@@ -5,6 +5,10 @@ global["storage_path"] = (path_join = "") => { return path.join(base_path, "stor
 global["public_path"] = (path_join = "") => { return path.join(base_path, "public", path_join)};
 global["view_path"] = (path_join = "") => { return path.join(base_path, "views", path_join)};
 global["config_path"] = (path_join = "") => { return path.join(base_path, "config", path_join)};
+global['auth_user'] = null;
+global['requestContext'] = null;
+global['responseContext'] = null;
+
 
 //-- Log User's activities to "userActivity.log" Log file
 global["userLog"] = log => {

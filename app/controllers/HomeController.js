@@ -1,17 +1,22 @@
 let User = require('@models/user');
+let MeetUp = require('@models/meetup');
 
 module["exports"] = class HomeController{
 
     static chats(req, res)
     {
-        res.render('./app/menu/chats', {
-            title: "Chats"
+        MeetUp.getMyEncounters(req.user.username, (encountered) => {
+            res.render('./app/menu/chats', {
+                title: "Chats",
+                encountered: encountered,
+            });
         });
     }
 
     static showChat(req, res)
     {
         let username = req.params.username;
+
         User.getUserByUsername(username, (err, profile_user) => {
             if (err) console.log(err);
             else {
