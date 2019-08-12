@@ -22,7 +22,7 @@
                     <% encountered.forEach((encounter, index) => {%>
                         <li>
                             <a href="#" class="user">
-                                <div class="status is-online"></div>
+                                <div class="status <%=(encounter.associate.isOnline)? 'is-online' : 'is-offline' %> "></div>
                                 <div class="profileImg" style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
                                 <div class="time text-muted"><%= Moment(arrayLast(encounter.meetup.chats).sent_at).fromNow() %></div>
                                 <div class="username text-dark"><%= encounter.associate.username %></div>
@@ -34,7 +34,6 @@
                 </ul>
             </div>
         </section>
-
 
         <section class="col-md-8 ChatWindow">
             <% if(activeChat != null) { %>

@@ -50,12 +50,20 @@ module["exports"] = class MeetUp extends Model{
             { encountered: username }
         ];
 
-        // let order_by = { last_encountered : 1 };
+        let sort_by = { last_encountered : 1 };
         // $orderby : order_by
 
-        return this.find({ $or: queries} ,(err , meetups) => {
-            this.associate(meetups,callback);
-            // callback(meetups)
+        // collection.find().sort(, function(err, cursor){...});
+
+
+
+        return this.find({ $or: queries}).sort( sort_by ).then(( meetups) => {
+            // console.log(err , meetups)
+            if (meetups.length > 0){
+                this.associate(meetups,callback);
+            } else {
+                callback(meetups);
+            }
         });
     }
 

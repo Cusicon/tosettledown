@@ -23,6 +23,7 @@ let user_schema = mongoose.Schema({
 
         email_verified_at: {type : Date, default: null},
         joined: {type: Date, default: new Date()},
+        last_activity_at: {type: Date, default: null},
 
         personalInfo: {
             bio: {type: String, default: null},

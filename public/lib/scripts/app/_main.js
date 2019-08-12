@@ -226,5 +226,6 @@ $(document).on('ready', () => {
         });
 
         console.log("yes");
+        console.log(Math.round(new Date().getTime() / 1000));
     }
 });
