@@ -17,35 +17,16 @@
     <link rel="stylesheet" href="/lib/css/main.css">
     <link rel="stylesheet" href="/lib/css/mobile.css">
 
-    <!-- Global Css For App  -->
-    <link rel="stylesheet" href="/lib/css/app/_main.css">
+    <link rel="stylesheet" href="/lib/css/guest/_main.css">
+
     <!--  Include Page CSS Dynamically  -->
     <%-stylesheets%>
+
 </head>
 
 <body>
-<section class="windowFrame container row" id="windowFrame">
-    <!-- ProfileBar -->
-    <%-partial('/app/layout/profileBar.html')%>
 
-    <!-- MainBody -->
-    <section class="mainBody col-md-9 col-sm-8" id="mainBody">
-        <br>
-        <!--    Calling Page Content    -->
-        <%- body %>
-
-        <!-- Footer -->
-        <%-partial('/app/layout/footer.html')%>
-    </section>
-</section>
-
-
-
-
-
-    <!-- Components  -->
-
-    <script src="/socket.io/socket.io.js"></script>
+    <%- body %>
     <!-- jQuery  -->
     <script src="/components/js/jquery.min.js"></script>
     <script src="/components/js/popper.min.js"></script><!-- Popper for Bootstrap -->
@@ -69,12 +50,10 @@
 
     <!-- App Scripts -->
     <script src="/lib/scripts/main.js"></script>
-    <script src="/lib/scripts/alert.js"></script>
-    <script src="/lib/scripts/app/_main.js"></script>
 
     <!--  Include Page JS Dynamically  -->
+    <script src="/lib/scripts/guest/_main.js"></script>
     <%-scripts%>
-
 </body>
 
 </html>

@@ -25,9 +25,3 @@ function toggleSignIn() {
         loginForm.css({ "left": "0%" });
     }
 } toggleSignIn();
-
-this.onload = ((e) => {
-    var styleLink = document.getElementById("styleLink");
-    styleLink.setAttribute('href', "");
-    console.log(styleLink);
-});

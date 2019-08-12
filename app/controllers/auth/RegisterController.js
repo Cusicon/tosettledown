@@ -29,7 +29,7 @@ module['exports'] = class RegisterController {
             let errors = req.validationErrors();
             if (errors) {
                 console.log(`Errors: ${errors}`);
-                res.render("./index", {
+                res.render("./auth/index", {
                     title: 'Error',
                     errors: errors
                 });

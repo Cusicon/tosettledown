@@ -1,29 +1,9 @@
-<link rel="stylesheet" href="/lib/css/index.css">
-<style>
-    section.logoCon {
-        margin-bottom: 80px;
-    }
+<% layout('/auth/layout/template.html') -%>
 
-    .termsCon {
-        border-radius: 15px;
-        padding: 50px 20px;
-        margin: 0 auto;
-        width: 90%;
-        background-color: #f6f6f6;
-        font-size: 15px;
-    }
-
-    p {
-        margin: 10px;
-        margin-bottom: 20px;
-        line-height: 30px;
-    }
-
-    a {
-        color: #ff6878;
-    }
-</style>
-
+<!-- Call Page Style Tag Here -->
+<% stylesheet('/lib/css/guest/docs.css') -%>
+<!-- Call Style Script Tag Here -->
+<% script('/lib/scripts/guest/docs.js') -%>
 
 <section class="termsCon">
     <section class="logoCon">
@@ -49,5 +29,5 @@
         <h1>Terms of Services</h1>
     </section>
     <br><br>
-    <%- include('../app/partials/footer.html'); %>
+    <%- partial('/auth/layout/footer.html') %>
 </section>

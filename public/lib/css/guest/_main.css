@@ -178,39 +178,6 @@ section.Frame div.detailsCon form#loginForm {
   }
 }
 
-
-/* For Cookie File*/
-section.logoCon {
-  margin-bottom: 80px;
-}
-
-.cookieCon {
-  border-radius: 15px;
-  padding: 50px 20px;
-  margin: 0 auto;
-  width: 90%;
-  background-color: #f6f6f6;
-  font-size: 15px;
-}
-
-p {
-  margin: 10px;
-  margin-bottom: 20px;
-  line-height: 30px;
-}
-
-a {
-  color: #ff6878;
-}
-/* Ends*/
-
-
-
-
-
-
-
-
 /* END OF REGISTER MOBILE VIEW */
 
 /* LOGIN */

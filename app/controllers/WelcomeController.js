@@ -1,7 +1,7 @@
 module["exports"] = class WelcomeController{
 
     static index (req, res) {
-        res.render("./index", { title: 'Built for lovers' });
+        res.render("./auth/index", { title: 'Built for lovers' });
     };
 
     static cookie(req, res) {
