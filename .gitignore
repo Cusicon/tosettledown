@@ -2,5 +2,6 @@
 storage/logs/*
 public/store
 node_modules
+package-lock.json
 .env
 yarn.lock
