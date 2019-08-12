@@ -17,216 +17,124 @@
                     </div>
                     <div class="ChatBody">
                         <ul>
-                            <li>
-                                <a href="#" id="user">
-                                    <div id="status" class="is-online"></div>
-                                    <div id="profileImg"
-                                        style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
-                                    <div id="time" class="text-muted">Today, 4:32pm
-                                    </div>
-                                    <div id="username" class="text-dark">Grace</div>
-                                    <div id="lastest_message" class="text-muted">How are you doing?</div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" id="user">
-                                    <div id="status" class="is-offline"></div>
-                                    <div id="profileImg"
-                                        style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
-                                    <div id="time" class="text-muted">Today, 4:32pm
-                                    </div>
-                                    <div id="username" class="text-dark">Grace</div>
-                                    <div id="lastest_message" class="text-muted">How are you doing?</div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" id="user">
-                                    <div id="status" class="is-offline"></div>
-                                    <div id="profileImg"
-                                        style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
-                                    <div id="time" class="text-muted">Today, 4:32pm
-                                    </div>
-                                    <div id="username" class="text-dark">Grace</div>
-                                    <div id="lastest_message" class="text-muted">How are you doing?</div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" id="user">
-                                    <div id="status" class="is-online"></div>
-                                    <div id="profileImg"
-                                        style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
-                                    <div id="time" class="text-muted">Today, 4:32pm
-                                    </div>
-                                    <div id="username" class="text-dark">Grace</div>
-                                    <div id="lastest_message" class="text-muted">How are you doing?</div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" id="user">
-                                    <div id="status" class="is-offline"></div>
-                                    <div id="profileImg"
-                                        style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
-                                    <div id="time" class="text-muted">Today, 4:32pm
-                                    </div>
-                                    <div id="username" class="text-dark">Grace</div>
-                                    <div id="lastest_message" class="text-muted">How are you doing?</div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" id="user">
-                                    <div id="status" class="is-online"></div>
-                                    <div id="profileImg"
-                                        style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
-                                    <div id="time" class="text-muted">Today, 4:32pm
-                                    </div>
-                                    <div id="username" class="text-dark">Grace</div>
-                                    <div id="lastest_message" class="text-muted">How are you doing?</div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" id="user">
-                                    <div id="status" class="is-online"></div>
-                                    <div id="profileImg"
-                                        style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
-                                    <div id="time" class="text-muted">Today, 4:32pm
-                                    </div>
-                                    <div id="username" class="text-dark">Grace</div>
-                                    <div id="lastest_message" class="text-muted">How are you doing?</div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" id="user">
-                                    <div id="status" class="is-offline"></div>
-                                    <div id="profileImg"
-                                        style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
-                                    <div id="time" class="text-muted">Today, 4:32pm
-                                    </div>
-                                    <div id="username" class="text-dark">Grace</div>
-                                    <div id="lastest_message" class="text-muted">How are you doing?</div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" id="user">
-                                    <div id="status" class="is-online"></div>
-                                    <div id="profileImg"
-                                        style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
-                                    <div id="time" class="text-muted">Today, 4:32pm
-                                    </div>
-                                    <div id="username" class="text-dark">Grace</div>
-                                    <div id="lastest_message" class="text-muted">How are you doing?</div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" id="user">
-                                    <div id="status" class="is-offline"></div>
-                                    <div id="profileImg"
-                                        style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
-                                    <div id="time" class="text-muted">Today, 4:32pm
-                                    </div>
-                                    <div id="username" class="text-dark">Grace</div>
-                                    <div id="lastest_message" class="text-muted">How are you doing?</div>
-                                </a>
-                            </li>
+
+                            <% encountered.forEach((encounter, index) => {%>
+                                <li>
+                                    <a href="#" id="user">
+                                        <div id="status" class="is-online"></div>
+                                        <div id="profileImg"
+                                            style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
+                                        <div id="time" class="text-muted">Today, 4:32pm
+                                        </div>
+                                        <div id="username" class="text-dark"><%=encounter.associate.username %></div>
+                                        <div id="lastest_message" class="text-muted">How are you doing?</div>
+                                    </a>
+                                </li>
+
+                            <% });%>
+
+
                         </ul>
                     </div>
                 </section>
                 <section class="col-md-8 ChatWindow">
                     <% if(typeof profile_user != 'undefined') { %>
-                    <div class="ChatWindowHead">
-                        <div class="float-left">
-                            <div id="status" class="is-online"></div>
-                            <div id="profileImg" style="background-image: url('/lib/img/assets/reduced/user.png');">
+                        <div class="ChatWindowHead">
+                            <div class="float-left">
+                                <div id="status" class="is-online"></div>
+                                <div id="profileImg" style="background-image: url('/lib/img/assets/reduced/user.png');">
+                                </div>
+                                <div id="username" class="text-dark">
+                                    <%= typeof profile_user.fullname.firstname != 'undefined' ? profile_user.fullname.firstname : null %>
+                                    <small id="typing" class="orange-color hide">typing...</small>
+                                </div>
                             </div>
-                            <div id="username" class="text-dark">
-                                <%= typeof profile_user.fullname.firstname != 'undefined' ? profile_user.fullname.firstname : null %>
-                                <small id="typing" class="orange-color hide">typing...</small>
-                            </div>
-                        </div>
-                        <div class="float-right">
-                            <span class="videoChat">
-                                <a href="#" id="videoChatBtn" class="btn waves-effect waves-light" role="button"
-                                    style="color: #1a1a1a; padding: 0px 5px 0px 5px !important;"
-                                    title="Start a video call.">
-                                    <i class="typcn typcn-video" style="font-size: 30px;"></i>
-                                </a>
-                            </span>
-                            <span class="moreOptions">
-                                <div class="dropdown">
-                                    <a href="#" id="dropBtn" class="btn waves-effect waves-light dropBtn" role="button"
-                                        style="color: #1a1a1a; padding: 15px 5px 10px 5px !important; margin: 0px 10px;">
-                                        <i class="icon-options" style="font-size: 20px;"></i>
+                            <div class="float-right">
+                                <span class="videoChat">
+                                    <a href="#" id="videoChatBtn" class="btn waves-effect waves-light" role="button"
+                                        style="color: #1a1a1a; padding: 0px 5px 0px 5px !important;"
+                                        title="Start a video call.">
+                                        <i class="typcn typcn-video" style="font-size: 30px;"></i>
                                     </a>
-                                    <div class="dropdownContent" id="dropdownContent">
-                                        <a href="#">Add to favourites</a>
-                                        <a href="#">Give a gift</a>
-                                        <a href="#">Delete conversation</a>
-                                        <a href="#" class="color">Block or Report</a>
-                                        <div class="separator"></div>
-                                        <a href="/app/profile/<%= typeof profile_user.username != 'undefined' ? profile_user.username : null %>"
-                                            class="dropdownBottom" style="color: #000;">
-                                            View profile
-                                            <span class="typcn typcn-user float-right"></span>
+                                </span>
+                                <span class="moreOptions">
+                                    <div class="dropdown">
+                                        <a href="#" id="dropBtn" class="btn waves-effect waves-light dropBtn" role="button"
+                                            style="color: #1a1a1a; padding: 15px 5px 10px 5px !important; margin: 0px 10px;">
+                                            <i class="icon-options" style="font-size: 20px;"></i>
                                         </a>
+                                        <div class="dropdownContent" id="dropdownContent">
+                                            <a href="#">Add to favourites</a>
+                                            <a href="#">Give a gift</a>
+                                            <a href="#">Delete conversation</a>
+                                            <a href="#" class="color">Block or Report</a>
+                                            <div class="separator"></div>
+                                            <a href="/app/profile/<%= typeof profile_user.username != 'undefined' ? profile_user.username : null %>"
+                                                class="dropdownBottom" style="color: #000;">
+                                                View profile
+                                                <span class="typcn typcn-user float-right"></span>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                            </span>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="ChatWindowBody">
-                        <ul>
-                            <li class="inbox">
-                                <div>
-                                    <span id="message">Message</span>
-                                    <span id="time">1:37pm</span>
-                                </div>
-                            </li>
-                            <li class="outbox">
-                                <div>
-                                    <span id="message">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                        Accusamus qui voluptate veritatis aliquid nisi vel, voluptatem velit alias
-                                        laudantium maxime dignissimos? Explicabo, officia. Modi dignissimos molestias,
-                                        aspernatur odio vero qui.</span>
-                                    <span id="time">1:37pm</span>
-                                </div>
-                            </li>
-                            <li class="inbox">
-                                <div>
-                                    <span id="message">Message</span>
-                                    <span id="time">1:37pm</span>
-                                </div>
-                            </li>
-                            <li class="outbox">
-                                <div>
-                                    <span id="message">Message</span>
-                                    <span id="time">1:37pm</span>
-                                </div>
-                            </li>
-                            <li class="inbox">
-                                <div>
-                                    <span id="message">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                        aspernatur odio vero qui.</span>
-                                    <span id="time">1:37pm</span>
-                                </div>
-                            </li>
-                            <li class="outbox">
-                                <div>
-                                    <span id="message">Message</span>
-                                    <span id="time">1:37pm</span>
-                                </div>
-                            </li>
-                            <li class="inbox">
-                                <div>
-                                    <span id="message">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                        aspernatur odio vero qui.</span>
-                                    <span id="time">1:37pm</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="ChatWindowFooter" style="padding: 0px 20px;">
-                        <%- include('../partials/dynamicInput.html'); %>
-                    </div>
+                        <div class="ChatWindowBody">
+                            <ul>
+                                <li class="inbox">
+                                    <div>
+                                        <span id="message">Message</span>
+                                        <span id="time">1:37pm</span>
+                                    </div>
+                                </li>
+                                <li class="outbox">
+                                    <div>
+                                        <span id="message">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                            Accusamus qui voluptate veritatis aliquid nisi vel, voluptatem velit alias
+                                            laudantium maxime dignissimos? Explicabo, officia. Modi dignissimos molestias,
+                                            aspernatur odio vero qui.</span>
+                                        <span id="time">1:37pm</span>
+                                    </div>
+                                </li>
+                                <li class="inbox">
+                                    <div>
+                                        <span id="message">Message</span>
+                                        <span id="time">1:37pm</span>
+                                    </div>
+                                </li>
+                                <li class="outbox">
+                                    <div>
+                                        <span id="message">Message</span>
+                                        <span id="time">1:37pm</span>
+                                    </div>
+                                </li>
+                                <li class="inbox">
+                                    <div>
+                                        <span id="message">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                            aspernatur odio vero qui.</span>
+                                        <span id="time">1:37pm</span>
+                                    </div>
+                                </li>
+                                <li class="outbox">
+                                    <div>
+                                        <span id="message">Message</span>
+                                        <span id="time">1:37pm</span>
+                                    </div>
+                                </li>
+                                <li class="inbox">
+                                    <div>
+                                        <span id="message">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                            aspernatur odio vero qui.</span>
+                                        <span id="time">1:37pm</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="ChatWindowFooter" style="padding: 0px 20px;">
+                            <%- include('../partials/dynamicInput.html'); %>
+                        </div>
                     <% } %>
+
                     <% if(typeof profile_user == 'undefined') { %>
                         <center class="text-muted" style="position: relative; top: 250px;">
                             <div><h1 class="typcn typcn-messages" style="font-size: 50px;"></h1></div>
@@ -234,6 +142,7 @@
                             <a href="/app/encounters" role="button" class="btn waves-effect waves-light bg-color">See encounters</a>
                         </center>
                     <% } %>
+
                 </section>
             </div>
         </div>

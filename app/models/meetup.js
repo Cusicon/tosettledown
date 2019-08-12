@@ -72,13 +72,19 @@ module["exports"] = class MeetUp extends Model{
             }
         });
 
-        console.log(queries);
-
-        // { _id: { $in: [ 5, ObjectId("507c35dd8fada716c89d0013") ] } }
-
         User.find({username:{$in: queries}}, (err, users) => {
-            console.log(users);
-            // callback({meetups, users})
+            let meetupsArray = [];
+
+            meetups.forEach((meetup, index) => {
+                console.log(users[index]);
+
+                let meetupObj = {
+                    meetup: meetup,
+                    associate: users[index]
+                };
+              meetupsArray.push(meetupObj);
+            });
+            callback(meetupsArray)
         });
     }
 
