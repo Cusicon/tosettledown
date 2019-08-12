@@ -1,4 +1,4 @@
-.idea/*
+.idea
 storage/logs/*
 public/store
 node_modules

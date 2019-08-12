@@ -18,8 +18,8 @@
                     <div class="ChatBody">
                         <ul>
                             <li>
-                                <a href="#" id="user">
-                                    <div id="status" class="is-online"></div>
+                                <a href="#" class="user">
+                                    <div id="status" class="activity_status is_online"></div>
                                     <div id="profileImg"
                                         style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
                                     <div id="time" class="text-muted">Today, 4:32pm
@@ -29,8 +29,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" id="user">
-                                    <div id="status" class="is-offline"></div>
+                                <a href="#" class="user">
+                                    <div id="status" class="activity_status is_offline"></div>
                                     <div id="profileImg"
                                         style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
                                     <div id="time" class="text-muted">Today, 4:32pm
@@ -40,8 +40,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" id="user">
-                                    <div id="status" class="is-offline"></div>
+                                <a href="#" class="user">
+                                    <div id="status" class="activity_status is_offline"></div>
                                     <div id="profileImg"
                                         style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
                                     <div id="time" class="text-muted">Today, 4:32pm
@@ -51,8 +51,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" id="user">
-                                    <div id="status" class="is-online"></div>
+                                <a href="#" class="user">
+                                    <div id="status" class="activity_status is_online"></div>
                                     <div id="profileImg"
                                         style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
                                     <div id="time" class="text-muted">Today, 4:32pm
@@ -62,8 +62,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" id="user">
-                                    <div id="status" class="is-offline"></div>
+                                <a href="#" class="user">
+                                    <div id="status" class="activity_status is_offline"></div>
                                     <div id="profileImg"
                                         style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
                                     <div id="time" class="text-muted">Today, 4:32pm
@@ -73,8 +73,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" id="user">
-                                    <div id="status" class="is-online"></div>
+                                <a href="#" class="user">
+                                    <div id="status" class="activity_status is_online"></div>
                                     <div id="profileImg"
                                         style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
                                     <div id="time" class="text-muted">Today, 4:32pm
@@ -84,8 +84,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" id="user">
-                                    <div id="status" class="is-online"></div>
+                                <a href="#" class="user">
+                                    <div id="status" class="activity_status is_online"></div>
                                     <div id="profileImg"
                                         style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
                                     <div id="time" class="text-muted">Today, 4:32pm
@@ -95,8 +95,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" id="user">
-                                    <div id="status" class="is-offline"></div>
+                                <a href="#" class="user">
+                                    <div id="status" class="activity_status is_offline"></div>
                                     <div id="profileImg"
                                         style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
                                     <div id="time" class="text-muted">Today, 4:32pm
@@ -106,8 +106,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" id="user">
-                                    <div id="status" class="is-online"></div>
+                                <a href="#" class="user">
+                                    <div id="status" class="activity_status is_online"></div>
                                     <div id="profileImg"
                                         style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
                                     <div id="time" class="text-muted">Today, 4:32pm
@@ -117,8 +117,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" id="user">
-                                    <div id="status" class="is-offline"></div>
+                                <a href="#" class="user">
+                                    <div id="status" class="activity_status is_offline"></div>
                                     <div id="profileImg"
                                         style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
                                     <div id="time" class="text-muted">Today, 4:32pm
@@ -134,17 +134,17 @@
                     <% if(typeof profile_user != 'undefined') { %>
                     <div class="ChatWindowHead">
                         <div class="float-left">
-                            <div id="status" class="is-online"></div>
+                            <div id="status" class="activity_status is_online"></div>
                             <div id="profileImg" style="background-image: url('/lib/img/assets/reduced/user.png');">
                             </div>
                             <div id="username" class="text-dark">
-                                <%= typeof profile_user.fullname.firstname != 'undefined' ? profile_user.fullname.firstname : null %>
+                                <%= typeof profile_user.fullname.firstname != 'undefined' ? profile_user.fullname.firstname : '' %>
                                 <small id="typing" class="orange-color hide">typing...</small>
                             </div>
                         </div>
                         <div class="float-right">
                             <span class="videoChat">
-                                <a href="#" id="videoChatBtn" class="btn waves-effect waves-light" role="button"
+                                <a href="#" id="videoChatBtn" class="btn waves-effect waves-light waves-effect waves-light" role="button"
                                     style="color: #1a1a1a; padding: 0px 5px 0px 5px !important;"
                                     title="Start a video call.">
                                     <i class="typcn typcn-video" style="font-size: 30px;"></i>
@@ -152,7 +152,7 @@
                             </span>
                             <span class="moreOptions">
                                 <div class="dropdown">
-                                    <a href="#" id="dropBtn" class="btn waves-effect waves-light dropBtn" role="button"
+                                    <a href="#" id="dropBtn" class="btn waves-effect waves-light waves-effect waves-light dropBtn" role="button"
                                         style="color: #1a1a1a; padding: 15px 5px 10px 5px !important; margin: 0px 10px;">
                                         <i class="icon-options" style="font-size: 20px;"></i>
                                     </a>
@@ -162,7 +162,7 @@
                                         <a href="#">Delete conversation</a>
                                         <a href="#" class="color">Block or Report</a>
                                         <div class="separator"></div>
-                                        <a href="/app/profile/<%= typeof profile_user.username != 'undefined' ? profile_user.username : null %>"
+                                        <a href="/app/profile/<%= typeof profile_user.username != 'undefined' ? profile_user.username : '' %>"
                                             class="dropdownBottom" style="color: #000;">
                                             View profile
                                             <span class="typcn typcn-user float-right"></span>
@@ -231,7 +231,7 @@
                         <center class="text-muted" style="position: relative; top: 250px;">
                             <div><h1 class="typcn typcn-messages" style="font-size: 50px;"></h1></div>
                             <div><p>Start a conversation immediately...</p></div>
-                            <a href="/app/encounters" role="button" class="btn waves-effect waves-light bg-color">See encounters</a>
+                            <a href="/app/encounters" role="button" class="btn waves-effect waves-light waves-effect waves-light bg-color">See encounters</a>
                         </center>
                     <% } %>
                 </section>

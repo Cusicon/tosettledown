@@ -9,15 +9,15 @@
                 <div class="profileMain">
                     <!-- Space for modals -->
                     <div class="modalCon">
+
+                        <!-- Edit Profile Modal -->
                         <div class="modal fade editProfileCon" tabindex="-1" role="dialog"
-                            aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
-                            <div class="modal-dialog modal-lg" style="max-width: 900px;">
+                            aria-labelledby="editProfileModal" style="display: none;" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <center>
-                                            <h4 class="modal-title" id="myLargeModalLabel">Edit <span class="bg-color"
-                                                    style="border-radius: 5px; padding: 5px;">Profile</span></h4>
-                                        </center>
+                                        <h4 class="modal-title" id="editProfileModal">Edit <span class="bg-color"
+                                                style="border-radius: 5px; padding: 5px;">Profile</span></h4>
                                         <button type="button" class="btn waves-effect waves-light" data-dismiss="modal"
                                             aria-hidden="true">
                                             <i class="typcn typcn-times"></i>
@@ -30,44 +30,16 @@
                                                 <!-- ProfileImage -->
                                                 <div class="container-fluid">
                                                     <div class="row">
-                                                        <div class="col-md-3">
-                                                            <!-- <center> -->
-                                                            <input type="file" name="profileUploadBtn"
-                                                                id="profileUploadBtn" class="hide" accept="image/*">
-                                                            <a href=javascript:void(0); class="activeProfile noStories" style="cursor: default;">
-                                                                <div class="image profileImage"
-                                                                    style="width: 200px; height: 200px; background-image: url('/lib/img/assets/reduced/<%= profile_user.gender %>.png'); ">
-                                                                </div>
-                                                            </a>
-                                                            <span style="display: block;
-                                                                    width: 50px;
-                                                                    height: 50px;
-                                                                    border-radius: 100%;
-                                                                    background-color: #32c861;
-                                                                    position: relative;
-                                                                    top: -20%;
-                                                                    left: 70%;
-                                                                    text-align: center;
-                                                                    line-height: 46px;
-                                                                    font-size: 25px;
-                                                                    color: #fff;
-                                                                    cursor: pointer;
-                                                                    box-shadow: 0.5px 1px 3px #1a1a1a8a;"
-                                                                onclick="$('#profileUploadBtn').trigger('click');">
-                                                                <i class="typcn typcn-plus "></i>
-                                                            </span>
-                                                            <!-- </center> -->
-                                                        </div>
-                                                        <div class="col-md-1"></div>
-                                                        <div class="col-md-8">
+                                                        <div class="col-md-12">
                                                             <h5 style="font-weight: lighter;">
                                                                 Fullname</h5>
                                                             <input type="text" name="fullname" class="form-control"
-                                                                placeholder="Enter Your Fullname" value="<%= profile_user.fullname.all %>">
+                                                                value="<%= profile_user.fullname.all %>"
+                                                                placeholder="Enter fullname...">
                                                             <h5 style="font-weight: lighter;">
                                                                 Bio</h5>
                                                             <textarea type="text" name="bio" class="form-control"
-                                                                placeholder="Enter Bio here..."><%= profile_user.personalInfo.bio || '' %></textarea>
+                                                                placeholder="Enter Bio here..."><%= profile_user.personalInfo.bio %></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -77,60 +49,130 @@
                                                         <h5 style="font-weight: lighter;">
                                                             Location</h5>
                                                         <input type="text" name="location" class="form-control"
-                                                            placeholder="Location Here..." value="<%= profile_user.personalInfo.location || '' %>">
+                                                            value="<%= profile_user.personalInfo.location %>"
+                                                            placeholder="Location Here...">
                                                     </div>
                                                     <div class=" form-group">
                                                         <h5 style="font-weight: lighter;">
                                                             Work & Occupation
                                                         </h5>
                                                         <input type="text" name="work" class="form-control"
-                                                            placeholder="Work Here..." value="<%= profile_user.personalInfo.work || '' %>">
+                                                            value="<%= profile_user.personalInfo.work %>"
+                                                            placeholder="Work Here...">
                                                     </div>
                                                     <div class=" form-group">
                                                         <h5 style="font-weight: lighter;">
                                                             Education</h5>
                                                         <input type="text" name="education" class="form-control"
-                                                            placeholder="Education Here..." value="<%= profile_user.personalInfo.education || '' %>">
+                                                            value="<%= profile_user.personalInfo.education %>"
+                                                            placeholder="Education Here...">
                                                     </div>
                                                 </div>
                                                 <div class=" editProfileRight col-md-4">
-                                                        <h5 style="font-weight: lighter;">Personal Info(s)</h5>
-                                                        <div class="editPersonalInfo form-group">
-                                                            <div class="form-group">
-                                                                <input type="text" name="height" class="form-control"
-                                                                    placeholder="Your height" value="<%= profile_user.personalInfo.height || ''%>">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="text" name="language" class="form-control"
-                                                                    placeholder="What do you speak?" value="<%= profile_user.personalInfo.language || '' %>">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <select name="religion" id="religion"
-                                                                    class="form-control">
-                                                                    <option label="Your religion"></option>
-                                                                    <option value="christianity">Christianity</option>
-                                                                    <option value="islam">Islam</option>
-                                                                    <option value="others">Others</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Modal footer -->
-                                                    <div class="modal-footer"
-                                                        style="width: 100%; padding: 0px; padding-top: 20px; border: none;">
-                                                        <p class="float-left" style="width: 90%;">
-                                                            <b class="typcn typcn-warning text-warning"
-                                                                style="font-size: 20px;"></b>
-                                                            Username can't be modified or changed</p>
+                                                    <h5 style="font-weight: lighter;">Personal Info(s)</h5>
+                                                    <div class="editPersonalInfo form-group">
                                                         <div class="form-group">
-                                                            <button type="submit"
-                                                                class="btn waves-effect waves-light bg-color float-right">
-                                                                Save and Update
-                                                            </button>
+                                                            <select name="height" id="height" class="form-control"
+                                                                aria-describedby="heightHelp">
+                                                                <option label="Your height?..."></option>
+                                                                <option value="Tall"
+                                                                    <%= profile_user.personalInfo.height == 'Tall' ? 'selected' : 'Tall' %>>
+                                                                    Tall</option>
+                                                                <option value="Average"
+                                                                    <%= profile_user.personalInfo.height == 'Average' ? 'selected' : 'Average' %>>
+                                                                    Average</option>
+                                                                <option value="Short"
+                                                                    <%= profile_user.personalInfo.height == 'Short' ? 'selected' : 'Short' %>>
+                                                                    Short</option>
+                                                            </select>
+                                                            <small id="passwordHelp"
+                                                                class="form-text text-muted float-right">Default:
+                                                                Average</small>
+                                                            <br>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="text" name="language" class="form-control"
+                                                                value="<%= profile_user.personalInfo.language %>"
+                                                                placeholder="What do you speak often?..."
+                                                                title="What do you speak often?...">
+                                                            <small id="passwordHelp"
+                                                                class="form-text text-muted float-right">Default:
+                                                                English</small>
+                                                            <br>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <select name="religion" id="religion" class="form-control">
+                                                                <option label="What's religion?..."></option>
+                                                                <option value="Christianity"
+                                                                    <%= profile_user.personalInfo.religion == 'Christianity' ? 'selected' : 'Christianity' %>>
+                                                                    Christianity</option>
+                                                                <option value="Islam"
+                                                                    <%= profile_user.personalInfo.religion == 'Islam' ? 'selected' : 'Islam' %>>
+                                                                    Islam</option>
+                                                                <option value="Others"
+                                                                    <%= profile_user.personalInfo.religion == 'Others' ? 'selected' : 'Others' %>>
+                                                                    Others</option>
+                                                            </select>
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <!-- Modal footer -->
+                                                <div class="modal-footer"
+                                                    style="width: 100%; padding-top: 20px; border: none;">
+                                                    <p class="float-left" style="width: 90%;">
+                                                        <small>
+                                                            <i class="typcn typcn-warning text-warning"
+                                                                style="font-size: 20px;"></i>
+                                                            <b>Note:</b>
+                                                            Username can't be modified or changed
+                                                        </small>
+                                                    </p>
+                                                    <div class="form-group">
+                                                        <button type="submit"
+                                                            class="btn waves-effect waves-light bg-color float-right">
+                                                            Save and Update
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </form>
                                         </div>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div>
+
+                        <!-- Settings Modal -->
+                        <div class="modal fade settingsCon" tabindex="-1" role="dialog" aria-labelledby="SettingsModal"
+                            style="display: none;" aria-hidden="true">
+                            <div class="modal-dialog modal-md modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="SettingsModal">Profile <span class="bg-color"
+                                                style="border-radius: 5px; padding: 5px;">Settings</span></h4>
+                                    </div>
+                                    <div class="modal-body" style="padding: 15px; text-align: center !important;">
+                                        <a href="#" style="font-weight: lighter; display: block;">
+                                            <i style="font-size: 20px;" class="typcn typcn-user"></i>&nbsp; Account</a>
+                                        <div class="separator"></div>
+
+                                        <a href="#" style="font-weight: lighter; display: block;">
+                                            <i style="font-size: 20px;" class="typcn typcn-credit-card"></i>&nbsp;
+                                            Payments</a>
+                                        <div class="separator"></div>
+
+                                        <a href="#" style="font-weight: lighter; display: block;">
+                                            <i style="font-size: 20px;" class="typcn typcn-key-outline"></i>&nbsp;
+                                            Security</a>
+                                        <div class="separator"></div>
+
+                                        <a href="#" style="font-weight: lighter; display: block;">
+                                            <i style="font-size: 20px;" class="typcn typcn-support" data-toggle="modal"
+                                                data-target="editProfileCon"></i>&nbsp; Help</a>
+                                        <div class="separator"></div>
+
+                                        <!-- Sign Out -->
+                                        <a href="/auth/0/signin/out" id="SignOut" class="color"
+                                            style="font-weight: lighter; display: block;"><b>Sign Out</b></a>
                                     </div>
                                 </div><!-- /.modal-content -->
                             </div><!-- /.modal-dialog -->
@@ -166,8 +208,9 @@
                                             <a href="#" class="color">Block or Report</a>
                                             <% if (user.username == profile_user.username) { %>
                                             <div class="separator"></div>
-                                            <a href="/auth/0/signin/out" class="dropdownBottom" style="color: #000;">
-                                                Sign out
+                                            <a href="#" class="dropdownBottom" id="settingsBtn" data-toggle="modal"
+                                                data-target=".settingsCon" style="color: #000;">
+                                                Settings
                                                 <span class="typcn typcn-cog float-right"></span>
                                             </a>
                                             <% } %>
@@ -183,9 +226,13 @@
                                 <div style="float: left; margin: 0px 5px;">
                                     <a href=javascript:void(0); class="activeProfile hasStories">
                                         <div class="image profileImage"
-                                            style="background-image: url('/lib/img/assets/reduced/<%= profile_user.gender %>.png');">
+                                            style="background-image: url('<%= profile_user.avatar || new String(`/lib/img/assets/reduced/${profile_user.gender}.png`) %>');">
                                         </div>
                                     </a>
+                                    <a href="javascript: void(0);" class="add_avatar">
+                                        <span><i class="typcn typcn-plus"></i></span>
+                                    </a>
+                                    <% if (user.username != profile_user.username) { %>
                                     <ul style="display: block; margin: 0px 45px;">
                                         <li style="display: inline-block;">
                                             <a href="javascript: void(0);" id="like" title="Like"
@@ -200,6 +247,7 @@
                                             </a>
                                         </li>
                                     </ul>
+                                    <% } %>
                                 </div>
                                 <div class="left">
                                     <div class="fullname">
@@ -211,10 +259,9 @@
                                     <div class="username text-muted">
                                         <h6 style="font-size: 13px;"><b>@<%= profile_user.username %></b></h6>
                                     </div>
-                                    <div class="bio float-left">
+                                    <div class="bio float-left text-muted">
                                         <p>
-                                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem
-                                            consequuntur mollitia necessitatibus velit obcaecati, sequi doloribus.
+                                            <%= profile_user.personalInfo.bio %>
                                         </p>
                                     </div>
                                 </div>
@@ -234,29 +281,32 @@
                                     <div class="viewProfileLeft col-md-8">
                                         <div class="form-group">
                                             <h5 class="text-muted" style="font-weight: lighter;">Location</h5>
-                                            <p>Lagos, Nigeria</p>
+                                            <p><%= profile_user.personalInfo.location %></p>
                                         </div>
                                         <div class="form-group">
                                             <h5 class="text-muted" style="font-weight: lighter;">Work & Occupation
                                             </h5>
-                                            <p>Software Developer</p>
+                                            <p><%= profile_user.personalInfo.work %></p>
                                         </div>
                                         <div class="form-group">
                                             <h5 class="text-muted" style="font-weight: lighter;">Education</h5>
-                                            <p>University of Middlesex, Malta</p>
+                                            <p><%= profile_user.personalInfo.education %></p>
                                         </div>
                                     </div>
                                     <div class="viewProfileRight col-md-4">
                                         <h5 class="text-muted" style="font-weight: lighter;">Personal Info(s)</h5>
                                         <div class="editPersonalInfo form-group">
                                             <div class="form-group">
-                                                <p><small class="text-muted">Height: </small>5' 11in</p>
+                                                <p><small class="text-muted">Height:
+                                                    </small><%= profile_user.personalInfo.height %></p>
                                             </div>
                                             <div class="form-group">
-                                                <p><small class="text-muted">Language: </small>English</p>
+                                                <p><small class="text-muted">Language:
+                                                    </small><%= profile_user.personalInfo.language %></p>
                                             </div>
                                             <div class="form-group">
-                                                <p><small class="text-muted">Religion: </small>Christainity</p>
+                                                <p><small class="text-muted">Religion:
+                                                    </small><%= profile_user.personalInfo.religion %></p>
                                             </div>
                                         </div>
                                     </div>
@@ -273,13 +323,14 @@
                                 <% } %>
                                 <center>
                                     <div class="row">
-                                        <li class="col-md-5 col-sm-5">
+                                        <li class="col-md-1 col-sm-1"></li>
+                                        <li class="col-md-10 col-sm-10">
                                             <a href=javascript:void(0); class="text-dark photos ">
-                                                <span class="active"><i class="typcn typcn-image"></i>
+                                                <span class="active"><i class="typcn typcn-th-large-outline"></i>
                                                     &nbsp;PHOTOS</span>
                                             </a>
                                         </li>
-                                        <li class="col-md-2 col-sm-2">
+                                        <li class="col-md-1 col-sm-1">
                                             <% if (user.username == profile_user.username) { %>
                                             <a href=javascript:void(0);
                                                 class="text-dark btn waves-effect waves-light addImages" role="button"
@@ -288,7 +339,9 @@
                                             </a>
                                             <% } %>
                                         </li>
-                                        <li class="col-md-5 col-sm-5">
+
+                                        <!-- In the future -->
+                                        <li class="col-md-5 col-sm-5 hide">
                                             <a href=javascript:void(0); class="text-dark shop">
                                                 <span><i class="typcn typcn-shopping-bag"></i> &nbsp;SHOP</span>
                                             </a>

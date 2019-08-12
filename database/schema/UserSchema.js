@@ -21,18 +21,17 @@ let user_schema = mongoose.Schema({
         userDirectoriesLocation: String,
         settlesBalance: String,
 
-
         email_verified_at: {type : Date, default: null},
         joined: {type: Date, default: new Date()},
 
         personalInfo: {
             bio: {type: String, default: null},
-            height: {type: String, default: null},
-            language: {type: String, default: null},
-            religion: {type: String, default: null},
             location: {type: String, default: null},
             work: {type: String, default: null},
-            education: {type: String, default: null}
+            education: {type: String, default: null},
+            height: {type: String, default: null},
+            language: {type: String, default: null},
+            religion: {type: String, default: null}
         },
         medias:[media_schema],
         cards: [card_schema],

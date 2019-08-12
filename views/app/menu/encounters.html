@@ -8,7 +8,7 @@
             <div class="displayWindow col-md-11 row">
                 <!-- ImageWindow -->
                 <div class="imageWindow col-lg-8 col-md-12 col-sm-12"
-                    style="background-image: url('/lib/img/assets/reduced/user.png');">
+                    style="background-image: url();">
                     <div class="overlayNav">
                         <div class="navTop">
                             <div class="imageCounter float-left">
@@ -81,8 +81,8 @@
                                                     <a href="javascript:void(0);"
                                                         class="activeProfile hasStories float-left"
                                                         style="cursor: default; margin-right: 10px;">
-                                                        <div class="profileImg"
-                                                            style="background-image: url('/lib/img/assets/reduced/user.png');">
+                                                        <div class="profileImg image"
+                                                            style="background-image: url('<%= user.avatar || new String(`/lib/img/assets/reduced/${user.gender}.png`) %>')">
                                                         </div>
                                                     </a>
                                                     <div style="margin-bottom: -10px;">
@@ -122,29 +122,22 @@
                     <div class="bio">
                         <h6 class="text-muted">Bio</h6>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi, commodi explicabo tempora
-                            reprehenderit aliquid vel distinctio?
+                            <span id="bio"></span>
                         </p>
                     </div>
                     <div class="personalInfo">
                         <h6 class="text-muted">Personal Info</h6>
                         <ul>
-                            <li><small class="text-muted">Height:</small> 5'10</li>
-                            <li><small class="text-muted">Speaking:</small> English</li>
-                            <li><small class="text-muted">Location:</small> Lagos, Nigeria</li>
+                            <li><small class="text-muted">Height:</small> <span id="height"></span></li>
+                            <li><small class="text-muted">Speaking:</small> <span id="language"></span></li>
+                            <li><small class="text-muted">Location:</small> <span id="location"></span>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
             <!-- StatusBar -->
             <%- include('../partials/statusBar.html'); %>
-        </div>
-        <div class="googleAds hide"
-            style="width: 100%; height: 100px; border: 1px solid #ccc; margin: 10px -30px; overflow: hidden;">
-            <!-- <iframe src="javascript: void(0);" style="width: 100%; height: 90px; border: 2px solid #eee; margin: 6px 0px;"></iframe> -->
-            <center>
-                <p>Ads By Google</p>
-            </center>
         </div>
         <!-- Footer -->
         <%- include('../partials/footer.html'); %>

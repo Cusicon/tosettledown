@@ -13,6 +13,12 @@ module['exports'] = function () {
        email_verified_at: new Date().toDateString(),
        personalInfo: {
            bio: "Hey there, I'm here to find love on TSD",
+           location: "",
+           work: "",
+           education: "",
+           height: "Average",
+           language: "English",
+           religion: faker.random.arrayElement(['Christianity', 'Islam', 'Others']),
        }
    }
 };

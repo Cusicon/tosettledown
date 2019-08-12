@@ -6,10 +6,13 @@
 */
 
 .color {
-  color: #ff6878 !important; /* Pinkish_red */
+  color: #ff6878 !important;
+  /* Pinkish_red */
 }
+
 .orange-color {
-  color: #ff661b; /* Orange */
+  color: #ff661b;
+  /* Orange */
 }
 
 .bg-color {
@@ -17,7 +20,7 @@
   color: #fff !important;
 }
 
-.is-online {
+.activity_status {
   position: relative;
   right: -13px;
   width: 13px;
@@ -25,17 +28,13 @@
   float: left;
   border: 1.5px solid #fff;
   border-radius: 100%;
+}
+
+.is_online {
   background-color: #32c861 !important;
 }
 
-.is-offline {
-  position: relative;
-  right: -13px;
-  width: 13px;
-  height: 13px;
-  float: left;
-  border: 1.5px solid #fff;
-  border-radius: 100%;
+.is_offline {
   background-color: #aaa !important;
 }
 
@@ -101,12 +100,14 @@
   border-radius: 10px;
   box-shadow: -2px 5px 20px #00000044;
   font-size: 14px;
+  font-weight: lighter;
+  top: -0px;
   right: -15px;
+  z-index: 5;
 }
 
 .dropdownContent div.separator {
-  margin-top: 10px;
-  border-top: 1px solid #eee;
+  margin-bottom: 0px;
 }
 
 .dropdownContent a {
@@ -122,7 +123,7 @@
 
 .dropdownContent a:hover {
   color: #0f0f0f;
-  background-color: #f9f9f9;
+  background-color: #f2f2f2;
 }
 
 .btn {
@@ -146,6 +147,7 @@ a.activeProfile {
   display: inline-block;
   border-radius: 100%;
   padding: 2px;
+  background-color: #eee;
 }
 
 a.activeProfile.hasStories {
@@ -162,7 +164,7 @@ a div.image {
   width: 60px;
   height: 60px;
   border-radius: 100%;
-  background-color: #eee;
+  background-color: #eee !important;
 }
 
 button,
@@ -176,7 +178,7 @@ a[role="button"] {
 button:active,
 input[type="submit"]:active,
 a[role="button"]:active {
-  box-shadow: -0px 1px 2px #0000002a inset !important;
+  box-shadow: -0px -5px 10px #0000002a inset !important;
   transform: scale(0.95);
 }
 
@@ -211,6 +213,12 @@ a:active {
   color: #ff6878;
 }
 
+div.separator {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 0.5px solid #eee;
+}
+
 /* ANIMATIONS */
 
 /* END OF ANIMATIONS */
@@ -226,6 +234,7 @@ a:active {
   margin-left: auto;
   max-width: 95%;
 }
+
 /* End of WindowFrame */
 
 /* ProfileBar */
@@ -281,7 +290,7 @@ a:active {
   display: inline;
 }
 
-.profileBar .profileCon .profileSection ul li#popularity {
+.profileBar .profileCon .profileSection ul li#activeUser_username {
   font-size: 12px;
 }
 
@@ -334,7 +343,7 @@ a:active {
   padding: 0px;
   border-radius: 10px;
   box-shadow: 0px 3px 10px #ddd;
-  min-height: 500px;
+  min-height: 550px;
   overflow: hidden;
 }
 
@@ -404,22 +413,8 @@ a:active {
   color: #fff;
 }
 
-.mainBody
-  .displayWindow
-  .imageWindow
-  .overlayNav
-  .navBottom
-  ul
-  li
-  a#sendAMessage:active,
-.mainBody
-  .displayWindow
-  .imageWindow
-  .overlayNav
-  .navBottom
-  ul
-  li
-  a#sendCrush:active {
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom ul li a#sendAMessage:active,
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom ul li a#sendCrush:active {
   transform: scale(1.1555);
   background-color: #706c6c44;
 }
@@ -435,82 +430,34 @@ a:active {
   background-color: #fff;
 }
 
-.mainBody
-  .displayWindow
-  .imageWindow
-  .overlayNav
-  .navBottom
-  ul
-  li
-  a#like:active,
-.mainBody
-  .displayWindow
-  .imageWindow
-  .overlayNav
-  .navBottom
-  ul
-  li
-  a#skip:active {
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom ul li a#like:active,
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom ul li a#skip:active {
   transform: scale(1.15) translateY(-3px);
 }
 
-.mainBody
-  .displayWindow
-  .imageWindow
-  .overlayNav
-  .navBottom
-  .quickMessagePopUp {
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom .quickMessagePopUp {
   display: none;
   position: absolute;
   width: 100% !important;
   bottom: -10%;
 }
 
-.mainBody
-  .displayWindow
-  .imageWindow
-  .overlayNav
-  .navBottom
-  .quickMessagePopUp
-  .card {
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom .quickMessagePopUp .card {
   height: 250px;
   padding-left: 0px;
   padding-right: 0px;
 }
 
-.mainBody
-  .displayWindow
-  .imageWindow
-  .overlayNav
-  .navBottom
-  .quickMessagePopUp
-  .card
-  #card-handle {
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom .quickMessagePopUp .card #card-handle {
   width: 10%;
 }
 
-.mainBody
-  .displayWindow
-  .imageWindow
-  .overlayNav
-  .navBottom
-  .quickMessagePopUp
-  .card
-  .card-body
-  .top {
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom .quickMessagePopUp .card .card-body .top {
   padding: 0px 20px;
   height: 60px;
 }
-.mainBody
-  .displayWindow
-  .imageWindow
-  .overlayNav
-  .navBottom
-  .quickMessagePopUp
-  .card
-  .card-body
-  .top
-  .profileImg {
+
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom .quickMessagePopUp .card .card-body .top .profileImg {
   width: 50px;
   height: 50px;
   background-color: #eee;
@@ -518,15 +465,7 @@ a:active {
   border-radius: 100%;
 }
 
-.mainBody
-  .displayWindow
-  .imageWindow
-  .overlayNav
-  .navBottom
-  .quickMessagePopUp
-  .card
-  .card-body
-  .bottom {
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom .quickMessagePopUp .card .card-body .bottom {
   background-color: #f9f9f9;
   height: 100px;
   border-top: 1px solid #eee;
@@ -546,7 +485,7 @@ a:active {
 
 .mainBody .displayWindow .detailsCon .detailsHeader span {
   font-weight: lighter;
-  color: #1a1a1a;
+  /* color: #1a1a1a; */
 }
 
 .mainBody .displayWindow .detailsCon .bio {
@@ -568,8 +507,8 @@ a:active {
 /* StatusBar */
 
 .statusBar {
-  height: 500px;
-  overflow: overlay;
+  height: 360px;
+  /* overflow: hidden; */
   margin-left: 20px;
   padding: 10px;
 }
@@ -655,18 +594,18 @@ a:active {
   height: 490px;
 }
 
-.Chat .ChatList .ChatBody ul li a#user {
+.Chat .ChatList .ChatBody ul li a.user {
   display: block;
   border-bottom: 1px solid #f8f9f8;
   padding: 20px 10px;
   height: 90px;
 }
 
-.Chat .ChatList .ChatBody ul li a#user:hover {
+.Chat .ChatList .ChatBody ul li a.user:hover {
   box-shadow: 0px 1px 100px #0000002a !important;
 }
 
-.Chat .ChatList .ChatBody ul li a#user div#profileImg {
+.Chat .ChatList .ChatBody ul li a.user div#profileImg {
   width: 50px;
   height: 50px;
   margin-right: 10px;
@@ -675,24 +614,19 @@ a:active {
   float: left;
 }
 
-.Chat .ChatList .ChatBody ul li a#user div#username {
+.Chat .ChatList .ChatBody ul li a.user div#username {
   font-size: 15px;
   font-weight: 500;
 }
 
-.Chat .ChatList .ChatBody ul li a#user div#lastest_message {
+.Chat .ChatList .ChatBody ul li a.user div#lastest_message {
   font-size: 12px;
 }
 
-.Chat .ChatList .ChatBody ul li a#user div#time {
+.Chat .ChatList .ChatBody ul li a.user div#time {
   font-size: 12px;
   float: right;
   color: #aaa !important;
-}
-
-.Chat .ChatList .ChatBody ul li a#user div#toggleFav {
-  font-size: 15px;
-  float: right;
 }
 
 .Chat .ChatWindow {
@@ -874,10 +808,6 @@ a:active {
   border: transparent !important;
 }
 
-.profileMain .profileHeader header ul li .dropdown .dropdownContent {
-  right: -15px;
-}
-
 .profileMain .profileHeader header ul li a i {
   font-size: 25px;
 }
@@ -989,6 +919,7 @@ a:active {
 .profileMain .profileFooter header ul li a span {
   font-size: 13px;
   padding: 10px;
+  border: 1px solid transparent;
 }
 
 .profileMain .profileFooter header ul li a i {

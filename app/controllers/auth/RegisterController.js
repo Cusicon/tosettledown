@@ -4,7 +4,7 @@ const User = require("@models/user");
 
 module['exports'] = class RegisterController {
 
-    static register (req, res) {
+    static register(req, res) {
         if (!req.user) {
 
             //-- Collect values from User and assign to letiables
@@ -46,6 +46,12 @@ module['exports'] = class RegisterController {
                     joined: joined,
                     personalInfo: {
                         bio: "Hey there, I'm here to find love on TSD",
+                        location: "",
+                        work: "",
+                        education: "",
+                        height: "Average",
+                        language: "English",
+                        religion: "",
                     }
                 });
 
