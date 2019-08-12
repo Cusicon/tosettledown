@@ -4,6 +4,7 @@ const fs = require("fs");
 const masterPassword = "settle@130519";
 
 const Model = require('@schema/UserSchema').model;
+
 module["exports"] = class User extends Model{
 
     //-- GetUserById
