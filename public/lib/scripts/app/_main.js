@@ -1,3 +1,14 @@
+/*
+* BEGIN GLOBAL VARIABLE CONFIGURATION HERE
+*/
+// noinspection JSUnresolvedFunction
+let socket = io(); //-- Initialize Socket For All Pages
+const __user = $("#activeUser_username b").text();
+
+/*
+* ENDS GLOBAL VARIABLE CONFIGURATION HERE
+*/
+
 // Close any popUp, by hitting 'Esc' button
 function closeOnEscBtn() {
     // Close on Hit 'Esc' button
@@ -179,59 +190,8 @@ function showDropdown() {
 }
 showDropdown();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// noinspection JSUnresolvedFunction
-let socket = io();
-let auth_user = $("#activeUser_username b").text();
-
-$('.encounter-page-send-chat').submit(function(e){
-    e.preventDefault();
-    let user =  $("#username").text(); //$('#encounter-page-send-message').data('sender-user');
-    let message = $('.encounter-page-send-message').val();
-
-    //-- emit --send message
-    socket.emit('chat message',{from: auth_user, to: user, message : message });
-    $('.encounter-page-send-message').val('');
-    return false;
-});
-
-//-- on -- listen for message on channel
-socket.on(auth_user, function(msg){
-
-    let options = {
-        body: msg.message, // body part of the notification
-        dir: 'ltr', // use for derection of message
-        icon:'/lib/img/logo/favicon.png' // use for show image
-
-    };
-
-    var n = new Notification(msg.from, options);
-    console.log(msg);
-    // $('#messages').append($('<li>').text(msg));
-});
-
-showNotification();
-
-function showNotification() {
+/* Requesting Desktop Notification */
+(function requestWebDesktopNotificationPermission() {
     if(window.Notification) {
         Notification.requestPermission(function(status) {
             if(status === "denied")
@@ -243,4 +203,28 @@ function showNotification() {
     else {
         // alert('Your browser doesn\'t support notifications.');
     }
-}
+})();
+
+$(document).on('ready', () => {
+    let page_name = $('.page-identifier').data('page-name');
+    if(page_name !== 'chat')
+    {
+        /*
+        * listen for message on your own channel, will appear in all pages except chat Page
+        */
+        socket.on(__user, function(msg){
+            let options = {
+                body: msg.message, // body part of the notification
+                dir: 'ltr', // use for derection of message
+                icon:'/lib/img/logo/favicon.png' // use for show image
+
+            };
+            let audio = new Audio('/lib/media/notify.mp3');
+            audio.play().then(()=>{
+                new Notification(msg.from, options);
+            });
+        });
+
+        console.log("yes");
+    }
+});

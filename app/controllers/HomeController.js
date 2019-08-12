@@ -11,10 +11,11 @@ module["exports"] = class HomeController{
             User.getUserByUsername(activeChat, (err, activeChat) => {
                 if (err) console.log(err);
                 else {
+                    console.log(activeChat);
                     res.render('./app/menu/chats', {
                         title: "Chats",
                         encountered: encountered,
-                        activeChat: activeChat || null
+                        activeChat: activeChat,
                     });
                 }
             });

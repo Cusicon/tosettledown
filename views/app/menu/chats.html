@@ -5,158 +5,125 @@
 <!-- Call Style Script Tag Here -->
 <% script('/lib/scripts/app/chat.js') -%>
 
-<div class="row">
-            <div class="displayWindow col-md-12 row Chat"
-                style="height: 620px; overflow: hidden; overflow-y: scroll; box-shadow: none; border-radius: 0px; padding: 20px 30px; border-left: 1px solid #eee; overflow: visible;">
-                <section class="col-md-4 ChatList">
-                    <div class="ChatHead">
-                        <h3 class="text-muted text-center"><%= title %></h3>
-                        <select name="searchUsers" id="searchUsers" class="form-control mb-2"
-                            style="border: 1px solid #eee !important; cursor: pointer;">
-                            <option value="all">All</option>
-                            <option value="online">Online</option>
-                        </select>
-                    </div>
-                    <div class="ChatBody">
-                        <ul>
-                            <% encountered.forEach((encounter, index) => {%>
-                                <li>
-                                    <a href="#" class="user">
-                                        <div class="status is-online"></div>
-                                        <div class="profileImg" style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
-                                        <div class="time text-muted">Today, 4:32pm</div>
-                                        <div class="username text-dark"><%=encounter.associate.username %></div>
-                                        <div class="lastest_message text-muted">How are you doing?</div>
-                                    </a>
-                                </li>
-
-                            <% });%>
-                        </ul>
-                    </div>
-                </section>
-
-
-                <section class="col-md-8 ChatWindow">
-                    <% if(typeof activeChat != 'undefined') { %>
-                    <div class="ChatWindowHead">
-                        <div class="float-left">
-                            <div id="status" class="activity_status is_online"></div>
-                            <div id="profileImg" style="background-image: url('/lib/img/assets/reduced/user.png');">
-                            </div>
-                            <div id="username" class="text-dark">
-                                <%= typeof activeChat.fullname.firstname != 'undefined' ? activeChat.fullname.firstname : '' %>
-                                <small id="typing" class="orange-color hide">typing...</small>
-                            </div>
-                        </div>
-                        <div class="float-right">
-                            <span class="videoChat">
-                                <a href="#" id="videoChatBtn" class="btn waves-effect waves-light waves-effect waves-light" role="button"
-                                    style="color: #1a1a1a; padding: 0px 5px 0px 5px !important;"
-                                    title="Start a video call.">
-                                    <i class="typcn typcn-video" style="font-size: 30px;"></i>
-                                </a>
-                            </span>
-                            <div class="moreOptions">
-                                <div class="dropdown">
-                                    <a href="#" id="dropBtn" class="btn waves-effect waves-light waves-effect waves-light dropBtn" role="button"
-                                        style="color: #1a1a1a; padding: 15px 5px 10px 5px !important; margin: 0px 10px;">
-                                        <i class="icon-options" style="font-size: 20px;"></i>
-                                    </a>
-                                    <div class="dropdownContent" id="dropdownContent">
-                                        <a href="#">Add to favourites</a>
-                                        <a href="#">Give a gift</a>
-                                        <a href="#">Delete conversation</a>
-                                        <a href="#" class="color">Block or Report</a>
-                                        <div class="separator"></div>
-                                        <a href="/app/profile/<%= typeof activeChat.username != 'undefined' ? activeChat.username : '' %>"
-                                            class="dropdownBottom" style="color: #000;">
-                                            View profile
-                                            <span class="typcn typcn-user float-right"></span>
-                                        </a>
-                                        <div class="dropdownContent" id="dropdownContent">
-                                            <a href="#">Add to favourites</a>
-                                            <a href="#">Give a gift</a>
-                                            <a href="#">Delete conversation</a>
-                                            <a href="#" class="color">Block or Report</a>
-                                            <div class="separator"></div>
-                                            <a href="/app/profile/<%= typeof activeChat.username != 'undefined' ? activeChat.username : null %>"
-                                                class="dropdownBottom" style="color: #000;">
-                                                View profile
-                                                <span class="typcn typcn-user float-right"></span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="ChatWindowBody">
-                        <ul>
-                            <li class="inbox">
-                                <div>
-                                    <span id="message">Message</span>
-                                    <span id="time">1:37pm</span>
-                                </div>
-                            </li>
-                            <li class="outbox">
-                                <div>
-                                    <span id="message">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                        Accusamus qui voluptate veritatis aliquid nisi vel, voluptatem velit alias
-                                        laudantium maxime dignissimos? Explicabo, officia. Modi dignissimos molestias,
-                                        aspernatur odio vero qui.</span>
-                                    <span id="time">1:37pm</span>
-                                </div>
-                            </li>
-                            <li class="inbox">
-                                <div>
-                                    <span id="message">Message</span>
-                                    <span id="time">1:37pm</span>
-                                </div>
-                            </li>
-                            <li class="outbox">
-                                <div>
-                                    <span id="message">Message</span>
-                                    <span id="time">1:37pm</span>
-                                </div>
-                            </li>
-                            <li class="inbox">
-                                <div>
-                                    <span id="message">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                        aspernatur odio vero qui.</span>
-                                    <span id="time">1:37pm</span>
-                                </div>
-                            </li>
-                            <li class="outbox">
-                                <div>
-                                    <span id="message">Message</span>
-                                    <span id="time">1:37pm</span>
-                                </div>
-                            </li>
-                            <li class="inbox">
-                                <div>
-                                    <span id="message">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                        aspernatur odio vero qui.</span>
-                                    <span id="time">1:37pm</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="ChatWindowFooter" style="padding: 0px 20px;">
-                        <%- partial('/app/partials/dynamicInput.html') %>
-                    </div>
-
-                    <% } %>
-
-                    <% if(typeof activeChat == 'undefined') { %>
-                        <center class="text-muted" style="position: relative; top: 250px;">
-                            <div><h1 class="typcn typcn-messages" style="font-size: 50px;"></h1></div>
-                            <div><p>Start a conversation immediately...</p></div>
-                            <a href="/app/encounters" role="button" class="btn waves-effect waves-light waves-effect waves-light bg-color">See encounters</a>
-                        </center>
-                    <% } %>
-
-                </section>
+<div class="row page-identifier" data-page-name="chat">
+    <div class="displayWindow col-md-12 row Chat"
+        style="height: 620px; overflow: hidden; overflow-y: scroll; box-shadow: none; border-radius: 0px; padding: 20px 30px; border-left: 1px solid #eee; overflow: visible;">
+        <section class="col-md-4 ChatList">
+            <div class="ChatHead">
+                <h3 class="text-muted text-center"><%= title %></h3>
+                <select name="searchUsers" id="searchUsers" class="form-control mb-2"
+                    style="border: 1px solid #eee !important; cursor: pointer;">
+                    <option value="all">All</option>
+                    <option value="online">Online</option>
+                </select>
             </div>
-        </div>
+            <div class="ChatBody">
+                <ul>
+                    <% encountered.forEach((encounter, index) => {%>
+                        <li>
+                            <a href="#" class="user">
+                                <div class="status is-online"></div>
+                                <div class="profileImg" style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
+                                <div class="time text-muted"><%= Moment(arrayLast(encounter.meetup.chats).sent_at).fromNow() %></div>
+                                <div class="username text-dark"><%= encounter.associate.username %></div>
+                                <div class="lastest_message text-muted"><%= arrayLast(encounter.meetup.chats).message %></div>
+                            </a>
+                        </li>
+
+                    <% });%>
+                </ul>
+            </div>
+        </section>
+
+
+        <section class="col-md-8 ChatWindow">
+            <% if(activeChat != null) { %>
+            <div class="ChatWindowHead">
+                <div class="float-left">
+                    <div id="status" class="activity_status is_online"></div>
+                    <div id="profileImg" style="background-image: url('/lib/img/assets/reduced/user.png');">
+                    </div>
+                    <div id="username" class="text-dark">
+                        <%= activeChat.fullname.firstname != null ? activeChat.fullname.firstname : '' %>
+                        <small id="typing" class="orange-color hide">typing...</small>
+                    </div>
+                </div>
+                <div class="float-right">
+                    <span class="videoChat">
+                        <a href="#" id="videoChatBtn" class="btn waves-effect waves-light waves-effect waves-light" role="button"
+                            style="color: #1a1a1a; padding: 0px 5px 0px 5px !important;"
+                            title="Start a video call.">
+                            <i class="typcn typcn-video" style="font-size: 30px;"></i>
+                        </a>
+                    </span>
+                    <div class="moreOptions">
+                        <div class="dropdown">
+                            <a href="#" id="dropBtn" class="btn waves-effect waves-light waves-effect waves-light dropBtn" role="button"
+                                style="color: #1a1a1a; padding: 15px 5px 10px 5px !important; margin: 0px 10px;">
+                                <i class="icon-options" style="font-size: 20px;"></i>
+                            </a>
+                            <div class="dropdownContent" id="dropdownContent">
+                                <a href="#">Add to favourites</a>
+                                <a href="#">Give a gift</a>
+                                <a href="#">Delete conversation</a>
+                                <a href="#" class="color">Block or Report</a>
+                                <div class="separator"></div>
+                                <a href="/app/profile/<%= activeChat.username != 'undefined' ? activeChat.username : '' %>"
+                                    class="dropdownBottom" style="color: #000;">
+                                    View profile
+                                    <span class="typcn typcn-user float-right"></span>
+                                </a>
+                                <div class="dropdownContent" id="dropdownContent">
+                                    <a href="#">Add to favourites</a>
+                                    <a href="#">Give a gift</a>
+                                    <a href="#">Delete conversation</a>
+                                    <a href="#" class="color">Block or Report</a>
+                                    <div class="separator"></div>
+                                    <a href="/app/profile/<%= activeChat.username != 'undefined' ? activeChat.username : null %>"
+                                        class="dropdownBottom" style="color: #000;">
+                                        View profile
+                                        <span class="typcn typcn-user float-right"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="ChatWindowBody">
+                <ul>
+                    <li class="outbox">
+                        <div>
+                            <span id="message">Message</span>
+                            <span id="time">1:37pm</span>
+                        </div>
+                    </li>
+                    <li class="inbox">
+                        <div>
+                            <span id="message">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                aspernatur odio vero qui.</span>
+                            <span id="time">1:37pm</span>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="ChatWindowFooter" style="padding: 0px 20px;">
+                <%- partial('/app/partials/dynamicInput.html') %>
+            </div>
+
+            <% } %>
+
+            <% if(activeChat == null) { %>
+                <center class="text-muted" style="position: relative; top: 250px;">
+                    <div><h1 class="typcn typcn-messages" style="font-size: 50px;"></h1></div>
+                    <div><p>Start a conversation immediately...</p></div>
+                    <a href="/app/encounters" role="button" class="btn waves-effect waves-light waves-effect waves-light bg-color">See encounters</a>
+                </center>
+            <% } %>
+
+        </section>
+    </div>
+</div>

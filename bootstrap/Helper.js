@@ -21,6 +21,10 @@ global["userLog"] = log => {
     });
 };
 
+global['arrayLast'] = (array) => {
+    return array[array.length - 1];
+};
+
 global["serverLog"] = log => {
     fs.mkdir(storage_path('logs'), {
         recursive: true
