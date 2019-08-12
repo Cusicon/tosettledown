@@ -25,7 +25,6 @@ module["exports"] = {
       'verify' : require('@app/middlewares/Verify'),
       'guest' : require('@app/middlewares/RedirectIfAuthenticated'),
       'update_last_activity' : require('@app/middlewares/UpdateLastActivity'),
-
   },
 
 };

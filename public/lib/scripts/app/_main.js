@@ -1,13 +1,13 @@
 /*
-* BEGIN GLOBAL VARIABLE CONFIGURATION HERE
-*/
+ * BEGIN GLOBAL VARIABLE CONFIGURATION HERE
+ */
 // noinspection JSUnresolvedFunction
 let socket = io(); //-- Initialize Socket For All Pages
 const __user = $("#activeUser_username b").text();
 
 /*
-* ENDS GLOBAL VARIABLE CONFIGURATION HERE
-*/
+ * ENDS GLOBAL VARIABLE CONFIGURATION HERE
+ */
 
 // Close any popUp, by hitting 'Esc' button
 function closeOnEscBtn() {
@@ -192,35 +192,32 @@ showDropdown();
 
 /* Requesting Desktop Notification */
 (function requestWebDesktopNotificationPermission() {
-    if(window.Notification) {
-        Notification.requestPermission(function(status) {
-            if(status === "denied")
-            {
+    if (window.Notification) {
+        Notification.requestPermission(function (status) {
+            if (status === "denied") {
                 // alert('error','error','You Disable Notifications For TSD, you wont be able to receive notification of incoming chat');
             }
         });
-    }
-    else {
+    } else {
         // alert('Your browser doesn\'t support notifications.');
     }
 })();
 
 $(document).on('ready', () => {
     let page_name = $('.page-identifier').data('page-name');
-    if(page_name !== 'chat')
-    {
+    if (page_name !== 'chat') {
         /*
-        * listen for message on your own channel, will appear in all pages except chat Page
-        */
-        socket.on(__user, function(msg){
+         * listen for message on your own channel, will appear in all pages except chat Page
+         */
+        socket.on(__user, function (msg) {
             let options = {
                 body: msg.message, // body part of the notification
                 dir: 'ltr', // use for derection of message
-                icon:'/lib/img/logo/favicon.png' // use for show image
+                icon: '/lib/img/logo/favicon.png' // use for show image
 
             };
             let audio = new Audio('/lib/media/notify.mp3');
-            audio.play().then(()=>{
+            audio.play().then(() => {
                 new Notification(msg.from, options);
             });
         });
