@@ -30,6 +30,7 @@ module["exports"] = class MeetUp extends Model{
             }
             else
             {
+                // noinspection JSCheckFunctionSignatures
                 let meetup = new MeetUp({
                     user_id: msg.from,
                     encountered: msg.to,
@@ -51,11 +52,6 @@ module["exports"] = class MeetUp extends Model{
         ];
 
         let sort_by = { last_encountered : 1 };
-        // $orderby : order_by
-
-        // collection.find().sort(, function(err, cursor){...});
-
-
 
         return this.find({ $or: queries}).sort( sort_by ).then(( meetups) => {
             // console.log(err , meetups)

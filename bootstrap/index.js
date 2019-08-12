@@ -87,17 +87,11 @@ module['exports'] = class Bootstrap {
         const meetups = require('@models/meetup');
 
         this.io.on('connection', (socket) => {
-
             //-- on listen to message from channel
             socket.on('chat message', (msg) => {
-                console.log('message: ' + msg.to);
-
-                meetups.appendOrCreate(msg);
-
-                // noinspection JSUnresolvedFunction
+                meetups.appendOrCreate(msg); //-- Added To Meetup Table
                 this.io.emit(msg.to, msg);
             });
-
             console.log('a user connected');
         });
     }
