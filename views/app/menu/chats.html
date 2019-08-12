@@ -21,14 +21,12 @@
                         <ul>
                             <% encountered.forEach((encounter, index) => {%>
                                 <li>
-                                    <a href="#" id="user">
-                                        <div id="status" class="is-online"></div>
-                                        <div id="profileImg"
-                                            style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
-                                        <div id="time" class="text-muted">Today, 4:32pm
-                                        </div>
-                                        <div id="username" class="text-dark"><%=encounter.associate.username %></div>
-                                        <div id="lastest_message" class="text-muted">How are you doing?</div>
+                                    <a href="#" class="user">
+                                        <div class="status is-online"></div>
+                                        <div class="profileImg" style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
+                                        <div class="time text-muted">Today, 4:32pm</div>
+                                        <div class="username text-dark"><%=encounter.associate.username %></div>
+                                        <div class="lastest_message text-muted">How are you doing?</div>
                                     </a>
                                 </li>
 
@@ -56,7 +54,7 @@
                                     <i class="typcn typcn-video" style="font-size: 30px;"></i>
                                 </a>
                             </span>
-                            <span class="moreOptions">
+                            <div class="moreOptions">
                                 <div class="dropdown">
                                     <a href="#" id="dropBtn" class="btn waves-effect waves-light waves-effect waves-light dropBtn" role="button"
                                         style="color: #1a1a1a; padding: 15px 5px 10px 5px !important; margin: 0px 10px;">
@@ -86,65 +84,11 @@
                                             </a>
                                         </div>
                                     </div>
-                                </span>
+                                </div>
+
                             </div>
                         </div>
-                        <div class="ChatWindowBody">
-                            <ul>
-                                <li class="inbox">
-                                    <div>
-                                        <span id="message">Message</span>
-                                        <span id="time">1:37pm</span>
-                                    </div>
-                                </li>
-                                <li class="outbox">
-                                    <div>
-                                        <span id="message">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                            Accusamus qui voluptate veritatis aliquid nisi vel, voluptatem velit alias
-                                            laudantium maxime dignissimos? Explicabo, officia. Modi dignissimos molestias,
-                                            aspernatur odio vero qui.</span>
-                                        <span id="time">1:37pm</span>
-                                    </div>
-                                </li>
-                                <li class="inbox">
-                                    <div>
-                                        <span id="message">Message</span>
-                                        <span id="time">1:37pm</span>
-                                    </div>
-                                </li>
-                                <li class="outbox">
-                                    <div>
-                                        <span id="message">Message</span>
-                                        <span id="time">1:37pm</span>
-                                    </div>
-                                </li>
-                                <li class="inbox">
-                                    <div>
-                                        <span id="message">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                            aspernatur odio vero qui.</span>
-                                        <span id="time">1:37pm</span>
-                                    </div>
-                                </li>
-                                <li class="outbox">
-                                    <div>
-                                        <span id="message">Message</span>
-                                        <span id="time">1:37pm</span>
-                                    </div>
-                                </li>
-                                <li class="inbox">
-                                    <div>
-                                        <span id="message">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                            aspernatur odio vero qui.</span>
-                                        <span id="time">1:37pm</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="ChatWindowFooter" style="padding: 0px 20px;">
-                            <%- include('../partials/dynamicInput.html'); %>
-                        </div>
 
-                    </div>
                     <div class="ChatWindowBody">
                         <ul>
                             <li class="inbox">
