@@ -39,7 +39,6 @@ module["exports"] = class MeetUp extends Model{
                 });
                 meetup.save();
             }
-            console.log(meetups);
         });
     }
 
@@ -65,7 +64,7 @@ module["exports"] = class MeetUp extends Model{
         let queries = [];
 
         meetups.map(meetup => {
-            if (`@${auth_user.username}` === meetup.user_id) {
+            if (`@${__user.username}` === meetup.user_id) {
                 queries.push(meetup.encountered.slice(1));
             } else {
                 queries.push(meetup.user_id.slice(1));
@@ -76,7 +75,6 @@ module["exports"] = class MeetUp extends Model{
             let meetupsArray = [];
 
             meetups.forEach((meetup, index) => {
-                console.log(users[index]);
 
                 let meetupObj = {
                     meetup: meetup,

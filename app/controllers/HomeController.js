@@ -5,10 +5,18 @@ module["exports"] = class HomeController{
 
     static chats(req, res)
     {
-        MeetUp.getMyEncounters(req.user.username, (encountered) => {
-            res.render('./app/menu/chats', {
-                title: "Chats",
-                encountered: encountered,
+        let activeChat = req.query.user || null;
+
+        MeetUp.getMyEncounters(__user.username, (encountered) => {
+            User.getUserByUsername(activeChat, (err, activeChat) => {
+                if (err) console.log(err);
+                else {
+                    res.render('./app/menu/chats', {
+                        title: "Chats",
+                        encountered: encountered,
+                        activeChat: activeChat || null
+                    });
+                }
             });
         });
     }
@@ -16,16 +24,7 @@ module["exports"] = class HomeController{
     static showChat(req, res)
     {
         let username = req.params.username;
-
-        User.getUserByUsername(username, (err, profile_user) => {
-            if (err) console.log(err);
-            else {
-                res.render('./app/menu/chats', {
-                    title: "Chats",
-                    profile_user: profile_user
-                });
-            }
-        });
+        res.redirect(`/app/chats?user=${username}`);
     }
 
     static matched(req, res)

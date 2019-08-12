@@ -34,15 +34,17 @@
                         </ul>
                     </div>
                 </section>
+
+
                 <section class="col-md-8 ChatWindow">
-                    <% if(typeof profile_user != 'undefined') { %>
+                    <% if(typeof activeChat != 'undefined') { %>
                     <div class="ChatWindowHead">
                         <div class="float-left">
                             <div id="status" class="activity_status is_online"></div>
                             <div id="profileImg" style="background-image: url('/lib/img/assets/reduced/user.png');">
                             </div>
                             <div id="username" class="text-dark">
-                                <%= typeof profile_user.fullname.firstname != 'undefined' ? profile_user.fullname.firstname : '' %>
+                                <%= typeof activeChat.fullname.firstname != 'undefined' ? activeChat.fullname.firstname : '' %>
                                 <small id="typing" class="orange-color hide">typing...</small>
                             </div>
                         </div>
@@ -66,7 +68,7 @@
                                         <a href="#">Delete conversation</a>
                                         <a href="#" class="color">Block or Report</a>
                                         <div class="separator"></div>
-                                        <a href="/app/profile/<%= typeof profile_user.username != 'undefined' ? profile_user.username : '' %>"
+                                        <a href="/app/profile/<%= typeof activeChat.username != 'undefined' ? activeChat.username : '' %>"
                                             class="dropdownBottom" style="color: #000;">
                                             View profile
                                             <span class="typcn typcn-user float-right"></span>
@@ -77,7 +79,7 @@
                                             <a href="#">Delete conversation</a>
                                             <a href="#" class="color">Block or Report</a>
                                             <div class="separator"></div>
-                                            <a href="/app/profile/<%= typeof profile_user.username != 'undefined' ? profile_user.username : null %>"
+                                            <a href="/app/profile/<%= typeof activeChat.username != 'undefined' ? activeChat.username : null %>"
                                                 class="dropdownBottom" style="color: #000;">
                                                 View profile
                                                 <span class="typcn typcn-user float-right"></span>
@@ -88,6 +90,7 @@
 
                             </div>
                         </div>
+                    </div>
 
                     <div class="ChatWindowBody">
                         <ul>
@@ -146,7 +149,7 @@
 
                     <% } %>
 
-                    <% if(typeof profile_user == 'undefined') { %>
+                    <% if(typeof activeChat == 'undefined') { %>
                         <center class="text-muted" style="position: relative; top: 250px;">
                             <div><h1 class="typcn typcn-messages" style="font-size: 50px;"></h1></div>
                             <div><p>Start a conversation immediately...</p></div>

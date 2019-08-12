@@ -15,7 +15,6 @@ module["exports"] = {
         require("passport").authenticate('remember-me'), //-- Passport RememberMe Middleware
         require('@bootstrap/Middleware').expressValidator,
         require('@bootstrap/Middleware').message,
-        require('@bootstrap/Middleware').context,
         require('@bootstrap/Middleware').setGlobalVariable,
         require('@bootstrap/Middleware').serverlog,
 
