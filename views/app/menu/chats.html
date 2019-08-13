@@ -151,24 +151,56 @@
             <div class="ChatWindowBody">
                 <ul class="chat-message-list">
                     <li class="outbox">
-                        <div>
-                            <span class="message">Message</span>
-                            <span class="time">1:37pm</span>
+                        <div class="small-text lazy-message-box-loader">
+                            <span class="message"></span>
+                            <span class="time"></span>
                         </div>
                     </li>
 
                     <li class="inbox">
-                        <div>
-                            <span class="message">Lorem ipsum, dolor sit amet consectetur adipisicing elit.aspernatur odio vero qui.</span>
-                            <span class="time">1:37pm</span>
+                        <div class="big-text lazy-message-box-loader">
+                            <span class="message"></span>
+                            <span class="time"></span>
                         </div>
                     </li>
 
+                    <li class="outbox">
+                        <div class="medium-text lazy-message-box-loader">
+                            <span class="message"></span>
+                            <span class="time"></span>
+                        </div>
+                    </li>
+
+                    <li class="inbox">
+                        <div class="small-text lazy-message-box-loader">
+                            <span class="message"></span>
+                            <span class="time"></span>
+                        </div>
+                    </li>
+
+                    <li class="inbox">
+                        <div class="small-text lazy-message-box-loader">
+                            <span class="message"></span>
+                            <span class="time"></span>
+                        </div>
+                    </li>
+
+                    <li class="outbox">
+                        <div class="small-text lazy-message-box-loader">
+                            <span class="message"></span>
+                            <span class="time"></span>
+                        </div>
+                    </li>
+                    <div class="clearfix"></div>
                 </ul>
             </div>
 
-            <div class="ChatWindowFooter" style="padding: 0px 20px;">
-                <%- partial('/app/partials/dynamicInput.html') %>
+            <div class="ChatWindowFooter" style="padding: 0px 10px;">
+                <div class="form-group message-sender-holder">
+                    <textarea rows="1" id="message-input" class="encounter-page-send-message form-control" placeholder="Type a message" required></textarea>
+                    <button type="submit" class="btn waves-effect waves-light bg-color"><i class="fa fa-send"></i></button>
+                <div class="clearfix"></div>
+                </div>
             </div>
 
         </section>
