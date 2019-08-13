@@ -19,18 +19,75 @@
             </div>
             <div class="ChatBody">
                 <ul class="chat-list">
-                    <% encountered.forEach((encounter, index) => {%>
-                        <li>
-                            <a href="#" class="user">
-                                <div class="status <%=(encounter.associate.isOnline)? 'is-online' : 'is-offline' %> "></div>
-                                <div class="profileImg" style="background-image: url('/lib/img/assets/reduced/user.png');"></div>
-                                <div class="time text-muted"><%= Moment(arrayLast(encounter.meetup.chats).sent_at).fromNow() %></div>
-                                <div class="username text-dark"><%= encounter.associate.username %></div>
-                                <div class="lastest_message text-muted"><%= arrayLast(encounter.meetup.chats).message %></div>
-                            </a>
-                        </li>
+                    <li class="user">
+                        <div class="image-holder">
+                            <div class="status is-online lazy-box-loader"></div>
+                            <div class="profileImg lazy-box-loader"></div>
+                        </div>
+                        <div class="message-holder">
+                            <div class="time text-muted lazy-box-loader"></div>
+                            <div class="username text-dark lazy-box-loader"></div>
+                            <div class="latest_message text-muted lazy-box-loader"></div>
+                        </div>
+                    </li>
+                    <li class="user">
+                        <div class="image-holder">
+                            <div class="status is-online lazy-box-loader"></div>
+                            <div class="profileImg lazy-box-loader"></div>
+                        </div>
+                        <div class="message-holder">
+                            <div class="time text-muted lazy-box-loader"></div>
+                            <div class="username text-dark lazy-box-loader"></div>
+                            <div class="latest_message text-muted lazy-box-loader"></div>
+                        </div>
+                    </li>
+                    <li class="user">
+                        <div class="image-holder">
+                            <div class="status is-online lazy-box-loader"></div>
+                            <div class="profileImg lazy-box-loader"></div>
+                        </div>
+                        <div class="message-holder">
+                            <div class="time text-muted lazy-box-loader"></div>
+                            <div class="username text-dark lazy-box-loader"></div>
+                            <div class="latest_message text-muted lazy-box-loader"></div>
+                        </div>
+                    </li>
+                    <li class="user">
+                        <div class="image-holder">
+                            <div class="status is-online lazy-box-loader"></div>
+                            <div class="profileImg lazy-box-loader"></div>
+                        </div>
+                        <div class="message-holder">
+                            <div class="time text-muted lazy-box-loader"></div>
+                            <div class="username text-dark lazy-box-loader"></div>
+                            <div class="latest_message text-muted lazy-box-loader"></div>
+                        </div>
+                    </li>
+                    <li class="user">
+                        <div class="image-holder">
+                            <div class="status is-online lazy-box-loader"></div>
+                            <div class="profileImg lazy-box-loader"></div>
+                        </div>
+                        <div class="message-holder">
+                            <div class="time text-muted lazy-box-loader"></div>
+                            <div class="username text-dark lazy-box-loader"></div>
+                            <div class="latest_message text-muted lazy-box-loader"></div>
+                        </div>
+                    </li>
+                    <li class="user">
+                        <div class="image-holder">
+                            <div class="status is-online lazy-box-loader"></div>
+                            <div class="profileImg lazy-box-loader"></div>
+                        </div>
+                        <div class="message-holder">
+                            <div class="time text-muted lazy-box-loader"></div>
+                            <div class="username text-dark lazy-box-loader"></div>
+                            <div class="latest_message text-muted lazy-box-loader"></div>
+                        </div>
+                    </li>
 
-                    <% });%>
+
+
                 </ul>
             </div>
         </section>

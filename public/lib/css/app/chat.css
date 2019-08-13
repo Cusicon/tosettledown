@@ -24,36 +24,37 @@
     height: 490px;
 }
 
-.Chat .ChatList .ChatBody ul li a.user {
+.Chat .ChatList .ChatBody ul li.user {
     display: block;
     border-bottom: 1px solid #f8f9f8;
-    padding: 20px 10px;
-    height: 90px;
+    /*padding: 20px 10px;*/
+    height: 71px;
+    /*position: absolute;*/
+    width: 100%;
 }
 
-.Chat .ChatList .ChatBody ul li a.user:hover {
+.Chat .ChatList .ChatBody ul li.user:hover {
     box-shadow: 0px 1px 100px #0000002a !important;
 }
 
-.Chat .ChatList .ChatBody ul li a.user div.profileImg {
+.Chat .ChatList .ChatBody ul li.user div.profileImg {
     width: 50px;
     height: 50px;
-    margin-right: 10px;
     border-radius: 100%;
     background-color: #eee;
     float: left;
 }
 
-.Chat .ChatList .ChatBody ul li a.user div.username {
+.Chat .ChatList .ChatBody ul li.user div.username {
     font-size: 15px;
     font-weight: 500;
 }
 
-.Chat .ChatList .ChatBody ul li a.user div.lastest_message {
+.Chat .ChatList .ChatBody ul li.user div.latest_message {
     font-size: 12px;
 }
 
-.Chat .ChatList .ChatBody ul li a.user div.time {
+.Chat .ChatList .ChatBody ul li.user div.time {
     font-size: 12px;
     float: right;
     color: #aaa !important;
@@ -145,5 +146,71 @@
     float: right;
     margin-top: 5px;
 }
+
+.chat-list li .message-holder{
+    float: left;
+    width: 78%;
+    /*height: 50px;*/
+    border-bottom: 1px solid #eee;
+    padding: 15px 5px 15px 5px;
+}
+.chat-list li .image-holder{
+    float: left;
+    width: 22%;
+    /*height: 50px;*/
+    padding: 10px 5px 10px 5px;
+}
+
+/*Lazy Loader Begins*/
+.chat-list li.user .lazy-box-loader{
+    background-color: #eee;
+    border-radius: 5px;
+    -webkit-animation: mymove 3s infinite; /* Safari 4.0 - 8.0 */
+    animation: mymove 3s infinite;
+}
+
+.chat-list li.user div.time.lazy-box-loader{
+    width: 55px;
+    height: 18px;
+}
+
+.chat-list li.user div.username.lazy-box-loader{
+    width: 220px;
+    height: 22px;
+}
+
+.chat-list li.user div.latest_message.lazy-box-loader{
+    width: 285px;
+    height: 18px;
+    margin-top: 4px;
+}
+
+.chat-list li.user div.profileImg.lazy-box-loader{
+    width: 50px;
+    height: 50px;
+    /*margin-top: 4px;*/
+}
+
+.chat-list li.user div.status.lazy-box-loader{
+    width: 13px;
+    height: 13px;
+    /*margin-top: 4px;*/
+    background-color: #eee !important;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes mymove {
+    0% {opacity: 1;}
+    50% {opacity: 0.5;}
+    100% {opacity: 1;}
+}
+
+@keyframes mymove {
+    0% {opacity: 1;}
+    50% {opacity: 0.5;}
+    100% {opacity: 1;}
+}
+
+
 
 /* END OF CHATS */
