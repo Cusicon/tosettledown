@@ -80,7 +80,7 @@ module["exports"] = {
     |
     */
 
-    'url': get_env('APP_URL', 'http://localhost'),
+    'url': get_env('APP_URL', 'http://localhost' || 'http://tosettledown.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -93,6 +93,6 @@ module["exports"] = {
     |
     */
 
-    'timezone':  get_env('APP_TIMEZONE', 'Asia/Kolkata'),
+    'timezone':  get_env('APP_TIMEZONE', 'Nigeria/Lagos'),
 
 };
