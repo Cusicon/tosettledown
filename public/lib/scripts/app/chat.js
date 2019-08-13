@@ -112,8 +112,6 @@ function populateWindowChat(username)
     $('#chat-typing').removeClass('lazy-box-loader');
     $('#chat-profile-img').removeClass('lazy-box-loader').css('background-image',`url('/lib/img/assets/reduced/user.png')`);
 
-
-
     chats_list_box.find('.lazy-box-demo').remove();
 
     if(chats){
