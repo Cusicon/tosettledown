@@ -83,7 +83,7 @@ function buildChatUserList(associate, meetup)
             <li class="user">
             <div class="image-holder">
                 <div class="status ${is_online}"></div>
-                <div class="profile-img" style="background-image: url('/lib/img/assets/reduced/female.png')"></div>
+                <div class="profile-img" style="background-image: url('rl('/lib/img/assets/reduced/user.png')"></div>
             </div>
             <div class="message-holder">
                 <div class="time text-muted">${time}</div>
@@ -102,22 +102,38 @@ function buildChatUserList(associate, meetup)
 
 function populateWindowChat(username)
 {
+
     let chats = window.arrayChats[username];
     let chats_list_box = $('.chat-message-list');
+    let user = window.arrayUser[username]
+    let is_online = (getLastActivity(user.last_activity_at)) ? 'is-online' : 'is-offline'; //last_activity_at
+
+    $('#chat-status').removeClass('lazy-box-loader').addClass(is_online)
+    $('#chat-username-holder').text(username).removeClass('lazy-box-loader');
+    $('#chat-typing').removeClass('lazy-box-loader');
+    $('#chat-profile-img').removeClass('lazy-box-loader').css('background-image',`url('/lib/img/assets/reduced/user.png')`);
+
+
 
     chats_list_box.find('.lazy-box-demo').remove();
 
-    chats.forEach(chat => {
-        chats_list_box.append(buildChat(chat));
-    });
-}
+    if(chats){
+        chats.forEach(chat => {
+            chats_list_box.append(buildChat(chat));
+        });
+    }
+    else
+    {
 
+    }
+
+}
 
 function buildChat(chat)
 {
     let is_outbox_or_inbox = (chat.from !== `@${__user}`)? 'inbox' : 'outbox';
 
-    let chatbox = `
+    return `
          <li class="${is_outbox_or_inbox}">
             <div class="">
                 <span class="message">${chat.message}</span>
@@ -125,8 +141,6 @@ function buildChat(chat)
             </div>
         </li>
     `;
-
-    return chatbox;
 }
 
 
@@ -142,10 +156,12 @@ function buildChat(chat)
 
 function getLastActivity(last_activity) {
 
-    let lastActivitySec = moment(last_activity).second();
-    let lastNowSec = moment().second();
-    let diffSec = lastNowSec - lastActivitySec;
-    return (diffSec <= 120);
+    if(last_activity){
+        let diffSec = Math.abs(moment(last_activity).diff(moment(), 'seconds'))
+        return (diffSec <= 120);
+    }
+    return false;
+
 }
 
 function getLastChat(chats) {
@@ -185,3 +201,27 @@ function getLastChat(chats) {
     text.select();
     resize();
 })();
+
+
+$("#message-input").on('keyup',function(e) {
+    let message = {
+        from: __user,
+        to: `@${window.activeChat}`,
+        type: "composing",
+    };
+
+    //-- emit --send message
+    __socket.emit('chat composing', message);
+    return false;
+});
+
+/*
+        * listen for message on your own channel, will appear in all pages except chat Page
+        */
+__socket.on(`${__user} composing`, function (msg) {
+
+    let audio = new Audio('/lib/media/notify.mp3');
+    audio.play().then(() => {
+
+    });
+});

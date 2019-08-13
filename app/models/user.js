@@ -92,14 +92,11 @@ module["exports"] = class User extends Model{
 
     get isOnline()
     {
-        let last_activity_at = this.last_activity_at;
-        let lastActivitySec = Moment(last_activity_at).second();
-        let lastNowSec = Moment().second();
-
-        let diffSec = lastNowSec - lastActivitySec;
-
-        return (diffSec <= 120);
-
+        if(this.last_activity_at){
+            let diffSec = Math.abs(Moment(this.last_activity_at).diff(Moment(), 'seconds'))
+            return (diffSec <= 120);
+        }
+        return false;
     }
 
 };

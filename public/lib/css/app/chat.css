@@ -94,7 +94,9 @@ li.user:last-child {
     display: inline-block;
 }
 .Chat .ChatWindow .ChatWindowHead h6#chat-username-holder {
-    margin: 0 0 3px 0;
+    margin: 10px 0 0px;
+    font-weight: 500;
+    font-size: 25px;
 }
 
 .Chat .ChatWindow .ChatWindowHead small#chat-typing {
@@ -255,13 +257,14 @@ li.user:last-child {
 }
 
 .Chat .ChatWindow .ChatWindowHead #chat-username-holder {
-    width: 140px;
+    width: 120px;
     height: 30px;
 }
 
 .Chat .ChatWindow .ChatWindowHead #chat-typing {
     width: 80px;
-    height: 18px;
+    height: 10px;
+    margin-top: 2px;
 }
 
 .Chat .ChatWindow .ChatWindowBody ul.chat-message-list li div.big-text {

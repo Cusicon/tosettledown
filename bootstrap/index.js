@@ -91,7 +91,13 @@ module['exports'] = class Bootstrap {
             //-- on listen to message from channel
             socket.on('chat message', (msg) => {
                 meetups.appendOrCreate(msg); //-- Added To Meetup Table
-                this.io.emit(msg.to, msg); //-- send to other user
+                this.io.emit(`${msg.to} message`, msg); //-- send to other user
+            });
+
+            //-- on listen to delivery feedback from other user
+            socket.on('chat composing', (msg) => {
+                console.log(msg.from , msg.to)
+                this.io.emit(`${msg.to} composing`, msg);
             });
 
             //-- on listen to delivery feedback from other user

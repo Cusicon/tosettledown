@@ -93,7 +93,7 @@ $(document).on('ready', () => {
         /*
          * listen for message on your own channel, will appear in all pages except chat Page
          */
-        __socket.on(__user, function (msg) {
+        __socket.on(`${__user} message`, function (msg) {
             let options = {
                 body: msg.message, // body part of the notification
                 dir: 'ltr', // use for derection of message
