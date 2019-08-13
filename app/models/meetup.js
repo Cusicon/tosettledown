@@ -18,7 +18,7 @@ module["exports"] = class MeetUp extends Model{
                 to: msg.to,
                 format: msg.format,
                 message: msg.message,
-                sent_at: Date.now(),
+                sent_at: Math.round(new Date().getTime() / 1000),
             });
             /* Might Remove Save Not To Duplicate Table */
             // chat.save();
@@ -54,7 +54,6 @@ module["exports"] = class MeetUp extends Model{
         let sort_by = { last_encountered : 1 };
 
         return this.find({ $or: queries}).sort( sort_by ).then(( meetups) => {
-            // console.log(err , meetups)
             if (meetups.length > 0){
                 this.associate(meetups,callback);
             } else {
