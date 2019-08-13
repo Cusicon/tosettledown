@@ -27,10 +27,12 @@
 .Chat .ChatList .ChatBody ul li.user {
     display: block;
     border-bottom: 1px solid #f8f9f8;
-    /*padding: 20px 10px;*/
-    height: 71px;
-    /*position: absolute;*/
+    height: 75px;
     width: 100%;
+}
+
+li.user:last-child {
+    border-bottom: 0px;
 }
 
 .Chat .ChatList .ChatBody ul li.user:hover {
@@ -60,6 +62,14 @@
     color: #aaa !important;
 }
 
+
+
+
+
+
+/* Windows Chat Begin*/
+
+
 .Chat .ChatWindow {
     padding: 0px !important;
     /* border: 1px solid red; */
@@ -73,7 +83,7 @@
     height: 70px;
 }
 
-.Chat .ChatWindow .ChatWindowHead div#profileImg {
+.Chat .ChatWindow .ChatWindowHead div#chat-profile-img {
     width: 50px;
     height: 50px;
     margin-right: 10px;
@@ -82,14 +92,16 @@
     float: left;
 }
 
-.Chat .ChatWindow .ChatWindowHead div#username {
+.Chat .ChatWindow .ChatWindowHead div#chat-username {
     font-size: 15px;
-    margin-top: 12px;
     font-weight: 500;
     display: inline-block;
 }
+.Chat .ChatWindow .ChatWindowHead h6#chat-username-holder {
+    margin: 0 0 3px 0;
+}
 
-.Chat .ChatWindow .ChatWindowHead small#typing {
+.Chat .ChatWindow .ChatWindowHead small#chat-typing {
     font-weight: 500;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     display: block;
@@ -105,27 +117,27 @@
     padding-bottom: 30px;
 }
 
-.Chat .ChatWindow .ChatWindowBody ul li {
+.Chat .ChatWindow .ChatWindowBody ul.chat-message-list li {
     padding: 5px 10px;
     width: 100%;
     float: left;
 }
 
-.Chat .ChatWindow .ChatWindowBody ul li.inbox div {
+.Chat .ChatWindow .ChatWindowBody ul.chat-message-list li.inbox div {
     border-radius: 0px 25px 25px 25px;
     background-color: #fff;
     color: #2b2b2b;
     float: left;
 }
 
-.Chat .ChatWindow .ChatWindowBody ul li.outbox div {
+.Chat .ChatWindow .ChatWindowBody ul.chat-message-list li.outbox div {
     border-radius: 25px 0px 25px 25px;
     background-color: #f55e5e;
     /* color: #000; */
     float: right;
 }
 
-.Chat .ChatWindow .ChatWindowBody ul li div {
+.Chat .ChatWindow .ChatWindowBody ul.chat-message-list li div {
     display: inline-block;
     padding: 10px 15px;
     color: #fff;
@@ -135,24 +147,64 @@
     box-shadow: 0.5px 0.5px 0.5px #ccc !important;
 }
 
-.Chat .ChatWindow .ChatWindowBody ul li div #message {
+.Chat .ChatWindow .ChatWindowBody ul.chat-message-list li div .message {
     padding: 5px 10px;
     font-size: 14px;
 }
 
-.Chat .ChatWindow .ChatWindowBody ul li div #time {
+.Chat .ChatWindow .ChatWindowBody ul.chat-message-list li div .time {
     font-size: 11px;
     font-weight: lighter;
     float: right;
     margin-top: 5px;
 }
 
+
+
+/* Apply Lazy Loader Height And Weight */
+
+.Chat .ChatWindow .ChatWindowHead #chat-profile-img {
+    width: 50px;
+    height: 50px;
+}
+
+.Chat .ChatWindow .ChatWindowHead #chat-username-holder {
+    width: 140px;
+    height: 30px;
+}
+
+.Chat .ChatWindow .ChatWindowHead #chat-typing {
+    width: 80px;
+    height: 18px;
+}
+
+
+
+/* Window Chat Ends */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .chat-list li .message-holder{
     float: left;
     width: 78%;
     /*height: 50px;*/
     border-bottom: 1px solid #eee;
-    padding: 15px 5px 15px 5px;
+    padding: 15px 15px 15px 0px;
 }
 .chat-list li .image-holder{
     float: left;
@@ -162,7 +214,7 @@
 }
 
 /*Lazy Loader Begins*/
-.chat-list li.user .lazy-box-loader{
+.lazy-box-loader{
     background-color: #eee;
     border-radius: 5px;
     -webkit-animation: mymove 3s infinite; /* Safari 4.0 - 8.0 */
@@ -180,7 +232,7 @@
 }
 
 .chat-list li.user div.latest_message.lazy-box-loader{
-    width: 285px;
+    width: 280px;
     height: 18px;
     margin-top: 4px;
 }
