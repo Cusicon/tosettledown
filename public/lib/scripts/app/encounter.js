@@ -120,10 +120,20 @@ $('.encounter-page-send-chat').submit(function(e){
     e.preventDefault();
     let user =  $("#username").text(); //$('#encounter-page-send-message').data('sender-user');
     let message_holder = $('.encounter-page-send-message');
-    let message = message_holder.val();
+    let messageTxt = message_holder.val();
+    // noinspection JSUnusedLocalSymbols
+    let message = {
+        from: __user,
+        to: user,
+        type: "chat-message",
+        format: "text",
+        message : messageTxt,
+        sent_at : Date.now(),
+    };
 
     //-- emit --send message
-    socket.emit('chat message',{from: __user, to: user, message : message });
+    __socket.emit('chat message', message);
+
     message_holder.val('');
     return false;
 });

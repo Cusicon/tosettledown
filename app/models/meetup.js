@@ -18,7 +18,7 @@ module["exports"] = class MeetUp extends Model{
                 to: msg.to,
                 format: msg.format,
                 message: msg.message,
-                sent_at: Math.round(new Date().getTime() / 1000),
+                sent_at: msg.sent_at,
             });
             /* Might Remove Save Not To Duplicate Table */
             // chat.save();
@@ -41,6 +41,7 @@ module["exports"] = class MeetUp extends Model{
                 meetup.save();
             }
         });
+
     }
 
     static getMyEncounters(username, callback)

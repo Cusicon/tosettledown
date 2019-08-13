@@ -39,7 +39,7 @@ li.user:last-child {
     box-shadow: 0px 1px 100px #0000002a !important;
 }
 
-.Chat .ChatList .ChatBody ul li.user div.profileImg {
+.Chat .ChatList .ChatBody ul li.user div.profile-img {
     width: 50px;
     height: 50px;
     border-radius: 100%;
@@ -52,7 +52,7 @@ li.user:last-child {
     font-weight: 500;
 }
 
-.Chat .ChatList .ChatBody ul li.user div.latest_message {
+.Chat .ChatList .ChatBody ul li.user div.latest-message {
     font-size: 12px;
 }
 
@@ -218,13 +218,13 @@ li.user:last-child {
     height: 22px;
 }
 
-.chat-list li.user div.latest_message.lazy-box-loader{
+.chat-list li.user div.latest-message.lazy-box-loader{
     width: 280px;
     height: 18px;
     margin-top: 4px;
 }
 
-.chat-list li.user div.profileImg.lazy-box-loader{
+.chat-list li.user div.profile-img.lazy-box-loader{
     width: 50px;
     height: 50px;
     /*margin-top: 4px;*/

@@ -57,6 +57,10 @@
     "socialmedia",
     "dating"
   ],
+  "nodemonConfig": {
+    "ignore": ["database/*", "public/*"],
+    "delay": "2500"
+  },
   "author": "Success Chukwu",
   "license": "ISC",
   "_moduleAliases": {
