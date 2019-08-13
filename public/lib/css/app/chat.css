@@ -27,7 +27,7 @@
 .Chat .ChatList .ChatBody ul li.user {
     display: block;
     border-bottom: 1px solid #f8f9f8;
-    height: 75px;
+    height: 70px;
     width: 100%;
 }
 

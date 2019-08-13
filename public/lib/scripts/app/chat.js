@@ -220,8 +220,5 @@ $("#message-input").on('keyup',function(e) {
         */
 __socket.on(`${__user} composing`, function (msg) {
 
-    let audio = new Audio('/lib/media/notify.mp3');
-    audio.play().then(() => {
-
-    });
+    console.log(`${msg.from} is typing`)
 });

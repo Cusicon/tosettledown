@@ -96,7 +96,7 @@ module['exports'] = class Bootstrap {
 
             //-- on listen to delivery feedback from other user
             socket.on('chat composing', (msg) => {
-                console.log(msg.from , msg.to)
+                console.log(`${msg.to} composing`)
                 this.io.emit(`${msg.to} composing`, msg);
             });
 
