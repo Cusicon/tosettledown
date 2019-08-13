@@ -88,34 +88,35 @@ module['exports'] = class Bootstrap {
 
         this.io.on('connection', (socket) => {
 
-            //-- on listen to message from channel
-            socket.on('chat message', (msg) => {
-                meetups.appendOrCreate(msg); //-- Added To Meetup Table
-                this.io.emit(`${msg.to} message`, msg); //-- send to other user
-            });
-
-            //-- on listen to delivery feedback from other user
+            //-- on listen to typing... notification
             socket.on('chat composing', (msg) => {
                 console.log(`${msg.to} composing`)
                 this.io.emit(`${msg.to} composing`, msg);
             });
+
+            //-- on listen to message from channel
+            socket.on('chat message', (msg) => {
+                meetups.appendOrCreate(msg); //-- Added To Meetup Table
+                this.io.emit(`${msg.from} acknowledge`, msg); //-- send back Acknowledge Message
+                this.io.emit(`${msg.to} message`, msg); //-- send to other user
+            });
+
+            socket.on('chat received', (msg) => {
+                // update delivered @ on database
+                this.io.emit(`${msg.from} delivered`, msg);
+            });
+
 
             //-- on listen to delivery feedback from other user
             // socket.on('chat delivery', (msg) => {
             //     meetups.appendOrCreate(msg); //-- Added To Meetup Table
             //     this.io.emit(msg.to, msg);
             // });
-            //
-            // socket.on('chat receive', (msg) => {
-            //     meetups.appendOrCreate(msg); //-- Added To Meetup Table
-            //     this.io.emit(msg.to, msg);
-            // });
-            //
-            // //-- Acknowledge Message that Server Receive Your Message
-            // socket.on('chat acknowledge', (msg) => {
-            //     meetups.appendOrCreate(msg); //-- Added To Meetup Table
-            //     this.io.emit(msg.to, msg);
-            // });
+
+
+
+
+
 
             console.log('a user connected');
         });

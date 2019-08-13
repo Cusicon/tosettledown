@@ -7,24 +7,52 @@ $(document).on('ready', () => {
     window.activeChat = null;
     window.chatListHolder = null;
 
+    (function init () {
+        let observe;
+        if (window.attachEvent) {
+            observe = function (element, event, handler) {
+                element.attachEvent('on'+event, handler);
+            };
+        }
+        else {
+            observe = function (element, event, handler) {
+                element.addEventListener(event, handler, false);
+            };
+        }
 
+        let text = document.getElementById('message-input');
+        function resize () {
+            text.style.height = 'auto';
+            text.style.height = text.scrollHeight+'px';
+        }
+        /* 0-timeout to get the already changed text */
+        function delayedResize () {
+            window.setTimeout(resize, 0);
+        }
+        observe(text, 'change',  resize);
+        observe(text, 'cut',     delayedResize);
+        observe(text, 'paste',   delayedResize);
+        observe(text, 'drop',    delayedResize);
+        observe(text, 'keydown', delayedResize);
+
+        text.focus();
+        text.select();
+        resize();
+    })();
 
     (function () {
 
         let page_name = $('.page-identifier').data('page-name');
         if (page_name === 'chat') {
+
             /*
              * listen for message on your own channel, will appear in all pages except chat Page
-             */
-            __socket.on(__user, msg => {
+            */
+            __socket.on(`${__user} message`, msg => {
+                __socket.emit('chat received', msg);
                 arrayNewMsg.push(msg);
-
-                // let options = {
-                //     body: msg.message, // body part of the notification
-                //     dir: 'ltr', // use for direction of message
-                //     icon: '/lib/img/logo/favicon.png' // use for show image
-                //
-                // };
+                console.log('array change')
+                console.log(arrayNewMsg);
             });
         }
 
@@ -39,7 +67,7 @@ $(document).on('ready', () => {
         let url = new URL(url_string);
         window.activeChat = url.searchParams.get("user");
     }
-    
+
     function getMeetups() {
         $.ajax({
             url: "/app/meetups",
@@ -60,12 +88,12 @@ $(document).on('ready', () => {
                         window.chatListHolder.find('.lazy-box-group').fadeOut(750);
                         populateWindowChat(activeChat)
                     }
-                    window.chatListHolder.prepend(buildChatUserList(encounter.associate, encounter.meetup));
+                    window.chatListHolder.append(buildChatUserList(encounter.associate, encounter.meetup));
                 });
                 //(unix_timestamp*1000);
 
 
-                //Fire Resolver
+                //Fire arrayNewMsg Resolver
             },
         });
     }
@@ -80,7 +108,7 @@ function buildChatUserList(associate, meetup)
     let last_msg = getLastChat(meetup.chats).message;
 
     return `
-            <li id='${associate.username.toLowerCase()}-chat-listing' class="user user-chat-listing">
+        <li id='${associate.username.toLowerCase()}-chat-listing' class="user user-chat-listing">
             <div class="image-holder">
                 <div class="status ${is_online}"></div>
                 <div class="profile-img" style="background-image: url('/lib/img/assets/reduced/user.png')"></div>
@@ -95,13 +123,8 @@ function buildChatUserList(associate, meetup)
         `;
 }
 
-
-
-
-
 function populateWindowChat(username)
 {
-
     let chats = window.arrayChats[username];
     let chats_list_box = $('.chat-message-list');
     let user = window.arrayUser[username]
@@ -112,7 +135,7 @@ function populateWindowChat(username)
     $('#chat-typing').removeClass('lazy-box-loader');
     $('#chat-profile-img').removeClass('lazy-box-loader').css('background-image',`url('/lib/img/assets/reduced/user.png')`);
 
-    chats_list_box.find('.lazy-box-demo').remove();
+    chats_list_box.find('*').remove();
 
     if(chats){
         chats.forEach(chat => {
@@ -123,12 +146,11 @@ function populateWindowChat(username)
     {
 
     }
-
 }
 
 function buildChat(chat)
 {
-    let is_outbox_or_inbox = (chat.from !== `@${__user}`)? 'inbox' : 'outbox';
+    let is_outbox_or_inbox = (chat.from !== `${__user}`)? 'inbox' : 'outbox';
 
     return `
          <li class="${is_outbox_or_inbox}">
@@ -166,40 +188,24 @@ function getLastChat(chats) {
 }
 
 
-(function init () {
-    let observe;
-    if (window.attachEvent) {
-        observe = function (element, event, handler) {
-            element.attachEvent('on'+event, handler);
-        };
-    }
-    else {
-        observe = function (element, event, handler) {
-            element.addEventListener(event, handler, false);
-        };
-    }
-
-    let text = document.getElementById('message-input');
-    function resize () {
-        text.style.height = 'auto';
-        text.style.height = text.scrollHeight+'px';
-    }
-    /* 0-timeout to get the already changed text */
-    function delayedResize () {
-        window.setTimeout(resize, 0);
-    }
-    observe(text, 'change',  resize);
-    observe(text, 'cut',     delayedResize);
-    observe(text, 'paste',   delayedResize);
-    observe(text, 'drop',    delayedResize);
-    observe(text, 'keydown', delayedResize);
-
-    text.focus();
-    text.select();
-    resize();
-})();
 
 
+
+$(document).on('click', '.user-chat-listing', function(e) {
+    let element = $(this);
+    let username = element.find('.username').text();
+    if(username)
+    {
+        // $(this).parent().prepend($(this));
+        window.activeChat = username;
+        populateWindowChat(username);
+    }
+});
+
+
+/*
+* Sending Typing... notification,
+*/
 $("#message-input").on('keyup',function(e) {
     let message = {
         from: __user,
@@ -213,9 +219,81 @@ $("#message-input").on('keyup',function(e) {
 });
 
 /*
-        * listen for message on your own channel, will appear in all pages except chat Page
-        */
+* Sending Message
+*/
+$('#submit-msg').on('click', function(e){
+    e.preventDefault();
+    let user =  `@${activeChat}`; //$('#encounter-page-send-message').data('sender-user');
+    let message_holder = $('#message-input');
+    let messageTxt = message_holder.val();
+    // noinspection JSUnusedLocalSymbols
+    let message = {
+        __id: new Date().getUnixTime(),
+        from: __user,
+        to: user,
+        type: "chat-message",
+        format: "text",
+        message : messageTxt,
+        sent_at : Date.now(),
+    };
+    console.log(message);
+
+    //-- emit --send message
+    __socket.emit('chat message', message);
+    message_holder.val('');
+    return false;
+});
+
+
+/*
+* listen for typing on your own channel,
+*/
+__socket.on(`${__user} acknowledge`, function (msg) {
+    console.log('server got your message')
+});
+
+/*
+* listen for chat delivered on your channel
+*/
+__socket.on(`${__user} delivered`, function (msg) {
+    console.log('chat delivered')
+});
+
+
+/*
+* listen for typing on your own channel,
+*/
 __socket.on(`${__user} composing`, function (msg) {
 
-    console.log(`${msg.from} is typing`)
+    let element = $(`#${msg.from.slice(1).toLowerCase()}-chat-listing`);
+    let window_chat = $('.ChatWindow');
+
+    let is_active_chat = (msg.from.slice(1).toLowerCase() === window.activeChat.toLowerCase());
+
+    if(is_active_chat)
+    {
+        window_chat.find('#chat-typing').text('typing...')
+    }
+    else
+    {
+        element.find('.communication-status').text('typing...')
+    }
+
+    setTimeout(function(){
+
+        if(is_active_chat)
+        {
+            window_chat.find('#chat-typing').text('')
+        }
+        else
+        {
+            if(element.find('.communication-status').text() === 'typing...')
+                element.find('.communication-status').text('')
+        }
+    }, 1000);
+
 });
+
+/*
+* listen for message on your own channel
+*/
