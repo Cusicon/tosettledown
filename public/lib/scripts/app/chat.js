@@ -79,21 +79,20 @@ function buildChatUserList(associate, meetup)
     let time = moment(getLastChat(meetup.chats).sent_at).fromNow(); //last_activity_at
     let last_msg = getLastChat(meetup.chats).message;
 
-    let dataHtml = `
-            <li class="user">
+    return `
+            <li id='${associate.username.toLowerCase()}-chat-listing' class="user user-chat-listing">
             <div class="image-holder">
                 <div class="status ${is_online}"></div>
-                <div class="profile-img" style="background-image: url('rl('/lib/img/assets/reduced/user.png')"></div>
+                <div class="profile-img" style="background-image: url('/lib/img/assets/reduced/user.png')"></div>
             </div>
             <div class="message-holder">
                 <div class="time text-muted">${time}</div>
                 <div class="username text-dark">${associate.username}</div>
-                <div class="latest-message text-muted">${last_msg}</div>
+                <div class="latest-message text-muted">${last_msg.trunc(30)}</div>
+                <div class="communication-status"></div>
             </div>
         </li>
         `;
-
-    return dataHtml;
 }
 
 

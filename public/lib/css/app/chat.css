@@ -54,6 +54,13 @@ li.user:last-child {
 
 .Chat .ChatList .ChatBody ul li.user div.latest-message {
     font-size: 12px;
+    float: left;
+}
+
+.Chat .ChatList .ChatBody ul li.user div.communication-status {
+    font-size: 12px;
+    float: right;
+    color: orange;
 }
 
 .Chat .ChatList .ChatBody ul li.user div.time {
