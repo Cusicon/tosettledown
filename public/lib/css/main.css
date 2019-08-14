@@ -38,30 +38,6 @@
   background-color: #aaa !important;
 }
 
-
-.is-online {
-  position: relative;
-  right: -13px;
-  width: 13px;
-  height: 13px;
-  float: left;
-  border: 1.5px solid #fff;
-  border-radius: 100%;
-  background-color: #32c861 !important;
-}
-
-.is-offline {
-  position: relative;
-  right: -13px;
-  width: 13px;
-  height: 13px;
-  float: left;
-  border: 1.5px solid #fff;
-  border-radius: 100%;
-  background-color: #aaa !important;
-}
-
-
 .borderBottom {
   padding: 1px;
   background-color: #ff6878;
