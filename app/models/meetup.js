@@ -14,6 +14,7 @@ module["exports"] = class MeetUp extends Model{
         this.findOne({ $or: queries},(err , meetups) => {
 
             let chat = new Chat({
+                u_id : msg.__id,
                 from: msg.from,
                 to: msg.to,
                 format: msg.format,

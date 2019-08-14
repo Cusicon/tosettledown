@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 
 // noinspection ES6ModulesDependencies
 let chat_schema = mongoose.Schema({
+    u_id: {type: Number},
     from: {type : String},
     to: {type : String},
     format: {type:String, default: null},
