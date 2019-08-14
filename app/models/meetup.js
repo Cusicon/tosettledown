@@ -32,6 +32,7 @@ module["exports"] = class MeetUp extends Model{
             {
                 // noinspection JSCheckFunctionSignatures
                 let meetup = new MeetUp({
+                    meet_at: Date.now(),
                     user_id: msg.from,
                     encountered: msg.to,
                     encountered_at: Date.now(),
@@ -63,24 +64,23 @@ module["exports"] = class MeetUp extends Model{
 
         let sort_by = { last_encountered : 1 };
 
-        return this.find({ $or: queries}).sort( sort_by ).then(( meetups) => {
-
+        return this.find({ $or: queries}).sort( sort_by ).then((meetups) => {
             let meetupArray = [];
-            if (meetups.length > 0){
 
-                meetups.forEach(async (meetup, index) => {
+            if (meetups.length > 0) {
 
-                    let meetupObj = {
+                (meetups.forEach(async (meetup) => {
+
+                    meetupArray.push(await {
                         meet: meetup,
-                        associate: await this.associate(meetup),
-                        chats: await this.getMeetUpChat(meetup)
-                    };
-                    meetupArray.push(meetupObj);
+                        associate: await this.associate(meetup).then((result) => { return result }),
+                        chats: await this.getMeetUpChat(meetup).then((result) => { return result }),
+                    });
 
-                    if(index === meetups.length -1) {
+                    if (meetupArray.length === meetups.length) {
                         callback(meetupArray);
                     }
-                });
+                }));
 
             } else {
                 callback(meetups);
@@ -98,11 +98,23 @@ module["exports"] = class MeetUp extends Model{
             username = meetup.user_id.slice(1);
         }
         return User.findOne({username: username}).exec()
+            .then((user) => {
+                return user;
+            })
+            .catch((err) => {
+                return 'error occured';
+            });
     }
 
     static getMeetUpChat(meetup)
     {
         return Chat.find({ meetup_id: meetup.id}).exec()
+            .then((chats) => {
+                return chats;
+            })
+            .catch((err) => {
+                return 'error occured';
+            });
     }
 
     static updateChatToDelivered(msg)

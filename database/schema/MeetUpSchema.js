@@ -5,7 +5,7 @@ let meetup_schema = mongoose.Schema({
     user_id: {type : String, },
     encountered: String,
     meet_at: {type : Date, default: null},
-    chats: [chat_schema],
+    last_encountered: {type : Date, default: null},
 });
 
 

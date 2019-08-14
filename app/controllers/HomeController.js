@@ -7,17 +7,14 @@ module["exports"] = class HomeController{
     {
         let activeChat = req.query.user || null;
 
-        MeetUp.getMyEncounters(__user.username, (encountered) => {
-            User.getUserByUsername(activeChat, (err, activeChat) => {
-                if (err) console.log(err);
-                else {
-                    res.render('./app/menu/chats', {
-                        title: "Chats",
-                        encountered: encountered,
-                        activeChat: activeChat,
-                    });
-                }
-            });
+        User.getUserByUsername(activeChat, (err, activeChat) => {
+            if (err) console.log(err);
+            else {
+                res.render('./app/menu/chats', {
+                    title: "Chats",
+                    activeChat: activeChat,
+                });
+            }
         });
     }
 
