@@ -11,23 +11,22 @@ module["exports"] = class MeetUp extends Model{
             { user_id: msg.to , encountered: msg.from }
         ];
 
-        this.findOne({ $or: queries},(err , meetups) => {
+        this.findOne({ $or: queries},(err , meetup) => {
 
-            let chat = new Chat({
-                u_id : msg.__id || Date.now() / 1000 | 0,
-                from: msg.from,
-                to: msg.to,
-                format: msg.format,
-                message: msg.message,
-                sent_at: msg.sent_at,
-            });
-            /* Might Remove Save Not To Duplicate Table */
-            // chat.save();
-
-            if(meetups){
-                meetups.chats.push(chat);
-                meetups.last_encountered = Date.now();
-                meetups.save();
+            if(meetup){
+                let chat = new Chat({
+                    meetup_id: meetup.id,
+                    u_id : msg.__id || Date.now() / 1000 | 0,
+                    from: msg.from,
+                    to: msg.to,
+                    format: msg.format,
+                    message: msg.message,
+                    sent_at: msg.sent_at,
+                });
+                chat.save(() =>{
+                    meetup.last_encountered = Date.now();
+                    meetup.save();
+                });
             }
             else
             {
@@ -37,9 +36,18 @@ module["exports"] = class MeetUp extends Model{
                     encountered: msg.to,
                     encountered_at: Date.now(),
                     last_encountered: Date.now(),
-                    chats: [chat],
                 });
                 meetup.save();
+                let chat = new Chat({
+                    meetup_id: meetup.id,
+                    u_id : msg.__id || Date.now() / 1000 | 0,
+                    from: msg.from,
+                    to: msg.to,
+                    format: msg.format,
+                    message: msg.message,
+                    sent_at: msg.sent_at,
+                });
+                chat.save();
             }
         });
 
@@ -55,40 +63,60 @@ module["exports"] = class MeetUp extends Model{
 
         let sort_by = { last_encountered : 1 };
 
+
+
+        // var itemsProcessed = 0;
+        //
+        // [1, 2, 3].forEach((item, index, array) => {
+        //     asyncFunction(item, () => {
+        //         itemsProcessed++;
+        //         if(itemsProcessed === array.length) {
+        //             callback();
+        //         }
+        //     });
+
+
+
         return this.find({ $or: queries}).sort( sort_by ).then(( meetups) => {
+
+            let meetupArray = [];
             if (meetups.length > 0){
-                this.associate(meetups,callback);
+
+                meetups.forEach(async (meetup, index) => {
+
+                    let meetupObj = {
+                        meet: meetup,
+                        associate: await this.associate(meetup),
+                        chats: await this.getMeetUpChat(meetup)
+                    };
+                    meetupArray.push(meetupObj);
+
+                    if(index === meetups.length -1) {
+                        callback(meetupArray);
+                    }
+                });
+
             } else {
                 callback(meetups);
             }
         });
     }
 
-    static associate(meetups,callback) {
+    static associate(meetup) {
 
-        let queries = [];
+        let username = null;
 
-        meetups.map(meetup => {
-            if (`@${__user.username}` === meetup.user_id) {
-                queries.push(meetup.encountered.slice(1));
-            } else {
-                queries.push(meetup.user_id.slice(1));
-            }
-        });
+        if (`@${__user.username}` === meetup.user_id) {
+            username = meetup.encountered.slice(1);
+        } else {
+            username = meetup.user_id.slice(1);
+        }
+        return User.findOne({username: username}).exec()
+    }
 
-        User.find({username:{$in: queries}}, (err, users) => {
-            let meetupsArray = [];
-
-            meetups.forEach((meetup, index) => {
-
-                let meetupObj = {
-                    meetup: meetup,
-                    associate: users[index]
-                };
-              meetupsArray.push(meetupObj);
-            });
-            callback(meetupsArray)
-        });
+    static getMeetUpChat(meetup)
+    {
+        return Chat.find({ meetup_id: meetup.id}).exec()
     }
 
     static updateChatToDelivered(msg)
