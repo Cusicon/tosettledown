@@ -65,26 +65,24 @@ module["exports"] = class MeetUp extends Model{
         let sort_by = { last_encountered : 1 };
 
         return this.find({ $or: queries}).sort( sort_by ).then(async (meetups) => {
-            let meetupArray = [];
+            let meetupObj = {};
 
             if (meetups.length > 0) {
 
                 meetups.forEach(async (meetup) => {
 
-                    let currentMeetup= {
-                            meet: meetup,
-                            associate: await this.associate(meetup),
-                            chats: await this.getMeetUpChat(meetup),
-                    }
-                    meetupArray.push(currentMeetup);
+                    meetupObj[meetup.id] = {
+                        associate: await this.associate(meetup),
+                        chats: await this.getMeetUpChat(meetup),
+                    };
 
-                    if (meetupArray.length === meetups.length) {
-                        callback(meetupArray);
+                    if (meetupObj.length === meetups.length) {
+                        callback(meetups, meetupObj);
                     }
                 });
 
             } else {
-                callback(meetups);
+                callback(meetups, null);
             }
         });
     }

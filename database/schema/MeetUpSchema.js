@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const chat_schema = require('@schema/ChatSchema').schema;
 
 let meetup_schema = mongoose.Schema({
     user_id: {type : String, },
