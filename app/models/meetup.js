@@ -14,7 +14,7 @@ module["exports"] = class MeetUp extends Model{
         this.findOne({ $or: queries},(err , meetups) => {
 
             let chat = new Chat({
-                u_id : msg.__id,
+                u_id : msg.__id || Date.now() / 1000 | 0,
                 from: msg.from,
                 to: msg.to,
                 format: msg.format,
@@ -89,6 +89,13 @@ module["exports"] = class MeetUp extends Model{
             });
             callback(meetupsArray)
         });
+    }
+
+    static updateChatToDelivered(msg)
+    {
+        u_id = msg.__id
+
+        this.find()
     }
 
 };

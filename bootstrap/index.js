@@ -102,7 +102,7 @@ module['exports'] = class Bootstrap {
             });
 
             socket.on('chat received', (msg) => {
-                // update delivered @ on database
+                meetups.updateChatToDelivered(msg)//-- update delivered @ on database
                 this.io.emit(`${msg.from} delivered`, msg);
             });
 

@@ -151,12 +151,19 @@ function populateWindowChat(username)
 function buildChat(chat)
 {
     let is_outbox_or_inbox = (chat.from !== `${__user}`)? 'inbox' : 'outbox';
+    let message_staus = null;
+
+    if(is_outbox_or_inbox === 'outbox'){
+        if(chat.sent_at) { message_staus = `<i class="fa fa-check fa-1"></i>`; }
+        if(chat.delivered_at) { message_staus = `<i class="fa fa-check fa-1"></i><i class="fa fa-check fa-1"></i>`; }
+        if(chat.read_at) { message_staus = `<i style="color: orange" class="fa fa-check fa-1"></i> <i style="color: orange" class="fa fa-check fa-1"></i>`; }
+    }
 
     return `
          <li class="${is_outbox_or_inbox}">
             <div class="">
                 <span class="message">${chat.message}</span>
-                <span class="time">${moment(chat.sent_at).fromNow()}</span>
+                <span class="time">${moment(chat.sent_at).fromNow()} ${message_staus}</span>
             </div>
         </li>
     `;
