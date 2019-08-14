@@ -49,16 +49,6 @@ function activeProfileMenu() {
 }
 activeProfileMenu();
 
-function displaymoreDetails() {
-    let dropdownToggleBtn = $("#dropdownToggleBtn");
-    let moreDetails = $(".moreDetails");
-    moreDetails.slideUp();
-    dropdownToggleBtn.click(() => {
-        moreDetails.slideToggle();
-    });
-}
-displaymoreDetails();
-
 // Encounter Displaying and Shuffling
 function encounterDisplayingAndShuffling() {
     if (location.href.toLowerCase().includes("encounters")) {
