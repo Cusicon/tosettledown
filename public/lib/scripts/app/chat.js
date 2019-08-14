@@ -88,7 +88,7 @@ $(document).on('ready', () => {
                         window.chatListHolder.find('.lazy-box-group').fadeOut(750);
                         populateWindowChat(activeChat)
                     }
-                    window.chatListHolder.append(buildChatUserList(meetup.associate, meetup.chats));
+                    window.chatListHolder.prepend(buildChatUserList(meetup.associate, meetup.chats));
                 });
                 //(unix_timestamp*1000);
 
