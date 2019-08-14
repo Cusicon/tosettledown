@@ -1,52 +1,39 @@
-<link rel="stylesheet" href="/lib/css/index.css">
-<style>
-  section.logoCon {
-    margin-bottom: 80px;
-  }
+<% layout('/auth/layout/template.html') -%>
 
-  .cookieCon {
-    border-radius: 15px;
-    padding: 50px 20px;
-    margin: 0 auto;
-    width: 90%;
-    background-color: #f6f6f6;
-    font-size: 15px;
-  }
+<!-- Call Page Style Tag Here -->
+<% stylesheet('/lib/css/guest/docs.css') -%>
+<!-- Call Style Script Tag Here -->
+<% script('/lib/scripts/guest/docs.js') -%>
 
-  p {
-    margin: 10px;
-    margin-bottom: 20px;
-    line-height: 30px;
-  }
+<section class="cookieCon">
 
-  a {
-    color: #ff6878;
-  }
-</style>
-
-
-<section class="body">
-  <section class="logoCon">
-    <!-- Header -->
-    <header class="header" id="header">
-      <nav>
-        <div style="text-align: center;">
-          <a href="javascript:void(0);" style="display: block;" class="logoCon" style="box-sizing: content-box;">
-            <img src="/lib/img/logo/logoLandscape.png" id="logo" width="200" alt="logo">
-          </a>
-        </div>
-      </nav>
-    </header>
-    <br>
-  </section>
-
-  <center>
-    <section class="text-center text-dark" style="width: 50%; padding: 50px; border-radius: 10px; background-color: #f6f6f6;">
-      <p>Your Account Has Not Been Verified, Please Check your Email for verification link</p>
-
-      <p>click here to send another verification mail <a href="/auth/0/verify/resend">Send Now</a></p>
+    <section class="logoCon">
+        <!-- Header -->
+        <header class="header" id="header">
+            <nav>
+                <div style="text-align: center;">
+                    <a href="javascript:void(0);" style="display: block;" class="logoCon"
+                       style="box-sizing: content-box;">
+                        <img src="/lib/img/logo/logoLandscape.png" id="logo" width="200" alt="logo">
+                    </a>
+                </div>
+                <br><br>
+                <div class="btn waves-effect waves-lightCon">
+                    <a href="/" role="button" class="btn waves-effect waves-light float-right">Back to Home</a>
+                </div>
+            </nav>
+        </header>
+        <br>
     </section>
-  </center>
-  <br><br>
-  <%- include('../app/partials/footer.html'); %>
+
+    <section class="cookieMessage">
+        <div style="text-align: center;">
+            <p>Your Account Has Not Been Verified, Please Check your Email for verification link</p>
+            <p>click here to send another verification mail <a href="/auth/0/verify/resend">Send Now</a></p>
+        </div>
+
+    </section>
+
+    <br><br>
+    <%- partial('/auth/layout/footer.html') %>
 </section>
