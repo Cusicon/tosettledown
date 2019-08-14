@@ -73,22 +73,22 @@ $(document).on('ready', () => {
             url: "/app/meetups",
             method: "GET",
             success: (data) => {
-                data.meetups.forEach((encounter, index) => {
+                data.meetups.forEach((meetup, index) => {
 
                     if(index === 0)
                     {
-                        window.activeChat = (activeChat !== null)? activeChat : encounter.associate.username;
+                        window.activeChat = (activeChat !== null)? activeChat : meetup.associate.username;
                     }
 
-                    arrayUser[encounter.associate.username] = encounter.associate;
-                    arrayChats[encounter.associate.username] = encounter.meetup.chats;
+                    arrayUser[meetup.associate.username] = meetup.associate;
+                    arrayChats[meetup.associate.username] = meetup.chats;
 
                     if(index === data.meetups.length -1)
                     {
                         window.chatListHolder.find('.lazy-box-group').fadeOut(750);
                         populateWindowChat(activeChat)
                     }
-                    window.chatListHolder.append(buildChatUserList(encounter.associate, encounter.meetup));
+                    window.chatListHolder.append(buildChatUserList(meetup.associate, meetup.chats));
                 });
                 //(unix_timestamp*1000);
 
@@ -101,11 +101,11 @@ $(document).on('ready', () => {
 });
 
 
-function buildChatUserList(associate, meetup)
+function buildChatUserList(associate, chats)
 {
     let is_online = (getLastActivity(associate.last_activity_at)) ? 'is-online' : 'is-offline'; //last_activity_at
-    let time = moment(getLastChat(meetup.chats).sent_at).fromNow(); //last_activity_at
-    let last_msg = getLastChat(meetup.chats).message;
+    let time = moment(getLastChat(chats).sent_at).fromNow(); //last_activity_at
+    let last_msg = getLastChat(chats).message;
 
     return `
         <li id='${associate.username.toLowerCase()}-chat-listing' class="user user-chat-listing">
