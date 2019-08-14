@@ -65,33 +65,23 @@ module["exports"] = class MeetUp extends Model{
         let sort_by = { last_encountered : 1 };
 
         return this.find({ $or: queries}).sort( sort_by ).then(async (meetups) => {
-            let meetupArray = {};
+            let meetupArray = [];
 
             if (meetups.length > 0) {
-                let length = meetups.length;
-                (meetups.forEach(async (meetup) => {
-                    meetupArray[meetup.id] = null
-                    console.log("here")
 
-                    let y = await (async function () {
-                        return {
+                meetups.forEach(async (meetup) => {
+
+                    let currentMeetup= {
                             meet: meetup,
-                            associate: await this.associate(meetup).then((result) => {
-                                return result
-                            }),
-                            chats: await this.getMeetUpChat(meetup).then((result) => {
-                                return result
-                            }),
-                        }
-                    }).then((result) => {
-                        meetupArray[meetup.id] = result;
-                        length++
-                    });
+                            associate: await this.associate(meetup),
+                            chats: await this.getMeetUpChat(meetup),
+                    }
+                    meetupArray.push(currentMeetup);
 
-                    if (length === meetups.length) {
+                    if (meetupArray.length === meetups.length) {
                         callback(meetupArray);
                     }
-                }));
+                });
 
             } else {
                 callback(meetups);
@@ -99,7 +89,7 @@ module["exports"] = class MeetUp extends Model{
         });
     }
 
-    static associate(meetup) {
+    static async associate(meetup) {
 
         let username = null;
 
@@ -108,24 +98,11 @@ module["exports"] = class MeetUp extends Model{
         } else {
             username = meetup.user_id.slice(1);
         }
-        return User.findOne({username: username}).exec()
-            .then((user) => {
-                return user;
-            })
-            .catch((err) => {
-                return 'error occured';
-            });
+        return await User.findOne({username: username}).exec();
     }
 
-    static getMeetUpChat(meetup)
-    {
-        return Chat.find({ meetup_id: meetup.id}).exec()
-            .then((chats) => {
-                return chats;
-            })
-            .catch((err) => {
-                return 'error occured';
-            });
+    static async getMeetUpChat(meetup) {
+        return await Chat.find({meetup_id: meetup.id}).exec();
     }
 
     static updateChatToDelivered(msg)
