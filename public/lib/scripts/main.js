@@ -34,3 +34,7 @@ if (!Date.now) {
 }
 
 Date.prototype.getUnixTime = function() { return Date.now() / 1000 | 0 };
+
+if (!Array.last) {
+    Array.prototype.last = function() { return this[this.length - 1]; };
+}

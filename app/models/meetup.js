@@ -62,7 +62,7 @@ module["exports"] = class MeetUp extends Model{
             { encountered: username }
         ];
 
-        let sort_by = { last_encountered : 1 };
+        let sort_by = { last_encountered : -1 };
 
         return this.find({ $or: queries}).sort( sort_by ).then(async (meetups) => {
             let meetupArray = [];
