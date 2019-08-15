@@ -73,22 +73,29 @@ $(document).on('ready', () => {
             url: "/app/meetups",
             method: "GET",
             success: (data) => {
+
                 data.meetups.forEach((meetup, index) => {
+                    let meetup_id = meetup._id;
+
+                    let meetupObj = data.meetup_obj.find(function(meetupobj) {
+                        				return meetupobj.id === meetup_id;
+                        			});
+
 
                     if(index === 0)
                     {
-                        window.activeChat = (activeChat !== null)? activeChat : meetup.associate.username;
+                        window.activeChat = (activeChat !== null)? activeChat : meetupObj.associate.username;
                     }
 
-                    arrayUser[meetup.associate.username] = meetup.associate;
-                    arrayChats[meetup.associate.username] = meetup.chats;
+                    arrayUser[meetupObj.associate.username] = meetupObj.associate;
+                    arrayChats[meetupObj.associate.username] = meetupObj.chats;
 
                     if(index === data.meetups.length -1)
                     {
                         window.chatListHolder.find('.lazy-box-group').fadeOut(750);
                         populateWindowChat(activeChat)
                     }
-                    window.chatListHolder.prepend(buildChatUserList(meetup.associate, meetup.chats));
+                    window.chatListHolder.prepend(buildChatUserList(meetupObj.associate, meetupObj.chats));
                 });
                 //(unix_timestamp*1000);
 
