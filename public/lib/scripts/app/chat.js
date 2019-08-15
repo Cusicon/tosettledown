@@ -81,7 +81,7 @@ $(document).on('ready', () => {
         let last_msg = getLastChat(chats).message;
 
         return `
-            <li id='${associate.username.toLowerCase()}-chat-listing' class="user user-chat-listing">
+            <li id='${associate.username.toLowerCase()}-chat-listing' data-username="${associate.username.toLowerCase()}" class="user user-chat-listing">
                 <div class="image-holder">
                     <div class="status ${is_online}"></div>
                     <div class="profile-img" style="background-image: url('/lib/img/assets/reduced/user.png')"></div>
@@ -103,7 +103,7 @@ $(document).on('ready', () => {
         let user = window.arrayUser[username]
         let is_online = (getLastActivity(user.last_activity_at)) ? 'is-online' : 'is-offline'; //last_activity_at
 
-        $('#chat-status').removeClass('lazy-box-loader').addClass(is_online)
+        $('#chat-status').removeClass('lazy-box-loader').removeClass('is-online').removeClass('is-offline').addClass(is_online)
         $('#chat-username-holder').text(username).removeClass('lazy-box-loader');
         $('#chat-typing').removeClass('lazy-box-loader');
         $('#chat-profile-img').removeClass('lazy-box-loader').css('background-image',`url('/lib/img/assets/reduced/user.png')`);
@@ -115,13 +115,9 @@ $(document).on('ready', () => {
                 chats_list_box.append(buildChatMessage(chat));
             });
         }
-        else
-        {
-
-        }
     }
 
-    function buildChatMessage(chat)
+    function buildChatMessage(chat, sending = null)
     {
         let is_outbox_or_inbox = (chat.from !== `${__user}`)? 'inbox' : 'outbox';
         let message_status = null;
@@ -130,13 +126,14 @@ $(document).on('ready', () => {
             if(chat.sent_at) { message_status = `<i class="fa fa-check fa-1"></i>`; }
             if(chat.delivered_at) { message_status = `<i class="fa fa-check fa-1"></i><i class="fa fa-check fa-1"></i>`; }
             if(chat.read_at) { message_status = `<i style="color: orange" class="fa fa-check fa-1"></i> <i style="color: orange" class="fa fa-check fa-1"></i>`; }
+            if(sending) { message_status = `<i class="fa fa-spinner fa-1"></i>`; }
         }
 
         return `
-             <li class="${is_outbox_or_inbox}">
+             <li id="chat-${chat.u_id}" class="${is_outbox_or_inbox}">
                 <div class="">
                     <span class="message">${chat.message}</span>
-                    <span class="time">${moment(chat.sent_at).fromNow()} ${message_status}</span>
+                    <span class="time">${moment(chat.sent_at).fromNow()} <span id="message-status">${message_status}</span></span>
                 </div>
             </li>
         `;
@@ -152,7 +149,6 @@ $(document).on('ready', () => {
             return (diffSec <= 120);
         }
         return false;
-
     }
 
     function getLastChat(chats) {
@@ -222,6 +218,7 @@ $(document).on('ready', () => {
         // noinspection JSUnusedLocalSymbols
         let message = {
             __id: new Date().getUnixTime(),
+            u_id: new Date().getUnixTime(),
             from: __user,
             to: user,
             type: "chat-message",
@@ -229,10 +226,21 @@ $(document).on('ready', () => {
             message : messageTxt,
             sent_at : Date.now(),
         };
-        console.log(message);
 
         //-- emit --send message
         __socket.emit('chat message', message);
+
+        message.delivered_at = null
+        message.read_at = null
+        message.u_id = message.__id
+
+        // meetup_id: "5d5478690d2786229c71c0fd",
+        arrayChats[activeChat].push(message);
+        let chats_list_box = $('.chat-message-list');
+
+        //fa-spinner
+        chats_list_box.append(buildChatMessage(message, true));
+
         message_holder.val('');
         return false;
     });
@@ -244,6 +252,8 @@ $(document).on('ready', () => {
     //-- Fire Socket Listener
     function fireSocketListener() {
 
+        //-- SENDING TO SOCKET --//
+
         /*
         * listen for incoming message on your own channel, and store in array for new chats
         */
@@ -254,18 +264,36 @@ $(document).on('ready', () => {
             console.log(arrayNewMsg);
         });
 
+        //-- ! SENDING TO SOCKET --//
+
+
+        //-- RECEIVING FROM SOCKET --//
+
         /*
         * listen for Acknowledgment notification from the serve when you send a message,
         */
         __socket.on(`${__user} acknowledge`, function (msg) {
-            console.log(msg, 'server got your message')
+            if(msg.to.slice(1) === activeChat){
+                let chat = arrayChats[activeChat].find(function(chats) {
+                    return chats.__id === msg.__id;
+                });
+                let chatbox = $(`#chat-${chat.u_id}`);
+                chatbox.find('#message-status').html('<i class="fa fa-check fa-1"></i>')
+            }
         });
 
         /*
         * listen for chat delivered notification on your channel for message you sent
         */
         __socket.on(`${__user} delivered`, function (msg) {
-            console.log(msg, 'chat delivered')
+            if(msg.to.slice(1) === activeChat){
+                let chat = arrayChats[activeChat].find(function(chats) {
+                    return chats.__id === msg.__id;
+                });
+                chat.delivered_at = Date.now();
+                let chatbox = $(`#chat-${chat.u_id}`);
+                chatbox.find('#message-status').html('<i class="fa fa-check fa-1"></i><i class="fa fa-check fa-1"></i>')
+            }
         });
 
         /*
@@ -301,6 +329,8 @@ $(document).on('ready', () => {
             }, 1000);
 
         });
+
+        //-- ! RECEIVING FROM SOCKET --//
 
 
     }
