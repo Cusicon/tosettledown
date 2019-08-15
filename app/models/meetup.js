@@ -41,7 +41,7 @@ module["exports"] = class MeetUp extends Model{
                 meetup.save();
                 let chat = new Chat({
                     meetup_id: meetup.id,
-                    u_id : msg.__id || Date.now() / 1000 | 0,
+                    u_id : msg.__id,
                     from: msg.from,
                     to: msg.to,
                     format: msg.format,
@@ -107,9 +107,12 @@ module["exports"] = class MeetUp extends Model{
 
     static updateChatToDelivered(msg)
     {
-        u_id = msg.__id
+        // console.log(msg);
+        Chat.findOne({u_id: msg.__id}, (err, chat) => {
+            console.log(chat);
 
-        this.find()
+            chat.delivered_at = Date.now();
+            chat.save()
+        });
     }
-
 };

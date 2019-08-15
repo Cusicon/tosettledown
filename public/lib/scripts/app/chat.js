@@ -247,6 +247,13 @@ $(document).on('ready', () => {
     //======================= ! EVENT LISTENERS ==================
 
 
+    function resolveChat(msg)
+    {
+        if(arrayUser[msg.from.slice(1)])
+        {
+
+        }
+    }
 
     //======================= START SOCKET EMIT LISTENERS ==================
     //-- Fire Socket Listener
@@ -259,6 +266,20 @@ $(document).on('ready', () => {
         */
         __socket.on(`${__user} message`, msg => {
             __socket.emit('chat received', msg);
+
+            //push message to user chat if is active and exist in array
+            if(msg.from.slice(1) === activeChat){
+                console.log("yap");
+                arrayChats[activeChat].push(msg)
+
+                let chats_list_box = $('.chat-message-list');
+                chats_list_box.append(buildChatMessage(msg));
+            }
+
+            //if user exit push message to user char array
+
+            // if not push message to unsolved array
+
             arrayNewMsg.push(msg);
             console.log('array change')
             console.log(arrayNewMsg);
