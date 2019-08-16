@@ -5,16 +5,9 @@ module["exports"] = class HomeController{
 
     static chats(req, res)
     {
-        let activeChat = req.query.user || null;
-
-        User.getUserByUsername(activeChat, (err, activeChat) => {
-            if (err) console.log(err);
-            else {
-                res.render('./app/menu/chats', {
-                    title: "Chats",
-                    activeChat: activeChat,
-                });
-            }
+        res.render('./app/menu/chats', {
+            title: "Chats",
+            activeChat:null
         });
     }
 
@@ -40,6 +33,7 @@ module["exports"] = class HomeController{
                 res.json({
                     meetups: meetups,// Shuffle the array
                     meetup_obj: meetupObj,
+                    activeChat:null
                 });
             }
         });

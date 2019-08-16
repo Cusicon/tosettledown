@@ -9,7 +9,8 @@ $(document).on('ready', () => {
 
     (function () {
         window.chatListHolder = $('#chat-list-holder');
-        fireSocketListener();
+        postAjaxSocketListener();
+        getActiveChat();
         getMeetups();
 
     })();
@@ -17,15 +18,19 @@ $(document).on('ready', () => {
     function getActiveChat() {
         let url_string = window.location.href;
         let url = new URL(url_string);
-       return url.searchParams.get("user");
+        window.activeChat= url.searchParams.get("user");
+       // return window.activeChat
     }
 
     function getMeetups() {
+        // let url = (getActiveChat())? `?user=${getActiveChat()}` : '';
+
         $.ajax({
-            url: `/app/meetups?user=${getActiveChat()}`, // send active user also
+            url: `/app/meetups`, // send active user also
             method: "GET",
             success: (data) => {
                 data.meetups.forEach((meetup, index) => {
+
                     buildUpChat(data, meetup, index);
                 });
                 //(unix_timestamp*1000);
@@ -34,17 +39,6 @@ $(document).on('ready', () => {
             },
         });
     }
-
-    $(document).on('click', '.user-chat-listing', function() {
-        let element = $(this);
-        let username = element.find('.username').text();
-        if(username)
-        {
-            // $(this).parent().prepend($(this));
-            window.activeChat = username;
-            populateWindowChat(username);
-        }
-    });
 
 
     function buildUpChat(data, meetup, index)
@@ -58,7 +52,8 @@ $(document).on('ready', () => {
         if(index === 0)
         {
             //refactor for activated chat
-            window.activeChat = (activeChat !== null)? activeChat : meetupObj.associate.username;
+            window.activeChat = (window.activeChat)? window.activeChat : meetupObj.associate.username;
+            preAjaxSocketListener()
         }
 
         arrayUser[meetupObj.associate.username] = meetupObj.associate;
@@ -189,7 +184,6 @@ $(document).on('ready', () => {
     }
 
 
-
     //======================= ! MINIMAL HELPER FUNCTIONS =============
 
 
@@ -251,8 +245,7 @@ $(document).on('ready', () => {
 
     //======================= START SOCKET EMIT LISTENERS ==================
     //-- Fire Socket Listener
-    function fireSocketListener() {
-
+    function postAjaxSocketListener() {
         //-- SENDING TO SOCKET --//
 
         /*
@@ -267,7 +260,10 @@ $(document).on('ready', () => {
         });
 
         //-- ! SENDING TO SOCKET --//
+    }
 
+    function preAjaxSocketListener()
+    {
 
         //-- RECEIVING FROM SOCKET --//
 
@@ -337,5 +333,16 @@ $(document).on('ready', () => {
 
     }
     //======================= ! START SOCKET LISTENERS ==================
+
+    $(document).on('click', '.user-chat-listing', function() {
+        let element = $(this);
+        let username = element.find('.username').text();
+        if(username)
+        {
+            // $(this).parent().prepend($(this));
+            window.activeChat = username;
+            populateWindowChat(username);
+        }
+    });
 
 });
