@@ -74,8 +74,8 @@ $(document).on('ready', () => {
     }
 
     //======================= ! BUILDING THE LAYOUT ==================
-    function buildChatUserList(associate, chats)
-    {
+
+    function buildChatUserList(associate, chats) {
         let is_online = (getLastActivity(associate.last_activity_at)) ? 'is-online' : 'is-offline'; //last_activity_at
         let time = moment(getLastChat(chats).sent_at).fromNow(); //last_activity_at
         let last_msg = getLastChat(chats).message;
@@ -96,8 +96,7 @@ $(document).on('ready', () => {
             `;
     }
 
-    function populateWindowChat(username)
-    {
+    function populateWindowChat(username) {
         let chats = window.arrayChats[username];
         let chats_list_box = $('.chat-message-list');
         let user = window.arrayUser[username]
@@ -113,14 +112,16 @@ $(document).on('ready', () => {
         if(chats){
             chats.forEach(chat => {
                 chats_list_box.append(buildChatMessage(chat));
-            });
+            })
+            let  element = $(".ChatWindowBody");
+            element[0].scrollTop = element[0].scrollHeight;
         }
     }
 
-    function buildChatMessage(chat, sending = null)
-    {
+    function buildChatMessage(chat, sending = null) {
+
         let is_outbox_or_inbox = (chat.from !== `${__user}`)? 'inbox' : 'outbox';
-        let message_status = null;
+        let message_status = '';
 
         if(is_outbox_or_inbox === 'outbox'){
             if(chat.sent_at) { message_status = `<i class="fa fa-check fa-1"></i>`; }
@@ -188,6 +189,10 @@ $(document).on('ready', () => {
         text.select();
         resize();
     }
+
+
+
+
     //======================= ! MINIMAL HELPER FUNCTIONS =============
 
 
