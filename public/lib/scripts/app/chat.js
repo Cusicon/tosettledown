@@ -89,7 +89,7 @@ $(document).on('ready', () => {
                 </div>
                 <div class="message-holder">
                     <div class="time text-muted">${time}</div>
-                    <div class="username text-dark">${associate.username}</div>
+                    <div class="username text-dark" data-username="${associate.username}">${associate.name}</div>
                     <div class="latest-message text-muted">${last_msg.trunc(30)}</div>
                     <div class="communication-status"></div>
                 </div>
@@ -263,13 +263,11 @@ $(document).on('ready', () => {
         message.read_at = null
         message.u_id = message.__id
 
-        // meetup_id: "5d5478690d2786229c71c0fd",
         arrayChats[activeChat].push(message);
         let chats_list_box = $('.chat-message-list');
 
         //fa-spinner
         chats_list_box.append(buildChatMessage(message, true));
-
         message_holder.val('');
         return false;
     });
@@ -286,7 +284,6 @@ $(document).on('ready', () => {
         */
         __socket.on(`${__user} message`, msg => {
             __socket.emit('chat received', msg);
-
             arrayNewMsg.push(msg);
             //-- Resolver Will Do The Appending To DOM
 
@@ -369,7 +366,7 @@ $(document).on('ready', () => {
 
     $(document).on('click', '.user-chat-listing', function() {
         let element = $(this);
-        let username = element.find('.username').text();
+        let username = element.find('.username').data('username');
         if(username)
         {
             // $(this).parent().prepend($(this));
