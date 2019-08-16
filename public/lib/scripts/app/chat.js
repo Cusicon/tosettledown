@@ -91,7 +91,7 @@ $(document).on('ready', () => {
                     <div class="time text-muted">${time}</div>
                     <div class="username text-dark" data-username="${associate.username}">${associate.name}</div>
                     <div class="latest-message text-muted">${last_msg.trunc(30)}</div>
-                    <div class="communication-status"></div>
+                    <div class="communication-status" data-unread-msg="0"></div>
                 </div>
             </li>
             `;
@@ -343,16 +343,25 @@ $(document).on('ready', () => {
                 element.find('.communication-status').text('typing...')
             }
 
+            //-- To Remove typing .....
             setTimeout(function(){
-
                 if(is_active_chat)
                 {
                     window_chat.find('#chat-typing').text('')
                 }
                 else
                 {
-                    if(element.find('.communication-status').text() === 'typing...')
-                        element.find('.communication-status').text('')
+                    let comm_stat = element.find('.communication-status');
+                    if(comm_stat.text() === 'typing...'){
+
+                        if(parseInt(comm_stat.data('unread-msg')) > 0 ){
+                            comm_stat.text(`${comm_stat}`)
+                                                    }
+                        else
+                        {
+                            comm_stat.text('')
+                        }
+                    }
                 }
             }, 1000);
 
