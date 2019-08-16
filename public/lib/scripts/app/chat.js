@@ -40,10 +40,10 @@ $(document).on('ready', () => {
                 data.meetups.forEach((meetup, index) => {
                     buildUpChat(data, meetup, index);
                 });
-                //(unix_timestamp*1000);
 
-                //Fire arrayNewMsg Resolver
+                //Fire Resolver
                 setInterval(newChatResolver,100); //-- resolve new chat from socket
+                setInterval(unresolvedChatResolver,100); //-- resolve new chat from socket
             },
         });
     }
@@ -174,6 +174,7 @@ $(document).on('ready', () => {
                 }
                 else
                 {
+                    //-- if user is in chat list else put and prepend to the top
                     arrayChats[activeChat].push(msg);
                     //-- increase user no of message on chat list
                 }
@@ -187,7 +188,7 @@ $(document).on('ready', () => {
         }
     }
 
-    function unresovleChatResolver(){
+    function unresolvedChatResolver(){
 
         if(unresolvedMsg.length > 0)
         {
@@ -208,6 +209,11 @@ $(document).on('ready', () => {
                 },
             });
         }
+    }
+
+    function prependToChatList(msg)
+    {
+
     }
 
 
