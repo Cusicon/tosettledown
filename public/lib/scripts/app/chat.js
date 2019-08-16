@@ -10,7 +10,6 @@ $(document).on('ready', () => {
     (function () {
         window.chatListHolder = $('#chat-list-holder');
         fireSocketListener();
-        getActiveChat()
         getMeetups();
 
     })();
@@ -18,12 +17,12 @@ $(document).on('ready', () => {
     function getActiveChat() {
         let url_string = window.location.href;
         let url = new URL(url_string);
-        window.activeChat = url.searchParams.get("user");
+       return url.searchParams.get("user");
     }
 
     function getMeetups() {
         $.ajax({
-            url: "/app/meetups", // send active user also
+            url: `/app/meetups?user=${getActiveChat()}`, // send active user also
             method: "GET",
             success: (data) => {
                 data.meetups.forEach((meetup, index) => {
@@ -77,7 +76,7 @@ $(document).on('ready', () => {
     //======================= ! BUILDING THE LAYOUT ==================
 
     function buildChatUserList(associate, chats) {
-        let is_online = (getLastActivity(associate.last_activity_at)) ? 'is-online' : 'is-offline'; //last_activity_at
+        let is_online = (getLastActivity(associate.last_activity_at)) ? 'is_online' : 'is_offline'; //last_activity_at
         let time = moment(chats.last().sent_at).fromNow(); //last_activity_at
         let last_msg = chats.last().message;
 
@@ -101,16 +100,17 @@ $(document).on('ready', () => {
         let chats = window.arrayChats[username];
         let chats_list_box = $('.chat-message-list');
         let user = window.arrayUser[username]
-        let is_online = (getLastActivity(user.last_activity_at)) ? 'is-online' : 'is-offline'; //last_activity_at
+        let is_online = (getLastActivity(user.last_activity_at)) ? 'is_online' : 'is_offline'; //last_activity_at
 
-        $('#chat-status').removeClass('lazy-box-loader').removeClass('is-online').removeClass('is-offline').addClass(is_online)
-        $('#chat-username-holder').text(username).removeClass('lazy-box-loader');
-        $('#chat-typing').removeClass('lazy-box-loader');
-        $('#chat-profile-img').removeClass('lazy-box-loader').css('background-image',`url('/lib/img/assets/reduced/user.png')`);
-
+        $('#chat-status').removeClass('is_online').removeClass('is_offline').addClass(is_online)
+        $('#chat-username-holder').text(username);
+        $('#chat-typing');
+        $('#chat-profile-img').css('background-image',`url('/lib/img/assets/reduced/user.png')`);
 
         chats_list_box.find('*').remove();
 
+        $('.go-back-encounter').css('display','none');
+        $('.chat-window-holder').css('display','block');
         if(chats){
             chats.forEach(chat => {
                 chats_list_box.append(buildChatMessage(chat));
@@ -183,6 +183,11 @@ $(document).on('ready', () => {
 
         }
     }
+
+    function unresovleChatResolver(){
+
+    }
+
 
 
     //======================= ! MINIMAL HELPER FUNCTIONS =============
