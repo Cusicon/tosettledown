@@ -67,6 +67,7 @@ $(document).on('ready', () => {
 
         if(index === data.meetups.length -1)
         {
+            setInterval(newChatResolver,100); //-- resolve new chat from socket
             window.chatListHolder.find('.lazy-box-group').fadeOut(750);
             populateWindowChat(activeChat)
         }
@@ -77,8 +78,8 @@ $(document).on('ready', () => {
 
     function buildChatUserList(associate, chats) {
         let is_online = (getLastActivity(associate.last_activity_at)) ? 'is-online' : 'is-offline'; //last_activity_at
-        let time = moment(getLastChat(chats).sent_at).fromNow(); //last_activity_at
-        let last_msg = getLastChat(chats).message;
+        let time = moment(chats.last().sent_at).fromNow(); //last_activity_at
+        let last_msg = chats.last().message;
 
         return `
             <li id='${associate.username.toLowerCase()}-chat-listing' data-username="${associate.username.toLowerCase()}" class="user user-chat-listing">
@@ -106,6 +107,7 @@ $(document).on('ready', () => {
         $('#chat-username-holder').text(username).removeClass('lazy-box-loader');
         $('#chat-typing').removeClass('lazy-box-loader');
         $('#chat-profile-img').removeClass('lazy-box-loader').css('background-image',`url('/lib/img/assets/reduced/user.png')`);
+
 
         chats_list_box.find('*').remove();
 
@@ -152,45 +154,35 @@ $(document).on('ready', () => {
         return false;
     }
 
-    function getLastChat(chats) {
-        return chats.last();
+    function newChatResolver()
+    {
+        if(arrayNewMsg.length > 0)
+        {
+            let msg = arrayNewMsg.shift()
+
+            //user from exist in user array
+            if(arrayUser[msg.from.slice(1)])
+            {
+                //push message to user chat if is active and exist in array
+                if(msg.from.slice(1) === activeChat){
+                    arrayChats[activeChat].push(msg)
+                    let chats_list_box = $('.chat-message-list');
+                    chats_list_box.append(buildChatMessage(msg));
+                }
+                else
+                {
+                    arrayChats[activeChat].push(msg);
+                    //-- increase user no of message on chat list
+                }
+            }
+            else
+            {
+                // if not push message to unsolved array
+                unresolvedMsg.push(msg);
+            }
+
+        }
     }
-
-    // noinspection JSUnusedLocalSymbols
-    function initTextAutoResize () {
-        let observe;
-        if (window.attachEvent) {
-            observe = function (element, event, handler) {
-                element.attachEvent('on'+event, handler);
-            };
-        }
-        else {
-            observe = function (element, event, handler) {
-                element.addEventListener(event, handler, false);
-            };
-        }
-
-        let text = document.getElementById('message-input');
-        function resize () {
-            text.style.height = 'auto';
-            text.style.height = text.scrollHeight+'px';
-        }
-        /* 0-timeout to get the already changed text */
-        function delayedResize () {
-            window.setTimeout(resize, 0);
-        }
-        observe(text, 'change',  resize);
-        observe(text, 'cut',     delayedResize);
-        observe(text, 'paste',   delayedResize);
-        observe(text, 'drop',    delayedResize);
-        observe(text, 'keydown', delayedResize);
-
-        text.focus();
-        text.select();
-        resize();
-    }
-
-
 
 
     //======================= ! MINIMAL HELPER FUNCTIONS =============
@@ -252,14 +244,6 @@ $(document).on('ready', () => {
     //======================= ! EVENT LISTENERS ==================
 
 
-    function resolveChat(msg)
-    {
-        if(arrayUser[msg.from.slice(1)])
-        {
-
-        }
-    }
-
     //======================= START SOCKET EMIT LISTENERS ==================
     //-- Fire Socket Listener
     function fireSocketListener() {
@@ -272,22 +256,9 @@ $(document).on('ready', () => {
         __socket.on(`${__user} message`, msg => {
             __socket.emit('chat received', msg);
 
-            //push message to user chat if is active and exist in array
-            if(msg.from.slice(1) === activeChat){
-                console.log("yap");
-                arrayChats[activeChat].push(msg)
-
-                let chats_list_box = $('.chat-message-list');
-                chats_list_box.append(buildChatMessage(msg));
-            }
-
-            //if user exit push message to user char array
-
-            // if not push message to unsolved array
-
             arrayNewMsg.push(msg);
-            console.log('array change')
-            console.log(arrayNewMsg);
+            //-- Resolver Will Do The Appending To DOM
+
         });
 
         //-- ! SENDING TO SOCKET --//

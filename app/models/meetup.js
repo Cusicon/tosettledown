@@ -105,14 +105,25 @@ module["exports"] = class MeetUp extends Model{
         return await Chat.find({meetup_id: meetup.id}).exec();
     }
 
+    // sleep time expects milliseconds
+    static sleep (time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
+    }
+
     static updateChatToDelivered(msg)
     {
-        // console.log(msg);
-        Chat.findOne({u_id: msg.__id}, (err, chat) => {
-            console.log(chat);
+        // Usage!
+        this.sleep(1000).then(() => {
+            // console.log(msg);
 
-            chat.delivered_at = Date.now();
-            chat.save()
+            Chat.findOne({sent_at: msg.sent_at, from: msg.from}, (err, chat) => {
+                console.log(chat);
+                chat.delivered_at = Date.now();
+                chat.save()
+            });
         });
     }
+
+
+
 };
