@@ -18,24 +18,32 @@ $(document).on('ready', () => {
     function getActiveChat() {
         let url_string = window.location.href;
         let url = new URL(url_string);
-        window.activeChat= url.searchParams.get("user");
-       // return window.activeChat
+       return url.searchParams.get("user");
     }
 
     function getMeetups() {
-        // let url = (getActiveChat())? `?user=${getActiveChat()}` : '';
+        let url = (getActiveChat())? `?user=${getActiveChat()}` : '';
 
         $.ajax({
-            url: `/app/meetups`, // send active user also
+            url: `/app/meetups${url}`, // send active user also
             method: "GET",
             success: (data) => {
-                data.meetups.forEach((meetup, index) => {
+                preAjaxSocketListener()
 
+                if(data.activeChat)
+                {
+                    window.activeChat = data.activeChat.username
+                    arrayUser[data.activeChat.username] = data.activeChat;
+                    arrayChats[data.activeChat.username] = [];
+                }
+
+                data.meetups.forEach((meetup, index) => {
                     buildUpChat(data, meetup, index);
                 });
                 //(unix_timestamp*1000);
 
                 //Fire arrayNewMsg Resolver
+                setInterval(newChatResolver,100); //-- resolve new chat from socket
             },
         });
     }
@@ -49,11 +57,10 @@ $(document).on('ready', () => {
             return meetupObj.id === meetup_id;
         });
 
+        // Incase Active Chat Is Null
         if(index === 0)
         {
-            //refactor for activated chat
             window.activeChat = (window.activeChat)? window.activeChat : meetupObj.associate.username;
-            preAjaxSocketListener()
         }
 
         arrayUser[meetupObj.associate.username] = meetupObj.associate;
@@ -61,7 +68,6 @@ $(document).on('ready', () => {
 
         if(index === data.meetups.length -1)
         {
-            setInterval(newChatResolver,100); //-- resolve new chat from socket
             window.chatListHolder.find('.lazy-box-group').fadeOut(750);
             populateWindowChat(activeChat)
         }
@@ -92,20 +98,22 @@ $(document).on('ready', () => {
     }
 
     function populateWindowChat(username) {
-        let chats = window.arrayChats[username];
+
         let chats_list_box = $('.chat-message-list');
         let user = window.arrayUser[username]
+        let chats = window.arrayChats[username];
         let is_online = (getLastActivity(user.last_activity_at)) ? 'is_online' : 'is_offline'; //last_activity_at
 
+        //-- user property to dom
         $('#chat-status').removeClass('is_online').removeClass('is_offline').addClass(is_online)
         $('#chat-username-holder').text(username);
-        $('#chat-typing');
         $('#chat-profile-img').css('background-image',`url('/lib/img/assets/reduced/user.png')`);
 
         chats_list_box.find('*').remove();
 
         $('.go-back-encounter').css('display','none');
         $('.chat-window-holder').css('display','block');
+
         if(chats){
             chats.forEach(chat => {
                 chats_list_box.append(buildChatMessage(chat));
@@ -181,6 +189,25 @@ $(document).on('ready', () => {
 
     function unresovleChatResolver(){
 
+        if(unresolvedMsg.length > 0)
+        {
+            let msg = unresolvedMsg.shift()
+            let username = msg.from.slice(1)
+
+            $.ajax({
+                url: `/app/meetups/getuser?user=${username}`, // send active user also
+                method: "GET",
+                success: (data) => {
+                    preAjaxSocketListener()
+
+                    if(data.user)
+                    {
+                        arrayUser[data.user.username] = data.user;
+                        arrayNewMsg.unshift(msg); //put it back to new Msg for processing
+                    }
+                },
+            });
+        }
     }
 
 
