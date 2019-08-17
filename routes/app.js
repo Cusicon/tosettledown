@@ -1,5 +1,5 @@
 let router = require('express')();
-let multer = require('multer');
+
 //-- encounters Router
 router.get("/encounters", (require('@app/controllers/EncounterController')).index);
 router.get("/encounters/getUsers", (require('@app/controllers/EncounterController')).getUsers);

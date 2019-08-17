@@ -67,8 +67,8 @@ module["exports"] = class ProfileController {
                         console.log(`Photos User's ID: ${photo.user_id}`); // Show to compare
                         console.log(`User's ID: ${req.user.id}`); // Show to compare
                         console.log(photo); // Display photo in console
-                        userLog(`"${req.user.username}" just uploded some photos.`);
-                        console.log(`@${req.user.username} just uploded some photos!, @ ${new Date().toTimeString()}`);
+                        userLog(`"${req.user.username}" just uploaded some photos.`);
+                        console.log(`@${req.user.username} just uploaded some photos!, @ ${new Date().toTimeString()}`);
                         res.redirect(`/app/profile/${username}`);
                     }
                 });
