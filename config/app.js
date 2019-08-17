@@ -10,7 +10,7 @@ module["exports"] = {
     |
     */
 
-    'name': get_env('APP_NAME', 'ToSettleDown'),
+    'name': get_env('APP_NAME', 'Tosettledown'),
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ module["exports"] = {
     |
     */
 
-    'url': get_env('APP_URL', 'http://localhost' || 'http://tosettledown.com'),
+    'url': get_env('APP_URL', 'http://tosettledown.com'),
 
     /*
     |--------------------------------------------------------------------------

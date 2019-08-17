@@ -8,6 +8,26 @@ $(document).on('ready', () => {
     window.chatListHolder = null;
 
     (function () {
+
+        var page_name = $('.page-identifier').data('page-name');
+        if (page_name === 'chat') {
+
+            /*
+             * listen for message on your own channel, will appear in all pages except chat Page
+            */
+            __socket.on(`${__user} message`, msg => {
+                __socket.emit('chat received', msg);
+                arrayNewMsg.push(msg);
+
+                // var options = {
+                //     body: msg.message, // body part of the notification
+                //     dir: 'ltr', // use for direction of message
+                //     icon: '/lib/img/logo/favicon.png' // use for show image
+                //
+                // };
+            });
+        }
+
         window.chatListHolder = $('#chat-list-holder');
         fireSocketListener();
         getActiveChat()
@@ -16,8 +36,8 @@ $(document).on('ready', () => {
     })();
 
     function getActiveChat() {
-        let url_string = window.location.href;
-        let url = new URL(url_string);
+        var url_string = window.location.href;
+        var url = new URL(url_string);
         window.activeChat = url.searchParams.get("user");
     }
 
@@ -36,16 +56,38 @@ $(document).on('ready', () => {
         });
     }
 
-    $(document).on('click', '.user-chat-listing', function() {
-        let element = $(this);
-        let username = element.find('.username').text();
-        if(username)
-        {
-            // $(this).parent().prepend($(this));
-            window.activeChat = username;
-            populateWindowChat(username);
-        }
-    });
+});
+
+
+function buildChatUserList(associate, chats)
+{
+    var is_online = (getLastActivity(associate.last_activity_at)) ? 'is-online' : 'is-offline'; //last_activity_at
+    var time = moment(getLastChat(meetup.chats).sent_at).fromNow(); //last_activity_at
+    var last_msg = getLastChat(meetup.chats).message;
+
+    return `
+        <li id='${associate.username.toLowerCase()}-chat-listing' class="user user-chat-listing">
+            <div class="image-holder">
+                <div class="status ${is_online}"></div>
+                <div class="profile-img" style="background-image: url('/lib/img/assets/reduced/user.png')"></div>
+            </div>
+            <div class="message-holder">
+                <div class="time text-muted">${time}</div>
+                <div class="username text-dark">${associate.username}</div>
+                <div class="latest-message text-muted">${last_msg.trunc(30)}</div>
+                <div class="communication-status"></div>
+            </div>
+        </li>
+        `;
+}
+
+function populateWindowChat(username)
+{
+
+    var chats = window.arrayChats[username];
+    var chats_list_box = $('.chat-message-list');
+    var user = window.arrayUser[username]
+    var is_online = (getLastActivity(user.last_activity_at)) ? 'is-online' : 'is-offline'; //last_activity_at
 
 
     function buildUpChat(data, meetup, index)
@@ -349,7 +391,93 @@ $(document).on('ready', () => {
                 }
             }, 1000);
 
-        });
+$(document).on('click', '.user-chat-listing', function(e) {
+    let element = $(this);
+    let username = element.find('.username').text();
+    if(username)
+    {
+        // $(this).parent().prepend($(this));
+        window.activeChat = username;
+        populateWindowChat(username);
+    }
+});
+
+
+/*
+* Sending Typing... notification,
+*/
+$("#message-input").on('keyup',function(e) {
+    var message = {
+        from: __user,
+        to: `@${window.activeChat}`,
+        type: "composing",
+    };
+
+    //-- emit --send message
+    __socket.emit('chat composing', message);
+    return false;
+});
+
+/*
+* Sending Message
+*/
+$('#submit-msg').on('click', function(e){
+    e.preventDefault();
+    let user =  `@${activeChat}`; //$('#encounter-page-send-message').data('sender-user');
+    let message_holder = $('#message-input');
+    let messageTxt = message_holder.val();
+    // noinspection JSUnusedLocalSymbols
+    let message = {
+        __id: new Date().getUnixTime(),
+        from: __user,
+        to: user,
+        type: "chat-message",
+        format: "text",
+        message : messageTxt,
+        sent_at : Date.now(),
+    };
+    console.log(message);
+
+    //-- emit --send message
+    __socket.emit('chat message', message);
+    message_holder.val('');
+    return false;
+});
+
+
+/*
+* listen for typing on your own channel,
+*/
+__socket.on(`${__user} acknowledge`, function (msg) {
+    console.log('server got your message')
+});
+
+/*
+* listen for chat delivered on your channel
+*/
+__socket.on(`${__user} delivered`, function (msg) {
+    console.log('chat delivered')
+});
+
+
+/*
+* listen for typing on your own channel,
+*/
+__socket.on(`${__user} composing`, function (msg) {
+
+    let element = $(`#${msg.from.slice(1).toLowerCase()}-chat-listing`);
+    let window_chat = $('.ChatWindow');
+
+    let is_active_chat = (msg.from.slice(1).toLowerCase() === window.activeChat.toLowerCase());
+
+    if(is_active_chat)
+    {
+        window_chat.find('#chat-typing').text('typing...')
+    }
+    else
+    {
+        element.find('.communication-status').text('typing...')
+    }
 
         //-- ! RECEIVING FROM SOCKET --//
 

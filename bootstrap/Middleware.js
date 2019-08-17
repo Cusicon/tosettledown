@@ -1,6 +1,6 @@
 // noinspection JSUnusedGlobalSymbols
 module["exports"] = {
-    expressValidator : require("express-validator")({
+    expressValidator: require("express-validator")({
         errorFormater: (param, msg, value) => {
             let namespace = param.split("."),
                 root = namespace.shift(),
@@ -18,12 +18,12 @@ module["exports"] = {
         }
     }),
 
-    message : (req, res, next) => {
+    message: (req, res, next) => {
         res.locals.messages = require("express-messages")(req, res);
         next();
     },
 
-    setGlobalVariable : (req, res, next) => {
+    setGlobalVariable: (req, res, next) => {
         // noinspection JSUnusedLocalSymbols
         global['__user'] = req.user || null;
         res.locals.user = req.user || null;
@@ -33,11 +33,10 @@ module["exports"] = {
         next();
     },
 
-    serverlog : (req, res, next) => {
+    serverlog: (req, res, next) => {
         let now = new Date().toString();
         let log = `${req.method} ${req.url} @ ${now}`;
         serverLog(log);
         next();
     }
 };
-

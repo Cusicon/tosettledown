@@ -1,8 +1,8 @@
 $(document).ready(() => {
-    let message = $("div#messages ul");
-    // let image = $("div#messages ul").attr('data-src');
-    let text = $("div#messages ul li").text();
-    let mode = $("div#messages ul").attr("class");
+    var message = $("div#messages ul");
+    // var image = $("div#messages ul").attr('data-src');
+    var text = $("div#messages ul li").text();
+    var mode = $("div#messages ul").attr("class");
 
     if (text != "") {
         alert(mode, mode, text);
@@ -11,7 +11,7 @@ $(document).ready(() => {
 });
 
 function alert(icon, mode, msg) {
-    let upperMode = mode.replace(mode.charAt(0), mode.charAt(0).toUpperCase());
+    var upperMode = mode.replace(mode.charAt(0), mode.charAt(0).toUpperCase());
     swal({
         title: upperMode,
         text: msg,
