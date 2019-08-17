@@ -37,6 +37,7 @@ li.user:last-child {
 
 .Chat .ChatList .ChatBody ul li.user:hover {
     box-shadow: 0px 1px 100px #0000002a !important;
+    cursor: pointer;
 }
 
 .Chat .ChatList .ChatBody ul li.user div.profile-img {
@@ -101,9 +102,9 @@ li.user:last-child {
     display: inline-block;
 }
 .Chat .ChatWindow .ChatWindowHead h6#chat-username-holder {
-    margin: 10px 0 0px;
+    margin: 6px 0 0px;
     font-weight: 500;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .Chat .ChatWindow .ChatWindowHead small#chat-typing {
