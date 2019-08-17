@@ -36,7 +36,7 @@ module["exports"] = function (req, res, next) {
         dest: `${__user.userDirectoriesLocation}/photos/`,
         storage: multerStorage(__user.userDirectoriesLocation),
         limits: {
-            fileSize: 50000000 // Max: 5MB
+            fileSize: 5242880 // Max: 5MB
         },
         fileFilter: (req, file, cb) => {
             checkFileTypes(file, cb);
