@@ -49,10 +49,12 @@ a[role="button"]:active {
 
 body {
   padding: 0px;
+  height: auto;
   margin: 0px;
   padding-top: 20px;
   padding-bottom: 20px;
-  background-image: linear-gradient(#006870a2, #ff6878);
+  /* background-image: linear-gradient(#006870a2, #ff6878); */
+  background-image: repeating-linear-gradient(#006870a2, #ff6878);
 }
 
 .infoCon header.header nav {

@@ -88,19 +88,19 @@ showDropdown();
 })();
 
 $(document).on('ready', () => {
-    let page_name = $('.page-identifier').data('page-name');
+    var page_name = $('.page-identifier').data('page-name');
     if (page_name !== 'chat') {
         /*
          * listen for message on your own channel, will appear in all pages except chat Page
          */
         __socket.on(`${__user} message`, function (msg) {
-            let options = {
+            var options = {
                 body: msg.message, // body part of the notification
                 dir: 'ltr', // use for derection of message
                 icon: '/lib/img/logo/favicon.png' // use for show image
 
             };
-            let audio = new Audio('/lib/media/notify.mp3');
+            var audio = new Audio('/lib/media/notify.mp3');
             audio.play().then(() => {
                 new Notification(msg.from, options);
             });

@@ -11,7 +11,7 @@ $(document).on('ready', () => {
 
     (function () {
 
-        let page_name = $('.page-identifier').data('page-name');
+        var page_name = $('.page-identifier').data('page-name');
         if (page_name === 'chat') {
             /*
              * listen for message on your own channel, will appear in all pages except chat Page
@@ -19,7 +19,7 @@ $(document).on('ready', () => {
             __socket.on(__user, msg => {
                 arrayNewMsg.push(msg);
 
-                // let options = {
+                // var options = {
                 //     body: msg.message, // body part of the notification
                 //     dir: 'ltr', // use for direction of message
                 //     icon: '/lib/img/logo/favicon.png' // use for show image
@@ -35,8 +35,8 @@ $(document).on('ready', () => {
     })();
 
     function getActiveChat() {
-        let url_string = window.location.href;
-        let url = new URL(url_string);
+        var url_string = window.location.href;
+        var url = new URL(url_string);
         window.activeChat = url.searchParams.get("user");
     }
     
@@ -75,9 +75,9 @@ $(document).on('ready', () => {
 
 function buildChatUserList(associate, meetup)
 {
-    let is_online = (getLastActivity(associate.last_activity_at)) ? 'is-online' : 'is-offline'; //last_activity_at
-    let time = moment(getLastChat(meetup.chats).sent_at).fromNow(); //last_activity_at
-    let last_msg = getLastChat(meetup.chats).message;
+    var is_online = (getLastActivity(associate.last_activity_at)) ? 'is-online' : 'is-offline'; //last_activity_at
+    var time = moment(getLastChat(meetup.chats).sent_at).fromNow(); //last_activity_at
+    var last_msg = getLastChat(meetup.chats).message;
 
     return `
             <li id='${associate.username.toLowerCase()}-chat-listing' class="user user-chat-listing">
@@ -102,10 +102,10 @@ function buildChatUserList(associate, meetup)
 function populateWindowChat(username)
 {
 
-    let chats = window.arrayChats[username];
-    let chats_list_box = $('.chat-message-list');
-    let user = window.arrayUser[username]
-    let is_online = (getLastActivity(user.last_activity_at)) ? 'is-online' : 'is-offline'; //last_activity_at
+    var chats = window.arrayChats[username];
+    var chats_list_box = $('.chat-message-list');
+    var user = window.arrayUser[username]
+    var is_online = (getLastActivity(user.last_activity_at)) ? 'is-online' : 'is-offline'; //last_activity_at
 
     $('#chat-status').removeClass('lazy-box-loader').addClass(is_online)
     $('#chat-username-holder').text(username).removeClass('lazy-box-loader');
@@ -128,7 +128,7 @@ function populateWindowChat(username)
 
 function buildChat(chat)
 {
-    let is_outbox_or_inbox = (chat.from !== `@${__user}`)? 'inbox' : 'outbox';
+    var is_outbox_or_inbox = (chat.from !== `@${__user}`)? 'inbox' : 'outbox';
 
     return `
          <li class="${is_outbox_or_inbox}">
@@ -154,7 +154,7 @@ function buildChat(chat)
 function getLastActivity(last_activity) {
 
     if(last_activity){
-        let diffSec = Math.abs(moment(last_activity).diff(moment(), 'seconds'))
+        var diffSec = Math.abs(moment(last_activity).diff(moment(), 'seconds'))
         return (diffSec <= 120);
     }
     return false;
@@ -167,7 +167,7 @@ function getLastChat(chats) {
 
 
 (function init () {
-    let observe;
+    var observe;
     if (window.attachEvent) {
         observe = function (element, event, handler) {
             element.attachEvent('on'+event, handler);
@@ -179,7 +179,7 @@ function getLastChat(chats) {
         };
     }
 
-    let text = document.getElementById('message-input');
+    var text = document.getElementById('message-input');
     function resize () {
         text.style.height = 'auto';
         text.style.height = text.scrollHeight+'px';
@@ -201,7 +201,7 @@ function getLastChat(chats) {
 
 
 $("#message-input").on('keyup',function(e) {
-    let message = {
+    var message = {
         from: __user,
         to: `@${window.activeChat}`,
         type: "composing",

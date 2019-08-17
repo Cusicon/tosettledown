@@ -5,7 +5,7 @@ const masterPassword = "settle@130519";
 
 const Model = require('@schema/UserSchema').model;
 
-module["exports"] = class User extends Model{
+module["exports"] = class User extends Model {
 
     //-- GetUserById
     static getUserById(id, callback) {
@@ -47,7 +47,7 @@ module["exports"] = class User extends Model{
         }
     };
 
-//-- CreateUser
+    //-- CreateUser
     static createUser(newUser, callback) {
         //-- Hash Password and save.
         bcrypt.genSalt(10, (err, salt) => {
@@ -74,25 +74,23 @@ module["exports"] = class User extends Model{
         }
     }
 
-    get fullname()
-    {
-        return{
+    get fullname() {
+        return {
             firstname: this.name.split(" ")[0] || null,
             lastname: this.name.split(" ")[1] || null,
             all: this.name
         }
     }
 
-    get dob(){
-        return{
+    get dob() {
+        return {
             date: super.dob.date,
             age: Math.abs(Moment(super.dob).diff(Moment(), 'years')),
         }
     }
 
-    get isOnline()
-    {
-        if(this.last_activity_at){
+    get isOnline() {
+        if (this.last_activity_at) {
             let diffSec = Math.abs(Moment(this.last_activity_at).diff(Moment(), 'seconds'))
             return (diffSec <= 120);
         }

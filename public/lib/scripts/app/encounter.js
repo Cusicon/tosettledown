@@ -1,7 +1,7 @@
 
 // show quickMessagePopUp
 function quickMessagePopUp() {
-    let sendAMessageBtn = $("#sendAMessage");
+    var sendAMessageBtn = $("#sendAMessage");
     sendAMessageBtn.click(() => {
         $(".overlayNav").css({
             "background-color": "#00000066"
@@ -53,7 +53,7 @@ activeProfileMenu();
 function encounterDisplayingAndShuffling() {
     if (location.href.toLowerCase().includes("encounters")) {
         function activeProfileClass() {
-            let elem = $(".statusBar a").get(0);
+            var elem = $(".statusBar a").get(0);
             return $(elem).addClass("activeProfile hasStories");
         }
         activeProfileClass();
@@ -64,7 +64,7 @@ function encounterDisplayingAndShuffling() {
             url: "/app/encounters/getUsers",
             method: "GET",
             success: (users) => {
-                let usersDetails = users;
+                var usersDetails = users;
                 console.log(usersDetails);
 
             },
@@ -74,17 +74,17 @@ function encounterDisplayingAndShuffling() {
 
     function displayUserDetails() {
         if (location.href.toLowerCase().includes("encounters")) {
-            let activeUserValue;
+            var activeUserValue;
             activeUserValue = activeProfileClass().context.dataset; // collected all value from the active user.
             // Assign values to the variables
-            let fullname = activeUserValue.fullname;
-            let username = activeUserValue.username;
-            let age = activeUserValue.age;
-            let bio = activeUserValue.bio;
-            let height = activeUserValue.height;
-            let language = activeUserValue.language;
-            let _location = activeUserValue.location;
-            let userDirectorieslocation = activeUserValue.userDirectorieslocation;
+            var fullname = activeUserValue.fullname;
+            var username = activeUserValue.username;
+            var age = activeUserValue.age;
+            var bio = activeUserValue.bio;
+            var height = activeUserValue.height;
+            var language = activeUserValue.language;
+            var _location = activeUserValue.location;
+            var userDirectorieslocation = activeUserValue.userDirectorieslocation;
 
             // Assign variables to html tags
             $("span#fullname").text(`${fullname}`);
@@ -108,11 +108,11 @@ encounterDisplayingAndShuffling();
 
 $('.encounter-page-send-chat').submit(function(e){
     e.preventDefault();
-    let user =  $("#username").text(); //$('#encounter-page-send-message').data('sender-user');
-    let message_holder = $('.encounter-page-send-message');
-    let messageTxt = message_holder.val();
+    var user =  $("#username").text(); //$('#encounter-page-send-message').data('sender-user');
+    var message_holder = $('.encounter-page-send-message');
+    var messageTxt = message_holder.val();
     // noinspection JSUnusedLocalSymbols
-    let message = {
+    var message = {
         from: __user,
         to: user,
         type: "chat-message",

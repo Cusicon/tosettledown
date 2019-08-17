@@ -5,7 +5,7 @@ module["exports"] = class LoginController{
 
         if (!req.body.remember) { res.redirect(`/app/encounters`); }
 
-        var token = utils.generateToken(64);
+        let token = utils.generateToken(64);
         Token.save(token, { userId: req.user.id }, function(err) {
             if (err) { return done(err); }
             res.cookie('remember_me', token, { path: '/', httpOnly: true, maxAge: 30 * 24 * 60 * 60 * 1000 }); // 7 days
@@ -29,7 +29,6 @@ module["exports"] = class LoginController{
             req.session.destroy(err => {
                 userLog(`"${req.user.username}" has signed out.`);
                 console.log(`@${req.user.username} has signed out!, @ ${new Date().toTimeString()}`);
-                console.log(err);
                 res.redirect("/#loginForm");
             });
         } else {
