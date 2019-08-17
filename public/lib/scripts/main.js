@@ -21,11 +21,20 @@ function alert(icon, mode, msg) {
     });
 }
 
-String.prototype.trunc =
-    function( n, useWordBoundary ){
-        if (this.length <= n) { return this; }
-        var subString = this.substr(0, n-1);
-        return (useWordBoundary
-            ? subString.substr(0, subString.lastIndexOf(' '))
-            : subString) + "&hellip;";
-    };
+String.prototype.trunc = function( n, useWordBoundary ){
+    if (this.length <= n) { return this; }
+    let subString = this.substr(0, n-1);
+    return (useWordBoundary
+        ? subString.substr(0, subString.lastIndexOf(' '))
+        : subString) + "&hellip;";
+};
+
+if (!Date.now) {
+    Date.now = function() { return new Date().getTime(); }
+}
+
+Date.prototype.getUnixTime = function() { return Date.now() / 1000 | 0 };
+
+if (!Array.last) {
+    Array.prototype.last = function() { return this[this.length - 1]; };
+}
