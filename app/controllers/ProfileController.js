@@ -49,21 +49,9 @@ module["exports"] = class ProfileController {
         }, (err, user) => err ? console.log(err) : res.redirect(`/app/profile/${user.username}`));
     }
 
-    // var storage = multer.diskStorage({
-    //     destination: function (req, file, callback) {
-    //         callback(null, './uploads');
-    //     },
-    //     filename: function (req, file, callback) {
-    //         callback(null, file.fieldname + '-' + Date.now());
-    //     }
-    // });
-//
-
-
-
-
-
-    // Saves the photos into the DB
+    /**
+     *  Saves the photos into the DB
+     */
     static addPhotos(req, res) {
 
         // let file_filter = fileFilter: (req, file, cb) => {
@@ -111,7 +99,7 @@ module["exports"] = class ProfileController {
                         is_visible: true,
                     });
 
-                    Photo.savePhoto(photo, (err, photo) => {
+                    photo.save(photo, (err, photo) => {
                         if (err) throw err;
                         else {
                             console.log(`Photos User's ID: ${photo.user_id}`); // Show to compare
