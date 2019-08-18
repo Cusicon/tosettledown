@@ -58,7 +58,10 @@
     "dating"
   ],
   "nodemonConfig": {
-    "ignore": ["database/*", "public/*"],
+    "ignore": [
+      "database/*",
+      "public/*"
+    ],
     "delay": "2500"
   },
   "author": "Success Chukwu",

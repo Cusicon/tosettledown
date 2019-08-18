@@ -56,8 +56,12 @@ passport.use(new LocalStrategy({
 //-- GOOGLE STRATEGY
 passport.use(
     new GoogleStrategy({
-        clientID: config('services',(items)=>{return items.google.client_id}),
-        clientSecret: config('services',(items)=>{return items.google.client_secret}),
+        clientID: config('services', (items) => {
+            return items.google.client_id
+        }),
+        clientSecret: config('services', (items) => {
+            return items.google.client_secret
+        }),
         callbackURL: '/auth/0/signin/google/return'
     }, (accessToken, refreshToken, profile, done) => {
         process.nextTick(() => {
@@ -74,8 +78,7 @@ passport.use(
             User.getUserByGoogleId(googleId, (err, user) => {
                 if (err) throw err;
                 else {
-                    if (user)
-                    {
+                    if (user) {
                         userLog(`"${user.username}" signed in via Google...`);
                         done(null, user);
                     } else {

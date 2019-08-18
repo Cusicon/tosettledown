@@ -10,6 +10,7 @@
     <div class="displayWindow col-md-12"
         style="height: 620px; overflow: hidden; overflow-y: scroll; box-shadow: none; border-radius: 0px; padding: 10px 15px; border-left: 1px solid #eee;">
         <div class="profileMain">
+            <% if (user.username == profile_user.username) { %>
             <!-- Space for modals -->
             <div class="modalCon">
 
@@ -19,7 +20,7 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="editProfileModal">Edit <span class="bg-color"
+                                <h4 class="modal-title" id="editProfileModal">Edit <span class="bg-Primary_color"
                                         style="border-radius: 5px; padding: 5px;">Profile</span></h4>
                                 <button type="button" class="btn waves-effect waves-light" data-dismiss="modal"
                                     aria-hidden="true">
@@ -37,11 +38,15 @@
                                                         Fullname</h5>
                                                     <input type="text" name="fullname" class="form-control"
                                                         value="<%= profile_user.fullname.all %>"
-                                                        placeholder="Enter fullname...">
+                                                        placeholder="Enter fullname..." maxlength="50">
                                                     <h5 style="font-weight: lighter;">
                                                         Bio</h5>
                                                     <textarea type="text" name="bio" class="form-control"
-                                                        placeholder="Enter Bio here..."><%= profile_user.personalInfo.bio %></textarea>
+                                                        placeholder="Enter Bio here..."
+                                                        maxlength="200"><%= profile_user.personalInfo.bio %></textarea>
+                                                    <small id="passwordHelp"
+                                                        class="form-text text-muted float-right">Max:
+                                                        200 characters.</small>
                                                 </div>
                                             </div>
                                         </div>
@@ -65,9 +70,17 @@
                                             <div class=" form-group">
                                                 <h5 style="font-weight: lighter;">
                                                     Education</h5>
-                                                <input type="text" name="education" class="form-control"
-                                                    value="<%= profile_user.personalInfo.education %>"
-                                                    placeholder="Education Here...">
+                                                <div class="form-group">
+                                                    <select name="education" id="education" class="form-control">
+                                                        <option label="Your education status?..."></option>
+                                                        <option value="Graduate"
+                                                            <%= profile_user.personalInfo.education == 'Graduate' ? 'selected' : 'Graduate' %>>
+                                                            Graduate</option>
+                                                        <option value="Undergraduate"
+                                                            <%= profile_user.personalInfo.education == 'Undergraduate' ? 'selected' : 'Undergraduate' %>>
+                                                            Undergraduate</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class=" editProfileRight col-md-4">
@@ -87,7 +100,7 @@
                                                             <%= profile_user.personalInfo.height == 'Short' ? 'selected' : 'Short' %>>
                                                             Short</option>
                                                     </select>
-                                                    <small id="passwordHelp"
+                                                    <small id="heightHelp"
                                                         class="form-text text-muted float-right">Default:
                                                         Average</small>
                                                     <br>
@@ -96,8 +109,9 @@
                                                     <input type="text" name="language" class="form-control"
                                                         value="<%= profile_user.personalInfo.language %>"
                                                         placeholder="What do you speak often?..."
-                                                        title="What do you speak often?...">
-                                                    <small id="passwordHelp"
+                                                        title="What do you speak often?..."
+                                                        aria-describedby="languageHelp">
+                                                    <small id="languageHelp"
                                                         class="form-text text-muted float-right">Default:
                                                         English</small>
                                                     <br>
@@ -129,7 +143,7 @@
                                     <div class="separator"></div>
                                     <center>
                                         <button type="submit" role="button" form="editProfileForm"
-                                            class="btn waves-effect waves-light bg-color">
+                                            class="btn waves-effect waves-light bg-Primary_color">
                                             Save
                                         </button>
                                     </center>
@@ -145,7 +159,7 @@
                     <div class="modal-dialog modal-md modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="SettingsModal">Profile <span class="bg-color"
+                                <h4 class="modal-title" id="SettingsModal">Profile <span class="bg-Primary_color"
                                         style="border-radius: 5px; padding: 5px;">Settings</span></h4>
                             </div>
                             <div class="modal-body" style="padding: 15px; text-align: center !important;">
@@ -175,41 +189,62 @@
                     </div><!-- /.modal-dialog -->
                 </div>
 
-                <!-- Profile Dp Upload Modal -->
-                <div class="modal fade profileDpUploadCon" tabindex="-1" role="dialog"
-                    aria-labelledby="profileDpUploadModal" style="display: none;" aria-hidden="true">
-                    <div class="modal-dialog modal-md modal-dialog-centered">
+                <!-- Add Photos Modal -->
+                <div class="modal fade addPhotosCon" tabindex="-1" role="dialog" aria-labelledby="addPhotosModal"
+                    style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="profileDpUploadModal">Change <span class="bg-color"
-                                        style="border-radius: 5px; padding: 5px;">Profile</span>
+                                <h4 class="modal-title" id="addPhotosModal">Add <span class="bg-Primary_color"
+                                        style="border-radius: 5px; padding: 5px;">Photos</span>
                                 </h4>
+                                <a href="javascript: void(0);" onclick="$('#addPhotos').trigger('click');"
+                                    class="btn waves-effect waves-light float-right" style="font-size: 20px;">
+                                    <i class="typcn typcn-plus"></i>
+                                </a>
                             </div>
                             <div class="modal-body" style="padding: 15px; text-align: center !important;">
-                                <form action="/profile/update/dp" method="POST">
-                                    <!-- profileDpUploadInput -->
-                                    <input type="file" name="profileDpUploadInput" id="profileDpUploadInput"
-                                        accept="image/*" class="profileDpUploadInput hide" id="profileDpUploadInput">
-                                    <div style="width: auto; height: 150px; background-color: #eee;"></div>
-                                    <br>
+                                <form action="/app/profile/update/<%= profile_user.username %>/addPhotos"
+                                    enctype="multipart/form-data" id="addPhotosForm" method="POST">
+                                    <!-- Image previewer -->
+                                    <div style="position: relative;" class="addPhotosCon">
+                                        <!-- Display container -->
+                                        <div class="info" style="position: inherit;">
+                                            <div class="displayCon" style="overflow: hidden; overflow-x: auto;">
+                                                <div style="display: inline-flex;"></div>
+                                            </div>
+                                            <center>
+                                                <div
+                                                    style="text-align: center; width: 100%; padding-top: 56px; height: 232px;">
+                                                    <h4 style="font-weight: lighter;">Click &nbsp;<b>+</b>&nbsp; to
+                                                        select your photos</h4>
+                                                    <p style="margin-bottom: 10px; display: block; color: #ccc;">Note:
+                                                        To upload photos, select all images at once.</p>
+                                                </div>
+                                            </center>
+                                            <input type="file" name="addPhotos" id="addPhotos" class="hide"
+                                                accept="image/*" multiple required>
+                                        </div>
+                                    </div>
                                     <div class="separator"></div>
                                     <button type="submit" role="button"
-                                        class="btn waves-effect waves-light bg-color">Save</button>
+                                        class="btn waves-effect waves-light bg-Primary_color">Save</button>
                                 </form>
                             </div>
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div>
             </div>
+            <% } %>
             <section class="profileHeader">
                 <header>
                     <ul>
                         <li>
                             <% if (user.username != profile_user.username) { %>
                             <a href="/app/chats/<%= profile_user.username %>"
-                                class="btn waves-effect waves-light bg-color" id="chatBtn" role="button"
+                                class="btn waves-effect waves-light bg-Primary_color" id="chatBtn" role="button"
                                 style="color: #1a1a1a; padding: 10px 25px !important; margin-right: 10px; text-align: center;">
-                                Chat <b class=""><%= profile_user.fullname.firstname %></b> up</a>
+                                Chat <b><%= profile_user.fullname.firstname %></b> up</a>
                             <% } %>
                         </li>
                         <li>
@@ -268,19 +303,6 @@
                                         <i class="typcn typcn-times"></i>
                                     </a>
                                 </li>
-                                <% } %>
-
-                                <!-- DpUploadBtn -->
-                                <% if (user.username == profile_user.username) { %>
-                                <!-- profileDpUploadBtn -->
-                                <a href=javascript:void(0); style="margin: 10px 10px; border: 1px solid #ececec;"
-                                    class="btn btn-lg text-dark waves-effect waves-light add_avatar"
-                                    id="profileDpUploadBtn" role="button" title="Click to change dp" data-toggle="modal"
-                                    data-target=".profileDpUploadCon"
-                                    onclick="$('#profileDpUploadInput').trigger('click');">
-                                    <!-- <i class="typcn typcn-plus" style="font-size: 20px;"></i> -->
-                                    Change Profile
-                                </a>
                                 <% } %>
                             </ul>
                         </div>
@@ -362,14 +384,9 @@
                                 </li>
                                 <li class="col-md-1 col-sm-1">
                                     <% if (user.username == profile_user.username) { %>
-                                    <!-- imageUploadInput -->
-                                    <input type="file" name="imageUploadInput" id="imageUploadInput" accept="image/*"
-                                        class="hide">
-                                    <!-- imageUploadBtn -->
                                     <a href=javascript:void(0); class="text-dark btn waves-effect waves-light addImages"
-                                        id="imageUploadBtn" role="button" data-toggle="modal"
-                                        data-target=".imageUploadCon"
-                                        onclick="$('#imageUploadInput').trigger('click');">
+                                        id="addPhotosBtn" role="button" data-toggle="modal" data-target=".addPhotosCon"
+                                        onclick="$('#addPhotos').trigger('click');">
                                         <i class="typcn typcn-plus-outline"></i>
                                     </a>
                                     <% } %>

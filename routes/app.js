@@ -1,12 +1,13 @@
-let router =  require('express')();
+let router = require('express')();
 
 //-- encounters Router
 router.get("/encounters", (require('@app/controllers/EncounterController')).index);
-router.get("/encounters/getUsers",  (require('@app/controllers/EncounterController')).getUsers);
+router.get("/encounters/getUsers", (require('@app/controllers/EncounterController')).getUsers);
 
 //-- profile Router
-router.get("/profile/:username", (require('@app/controllers/ProfileController')).show );
+router.get("/profile/:username", (require('@app/controllers/ProfileController')).show);
 router.post("/profile/update/:username", (require('@app/controllers/ProfileController')).update);
+router.post("/profile/update/:username/addPhotos", (require('@app/controllers/ProfileController')).addPhotos);
 router.get("/profile", (req, res) => res.redirect("/app/encounters"));
 
 //-- chats Router

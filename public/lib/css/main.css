@@ -15,8 +15,13 @@
   /* Orange */
 }
 
-.bg-color {
+.bg-Primary_color {
   background-color: #ff6878 !important;
+  color: #fff !important;
+}
+
+.bg-Secondary_color{
+  background-color: #006870a2;
   color: #fff !important;
 }
 
@@ -59,6 +64,10 @@
 
 .show {
   display: block !important;
+}
+
+.transparent {
+  opacity: 0 !important;
 }
 
 .card {
@@ -277,4 +286,3 @@ body {
 /* END OF ANIMATIONS */
 
 /* END OF GLOBAL */
-

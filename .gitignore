@@ -1,4 +1,6 @@
 .idea
+.vscode
+.vs
 storage/logs/*
 public/store
 node_modules

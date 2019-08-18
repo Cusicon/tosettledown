@@ -8,6 +8,26 @@ $(document).on('ready', () => {
     window.chatListHolder = null;
 
     (function () {
+
+        let page_name = $('.page-identifier').data('page-name');
+        if (page_name === 'chat') {
+
+            /*
+             * listen for message on your own channel, will appear in all pages except chat Page
+            */
+            __socket.on(`${__user} message`, msg => {
+                __socket.emit('chat received', msg);
+                arrayNewMsg.push(msg);
+
+                // let options = {
+                //     body: msg.message, // body part of the notification
+                //     dir: 'ltr', // use for direction of message
+                //     icon: '/lib/img/logo/favicon.png' // use for show image
+                //
+                // };
+            });
+        }
+
         window.chatListHolder = $('#chat-list-holder');
         postAjaxSocketListener();
         getActiveChat();
@@ -48,9 +68,7 @@ $(document).on('ready', () => {
         });
     }
 
-
-    function buildUpChat(data, meetup, index)
-    {
+    function buildUpChat(data, meetup, index) {
         let meetup_id = meetup._id;
 
         let meetupObj = data.meetup_obj.find(function(meetupObj) {
@@ -157,8 +175,7 @@ $(document).on('ready', () => {
         return false;
     }
 
-    function newChatResolver()
-    {
+    function newChatResolver() {
         if(arrayNewMsg.length > 0)
         {
             let msg = arrayNewMsg.shift()
@@ -211,8 +228,7 @@ $(document).on('ready', () => {
         }
     }
 
-    function prependToChatList(msg)
-    {
+    function prependToChatList(msg) {
 
     }
 
@@ -292,8 +308,7 @@ $(document).on('ready', () => {
         //-- ! SENDING TO SOCKET --//
     }
 
-    function preAjaxSocketListener()
-    {
+    function preAjaxSocketListener() {
 
         //-- RECEIVING FROM SOCKET --//
 
@@ -334,43 +349,120 @@ $(document).on('ready', () => {
 
             let is_active_chat = (msg.from.slice(1).toLowerCase() === window.activeChat.toLowerCase());
 
-            if(is_active_chat)
-            {
+            if (is_active_chat) {
                 window_chat.find('#chat-typing').text('typing...')
-            }
-            else
-            {
+            } else {
                 element.find('.communication-status').text('typing...')
             }
 
             //-- To Remove typing .....
-            setTimeout(function(){
-                if(is_active_chat)
-                {
+            setTimeout(function () {
+                if (is_active_chat) {
                     window_chat.find('#chat-typing').text('')
-                }
-                else
-                {
+                } else {
                     let comm_stat = element.find('.communication-status');
-                    if(comm_stat.text() === 'typing...'){
+                    if (comm_stat.text() === 'typing...') {
 
-                        if(parseInt(comm_stat.data('unread-msg')) > 0 ){
+                        if (parseInt(comm_stat.data('unread-msg')) > 0) {
                             comm_stat.text(`${comm_stat}`)
-                                                    }
-                        else
-                        {
+                        } else {
                             comm_stat.text('')
                         }
                     }
                 }
             }, 1000);
+        })
+    }
 
-        });
+    $(document).on('click', '.user-chat-listing', function(e) {
+        let element = $(this);
+        let username = element.find('.username').text();
+        if(username)
+        {
+            // $(this).parent().prepend($(this));
+            window.activeChat = username;
+            populateWindowChat(username);
+        }
+    });
+
+
+    /*
+    * Sending Typing... notification,
+    */
+    $("#message-input").on('keyup',function(e) {
+        let message = {
+            from: __user,
+            to: `@${window.activeChat}`,
+            type: "composing",
+        };
+
+        //-- emit --send message
+        __socket.emit('chat composing', message);
+        return false;
+    });
+
+    /*
+    * Sending Message
+    */
+    $('#submit-msg').on('click', function(e){
+        e.preventDefault();
+        let user =  `@${activeChat}`; //$('#encounter-page-send-message').data('sender-user');
+        let message_holder = $('#message-input');
+        let messageTxt = message_holder.val();
+        // noinspection JSUnusedLocalSymbols
+        let message = {
+            __id: new Date().getUnixTime(),
+            from: __user,
+            to: user,
+            type: "chat-message",
+            format: "text",
+            message : messageTxt,
+            sent_at : Date.now(),
+        };
+        console.log(message);
+
+        //-- emit --send message
+        __socket.emit('chat message', message);
+        message_holder.val('');
+        return false;
+    });
+
+
+    /*
+    * listen for typing on your own channel,
+    */
+    __socket.on(`${__user} acknowledge`, function (msg) {
+        console.log('server got your message')
+    });
+
+    /*
+    * listen for chat delivered on your channel
+    */
+    __socket.on(`${__user} delivered`, function (msg) {
+        console.log('chat delivered')
+    });
+
+
+    /*
+    * listen for typing on your own channel,
+    */
+    __socket.on(`${__user} composing`, function (msg) {
+
+        let element = $(`#${msg.from.slice(1).toLowerCase()}-chat-listing`);
+        let window_chat = $('.ChatWindow');
+
+        let is_active_chat = (msg.from.slice(1).toLowerCase() === window.activeChat.toLowerCase());
+
+        if (is_active_chat) {
+            window_chat.find('#chat-typing').text('typing...')
+        } else {
+            element.find('.communication-status').text('typing...')
+        }
 
         //-- ! RECEIVING FROM SOCKET --//
+    })
 
 
-    }
     //======================= ! START SOCKET LISTENERS ==================
 
     $(document).on('click', '.user-chat-listing', function() {
