@@ -7,7 +7,7 @@ router.get("/encounters/getUsers", (require('@app/controllers/EncounterControlle
 //-- profile Router
 router.get("/profile/:username", (require('@app/controllers/ProfileController')).show);
 router.post("/profile/update/:username", (require('@app/controllers/ProfileController')).update);
-router.post("/profile/update/:username/addPhotos", ...applyMiddleware(['uploadPhotos']), (require('@app/controllers/ProfileController')).addPhotos);
+router.post("/profile/update/:username/addPhotos", (require('@app/controllers/ProfileController')).addPhotos);
 router.get("/profile", (req, res) => res.redirect("/app/encounters"));
 
 //-- chats Router
