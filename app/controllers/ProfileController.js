@@ -54,23 +54,20 @@ module["exports"] = class ProfileController {
      */
     static addPhotos(req, res) {
 
-        // let file_filter = fileFilter: (req, file, cb) => {
-        //     let fileTypes = /jpeg|png|gif/i; // Allowed Extension
-        //     let extname = fileTypes.test(path.extname(file.originalname).toLowerCase()); // Check Extension
-        //     let mimeTypes = fileTypes.test(file.mimetypes) // Check mimetypes
-        //     // Check if all is true
-        //     if (extname && mimeTypes) {
-        //         return cb(null, true);
-        //     } else {
-        //         return cb("Please upload an image!");
-        //     }
-        // }
+        let file_filter = function (req, file, callback) {
+                let ext = path.extname(file.originalname);
+                if(ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
+                    return callback(new Error('Only images are allowed'))
+                }
+                callback(null, true)
+            }
 
         let storage = multer.diskStorage({
             destination: path.join(req.user.userDirectoriesLocation, 'photos'),
             filename: (req, file, cb) => {
                 cb(null, `photo_${Date.now()}${path.extname(file.originalname)}`)
-            }
+            },
+            fileFilter: file_filter,
         })
 
         let upload = multer({
