@@ -58,23 +58,25 @@ module["exports"] = class ProfileController {
     //     }
     // });
 //
-//     fileFilter: (req, file, cb) => {
-//         let fileTypes = /jpeg|png|gif/i; // Allowed Extension
-//         let extname = fileTypes.test(path.extname(file.originalname).toLowerCase()); // Check Extension
-//         let mimeTypes = fileTypes.test(file.mimetypes) // Check mimetypes
-//         // Check if all is true
-//         if (extname && mimeTypes) {
-//         return cb(null, true);
-//     } else {
-//     return cb("Please upload an image!");
-// }
-// }
+
 
 
 
 
     // Saves the photos into the DB
     static addPhotos(req, res) {
+
+        // let file_filter = fileFilter: (req, file, cb) => {
+        //     let fileTypes = /jpeg|png|gif/i; // Allowed Extension
+        //     let extname = fileTypes.test(path.extname(file.originalname).toLowerCase()); // Check Extension
+        //     let mimeTypes = fileTypes.test(file.mimetypes) // Check mimetypes
+        //     // Check if all is true
+        //     if (extname && mimeTypes) {
+        //         return cb(null, true);
+        //     } else {
+        //         return cb("Please upload an image!");
+        //     }
+        // }
 
         let storage = multer.diskStorage({
             destination: path.join(req.user.userDirectoriesLocation, 'photos'),
