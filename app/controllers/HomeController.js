@@ -14,6 +14,7 @@ module["exports"] = class HomeController {
     static getMeetUps(req, res) {
         let activeChat = req.query.user || null;
         MeetUp.getMyEncounters(__user.username, (encountered) => {
+
             if (activeChat) {
                 User.getUserByUsername(activeChat, (err, activeChat) => {
                     if (err) console.log(err);
@@ -30,7 +31,7 @@ module["exports"] = class HomeController {
                 });
             } else {
                 res.json({
-                    meetups: meetups,// Shuffle the array
+                    meetups: encountered,// Shuffle the array
                     meetup_obj: meetupObj,
                     activeChat:null
                 });
