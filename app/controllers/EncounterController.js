@@ -1,12 +1,10 @@
 let User = require('@models/user');
+let _User = require('mongoose').Model;
 
-const EncounterController = class EncounterController{
-    constructor()
-    {
-    }
+const EncounterController = class EncounterController {
+    constructor() {}
 
-    index(req, res)
-    {
+    index(req, res) {
         User.find((err, users) => {
             if (err) throw err;
             else {
@@ -18,10 +16,10 @@ const EncounterController = class EncounterController{
         });
     }
 
-    getUsers(req, res)
-    {
-        User.estimatedDocumentCount();
-        User.find((err, users) => {
+    getUsers(req, res) {
+        User.find({
+            gender: __user.gender == "male" ? "female" : "male"
+        }, (err, users) => {
             if (err) throw err;
             else {
                 res.send({

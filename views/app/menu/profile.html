@@ -211,7 +211,7 @@
                                         <!-- Display container -->
                                         <div class="info" style="position: inherit;">
                                             <div class="displayCon" style="overflow: hidden; overflow-x: auto;">
-                                                <div style="display: inline-flex;"></div>
+                                                <div style="display: inline-flex; padding: 10px;"></div>
                                             </div>
                                             <center>
                                                 <div
@@ -262,7 +262,9 @@
                                     <a href="#" id="editProfileBtn" data-toggle="modal"
                                         data-target=".editProfileCon">Edit profile</a>
                                     <% } %>
+                                    <% if (user.username != profile_user.username) { %>
                                     <a href="#" class="color">Block or Report</a>
+                                    <% } %>
                                     <% if (user.username == profile_user.username) { %>
                                     <div class="separator"></div>
                                     <a href="#" class="dropdownBottom" id="settingsBtn" data-toggle="modal"

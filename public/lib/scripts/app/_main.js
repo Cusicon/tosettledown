@@ -26,7 +26,7 @@ function closeOnEscBtn() {
 }
 closeOnEscBtn();
 
-
+// When click any where on the window the pop-up, modal or dropdown closes.
 function onclickWindow(clickedBtn, containerClass) {
     // Close the dropdown menu if the user clicks outside of it
     window.onclick = function (e) {
@@ -45,6 +45,7 @@ function onclickWindow(clickedBtn, containerClass) {
     }
 }
 
+// Shows any dropdown that exists.
 function showDropdown() {
     // DROPDOWN CODE...
     /* When the user clicks on the button,
@@ -79,11 +80,11 @@ showDropdown();
     if (window.Notification) {
         Notification.requestPermission().then(function (status) {
             if (status === "denied") {
-                // alert('error','error','You Disable Notifications For TSD, you wont be able to receive notification of incoming chat');
+                alert('error', 'error', 'You Disable Notifications For TSD, you wont be able to receive notification of incoming chat');
             }
         });
     } else {
-        // alert('Your browser doesn\'t support notifications.');
+        alert('Your browser doesn\'t support notifications.');
     }
 })();
 
