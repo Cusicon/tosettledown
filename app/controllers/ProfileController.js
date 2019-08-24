@@ -13,19 +13,24 @@ module["exports"] = class ProfileController {
             if (err) console.log(err);
             else {
                 if (user != null) {
-                    if (__user.gender !== user.gender) {
-                        res.render('./app/menu/profile', {
-                            title: `${user.fullname.firstname}'s profile`,
-                            profile_user: user
-                        });
-                    } else if (__user.gender === user.gender && __user.username === user.username) {
-                        res.render('./app/menu/profile', {
-                            title: `${user.fullname.firstname}'s profile`,
-                            profile_user: user
-                        });
-                    } else {
-                        res.redirect("/");
-                    }
+                    Photo.getPhotobyUsername(username, (err, photos) => {
+                        if (err) throw err;
+                        if (__user.gender !== user.gender) {
+                            res.render('./app/menu/profile', {
+                                title: `${user.fullname.firstname}'s profile`,
+                                profile_user: user,
+                                photos: photos
+                            });
+                        } else if (__user.gender === user.gender && __user.username === user.username) {
+                            res.render('./app/menu/profile', {
+                                title: `${user.fullname.firstname}'s profile`,
+                                profile_user: user,
+                                photos: photos
+                            });
+                        } else {
+                            res.redirect("/");
+                        }
+                    });
                 } else {
                     res.redirect('/');
                 }
@@ -34,7 +39,7 @@ module["exports"] = class ProfileController {
     }
 
     static update(req, res) {
-        let id = req.user.id;
+        let id = __user.id;
         User.getUserByIdandUpdate(id, {
             name: req.body.fullname,
             personalInfo: {
@@ -55,15 +60,15 @@ module["exports"] = class ProfileController {
     static addPhotos(req, res) {
 
         let file_filter = function (req, file, callback) {
-                let ext = path.extname(file.originalname);
-                if(ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
-                    return callback(new Error('Only images are allowed'))
-                }
-                callback(null, true)
+            let ext = path.extname(file.originalname);
+            if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
+                return callback(new Error('Only images are allowed'))
             }
+            callback(null, true)
+        }
 
         let storage = multer.diskStorage({
-            destination: path.join(req.user.userDirectoriesLocation, 'photos'),
+            destination: public_path(`${__user.userDirectoriesLocation}/photos`),
             filename: (req, file, cb) => {
                 cb(null, `photo_${Date.now()}${path.extname(file.originalname)}`)
             },
@@ -72,26 +77,28 @@ module["exports"] = class ProfileController {
 
         let upload = multer({
             storage: storage,
-            limits: {fileSize: 5242880}, // Max: 5MB
+            limits: {
+                fileSize: 5242880 // Max: 5MB
+            },
 
         }).array("addPhotos", 5);
 
 
 
-        upload(req,res,function(err) {
+        upload(req, res, function (err) {
 
-            if(err) {
+            if (err) {
                 return res.end("Error uploading file.");
-            }
-            else
-            {
+            } else {
                 req.files.forEach((file) => {
 
                     let photo = new Photo({
-                        user_id: req.user.id, // owner of photo
-                        name: file.filename, // name of photo
-                        location: file.path, // photo location on server.
-                        mime_type: file.mimetype, // photo's mimetype
+                        user_id: __user.id,
+                        username: __user.username,
+                        name: file.filename,
+                        location: file.path,
+                        media_type: "Photo",
+                        mime_type: file.mimetype,
                         uploaded_at: Date.now(),
                         is_visible: true,
                     });
@@ -99,16 +106,13 @@ module["exports"] = class ProfileController {
                     photo.save(photo, (err, photo) => {
                         if (err) throw err;
                         else {
-                            console.log(`Photos User's ID: ${photo.user_id}`); // Show to compare
-                            console.log(`User's ID: ${req.user.id}`); // Show to compare
-                            console.log(photo); // Display photo in console
-                            userLog(`"${req.user.username}" just uploaded some photos.`);
-                            console.log(`@${req.user.username} just uploaded some photos!, @ ${new Date().toTimeString()}`);
+                            userLog(`"${__user.username}" just uploaded some photos.`);
+                            console.log(`@${__user.username} just uploaded some photos!, @ ${new Date().toTimeString()}`);
                         }
                     });
 
                 })
-                res.redirect(`/app/profile/${req.user.username}`);
+                res.redirect(`/app/profile/${__user.username}`);
             }
         });
     }

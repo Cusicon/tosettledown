@@ -5,7 +5,9 @@ const EncounterController = class EncounterController {
     constructor() {}
 
     index(req, res) {
-        User.find((err, users) => {
+        User.find({
+            gender: __user.gender == "male" ? "female" : "male"
+        }, (err, users) => {
             if (err) throw err;
             else {
                 res.render('./app/menu/encounters', {
@@ -13,7 +15,7 @@ const EncounterController = class EncounterController {
                     users: users.sort(() => Math.random() - 0.5 * 0.5) // Shuffle the array
                 });
             }
-        });
+        }).limit(5);
     }
 
     getUsers(req, res) {

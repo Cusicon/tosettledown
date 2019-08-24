@@ -1,0 +1,21 @@
+
+/** Get 5 Users from the DB at first
+ * 
+ * **GLOBAL**
+ * Checks if users has liked the displayed profile
+ * 
+ * [Solution]:
+ * Create a function the receives the user
+ * Checks if typeof user.likes is not undefined
+ * 
+ * 
+ * 
+ * *INDEX*
+ * Store the users in an Array, 
+ * And store the initial length of the array in a global variable
+ * And the global variable will always get updated when the user changes array length!
+ * ---------- && ----------
+ * 
+ * *GET_USERS*
+ * 
+*/ 

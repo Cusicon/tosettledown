@@ -76,8 +76,8 @@ let user_schema = mongoose.Schema({
             default: null
         }
     },
-    likes: [like_schema],
-    cards: [card_schema]
+    likes: [like_schema] || null,
+    cards: [card_schema] || null
 });
 
 

@@ -20,8 +20,8 @@ function addPhotosPreview(input, placeToInsertImagePreview) {
                 $($.parseHTML("<img>"))
                     .attr({
                         src: event.target.result,
-                        style: "display: inline-block; margin: auto .2%;",
-                        height: 232,
+                        style: "margin: auto .2%; max-width: 100%;",
+                        id: "selectedPhoto",
                         alt: "Photo"
                     })
                     .prependTo(placeToInsertImagePreview);
@@ -39,10 +39,11 @@ function showPhotosSelected() {
             if (this.files.length <= 5) {
                 $("div.addPhotosCon .info center").html('');
                 // Empty displayCon, before changing it's value
-                $("div.addPhotosCon .info .displayCon div").html("");
-                $("div.addPhotosCon .info .displayCon div").removeClass("hide").html(
-                    addPhotosPreview(this, "div.addPhotosCon .info .displayCon div")
+                $("div.addPhotosCon .info .displayCon div#container").html("");
+                $("div.addPhotosCon .info .displayCon div#container").removeClass("hide").html(
+                    addPhotosPreview(this, "div.addPhotosCon .info .displayCon div#container")
                 );
+                cropImage();
             } else {
                 alert("warning", "Warning", "Only, 5 photos are permitted!");
             }
@@ -59,4 +60,21 @@ function showPhotosSelected() {
             $("div.addPhotosCon .info center").html(previewInfo);
         }
     });
-} showPhotosSelected();
+}
+// showPhotosSelected();
+
+function cropImage() {
+    const selectedPhoto = document.getElementById('selectedPhoto');
+    const cropper = new Cropper(selectedPhoto, {
+        aspectRatio: 1 / 1,
+        crop(event) {
+            console.log(event.detail.x);
+            console.log(event.detail.y);
+            console.log(event.detail.width);
+            console.log(event.detail.height);
+            console.log(event.detail.rotate);
+            console.log(event.detail.scaleX);
+            console.log(event.detail.scaleY);
+        },
+    });
+}
