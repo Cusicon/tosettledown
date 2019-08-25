@@ -18,12 +18,25 @@
 
     <!-- Global Css For App  -->
     <link rel="stylesheet" href="/lib/css/app/_main.css">
-    
+
     <!--  Include Page CSS Dynamically  -->
     <%-stylesheets%>
 </head>
 
 <body>
+    <!-- Messaging -->
+    <div class="sr-only">
+        <%- messages() %>
+
+        <% if(typeof errors != "undefined") { %>
+        <% errors.forEach(err => { %>
+        <div id="messages">
+            <ul class="error">
+                <li><%= err.msg %></li>
+            </ul>
+        </div>
+        <% })} %>
+    </div>
     <section class="windowFrame container row" id="windowFrame">
         <!-- ProfileBar -->
         <%-partial('/app/layout/profileBar.html')%>

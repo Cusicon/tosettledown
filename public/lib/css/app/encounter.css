@@ -3,7 +3,6 @@
 
 
 .mainBody .displayWindow .imageWindow {
-    border-radius: 10px 0 0 10px;
     background-color: #303030;
     background-position: top center;
     padding: 0px;
@@ -13,6 +12,7 @@
 .mainBody .displayWindow .imageWindow .overlayNav {
     box-shadow: 0px -130px 100px #00000036 inset;
     height: 100%;
+    z-index: 5;
 }
 
 .mainBody .displayWindow .imageWindow .overlayNav .navTop {

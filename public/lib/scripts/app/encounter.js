@@ -1,7 +1,6 @@
-
 // show quickMessagePopUp
 function quickMessagePopUp() {
-    var sendAMessageBtn = $("#sendAMessage");
+    let sendAMessageBtn = $("#sendAMessage");
     sendAMessageBtn.click(() => {
         $(".overlayNav").css({
             "background-color": "#00000066"
@@ -53,7 +52,7 @@ activeProfileMenu();
 function encounterDisplayingAndShuffling() {
     if (location.href.toLowerCase().includes("encounters")) {
         function activeProfileClass() {
-            var elem = $(".statusBar a").get(0);
+            let elem = $(".statusBar a").get(0);
             return $(elem).addClass("activeProfile hasStories");
         }
         activeProfileClass();
@@ -64,9 +63,8 @@ function encounterDisplayingAndShuffling() {
             url: "/app/encounters/getUsers",
             method: "GET",
             success: (users) => {
-                var usersDetails = users;
+                let usersDetails = users;
                 console.log(usersDetails);
-
             },
 
         });
@@ -74,19 +72,19 @@ function encounterDisplayingAndShuffling() {
 
     function displayUserDetails() {
         if (location.href.toLowerCase().includes("encounters")) {
-            var activeUserValue;
+            let activeUserValue;
             activeUserValue = activeProfileClass().context.dataset; // collected all value from the active user.
-            // Assign values to the variables
-            var fullname = activeUserValue.fullname;
-            var username = activeUserValue.username;
-            var age = activeUserValue.age;
-            var bio = activeUserValue.bio;
-            var height = activeUserValue.height;
-            var language = activeUserValue.language;
-            var _location = activeUserValue.location;
-            var userDirectorieslocation = activeUserValue.userDirectorieslocation;
+            // Assign values to the letiables
+            let fullname = activeUserValue.fullname;
+            let username = activeUserValue.username;
+            let age = activeUserValue.age;
+            let bio = activeUserValue.bio;
+            let height = activeUserValue.height;
+            let language = activeUserValue.language;
+            let _location = activeUserValue.location;
+            let userdirectorieslocation = activeUserValue.userdirectorieslocation;
 
-            // Assign variables to html tags
+            // Assign letiables to html tags
             $("span#fullname").text(`${fullname}`);
             $("#age").text(`${age}`);
             $("#username").text(`@${username}`).attr({
@@ -97,28 +95,42 @@ function encounterDisplayingAndShuffling() {
             $("#height").html(`${height}`);
             $("#language").html(`${language}`);
             $("#location").html(`${_location}`);
-            // console.log(`Values: \nBio: ${bio}\nHeight: ${height}\nLanguage: ${language}\n location: ${_location}`);
+            getUsersDetails(); // Show all users details for now -- Update in the future
+            getUserPhotos(username, userdirectorieslocation); // Get displayed user's photos...
         }
-        getUsersDetails();
-
     }
     displayUserDetails();
+
+    function getUserPhotos(username, userDir) {
+        $.ajax({
+            url: `/app/encounters/getUserPhotos/${username}`,
+            method: "GET",
+            success: (photos) => {
+                for (let i = 0; i <= photos.length; i++) {
+                    const photo = photos[i];
+                    console.log("Photo: ", photo);
+                }
+                // console.log("Photos: ", photos);
+            },
+
+        });
+    }
 }
 encounterDisplayingAndShuffling();
 
-$('.encounter-page-send-chat').submit(function(e){
+$('.encounter-page-send-chat').submit(function (e) {
     e.preventDefault();
-    var user =  $("#username").text(); //$('#encounter-page-send-message').data('sender-user');
-    var message_holder = $('.encounter-page-send-message');
-    var messageTxt = message_holder.val();
+    let user = $("#username").text();
+    let message_holder = $('.encounter-page-send-message');
+    let messageTxt = message_holder.val();
     // noinspection JSUnusedLocalSymbols
-    var message = {
+    let message = {
         from: __user,
         to: user,
         type: "chat-message",
         format: "text",
-        message : messageTxt,
-        sent_at : Date.now(),
+        message: messageTxt,
+        sent_at: Date.now(),
     };
 
     //-- emit --send message

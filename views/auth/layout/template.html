@@ -25,6 +25,19 @@
 </head>
 
 <body>
+    <!-- Messaging -->
+    <div class="sr-only">
+        <%- messages() %>
+
+        <% if(typeof errors != "undefined") { %>
+        <% errors.forEach(err => { %>
+        <div id="messages">
+            <ul class="error">
+                <li><%= err.msg %></li>
+            </ul>
+        </div>
+        <% })} %>
+    </div>
 
     <%- body %>
     <!-- jQuery  -->

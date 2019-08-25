@@ -55,15 +55,15 @@ module["exports"] = class User extends Model {
             else {
                 bcrypt.hash(newUser.password, salt, (err, hash) => {
                     newUser.password = hash;
-                    newUser.userDirectoriesLocation = createUserDirectory(newUser.username, newUser._id).displayPath;
+                    newUser.userDirectoriesLocation = createUserDirectory(newUser._id).displayPath;
                     newUser.save(callback);
                 });
             }
         });
 
         //-- Create User root directory
-        function createUserDirectory(username, userID) {
-            let loc = public_path(`store/users/${username}_${userID}`);
+        function createUserDirectory(userID) {
+            let loc = public_path(`store/users/${userID}`);
             fs.mkdir(loc, {
                 recursive: true
             }, err => {
@@ -71,7 +71,7 @@ module["exports"] = class User extends Model {
                 err ? console.log(err) : console.log(msg);
             });
             return {
-                displayPath: `/store/users/${username}_${userID}`,
+                displayPath: `/store/users/${userID}`,
                 absolutePath: loc
             };
         }

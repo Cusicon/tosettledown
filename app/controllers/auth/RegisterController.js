@@ -1,6 +1,4 @@
 const User = require("@models/user");
-// const path = require('path');
-// const fs = require('fs');
 
 module['exports'] = class RegisterController {
 

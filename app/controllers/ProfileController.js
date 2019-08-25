@@ -13,7 +13,7 @@ module["exports"] = class ProfileController {
             if (err) console.log(err);
             else {
                 if (user != null) {
-                    Photo.getPhotobyUsername(username, (err, photos) => {
+                    Photo.getPhotosbyUsername(username, (err, photos) => {
                         if (err) throw err;
                         if (__user.gender !== user.gender) {
                             res.render('./app/menu/profile', {
@@ -85,10 +85,11 @@ module["exports"] = class ProfileController {
 
 
 
-        upload(req, res, function (err) {
+        upload(req, res, (err) => {
 
             if (err) {
-                return res.end("Error uploading file.");
+                req.flash("error", "Error uploading photo, Try again.");
+                res.redirect(`/app/profile/${__user.username}`)
             } else {
                 req.files.forEach((file) => {
 
@@ -116,4 +117,15 @@ module["exports"] = class ProfileController {
             }
         });
     }
+
+    static setAvatar(req, res) {
+        let id = __user.id;
+        let photo_id = req.params.photo_id;
+        Photo.getPhotoById(photo_id, (err, photo) => {
+            User.getUserByIdandUpdate(id, {
+                avatar: `${__user.userDirectoriesLocation}/photos/${photo.name}`
+            }, (err, user) => err ? console.log(err) : res.redirect(`/app/profile/${user.username}`));
+        });
+    }
+
 };

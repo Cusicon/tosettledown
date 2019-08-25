@@ -5,7 +5,7 @@
 <!-- Call Style Script Tag Here -->
 <% script('/lib/scripts/app/encounter.js') -%>
 <br>
-<div class="row page-identifier" data-page-name="encounter">
+<div class="row page-identifier" data-page-name="encounter" style="margin: 0px !important;">
     <div class="displayWindow col-md-11 row">
         <!-- ImageWindow -->
         <div class="imageWindow col-lg-8 col-md-12 col-sm-12"
@@ -79,8 +79,7 @@
                                                 </a>
                                             </div>
 
-                                            <a href="javascript:void(0);"
-                                                class="activeProfile hasStories float-left"
+                                            <a href="javascript:void(0);" class="activeProfile hasStories float-left"
                                                 style="cursor: default; margin-right: 10px;">
                                                 <div class="profileImg image"
                                                     style="background-image: url('<%= user.avatar || new String(`/lib/img/assets/reduced/${user.gender}.png`) %>')">
@@ -140,4 +139,5 @@
     <!-- StatusBar -->
     <%-partial('/app/partials/statusBar.html')%>
 </div>
-<iframe src="" style="border: 1px solid #eee; background-color: #eee; width: 90%; height: 100px; margin: 10px 0px;"></iframe>
+<iframe src=""
+    style="border: 1px solid #eee; background-color: #eee; width: 90%; height: 100px; margin: 10px 0px;"></iframe>

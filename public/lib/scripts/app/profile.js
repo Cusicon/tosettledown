@@ -20,7 +20,7 @@ function addPhotosPreview(input, placeToInsertImagePreview) {
                 $($.parseHTML("<img>"))
                     .attr({
                         src: event.target.result,
-                        style: "margin: auto .2%; max-width: 100%;",
+                        style: "margin: auto .2%; max-width: 90%;",
                         id: "selectedPhoto",
                         alt: "Photo"
                     })
@@ -61,7 +61,7 @@ function showPhotosSelected() {
         }
     });
 }
-// showPhotosSelected();
+showPhotosSelected();
 
 function cropImage() {
     const selectedPhoto = document.getElementById('selectedPhoto');
