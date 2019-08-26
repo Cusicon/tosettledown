@@ -141,11 +141,11 @@
     padding: 10px;
 }
 
-.profileMain .profileFooter footer ul li a img#image {
+.profileMain .profileFooter footer ul li a {
     display: block;
-    width: 100%;
+    overflow: hidden;
+    height: 200px;
     border: 1px solid #eee;
 }
-
 
 /* END OF PROFILE */

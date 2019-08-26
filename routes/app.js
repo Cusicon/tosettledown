@@ -14,7 +14,6 @@ router.get("/profile", (req, res) => res.redirect("/app/encounters"));
 router.get("/chats", (require('@app/controllers/HomeController')).chats);
 router.get("/chats/:username", (require('@app/controllers/HomeController')).showChat);
 router.get("/meetups", (require('@app/controllers/HomeController')).getMeetUps); // -- Getting A chat meetup
-router.get("/meetups/getuser", (require('@app/controllers/HomeController')).getUser); // -- Getting User
 
 //-- matched Router
 router.get("/matched", (require('@app/controllers/HomeController')).matched);

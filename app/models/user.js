@@ -55,7 +55,7 @@ module["exports"] = class User extends Model {
             else {
                 bcrypt.hash(newUser.password, salt, (err, hash) => {
                     newUser.password = hash;
-                    newUser.userDirectoriesLocation = createUserDirectory(newUser.username, newUser._id);
+                    newUser.userDirectoriesLocation = createUserDirectory(newUser.username, newUser._id).displayPath;
                     newUser.save(callback);
                 });
             }
@@ -70,7 +70,10 @@ module["exports"] = class User extends Model {
                 let msg = `A new account signing up...`;
                 err ? console.log(err) : console.log(msg);
             });
-            return loc;
+            return {
+                displayPath: `/store/users/${username}_${userID}`,
+                absolutePath: loc
+            };
         }
     }
 

@@ -1,8 +1,10 @@
 <% layout('/app/layout/template.html') -%>
 
 <!-- Call Page Style Tag Here -->
+<% stylesheet('/components/cropper/cropper.css') -%>
 <% stylesheet('/lib/css/app/profile.css') -%>
 <!-- Call Style Script Tag Here -->
+<% script('/components/cropper/cropper.js') -%>
 <% script('/lib/scripts/app/profile.js') -%>
 
 
@@ -211,7 +213,7 @@
                                         <!-- Display container -->
                                         <div class="info" style="position: inherit;">
                                             <div class="displayCon" style="overflow: hidden; overflow-x: auto;">
-                                                <div style="display: inline-flex;"></div>
+                                                <div id="container"></div>
                                             </div>
                                             <center>
                                                 <div
@@ -223,7 +225,7 @@
                                                 </div>
                                             </center>
                                             <input type="file" name="addPhotos" id="addPhotos" class="hide"
-                                                accept="image/*" multiple required>
+                                                accept="image/*" required>
                                         </div>
                                     </div>
                                     <div class="separator"></div>
@@ -234,8 +236,32 @@
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div>
+
             </div>
             <% } %>
+            <!-- Show the cropped image in modal -->
+
+            <!-- Photos Display Modal -->
+            <div class="modal fade displayPhotosCon" tabindex="-1" role="dialog" aria-labelledby="displayPhotoModal"
+                style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background-color: #3e3e3e; border-color: #2e2e2e;">
+                            <h4 class="modal-title" id="displayPhotoModal" style="color: #fff;">Display <span
+                                    class="bg-Primary_color" style="border-radius: 5px; padding: 5px;">Photos</span>
+                            </h4>
+                        </div>
+                        <div class="modal-body" style="padding: 0px;">
+                            <div class="displayImageCon"
+                                style="padding: 20px 0px; background-color: #3e3e3e; text-align: center !important;">
+                                <img src="" id="displayImage" alt="image" height="425"
+                                    style="border: 1px solid transparent; max-width: 100%;">
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            <!-- End of Photos Display Modal -->
             <section class="profileHeader">
                 <header>
                     <ul>
@@ -262,7 +288,9 @@
                                     <a href="#" id="editProfileBtn" data-toggle="modal"
                                         data-target=".editProfileCon">Edit profile</a>
                                     <% } %>
+                                    <% if (user.username != profile_user.username) { %>
                                     <a href="#" class="color">Block or Report</a>
+                                    <% } %>
                                     <% if (user.username == profile_user.username) { %>
                                     <div class="separator"></div>
                                     <a href="#" class="dropdownBottom" id="settingsBtn" data-toggle="modal"
@@ -404,38 +432,58 @@
                 </header>
                 <footer>
                     <center>
+                        <% if (typeof photos != "undefined") { %>
+                        <% if (photos.length > 0) { %>
                         <ul class="row">
-                            <li class="col-4 col-md-4 col-sm-4">
-                                <a href="javascript:void(0);">
-                                    <img src="/lib/img/assets/reduced/user.png" id="image" alt="image">
+                            <% for (let i = 0; i < photos.length; i++) { %>
+                            <% const photo = photos[i]; %>
+                            <% if(profile_user.username == user.username && photo.user_id == profile_user.id) { %>
+                            <li class="col-md-4 col-sm-6">
+                                <a href="javascript:void(0);" data-toggle="modal" data-target=".displayPhotosCon"
+                                    style="background-image: url('<%= profile_user.userDirectoriesLocation %>/photos/<%= photo.name %>');"
+                                    class="image"
+                                    onclick="$('#displayImage').attr('src', this.style.backgroundImage.slice(5, this.style.backgroundImage.length - 2));">
                                 </a>
                             </li>
-                            <li class="col-4 col-md-4 col-sm-4">
-                                <a href="javascript:void(0);">
-                                    <img src="/lib/img/assets/reduced/user.png" id="image" alt="image">
+                            <% } %>
+                            <% if (profile_user.username != user.username && photo.user_id == profile_user.id) { %>
+                            <li class="col-md-4 col-sm-6">
+                                <a href="javascript:void(0);" data-toggle="modal" data-target=".displayPhotosCon"
+                                    style="background-image: url('<%= profile_user.userDirectoriesLocation %>/photos/<%= photo.name %>');"
+                                    class="image"
+                                    onclick="$('#displayImage').attr('src', this.style.backgroundImage.slice(5, this.style.backgroundImage.length - 2));">
                                 </a>
                             </li>
-                            <li class="col-4 col-md-4 col-sm-4">
-                                <a href="javascript:void(0);">
-                                    <img src="/lib/img/assets/reduced/user.png" id="image" alt="image">
-                                </a>
-                            </li>
-                            <li class="col-4 col-md-4 col-sm-4">
-                                <a href="javascript:void(0);">
-                                    <img src="/lib/img/assets/reduced/user.png" id="image" alt="image">
-                                </a>
-                            </li>
-                            <li class="col-4 col-md-4 col-sm-4">
-                                <a href="javascript:void(0);">
-                                    <img src="/lib/img/assets/reduced/user.png" id="image" alt="image">
-                                </a>
-                            </li>
-                            <li class="col-4 col-md-4 col-sm-4">
-                                <a href="javascript:void(0);">
-                                    <img src="/lib/img/assets/reduced/user.png" id="image" alt="image">
-                                </a>
-                            </li>
+                            <%  } %>
+                            <%  } %>
                         </ul>
+                        <% } %>
+                        <% if (photos.length == 0 && profile_user.username == user.username) { %>
+                        <section style="padding: 25px;">
+                            <span style="font-size: 100px; font-weight: lighter !important;">
+                                <i class="fi-marquee-plus"></i>
+                            </span>
+                            <br><br>
+                            <p style="font-size: 15px !important;">When you upload your photos, they will appear here on
+                                your profile...</p>
+                            <a href=javascript:void(0); class="color btn waves-effect waves-light" id="addPhotosBtn"
+                                role="button" data-toggle="modal" data-target=".addPhotosCon"
+                                onclick="$('#addPhotos').trigger('click');">
+                                Upload your first photo.
+                            </a>
+                        </section>
+                        <% } %>
+                        <% if (photos.length == 0 && profile_user.username != user.username) { %>
+                        <section style="padding: 25px;">
+                            <span style="font-size: 100px; font-weight: lighter !important;">
+                                <i class="dripicons-photo-group"></i>
+                            </span>
+                            <p style="font-size: 15px;">Sorry, <b><%= profile_user.fullname.firstname %></b> has no
+                                photos, Tell
+                                <%= profile_user.gender == 'male' ? 'Him' : "Her" %> to upload some.</p>
+                        </section>
+                        <% } %>
+                        <% } %>
                     </center>
                 </footer>
             </section>
