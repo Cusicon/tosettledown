@@ -49,6 +49,7 @@ module["exports"] = class User extends Model {
 
     //-- CreateUser
     static createUser(newUser, callback) {
+        newUser.gender == 'male' ? newUser.avatar = `/lib/img/assets/reduced/male.png` : newUser.avatar = `/lib/img/assets/reduced/female.png`
         //-- Hash Password and save.
         bcrypt.genSalt(10, (err, salt) => {
             if (err) throw Error;

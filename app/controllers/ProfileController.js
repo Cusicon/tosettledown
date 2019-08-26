@@ -68,7 +68,7 @@ module["exports"] = class ProfileController {
         }
 
         let storage = multer.diskStorage({
-            destination: public_path(`${__user.userDirectoriesLocation}/photos`),
+            destination: public_path(`${__user.userDirectoriesLocation}/photos/`),
             filename: (req, file, cb) => {
                 cb(null, `photo_${Date.now()}${path.extname(file.originalname)}`)
             },
@@ -97,7 +97,7 @@ module["exports"] = class ProfileController {
                         user_id: __user.id,
                         username: __user.username,
                         name: file.filename,
-                        location: file.path,
+                        location: file.path.split("public")[1],
                         media_type: "Photo",
                         mime_type: file.mimetype,
                         uploaded_at: Date.now(),

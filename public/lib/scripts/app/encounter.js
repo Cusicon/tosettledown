@@ -27,9 +27,7 @@ quickMessagePopUp();
 function navigateImages() {
     $('div.imageWindow').keyup((e) => {
         if (e.keyCode == 37) { // Left Arrow
-            alert("Left Arrow");
         } else if (e.keyCode == 39) { // Right Arrow
-            alert("Right Arrow");
         }
     });
 }
@@ -62,9 +60,15 @@ function encounterDisplayingAndShuffling() {
         $.ajax({
             url: "/app/encounters/getUsers",
             method: "GET",
-            success: (users) => {
-                let usersDetails = users;
-                console.log(usersDetails);
+            success: (usersObj) => {
+                for (const i in usersObj) {
+                    if (usersObj.hasOwnProperty(i)) {
+                        const usersArr = usersObj[i];
+                        usersArr.forEach(user => {
+                            // console.log("User: ", user);
+                        });
+                    }
+                }
             },
 
         });
@@ -74,7 +78,7 @@ function encounterDisplayingAndShuffling() {
         if (location.href.toLowerCase().includes("encounters")) {
             let activeUserValue;
             activeUserValue = activeProfileClass().context.dataset; // collected all value from the active user.
-            // Assign values to the letiables
+            // Assign values to the variables
             let fullname = activeUserValue.fullname;
             let username = activeUserValue.username;
             let age = activeUserValue.age;
@@ -84,7 +88,7 @@ function encounterDisplayingAndShuffling() {
             let _location = activeUserValue.location;
             let userdirectorieslocation = activeUserValue.userdirectorieslocation;
 
-            // Assign letiables to html tags
+            // Assign variables to html tags
             $("span#fullname").text(`${fullname}`);
             $("#age").text(`${age}`);
             $("#username").text(`@${username}`).attr({
@@ -101,19 +105,38 @@ function encounterDisplayingAndShuffling() {
     }
     displayUserDetails();
 
-    function getUserPhotos(username, userDir) {
+    function getUserPhotos(username) {
         $.ajax({
             url: `/app/encounters/getUserPhotos/${username}`,
             method: "GET",
-            success: (photos) => {
-                for (let i = 0; i <= photos.length; i++) {
-                    const photo = photos[i];
-                    console.log("Photo: ", photo);
+            success: (photosObj) => {
+                for (const i in photosObj) {
+                    if (photosObj.hasOwnProperty(i)) {
+                        const photosArr = photosObj[i];
+                        renderUserPhotos(photosArr, "div.renderUserPhotos")
+                    }
                 }
-                // console.log("Photos: ", photos);
             },
 
         });
+
+        function renderUserPhotos(photosArr, placeToInsertImage) {
+            let totalPhotos = $("#totalPhotos").html(photosArr.length); // Total photos count
+            let currentPhoto = $("#currentPhoto").html("1"); // Current photos count
+            photosArr = photosArr.reverse();
+            for (let i = 0; i < photosArr.length; i++) {
+                const photo = photosArr[i];
+                $($.parseHTML("<img>"))
+                    .attr({
+                        src: photo.location,
+                        style: "margin: auto 0%",
+                        class: "userDisplayedPhoto",
+                        alt: "Photo"
+                    })
+                    .prependTo(placeToInsertImage)
+                    .wrap(`<div class="userDisplayedPhotoCon" id="${i}"></div>`);
+            }
+        }
     }
 }
 encounterDisplayingAndShuffling();

@@ -8,14 +8,14 @@
 <div class="row page-identifier" data-page-name="encounter" style="margin: 0px !important;">
     <div class="displayWindow col-md-11 row">
         <!-- ImageWindow -->
-        <div class="imageWindow col-lg-8 col-md-12 col-sm-12"
-            style="background-image: url();">
+        <div class="imageWindow col-lg-8 col-md-12 col-sm-12">
+            <div class="renderUserPhotos"></div>
             <div class="overlayNav">
                 <div class="navTop">
                     <div class="imageCounter float-left">
                         <p>
-                            <span id="currentNumber" style="padding-right: 5px;">1</span>/
-                            <span id="TotalNumber">4</span>
+                            <span id="currentPhoto" style="padding-right: 5px;"></span>/
+                            <span id="totalPhotos"></span>
                         </p>
                     </div>
                     <div class="imageCounter reportFlag">
@@ -82,7 +82,7 @@
                                             <a href="javascript:void(0);" class="activeProfile hasStories float-left"
                                                 style="cursor: default; margin-right: 10px;">
                                                 <div class="profileImg image"
-                                                    style="background-image: url('<%= user.avatar || new String(`/lib/img/assets/reduced/${user.gender}.png`) %>')">
+                                                    style="background-image: url('<%= user.avatar %>')">
                                                 </div>
                                             </a>
                                             <div style="margin-bottom: -10px;">

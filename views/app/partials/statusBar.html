@@ -8,11 +8,11 @@
         <li>
             <a href="javascript: void(0);" class="activeProfile" data-username="<%= _user.username %>"
                 data-fullname="<%= _user.fullname.firstname %>" data-age="<%= _user.dob.age %>"
-                data-userDirectoriesLocation="<%= _user.userDirectoriesLocation %>" data-bio="<%= _user.personalInfo.bio %>"
+                data-userdirectorieslocation="<%= _user.userDirectoriesLocation %>" data-bio="<%= _user.personalInfo.bio %>"
                 data-height="<%= _user.personalInfo.height %>" data-language="<%= _user.personalInfo.language %>"
                 data-location="<%= _user.personalInfo.location %>">
                 <div class="image"
-                    style="background-image: url('<%= _user.avatar || new String(`/lib/img/assets/reduced/${_user.gender}.png`) %>');">
+                    style="background-image: url('<%= _user.avatar %>');">
                 </div>
             </a>
         </li>

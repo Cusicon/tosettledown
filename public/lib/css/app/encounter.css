@@ -1,17 +1,43 @@
 /* ENCOUNTERS */
 
-
-
 .mainBody .displayWindow .imageWindow {
-    background-color: #303030;
+    /* border: 1px solid #eee; */
+    background-color: #000;
     background-position: top center;
     padding: 0px;
-    min-height: 500px;
+    min-height: 545px;
+}
+
+.mainBody .displayWindow .imageWindow div.renderUserPhotos {
+    display: -webkit-box; /* Chrome Browser */
+    display: -moz-box; /* Mozilla Firefox Browser */
+    position: relative;
+    left: -10px;
+    height: 100%;
+    width: 102%;
+    overflow: hidden;
+    overflow-x: scroll;
+}
+
+.mainBody .displayWindow .imageWindow div.renderUserPhotos .userDisplayedPhotoCon {
+    position: sticky; /* Gives stack scroll animation */
+    left: 0px; /* Gives stack scroll animation */
+    display: flex; /* Centralizes the image */
+    width: 100%;
+    border-left: 10px solid #000;
+    background-color: #000;
+}
+
+.mainBody .displayWindow .imageWindow div.renderUserPhotos .userDisplayedPhotoCon img {
+    width: 100%;
 }
 
 .mainBody .displayWindow .imageWindow .overlayNav {
+    position: absolute;
+    top: 0%;
     box-shadow: 0px -130px 100px #00000036 inset;
     height: 100%;
+    width: 100%;
     z-index: 5;
 }
 
@@ -140,7 +166,7 @@
 
 .mainBody .displayWindow .detailsCon .detailsHeader span {
     font-weight: lighter;
-    /* color: #1a1a1a; */
+    /* color: #000; */
 }
 
 .mainBody .displayWindow .detailsCon .bio {
@@ -162,14 +188,12 @@
 /* StatusBar */
 
 .statusBar {
-    height: 360px;
-    /* overflow: hidden; */
     margin-left: 20px;
     padding: 10px;
 }
 
 .statusBar ul li {
-    display: inline-block;
+    display: inline-flex;
     margin-left: -5px;
 }
 
@@ -222,7 +246,3 @@
 /* End of shopAds */
 
 /* END OF ENCOUNTERS */
-
-
-
-

@@ -5,7 +5,7 @@ module['exports'] = class RegisterController {
     static register(req, res) {
         if (!req.user) {
 
-            //-- Collect values from User and assign to letiables
+            //-- Collect values from User and assign to variables
             let fullname = req.body.fullname.trim();
             let username = req.body.username.trim().toLowerCase();
             let email = req.body.email.trim().toLowerCase();

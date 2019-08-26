@@ -1,10 +1,11 @@
 <% layout('/app/layout/template.html') -%>
 
 <!-- Call Page Style Tag Here -->
-<% stylesheet('/components/cropper/cropper.css') -%>
+<% stylesheet('/components/cropperjs/dist/cropper.css') -%>
 <% stylesheet('/lib/css/app/profile.css') -%>
+
 <!-- Call Style Script Tag Here -->
-<% script('/components/cropper/cropper.js') -%>
+<% script('/components/cropperjs/dist/cropper.js') -%>
 <% script('/lib/scripts/app/profile.js') -%>
 
 
@@ -225,7 +226,7 @@
                                                 </div>
                                             </center>
                                             <input type="file" name="addPhotos" id="addPhotos" class="hide"
-                                                accept="image/*" required>
+                                                accept="image/*" multiple required>
                                         </div>
                                     </div>
                                     <div class="separator"></div>
@@ -244,19 +245,24 @@
             <div class="modal fade displayPhotosCon" id="displayPhotosCon" tabindex="-1" role="dialog"
                 aria-labelledby="displayPhotoModal" style="display: none;" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
-                    <div class="modal-content"
-                        style="background-color: transparent; box-shadow: 0px 2px 500px #1a1a1a;">
+                    <div class="modal-content" style="background-color: transparent;">
+                        <div class="modal-header" style="border: 0px;">
+                            <h4 class="modal-title" id="addPhotosModal" style="color: #fff;">Photo <span
+                                    class="bg-Primary_color" style="border-radius: 5px; padding: 5px;">Preview</span>
+                            </h4>
+                        </div>
                         <div class="displayImageCon"
                             style="padding: 10px 0px; background-color: transparent; text-align: center !important;">
                             <img src="" id="displayImage" alt="image" height="425"
                                 style="border: 1px solid transparent; max-width: 100%;">
+                            <% if (profile_user.username == user.username) { %>
+                            <br>
+                            <a href="/app/profile/update/<%= profile_user.username %>/setAvatar"
+                                class="btn waves-effect waves-light bg-Primary_color" style="margin: 15px 0px;"
+                                role="button" id="setAvatarBtn">
+                                Set as Display Picture</a>
+                            <% } %>
                         </div>
-                        <% if (profile_user.username == user.username) { %>
-                        <a href="/app/profile/update/<%= profile_user.username %>/setAvatar"
-                            class="btn waves-effect waves-light bg-Primary_color" style="border-radius: 0px !important;"
-                            role="button" id="setAvatarBtn">
-                            Set as Display Picture</a>
-                        <% } %>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div>
@@ -311,7 +317,7 @@
 
                             <a href=javascript:void(0); class="activeProfile hasStories">
                                 <div class="image profileImage"
-                                    style="background-image: url('<%= profile_user.avatar || new String(`/lib/img/assets/reduced/${profile_user.gender}.png`) %>');">
+                                    style="background-image: url('<%= profile_user.avatar %>');">
                                 </div>
                             </a>
 
@@ -440,7 +446,7 @@
                             <!-- Duplicate Here... -->
                             <li class="col-md-4 col-sm-6">
                                 <a href="javascript:void(0);" data-toggle="modal" data-target=".displayPhotosCon"
-                                    style="background-image: url('<%= profile_user.userDirectoriesLocation %>/photos/<%= photo.name %>'); width: 280px;"
+                                    style="background-image: url('<%= photo.location %>'); width: 280px;"
                                     class="userPhoto" onclick="
                                     $('#displayImage').attr('src', this.style.backgroundImage.slice(5, this.style.backgroundImage.length - 2));
                                     $('#setAvatarBtn').attr('href', `/app/profile/update/<%= profile_user.username %>/setAvatar/<%= photo.id %>`);
@@ -450,7 +456,7 @@
                             <% if (profile_user.username != user.username && photo.user_id == profile_user.id) { %>
                             <li class="col-md-4 col-sm-6">
                                 <a href="javascript:void(0);" data-toggle="modal" data-target=".displayPhotosCon"
-                                    style="background-image: url('<%= profile_user.userDirectoriesLocation %>/photos/<%= photo.name %>'); width: 280px;"
+                                    style="background-image: url('<%= photo.location %>'); width: 280px;"
                                     class="userPhoto" onclick="
                                     $('#displayImage').attr('src', this.style.backgroundImage.slice(5, this.style.backgroundImage.length - 2));
                                     $('#setAvatarBtn').attr('href', `/app/profile/update/<%= profile_user.username %>/setAvatar/<%= photo.id %>`);
