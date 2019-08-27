@@ -125,7 +125,7 @@ $(document).on('ready', () => {
 
     function buildChatMessage(chat, sending = null) {
 
-        let is_outbox_or_inbox = (chat.from !== `${__user}`)? 'inbox' : 'outbox';
+        let is_outbox_or_inbox = (chat.from !== `${req.user}`)? 'inbox' : 'outbox';
         let message_status = '';
 
         if(is_outbox_or_inbox === 'outbox'){
@@ -226,7 +226,7 @@ $(document).on('ready', () => {
     */
     $("#message-input").on('keyup',function() {
         let message = {
-            from: __user,
+            from: req.user,
             to: `@${window.activeChat}`,
             type: "composing",
         };
@@ -248,7 +248,7 @@ $(document).on('ready', () => {
         let message = {
             __id: new Date().getUnixTime(),
             u_id: new Date().getUnixTime(),
-            from: __user,
+            from: req.user,
             to: user,
             type: "chat-message",
             format: "text",
@@ -282,7 +282,7 @@ $(document).on('ready', () => {
         /*
         * listen for incoming message on your own channel, and store in array for new chats
         */
-        __socket.on(`${__user} message`, msg => {
+        __socket.on(`${req.user} message`, msg => {
             __socket.emit('chat received', msg);
             arrayNewMsg.push(msg);
             //-- Resolver Will Do The Appending To DOM
@@ -300,7 +300,7 @@ $(document).on('ready', () => {
         /*
         * listen for Acknowledgment notification from the serve when you send a message,
         */
-        __socket.on(`${__user} acknowledge`, function (msg) {
+        __socket.on(`${req.user} acknowledge`, function (msg) {
             if(msg.to.slice(1) === activeChat){
                 let chat = arrayChats[activeChat].find(function(chats) {
                     return chats.__id === msg.__id;
@@ -313,7 +313,7 @@ $(document).on('ready', () => {
         /*
         * listen for chat delivered notification on your channel for message you sent
         */
-        __socket.on(`${__user} delivered`, function (msg) {
+        __socket.on(`${req.user} delivered`, function (msg) {
             if(msg.to.slice(1) === activeChat){
                 let chat = arrayChats[activeChat].find(function(chats) {
                     return chats.__id === msg.__id;
@@ -327,7 +327,7 @@ $(document).on('ready', () => {
         /*
         * listen for typing notification on your own channel,
         */
-        __socket.on(`${__user} composing`, function (msg) {
+        __socket.on(`${req.user} composing`, function (msg) {
 
             let element = $(`#${msg.from.slice(1).toLowerCase()}-chat-listing`);
             let window_chat = $('.ChatWindow');

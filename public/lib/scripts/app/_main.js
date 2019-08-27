@@ -3,7 +3,7 @@
  */
 // noinspection JSUnresolvedFunction
 const __socket = io(); //-- Initialize Socket For All Pages
-const __user = $("#activeUser_username b").text();
+const req.user = $("#activeUser_username b").text();
 
 /*
  * ENDS GLOBAL VARIABLE CONFIGURATION HERE
@@ -94,7 +94,7 @@ $(document).on('ready', () => {
         /*
          * listen for message on your own channel, will appear in all pages except chat Page
          */
-        __socket.on(`${__user} message`, function (msg) {
+        __socket.on(`${req.user} message`, function (msg) {
             var options = {
                 body: msg.message, // body part of the notification
                 dir: 'ltr', // use for derection of message

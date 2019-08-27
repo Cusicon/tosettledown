@@ -14,7 +14,7 @@ module["exports"] = class HomeController{
     static getMeetUps(req, res)
     {
         let activeChat = req.query.user || null;
-        MeetUp.getMyEncounters(__user.username, (meetups, meetupObj) => {
+        MeetUp.getMyEncounters(req.user.username, (meetups, meetupObj) => {
             if(activeChat)
             {
                 User.getUserByUsername(activeChat, (err, activeChat) => {

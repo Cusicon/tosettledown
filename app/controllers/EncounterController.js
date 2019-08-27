@@ -6,7 +6,7 @@ const EncounterController = class EncounterController {
 
     index(req, res) {
         User.find({
-            gender: __user.gender == "male" ? "female" : "male"
+            gender: req.user.gender == "male" ? "female" : "male"
         }, (err, users) => {
             if (err) throw err;
             else {
@@ -20,7 +20,7 @@ const EncounterController = class EncounterController {
 
     getUsers(req, res) {
         User.find({
-            gender: __user.gender == "male" ? "female" : "male"
+            gender: req.user.gender == "male" ? "female" : "male"
         }, (err, users) => {
             if (err) throw err;
             else {

@@ -93,7 +93,7 @@ module["exports"] = class MeetUp extends Model{
 
         let username = null;
 
-        if (`@${__user.username}` === meetup.user_id) {
+        if (`@${req.user.username}` === meetup.user_id) {
             username = meetup.encountered.slice(1);
         } else {
             username = meetup.user_id.slice(1);

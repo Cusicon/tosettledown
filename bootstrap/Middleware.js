@@ -25,7 +25,6 @@ module["exports"] = {
 
     setGlobalVariable: (req, res, next) => {
         // noinspection JSUnusedLocalSymbols
-        global['__user'] = req.user || null;
         res.locals.user = req.user || null;
         res.locals.url = req.originalUrl || null;
         global['__requestContext'] = req;
