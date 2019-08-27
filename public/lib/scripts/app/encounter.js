@@ -171,7 +171,7 @@ $('.encounter-page-send-chat').submit(function (e) {
     let messageTxt = message_holder.val();
     // noinspection JSUnusedLocalSymbols
     let message = {
-        from: req.user,
+        from: __user,
         to: user,
         type: "chat-message",
         format: "text",
