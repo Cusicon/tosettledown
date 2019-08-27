@@ -1,3 +1,3 @@
 module['exports'] = {
-    'uri': get_env('MONGOLAB_BLUE_URI', 'mongodb://localhost/tosettledown'),
+    'uri': get_env('MONGODB_URI', 'mongodb://localhost/tosettledown'),
 };

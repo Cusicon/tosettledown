@@ -80,7 +80,7 @@ module["exports"] = {
     |
     */
 
-    'url': get_env('APP_URL', 'http://tosettledown.com'),
+    'url': get_env('APP_URL', 'http://tosettledown.herokuapp.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -88,7 +88,7 @@ module["exports"] = {
     |--------------------------------------------------------------------------
     |
     | Here you may specify the default timezone for your application, which
-    | will be used by the PHP date and date-time functions. We have gone
+    | will be used by the NODEJS date and date-time functions. We have gone
     | ahead and set this to a sensible default for you out of the box.
     |
     */
