@@ -25,11 +25,34 @@ quickMessagePopUp();
 
 // navigate Images in Encounters
 function navigateImages() {
-    $('div.imageWindow').keyup((e) => {
-        if (e.keyCode == 37) { // Left Arrow
-        } else if (e.keyCode == 39) { // Right Arrow
-        }
-    });
+
+    function nextPhoto(e) {
+        // Next photo function
+        let renderUserPhotosDiv = document.querySelector('.renderUserPhotos');
+    }
+
+    function previousPhoto(e) {
+        // Previous photo function
+    }
+
+    function onArrowClick() { // When user click on the arrow button this function fires
+
+    }
+    onArrowClick();
+
+    function onKeyboardArrowHit() { // When the user hit the RIGHT or LEFT KEYBOARD ARROWS this function fires
+        $(document).keyup((e) => {
+            let quickMessagePopUp = document.querySelector('.encounter-page-send-message');
+            if (e.target != quickMessagePopUp) {
+                if (e.keyCode == 37) { // Left Arrow
+                    previousPhoto(e);
+                } else if (e.keyCode == 39) { // Right Arrow
+                    nextPhoto(e);
+                }
+            }
+        });
+    }
+    onKeyboardArrowHit();
 }
 navigateImages();
 
@@ -78,7 +101,7 @@ function encounterDisplayingAndShuffling() {
         if (location.href.toLowerCase().includes("encounters")) {
             let activeUserValue;
             activeUserValue = activeProfileClass().context.dataset; // collected all value from the active user.
-            // Assign values to the variables
+            // Assign values to the letiables
             let fullname = activeUserValue.fullname;
             let username = activeUserValue.username;
             let age = activeUserValue.age;
@@ -88,7 +111,7 @@ function encounterDisplayingAndShuffling() {
             let _location = activeUserValue.location;
             let userdirectorieslocation = activeUserValue.userdirectorieslocation;
 
-            // Assign variables to html tags
+            // Assign letiables to html tags
             $("span#fullname").text(`${fullname}`);
             $("#age").text(`${age}`);
             $("#username").text(`@${username}`).attr({
