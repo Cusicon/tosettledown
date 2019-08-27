@@ -1,12 +1,12 @@
 let User = require('@models/user');
-let _User = require('mongoose').Model;
+let Photo = require('@models/media');
 
 const EncounterController = class EncounterController {
     constructor() {}
 
     index(req, res) {
         User.find({
-            gender: __user.gender == "male" ? "female" : "male"
+            gender: req.user.gender == "male" ? "female" : "male"
         }, (err, users) => {
             if (err) throw err;
             else {
@@ -20,13 +20,25 @@ const EncounterController = class EncounterController {
 
     getUsers(req, res) {
         User.find({
-            gender: __user.gender == "male" ? "female" : "male"
+            gender: req.user.gender == "male" ? "female" : "male"
         }, (err, users) => {
             if (err) throw err;
             else {
                 res.send({
                     users: users.sort(() => Math.random() - 0.5 * 0.5) // Shuffle the array
                 });
+            }
+        });
+    }
+
+    getUserPhotos(req, res) {
+        let username = req.params.username;
+        Photo.getPhotosbyUsername(username, (err, photos) => {
+            if (err) throw err;
+            else {
+                res.send({
+                    photos: photos
+                })
             }
         });
     }

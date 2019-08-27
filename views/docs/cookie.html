@@ -4,32 +4,27 @@
 <% stylesheet('/lib/css/guest/docs.css') -%>
 <!-- Call Style Script Tag Here -->
 <% script('/lib/scripts/guest/docs.js') -%>
-
-<section class="cookieCon">
-
-    <section class="logoCon">
-        <!-- Header -->
-        <header class="header" id="header">
-            <nav>
-                <center>
-                    <a href="javascript:void(0);" style="display: block;" class="logoCon"
-                        style="box-sizing: content-box;">
-                        <img src="/lib/img/logo/logoLandscape.png" id="logo" width="200" alt="logo">
-                    </a>
-                </center>
-                <br><br>
-                <div class="btn waves-effect waves-lightCon">
-                    <a href="/" role="button" class="btn waves-effect waves-light float-right">Back to Home</a>
-                </div>
-            </nav>
-        </header>
-        <br>
+<section>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav>
+            <br>
+            <center>
+                <a href="javascript:void(0);" style="display: block;" class="logoCon" style="box-sizing: content-box;">
+                    <img src="/lib/img/logo/logoLandscape.png" id="logo" width="200" alt="logo">
+                </a>
+            </center>
+            <br><br>
+        </nav>
+    </header>
+    <br>
+    <section class="text-dark"
+        style="width: 90%; padding: 50px; margin: 0 auto; margin-bottom: 70px; border-radius: 10px; background-color: #f6f6f6;">
+        <h3><%= title %></h3>
+        <section class="cookieMessage"></section>
+        <br><br>
+        <center>
+            <a href="/" class="btn waves-effect waves-light" role="button">Home</a>
+        </center>
     </section>
-    
-    <section class="cookieMessage">
-        <h1>Cookie Policy</h1>
-    </section>
-
-    <br><br>
-    <%- partial('/auth/layout/footer.html') %>
 </section>

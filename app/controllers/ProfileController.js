@@ -13,15 +13,15 @@ module["exports"] = class ProfileController {
             if (err) console.log(err);
             else {
                 if (user != null) {
-                    Photo.getPhotobyUsername(username, (err, photos) => {
+                    Photo.getPhotosbyUsername(username, (err, photos) => {
                         if (err) throw err;
-                        if (__user.gender !== user.gender) {
+                        if (req.user.gender !== user.gender) {
                             res.render('./app/menu/profile', {
                                 title: `${user.fullname.firstname}'s profile`,
                                 profile_user: user,
                                 photos: photos
                             });
-                        } else if (__user.gender === user.gender && __user.username === user.username) {
+                        } else if (req.user.gender === user.gender && req.user.username === user.username) {
                             res.render('./app/menu/profile', {
                                 title: `${user.fullname.firstname}'s profile`,
                                 profile_user: user,
@@ -39,7 +39,7 @@ module["exports"] = class ProfileController {
     }
 
     static update(req, res) {
-        let id = __user.id;
+        let id = req.user.id;
         User.getUserByIdandUpdate(id, {
             name: req.body.fullname,
             personalInfo: {
@@ -68,7 +68,7 @@ module["exports"] = class ProfileController {
         }
 
         let storage = multer.diskStorage({
-            destination: public_path(`${__user.userDirectoriesLocation}/photos`),
+            destination: public_path(`${req.user.userDirectoriesLocation}/photos/`),
             filename: (req, file, cb) => {
                 cb(null, `photo_${Date.now()}${path.extname(file.originalname)}`)
             },
@@ -85,18 +85,19 @@ module["exports"] = class ProfileController {
 
 
 
-        upload(req, res, function (err) {
+        upload(req, res, (err) => {
 
             if (err) {
-                return res.end("Error uploading file.");
+                req.flash("error", "Error uploading photo, Try again.");
+                res.redirect(`/app/profile/${req.user.username}`)
             } else {
                 req.files.forEach((file) => {
 
                     let photo = new Photo({
-                        user_id: __user.id,
-                        username: __user.username,
+                        user_id: req.user.id,
+                        username: req.user.username,
                         name: file.filename,
-                        location: file.path,
+                        location: file.path.split("public")[1],
                         media_type: "Photo",
                         mime_type: file.mimetype,
                         uploaded_at: Date.now(),
@@ -106,14 +107,25 @@ module["exports"] = class ProfileController {
                     photo.save(photo, (err, photo) => {
                         if (err) throw err;
                         else {
-                            userLog(`"${__user.username}" just uploaded some photos.`);
-                            console.log(`@${__user.username} just uploaded some photos!, @ ${new Date().toTimeString()}`);
+                            userLog(`"${req.user.username}" just uploaded some photos.`);
+                            console.log(`@${req.user.username} just uploaded some photos!, @ ${new Date().toTimeString()}`);
                         }
                     });
 
                 })
-                res.redirect(`/app/profile/${__user.username}`);
+                res.redirect(`/app/profile/${req.user.username}`);
             }
         });
     }
+
+    static setAvatar(req, res) {
+        let id = req.user.id;
+        let photo_id = req.params.photo_id;
+        Photo.getPhotoById(photo_id, (err, photo) => {
+            User.getUserByIdandUpdate(id, {
+                avatar: `${req.user.userDirectoriesLocation}/photos/${photo.name}`
+            }, (err, user) => err ? console.log(err) : res.redirect(`/app/profile/${user.username}`));
+        });
+    }
+
 };

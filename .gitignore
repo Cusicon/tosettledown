@@ -2,8 +2,13 @@
 .vscode
 .vs
 storage/logs/*
-public/store
+public/store/
 node_modules
 package-lock.json
 .env
 yarn.lock
+public/components/cropperjs/src
+public/components/cropperjs/docs
+public/components/cropperjs/test
+public/components/cropperjs/types
+public/components/cropperjs/.github

@@ -4,41 +4,31 @@
 <% stylesheet('/lib/css/guest/docs.css') -%>
 <!-- Call Style Script Tag Here -->
 <% script('/lib/scripts/guest/docs.js') -%>
-
-
-<section class="body">
-    <section class="policyCon">
-        <section class="logoCon">
-            <!-- Header -->
-            <header class="header" id="header">
-                <nav>
-                    <center>
-                        <a href="javascript:void(0);" style="display: block;" class="logoCon"
-                            style="box-sizing: content-box;">
-                            <img src="/lib/img/logo/logoLandscape.png" id="logo" width="200" alt="logo">
-                        </a>
-                    </center>
-                    <br><br>
-                    <div class="float-right" style="padding: 10px;">
-                        <a href="/" role="button" class="btn waves-effect waves-light float-right bg-Primary_color">Back to
-                            Home</a>
-                    </div>
-                </nav>
-            </header>
+<section>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav>
             <br>
-        </section>
-        <section class="policyMessage"
-            style="width: 90%; padding: 50px; margin: 0 auto; margin-bottom: 70px; border-radius: 10px; background-color: #f6f6f6;">
-            <h1>Privacy policy</h1>
-
+            <center>
+                <a href="javascript:void(0);" style="display: block;" class="logoCon" style="box-sizing: content-box;">
+                    <img src="/lib/img/logo/logoLandscape.png" id="logo" width="200" alt="logo">
+                </a>
+            </center>
+            <br><br>
+        </nav>
+    </header>
+    <br>
+    <section class="text-dark"
+        style="width: 90%; padding: 50px; margin: 0 auto; margin-bottom: 70px; border-radius: 10px; background-color: #f6f6f6;">
+        <h3><%= title %></h3>
+        <section class="policyMessage">
             <p>This privacy policy (&quot;Policy&quot;) describes how Website Operator (&quot;Website Operator&quot;,
                 &quot;we&quot;, &quot;us&quot; or &quot;our&quot;) collects, protects and uses the personally
                 identifiable
                 information (&quot;Personal Information&quot;) you (&quot;User&quot;, &quot;you&quot; or
                 &quot;your&quot;)
                 may
-                provide on the <a target="_blank" rel="nofollow" href="http://www.Tosettledown (TSD).com">Tosettledown
-                    (TSD).com</a>
+                provide on the <a target="_blank" rel="nofollow" href="/">Tosettledown.com (TSD)</a>
                 website
                 and
                 any of its products or services (collectively, &quot;Website&quot; or &quot;Services&quot;). It also
@@ -418,5 +408,9 @@
 
             <p>This document was last updated on July 12, 2019</p>
         </section>
+        <br><br>
+        <center>
+            <a href="/" class="btn waves-effect waves-light" role="button">Home</a>
+        </center>
     </section>
 </section>

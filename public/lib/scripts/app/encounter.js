@@ -1,7 +1,6 @@
-
 // show quickMessagePopUp
 function quickMessagePopUp() {
-    var sendAMessageBtn = $("#sendAMessage");
+    let sendAMessageBtn = $("#sendAMessage");
     sendAMessageBtn.click(() => {
         $(".overlayNav").css({
             "background-color": "#00000066"
@@ -26,13 +25,34 @@ quickMessagePopUp();
 
 // navigate Images in Encounters
 function navigateImages() {
-    $('div.imageWindow').keyup((e) => {
-        if (e.keyCode == 37) { // Left Arrow
-            alert("Left Arrow");
-        } else if (e.keyCode == 39) { // Right Arrow
-            alert("Right Arrow");
-        }
-    });
+
+    function nextPhoto(e) {
+        // Next photo function
+        let renderUserPhotosDiv = document.querySelector('.renderUserPhotos');
+    }
+
+    function previousPhoto(e) {
+        // Previous photo function
+    }
+
+    function onArrowClick() { // When user click on the arrow button this function fires
+
+    }
+    onArrowClick();
+
+    function onKeyboardArrowHit() { // When the user hit the RIGHT or LEFT KEYBOARD ARROWS this function fires
+        $(document).keyup((e) => {
+            let quickMessagePopUp = document.querySelector('.encounter-page-send-message');
+            if (e.target != quickMessagePopUp) {
+                if (e.keyCode == 37) { // Left Arrow
+                    previousPhoto(e);
+                } else if (e.keyCode == 39) { // Right Arrow
+                    nextPhoto(e);
+                }
+            }
+        });
+    }
+    onKeyboardArrowHit();
 }
 navigateImages();
 
@@ -53,7 +73,7 @@ activeProfileMenu();
 function encounterDisplayingAndShuffling() {
     if (location.href.toLowerCase().includes("encounters")) {
         function activeProfileClass() {
-            var elem = $(".statusBar a").get(0);
+            let elem = $(".statusBar a").get(0);
             return $(elem).addClass("activeProfile hasStories");
         }
         activeProfileClass();
@@ -63,10 +83,15 @@ function encounterDisplayingAndShuffling() {
         $.ajax({
             url: "/app/encounters/getUsers",
             method: "GET",
-            success: (users) => {
-                var usersDetails = users;
-                console.log(usersDetails);
-
+            success: (usersObj) => {
+                for (const i in usersObj) {
+                    if (usersObj.hasOwnProperty(i)) {
+                        const usersArr = usersObj[i];
+                        usersArr.forEach(user => {
+                            // console.log("User: ", user);
+                        });
+                    }
+                }
             },
 
         });
@@ -74,19 +99,19 @@ function encounterDisplayingAndShuffling() {
 
     function displayUserDetails() {
         if (location.href.toLowerCase().includes("encounters")) {
-            var activeUserValue;
+            let activeUserValue;
             activeUserValue = activeProfileClass().context.dataset; // collected all value from the active user.
-            // Assign values to the variables
-            var fullname = activeUserValue.fullname;
-            var username = activeUserValue.username;
-            var age = activeUserValue.age;
-            var bio = activeUserValue.bio;
-            var height = activeUserValue.height;
-            var language = activeUserValue.language;
-            var _location = activeUserValue.location;
-            var userDirectorieslocation = activeUserValue.userDirectorieslocation;
+            // Assign values to the letiables
+            let fullname = activeUserValue.fullname;
+            let username = activeUserValue.username;
+            let age = activeUserValue.age;
+            let bio = activeUserValue.bio;
+            let height = activeUserValue.height;
+            let language = activeUserValue.language;
+            let _location = activeUserValue.location;
+            let userdirectorieslocation = activeUserValue.userdirectorieslocation;
 
-            // Assign variables to html tags
+            // Assign letiables to html tags
             $("span#fullname").text(`${fullname}`);
             $("#age").text(`${age}`);
             $("#username").text(`@${username}`).attr({
@@ -97,28 +122,61 @@ function encounterDisplayingAndShuffling() {
             $("#height").html(`${height}`);
             $("#language").html(`${language}`);
             $("#location").html(`${_location}`);
-            // console.log(`Values: \nBio: ${bio}\nHeight: ${height}\nLanguage: ${language}\n location: ${_location}`);
+            getUsersDetails(); // Show all users details for now -- Update in the future
+            getUserPhotos(username, userdirectorieslocation); // Get displayed user's photos...
         }
-        getUsersDetails();
-
     }
     displayUserDetails();
+
+    function getUserPhotos(username) {
+        $.ajax({
+            url: `/app/encounters/getUserPhotos/${username}`,
+            method: "GET",
+            success: (photosObj) => {
+                for (const i in photosObj) {
+                    if (photosObj.hasOwnProperty(i)) {
+                        const photosArr = photosObj[i];
+                        renderUserPhotos(photosArr, "div.renderUserPhotos")
+                    }
+                }
+            },
+
+        });
+
+        function renderUserPhotos(photosArr, placeToInsertImage) {
+            let totalPhotos = $("#totalPhotos").html(photosArr.length); // Total photos count
+            let currentPhoto = $("#currentPhoto").html("1"); // Current photos count
+            photosArr = photosArr.reverse();
+            for (let i = 0; i < photosArr.length; i++) {
+                const photo = photosArr[i];
+                $($.parseHTML("<img>"))
+                    .attr({
+                        src: photo.location,
+                        style: "margin: auto 0%",
+                        class: "userDisplayedPhoto",
+                        alt: "Photo"
+                    })
+                    .prependTo(placeToInsertImage)
+                    .wrap(`<div class="userDisplayedPhotoCon" id="${i}"></div>`);
+            }
+        }
+    }
 }
 encounterDisplayingAndShuffling();
 
-$('.encounter-page-send-chat').submit(function(e){
+$('.encounter-page-send-chat').submit(function (e) {
     e.preventDefault();
-    var user =  $("#username").text(); //$('#encounter-page-send-message').data('sender-user');
-    var message_holder = $('.encounter-page-send-message');
-    var messageTxt = message_holder.val();
+    let user = $("#username").text();
+    let message_holder = $('.encounter-page-send-message');
+    let messageTxt = message_holder.val();
     // noinspection JSUnusedLocalSymbols
-    var message = {
+    let message = {
         from: __user,
         to: user,
         type: "chat-message",
         format: "text",
-        message : messageTxt,
-        sent_at : Date.now(),
+        message: messageTxt,
+        sent_at: Date.now(),
     };
 
     //-- emit --send message

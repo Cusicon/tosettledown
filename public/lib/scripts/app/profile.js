@@ -20,7 +20,7 @@ function addPhotosPreview(input, placeToInsertImagePreview) {
                 $($.parseHTML("<img>"))
                     .attr({
                         src: event.target.result,
-                        style: "margin: auto .2%; max-width: 100%;",
+                        style: "margin: auto .2%; max-width: 50%;",
                         id: "selectedPhoto",
                         alt: "Photo"
                     })
@@ -43,7 +43,6 @@ function showPhotosSelected() {
                 $("div.addPhotosCon .info .displayCon div#container").removeClass("hide").html(
                     addPhotosPreview(this, "div.addPhotosCon .info .displayCon div#container")
                 );
-                cropImage();
             } else {
                 alert("warning", "Warning", "Only, 5 photos are permitted!");
             }
@@ -61,7 +60,7 @@ function showPhotosSelected() {
         }
     });
 }
-// showPhotosSelected();
+showPhotosSelected();
 
 function cropImage() {
     const selectedPhoto = document.getElementById('selectedPhoto');

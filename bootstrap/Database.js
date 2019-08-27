@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
 
 // noinspection JSIgnoredPromiseFromCall
-mongoose.connect(config('database','uri'), { useNewUrlParser: true });
+mongoose.connect(config('database', 'uri'), {
+    useNewUrlParser: true
+});
 
 mongoose.connection.on('connected', () => {
-    console.log('Mongoose default connection open to ' + config('database','uri'));
+    console.log('Mongoose default connection open to ' + config('database', 'uri'));
 });
 
 mongoose.connection.on('error', (err) => {
@@ -21,6 +23,3 @@ process.on('SIGINT', () => {
         process.exit(0);
     });
 });
-
-
-
