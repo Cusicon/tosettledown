@@ -75,7 +75,7 @@ $(document).on('ready', () => {
         if(Object.keys(arrayUser).length > 0)
         {
             Object.values(arrayUser).forEach(function(associate) {
-                window.chatListHolder.append(buildChatUserList(associate, arrayChats[associate.username]));
+                window.chatListHolder.append(buildChatUserList(associate, arrayChats[associate.username].last()));
             });
         }
         else {
@@ -84,10 +84,10 @@ $(document).on('ready', () => {
         }
     }
 
-    function buildChatUserList(associate, chats) {
+    function buildChatUserList(associate, chat) {
         let is_online = (getLastActivity(associate.last_activity_at)) ? 'is_online' : 'is_offline'; //last_activity_at
-        let time = (chats.last()) ? moment(chats.last().sent_at).fromNow() : ''; //last_activity_at
-        let last_msg = (chats.last()) ? chats.last().message : '';
+        let time = (chat) ? moment(chat.sent_at).fromNow() : ''; //last_activity_at
+        let last_msg = (chat) ? chat.message : '';
         let unread = 4;
         let comm_stat = `<span class="badge">${unread}</span>`;
 
@@ -192,18 +192,38 @@ $(document).on('ready', () => {
             //user from exist in user array
             if(arrayUser[msg.from.slice(1)])
             {
+                let user = msg.from.slice(1);
+                arrayChats[user].push(msg)
 
+                let userChatListDom = $(`#${user.toLowerCase()}-chat-listing`);
+
+                console.log(userChatListDom);
+
+                if(userChatListDom.length)
+                {
+                    //message
+                    userChatListDom.find('.latest-message').text(`${msg.message.trunc(30)}`);
+                    //time
+                    userChatListDom.find('.time').text(`${moment(msg.sent_at).fromNow()}`);
+                    userChatListDom.parent().prepend(userChatListDom);
+                }else {
+                    //append him to the dom
+                    window.chatListHolder.append(buildChatUserList(arrayUser[user],  msg));
+                }
 
                 //push message to user chat if is active and exist in array
                 if(msg.from.slice(1) === activeChat){
-                    arrayChats[activeChat].push(msg)
-                    let chats_list_box = $('.chat-message-list');
-                    chats_list_box.append(buildChatMessage(msg));
+
+                    $('.chat-message-list').append(buildChatMessage(msg));
                 }
                 else
                 {
+
+                    //-- increase user no of message on chat list, do increase badge here
+
+
                     //-- if user is in chat list else put and prepend to the top
-                    arrayChats[activeChat].push(msg);
+
 
                     //-- if user list exist
                         //-- increase user no of message on chat list, do increase badge here
@@ -245,6 +265,7 @@ $(document).on('ready', () => {
                     if(data.user)
                     {
                         arrayUser[data.user.username] = data.user;
+                        arrayChats[data.user.username] = [];
                         arrayNewMsg.unshift(msg); //put it back to new Msg for processing
                     }
                 },
@@ -253,6 +274,11 @@ $(document).on('ready', () => {
     }
 
     function prependToChatList(msg)
+    {
+
+    }
+
+    function updateMsg(msg)
     {
 
     }
@@ -290,28 +316,32 @@ $(document).on('ready', () => {
         let user =  `@${toUser}`; //$('#encounter-page-send-message').data('sender-user');
         let message_holder = $('#message-input');
         let messageTxt = message_holder.val();
-        // noinspection JSUnusedLocalSymbols
-        let message = {
-            __id: new Date().getUnixTime(),
-            u_id: new Date().getUnixTime(),
-            from: __user,
-            to: user,
-            type: "chat-message",
-            format: "text",
-            message : messageTxt,
-            sent_at : Date.now(),
-        };
 
-        //-- emit --send message
-        __socket.emit('chat message', message);
+        if(messageTxt.trim() !== ''){
+            // noinspection JSUnusedLocalSymbols
+            let message = {
+                __id: new Date().getUnixTime(),
+                u_id: new Date().getUnixTime(),
+                from: __user,
+                to: user,
+                type: "chat-message",
+                format: "text",
+                message : messageTxt,
+                sent_at : Date.now(),
+            };
 
-        message.delivered_at = null
-        message.read_at = null
-        message.u_id = message.__id
+            //-- emit --send message
+            __socket.emit('chat message', message);
 
-        arrayChats[toUser].push(message);
-        $('.chat-message-list').append(buildChatMessage(message, true));
-        message_holder.val('');
+            message.delivered_at = null
+            message.read_at = null
+            message.u_id = message.__id
+
+            arrayChats[toUser].push(message);
+            $('.chat-message-list').append(buildChatMessage(message, true));
+            message_holder.val('');
+        }
+
         return false;
     });
 
@@ -382,7 +412,7 @@ $(document).on('ready', () => {
             let element = $(`#${msg.from.slice(1).toLowerCase()}-chat-listing`);
             let window_chat = $('.ChatWindow');
 
-            let is_active_chat = (msg.from.slice(1).toLowerCase() === window.activeChat.toLowerCase());
+            let is_active_chat = msg.from.slice(1).toLowerCase() === ((window.activeChat)? window.activeChat.toLowerCase() : null )
 
             if(is_active_chat) {
 
