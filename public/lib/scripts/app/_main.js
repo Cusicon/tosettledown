@@ -81,7 +81,7 @@ showDropdown();
         Notification.requestPermission().then(function (status) {
             if (status == "denied") {
                 alert(
-                    '/lib/img/logo/favicon.png',
+                    '/lib/img/logo/favicon.ico',
                     'Turn on Notifications',
                     'You will be able to receive incoming chats and so on...',
                     ["Close", "Turn on"],
@@ -96,7 +96,7 @@ showDropdown();
             }
         });
     } else {
-        alert('/lib/img/logo/favicon.png', 'Turn on Notifications', 'Sorry, your browser doesn\'t support notifications.');
+        alert('/lib/img/logo/favicon.ico', 'Turn on Notifications', 'Sorry, your browser doesn\'t support notifications.');
     }
 })();
 
@@ -110,7 +110,7 @@ $(document).on('ready', () => {
             var options = {
                 body: msg.message, // body part of the notification
                 dir: 'ltr', // use for derection of message
-                icon: '/lib/img/logo/favicon.png' // use for show image
+                icon: '/lib/img/logo/favicon.ico' // use for show image
 
             };
             var audio = new Audio('/lib/media/notify.mp3');

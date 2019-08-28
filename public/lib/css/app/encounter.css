@@ -1,12 +1,15 @@
 /* ENCOUNTERS */
 
+.encounterPage{
+    margin-top: 20px;
+}
+
 .mainBody .displayWindow .imageWindow {
     /* border: 1px solid #eee; */
     background-color: #000;
     background-position: top center;
     padding: 0px;
-    height: 545px;
-    min-height: 545px;
+    height: 500px;
 }
 
 .mainBody .displayWindow .imageWindow div.renderUserPhotos {
@@ -39,7 +42,6 @@
     box-shadow: 0px -130px 100px #00000036 inset;
     height: 100%;
     width: 100%;
-    z-index: -5;
 }
 
 .mainBody .displayWindow .imageWindow .overlayNav .navTop {
@@ -107,7 +109,7 @@
     font-size: 45px;
     min-width: 85px;
     min-height: 85px;
-    padding-top: 3px;
+    padding-top: 4px;
     border-radius: 100%;
     background-color: #fff;
 }
@@ -189,7 +191,7 @@
 /* StatusBar */
 
 .statusBar {
-    margin-left: 20px;
+    margin-left: 15px;
     padding: 10px;
 }
 

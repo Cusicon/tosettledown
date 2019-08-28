@@ -7,7 +7,7 @@
 
 /* SWEETALERT CSS */
 
-.swal-modal{
+.swal-modal {
   border-radius: 15px;
 }
 
@@ -28,12 +28,19 @@
 
 .swal-button {
   border-radius: 15px;
-  font-weight: lighter !important ;
+  font-weight: 400 !important;
   box-shadow: unset !important;
 }
 
 /* END of SWEETALERT CSS */
 
+.onMobile {
+  display: none;
+}
+
+.onMobile * {
+  display: none;
+}
 
 .color {
   color: #ff6878 !important;
