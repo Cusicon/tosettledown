@@ -26,13 +26,15 @@ quickMessagePopUp();
 // navigate Images in Encounters
 function navigateImages() {
 
-    function nextPhoto(e) {
-        // Next photo function
-        let renderUserPhotosDiv = document.querySelector('.renderUserPhotos');
+    // Next photo function
+    function nextPhoto(currentTarget) {
+
+        console.log(currentTarget)
     }
 
-    function previousPhoto(e) {
-        // Previous photo function
+    // Previous photo function
+    function previousPhoto(currentTarget) {
+        console.log(currentTarget)
     }
 
     function onArrowClick() { // When user click on the arrow button this function fires
@@ -41,13 +43,20 @@ function navigateImages() {
     onArrowClick();
 
     function onKeyboardArrowHit() { // When the user hit the RIGHT or LEFT KEYBOARD ARROWS this function fires
-        $(document).keyup((e) => {
+        $(window).keyup((e) => {
             let quickMessagePopUp = document.querySelector('.encounter-page-send-message');
+            let renderUserPhotos = document.querySelector('.renderUserPhotos');
             if (e.target != quickMessagePopUp) {
-                if (e.keyCode == 37) { // Left Arrow
-                    previousPhoto(e);
-                } else if (e.keyCode == 39) { // Right Arrow
-                    nextPhoto(e);
+                if (e.target == renderUserPhotos) { // Check if the user is scrolling on the right Element
+                    console.log("renderUserPhotos: ", renderUserPhotos);
+                    
+                    if (e.keyCode == 37) { // Left Arrow
+                        previousPhoto(e.target);
+                    } else if (e.keyCode == 39) { // Right Arrow
+                        nextPhoto(e.target);
+                    }
+                } else {
+                    console.log("Outside the Conditions")
                 }
             }
         });

@@ -5,6 +5,36 @@
   #ff6878 
 */
 
+/* SWEETALERT CSS */
+
+.swal-modal{
+  border-radius: 15px;
+}
+
+.swal-icon.swal-icon--custom {
+  border-radius: 100%;
+  border: 1px solid #eee;
+  padding: 20px;
+  width: 60px;
+  height: 60px;
+  box-shadow: 0px 3px 2.5px #ddd;
+}
+
+.swal-icon.swal-icon--custom img {
+  margin: auto 0%;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.swal-button {
+  border-radius: 15px;
+  font-weight: lighter !important ;
+  box-shadow: unset !important;
+}
+
+/* END of SWEETALERT CSS */
+
+
 .color {
   color: #ff6878 !important;
   /* Pinkish_red */
@@ -20,7 +50,7 @@
   color: #fff !important;
 }
 
-.bg-Secondary_color{
+.bg-Secondary_color {
   background-color: #006870a2;
   color: #fff !important;
 }

@@ -79,12 +79,24 @@ showDropdown();
 (function requestWebDesktopNotificationPermission() {
     if (window.Notification) {
         Notification.requestPermission().then(function (status) {
-            if (status === "denied") {
-                alert('error', 'error', 'You Disable Notifications For TSD, you wont be able to receive notification of incoming chat');
+            if (status == "denied") {
+                alert(
+                    '/lib/img/logo/favicon.png',
+                    'Turn on Notifications',
+                    'You will be able to receive incoming chats and so on...',
+                    ["Close", "Turn on"],
+                    () => {
+                        Notification.requestPermission().then((__status_) => {
+                            var _status_ = Notification.permission = 'granted';
+                            __status_ = _status_;
+
+                        });
+                    }
+                );
             }
         });
     } else {
-        alert('Your browser doesn\'t support notifications.');
+        alert('/lib/img/logo/favicon.png', 'Turn on Notifications', 'Sorry, your browser doesn\'t support notifications.');
     }
 })();
 
