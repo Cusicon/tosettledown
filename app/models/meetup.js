@@ -73,7 +73,7 @@ module["exports"] = class MeetUp extends Model{
 
                     let meetupObj = {};
                     meetupObj.id = meetup.id
-                    meetupObj.associate = await this.associate(meetup);
+                    meetupObj.associate = await this.associate(username, meetup);
                     meetupObj.chats = await this.getMeetUpChat(meetup);
 
                     meetupArray.push(meetupObj);
@@ -89,11 +89,11 @@ module["exports"] = class MeetUp extends Model{
         });
     }
 
-    static async associate(meetup) {
+    static async associate(currUser, meetup) {
 
         let username = null;
 
-        if (`@${req.user.username}` === meetup.user_id) {
+        if (currUser === meetup.user_id) {
             username = meetup.encountered.slice(1);
         } else {
             username = meetup.user_id.slice(1);
