@@ -220,14 +220,14 @@ li.user:last-child {
 .chat-list li .message-holder{
     float: left;
     width: 78%;
-    /*height: 50px;*/
+    height: 71px;
     border-bottom: 1px solid #eee;
     padding: 15px 15px 15px 0px;
 }
 .chat-list li .image-holder{
     float: left;
     width: 22%;
-    height: 50px;
+    height: 71px;
     padding: 10px 5px 10px 5px;
 }
 

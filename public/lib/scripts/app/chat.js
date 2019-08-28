@@ -53,14 +53,8 @@ $(document).on('ready', () => {
 
                 //Sort ChatList To Dom, Putting User To Dom
                 populateChatUserList()
-
                 // Put Active User On windowChatDiv
-                populateWindowChat(activeChat)
-
-
-                // data.meetups.forEach((meetup, index) => {
-                //     buildUpChat(data, meetup, index);
-                // });
+                populateWindowChat()
 
                 //Fire Resolver
                 setInterval(newChatResolver,100); //-- resolve new chat from socket
@@ -73,7 +67,7 @@ $(document).on('ready', () => {
 
 
 
-    //-- Build Chat List
+    //======================= BUILDING THE LIST LAYOUT ==================
 
     function populateChatUserList() {
         window.chatListHolder.find('.lazy-box-group').fadeOut(750);
@@ -111,36 +105,40 @@ $(document).on('ready', () => {
             `;
     }
 
+    //======================= ! BUILDING THE LIST LAYOUT ==================
 
 
 
-    //======================= ! BUILDING THE LAYOUT ==================
+
+    //======================= BUILDING THE MESSAGE LAYOUT ==================
 
     function populateWindowChat(username = null) {
         username = (username)? username : activeChat;
 
-        let chats_list_box = $('.chat-message-list');
-        let user = window.arrayUser[username]
-        let chats = window.arrayChats[username];
+        if (username) {
+            let chats_list_box = $('.chat-message-list');
+            let user = window.arrayUser[username]
+            let chats = window.arrayChats[username];
 
-        let is_online = (getLastActivity(user.last_activity_at)) ? 'is_online' : 'is_offline'; //last_activity_at
+            let is_online = (getLastActivity(user.last_activity_at)) ? 'is_online' : 'is_offline'; //last_activity_at
 
-        //-- user property to dom
-        $('#chat-status').removeClass('is_online').removeClass('is_offline').addClass(is_online)
-        $('#chat-username-holder').text(username);
-        $('#chat-profile-img').css('background-image',`url('/lib/img/assets/reduced/user.png')`);
+            //-- user property to dom
+            $('#chat-status').removeClass('is_online').removeClass('is_offline').addClass(is_online)
+            $('#chat-username-holder').text(username);
+            $('#chat-profile-img').css('background-image',`url('/lib/img/assets/reduced/user.png')`);
 
-        chats_list_box.find('*').remove();
+            chats_list_box.find('*').remove();
 
-        $('.go-back-encounter').css('display','none');
-        $('.chat-window-holder').css('display','block');
+            $('.go-back-encounter').css('display','none');
+            $('.chat-window-holder').css('display','block');
 
-        if(chats){
-            chats.forEach(chat => {
-                chats_list_box.append(buildChatMessage(chat));
-            })
-            let  element = $(".ChatWindowBody");
-            element[0].scrollTop = element[0].scrollHeight;
+            if(chats){
+                chats.forEach(chat => {
+                    chats_list_box.append(buildChatMessage(chat));
+                })
+                let  element = $(".ChatWindowBody");
+                element[0].scrollTop = element[0].scrollHeight;
+            }
         }
     }
 
@@ -165,7 +163,7 @@ $(document).on('ready', () => {
             </li>
         `;
     }
-    //======================= ! BUILDING THE LAYOUT ==================
+    //======================= ! BUILDING THE MESSAGE LAYOUT ==================
 
 
 
@@ -184,6 +182,7 @@ $(document).on('ready', () => {
     }
 
     function newChatResolver() {
+
         if(arrayNewMsg.length > 0)
         {
             let msg = arrayNewMsg.shift()
