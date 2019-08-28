@@ -118,8 +118,10 @@ module["exports"] = class MeetUp extends Model{
 
             Chat.findOne({sent_at: msg.sent_at, from: msg.from}, (err, chat) => {
                 console.log(chat);
-                chat.delivered_at = Date.now();
-                chat.save()
+                if(chat){
+                    chat.delivered_at = Date.now();
+                    chat.save()
+                }
             });
         });
     }
