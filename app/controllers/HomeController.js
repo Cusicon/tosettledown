@@ -39,6 +39,20 @@ module["exports"] = class HomeController{
         });
     }
 
+    static getUser(req, res)
+    {
+        let user = req.query.user || null;
+         User.getUserByUsername(user, (err, user) => {
+
+             if (err) console.log(err);
+             else {
+                res.json({
+                    user: user,
+                });
+             }
+        });
+    }
+
     static showChat(req, res)
     {
         let username = req.params.username;

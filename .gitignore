@@ -2,7 +2,7 @@
 .vscode
 .vs
 storage/logs/*
-public/store
+public/store/
 node_modules
 package-lock.json
 .env

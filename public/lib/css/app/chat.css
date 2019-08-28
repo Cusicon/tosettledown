@@ -26,8 +26,7 @@
 
 .Chat .ChatList .ChatBody ul li.user {
     display: block;
-    border-bottom: 1px solid #f8f9f8;
-    height: 70px;
+    height: 71px;
     width: 100%;
 }
 
@@ -36,9 +35,19 @@ li.user:last-child {
 }
 
 .Chat .ChatList .ChatBody ul li.user:hover {
-    box-shadow: 0px 1px 100px #0000002a !important;
+    /*box-shadow: 0px 1px 100px #0000002a !important;*/
     cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.11) !important;
 }
+
+.Chat .ChatList .ChatBody ul li.user.active {
+    background-color: rgba(0, 0, 0, 0.11) !important;
+}
+
+.Chat .ChatList .ChatBody ul li.user div.image-holder{
+    padding-left: 15px;
+}
+
 
 .Chat .ChatList .ChatBody ul li.user div.profile-img {
     width: 50px;
@@ -46,6 +55,15 @@ li.user:last-child {
     border-radius: 100%;
     background-color: #eee;
     float: left;
+}
+
+
+.chat-list li.user div.status{
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    border: 1px solid #fff;
+    border-radius: 100%;
 }
 
 .Chat .ChatList .ChatBody ul li.user div.username {
@@ -207,14 +225,14 @@ li.user:last-child {
 .chat-list li .message-holder{
     float: left;
     width: 78%;
-    /*height: 50px;*/
+    height: 71px;
     border-bottom: 1px solid #eee;
     padding: 15px 15px 15px 0px;
 }
 .chat-list li .image-holder{
     float: left;
     width: 22%;
-    /*height: 50px;*/
+    height: 71px;
     padding: 10px 5px 10px 5px;
 }
 
@@ -237,13 +255,12 @@ li.user:last-child {
 .chat-list li.user div.profile-img.lazy-box-loader{
     width: 50px;
     height: 50px;
-    /*margin-top: 4px;*/
+    margin-top: 4px;
 }
 
 .chat-list li.user div.status.lazy-box-loader{
     width: 13px;
     height: 13px;
-    /*margin-top: 4px;*/
     background-color: #eee !important;
 }
 
@@ -265,7 +282,7 @@ li.user:last-child {
 }
 
 .Chat .ChatWindow .ChatWindowHead #chat-username-holder {
-    width: 120px;
+    min-width: 120px;
     height: 30px;
 }
 
@@ -317,10 +334,3 @@ li.user:last-child {
     width: 65px;
     float: left;
 }
-
-#godown{
-    position: absolute;
-    top: 480px;
-    right: 20px;
-}
-
