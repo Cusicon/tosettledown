@@ -88,6 +88,8 @@ $(document).on('ready', () => {
         let is_online = (getLastActivity(associate.last_activity_at)) ? 'is_online' : 'is_offline'; //last_activity_at
         let time = (chats.last()) ? moment(chats.last().sent_at).fromNow() : ''; //last_activity_at
         let last_msg = (chats.last()) ? chats.last().message : '';
+        let unread = 4;
+        let comm_stat = `<span class="badge">${unread}</span>`;
 
         return `
             <li id='${associate.username.toLowerCase()}-chat-listing' data-username="${associate.username.toLowerCase()}" class="user user-chat-listing">
@@ -99,7 +101,7 @@ $(document).on('ready', () => {
                     <div class="time text-muted">${time}</div>
                     <div class="username text-dark" data-username="${associate.username}">${associate.name}</div>
                     <div class="latest-message text-muted">${last_msg.trunc(30)}</div>
-                    <div class="communication-status" data-unread-msg="0"></div>
+                    <div class="communication-status" data-unread-msg="${unread}">${comm_stat}</div>
                 </div>
             </li>
             `;
@@ -190,6 +192,8 @@ $(document).on('ready', () => {
             //user from exist in user array
             if(arrayUser[msg.from.slice(1)])
             {
+
+
                 //push message to user chat if is active and exist in array
                 if(msg.from.slice(1) === activeChat){
                     arrayChats[activeChat].push(msg)
@@ -201,9 +205,21 @@ $(document).on('ready', () => {
                     //-- if user is in chat list else put and prepend to the top
                     arrayChats[activeChat].push(msg);
 
-                    //-- increase user no of message on chat list, do increase bag here
+                    //-- if user list exist
+                        //-- increase user no of message on chat list, do increase badge here
+                        //-- change last msg and time on the chatList
+                    //--else
+                        //-- build and prepend the user to chatList
 
                 }
+
+
+
+                //-- change last msg and time on the chatList
+
+
+
+
             }
             else
             {
@@ -294,19 +310,27 @@ $(document).on('ready', () => {
         message.u_id = message.__id
 
         arrayChats[toUser].push(message);
-        let chats_list_box = $('.chat-message-list');
-
-
-        //fa-spinner
-        chats_list_box.append(buildChatMessage(message, true));
+        $('.chat-message-list').append(buildChatMessage(message, true));
         message_holder.val('');
         return false;
     });
+
+    $(document).on('click', '.user-chat-listing', function() {
+        let element = $(this);
+        let username = element.find('.username').data('username');
+        if(username)
+        {
+            // $(this).parent().prepend($(this));
+            window.activeChat = username;
+            populateWindowChat(username);
+        }
+    });
+
     //======================= ! EVENT LISTENERS ==================
 
 
-    //======================= START SOCKET EMIT LISTENERS ==================
-    //-- Fire Socket Listener
+    //======================= START SOCKET ACTIVITY ==================
+
     function postAjaxSocketListener() {
 
         /*
@@ -315,18 +339,12 @@ $(document).on('ready', () => {
         __socket.on(`${__user} message`, msg => {
             __socket.emit('chat received', msg);
             arrayNewMsg.push(msg);
-            //-- Resolver Will Do The Appending To DOM
-
         });
-
-        //-- ! SENDING TO SOCKET --//
     }
 
 
 
     function preAjaxSocketListener() {
-
-        //-- RECEIVING FROM SOCKET --//
 
         /*
         * listen for Acknowledgment notification from the serve when you send a message,
@@ -355,6 +373,7 @@ $(document).on('ready', () => {
             }
         });
 
+
         /*
         * listen for typing notification on your own channel,
         */
@@ -365,8 +384,8 @@ $(document).on('ready', () => {
 
             let is_active_chat = (msg.from.slice(1).toLowerCase() === window.activeChat.toLowerCase());
 
-            if(is_active_chat)
-            {
+            if(is_active_chat) {
+
                 window_chat.find('#chat-typing').text('typing...')
             }
             else
@@ -386,10 +405,9 @@ $(document).on('ready', () => {
                     if(comm_stat.text() === 'typing...'){
 
                         if(parseInt(comm_stat.data('unread-msg')) > 0 ){
-                            comm_stat.text(`${comm_stat}`)
+                            comm_stat.text(`<span class="badge">${comm_stat}</span>`)
                         }
-                        else
-                        {
+                        else {
                             comm_stat.text('')
                         }
                     }
@@ -397,24 +415,7 @@ $(document).on('ready', () => {
             }, 1000);
 
         });
-
-        //-- ! RECEIVING FROM SOCKET --//
-
-
     }
 
-    //======================= ! START SOCKET LISTENERS ==================
-
-
-    $(document).on('click', '.user-chat-listing', function() {
-        let element = $(this);
-        let username = element.find('.username').data('username');
-        if(username)
-        {
-            // $(this).parent().prepend($(this));
-            window.activeChat = username;
-            populateWindowChat(username);
-        }
-    });
-
+    //======================= ! START SOCKET ACTIVITY ==================
 });
