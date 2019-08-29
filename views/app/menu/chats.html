@@ -106,7 +106,8 @@
                 <div class="ChatWindowHead">
                     <div class="float-left">
                         <div id="chat-status" class="activity_status "></div>
-                        <div id="chat-profile-img" class="" >
+                        <!-- <a href="javascript:void();" class="back"><i class="icon-arrow-left"></i></a> -->
+                        <div id="chat-profile-img" class="">
                         </div>
                         <div id="chat-username" class="text-dark">
                             <h6 id="chat-username-holder" class=""></h6>
@@ -115,59 +116,55 @@
                     </div>
 
                     <div class="float-right">
-
-                    <span class="videoChat">
-                        <a href="#" id="videoChatBtn" class="btn waves-effect waves-light waves-effect waves-light" role="button"
-                           style="color: #1a1a1a; padding: 0px 5px 0px 5px !important;"
-                           title="Start a video call.">
-                            <i class="typcn typcn-video" style="font-size: 30px;"></i>
-                        </a>
-                    </span>
-
                         <span class="moreOptions">
-                        <div class="dropdown">
-                            <a href="#" id="dropBtn" class="btn waves-effect waves-light waves-effect waves-light dropBtn" role="button"
-                               style="color: #1a1a1a; padding: 15px 5px 10px 5px !important; margin: 0px 10px;">
-                                <i class="icon-options" style="font-size: 20px;"></i>
-                            </a>
-
-                            <div class="dropdownContent" id="dropdownContent">
-                                <a href="#">Add to favourites</a>
-                                <a href="#">Give a gift</a>
-                                <a href="#">Delete conversation</a>
-                                <a href="#" class="color">Block or Report</a>
-                                <div class="separator"></div>
-                                <a id="profile-link" href="#" class="dropdownBottom" style="color: #000;">
-                                    View profile
-                                    <span class="typcn typcn-user float-right"></span>
+                            <div class="dropdown">
+                                <a href="#" id="dropBtn"
+                                    class="btn waves-effect waves-light waves-effect waves-light dropBtn" role="button"
+                                    style="color: #1a1a1a; padding: 15px 5px 10px 5px !important; margin: 0px 10px;">
+                                    <i class="icon-options-vertical" style="font-size: 20px;"></i>
                                 </a>
-                            </div>
 
-                        </div>
-                    </span>
+                                <div class="dropdownContent" id="dropdownContent">
+                                    <a href="#">Add to favourites</a>
+                                    <a href="#">Give a gift</a>
+                                    <a href="#">Delete conversation</a>
+                                    <a href="#" class="color">Block or Report</a>
+                                    <div class="separator"></div>
+                                    <a id="profile-link" href="#" class="dropdownBottom" style="color: #000;">
+                                        View profile
+                                        <span class="typcn typcn-user float-right"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </span>
                     </div>
                 </div>
 
                 <div class="ChatWindowBody">
                     <ul class="chat-message-list">
                         <!-- chat will be rendered inside here -->
-                        <div class="clearfix"></div>
                     </ul>
                 </div>
 
-                <div class="ChatWindowFooter" style="padding: 0px 10px;">
+                <div class="ChatWindowFooter" style="padding: 10px 10px;">
                     <div class="form-group message-sender-holder">
-                        <textarea rows="1" id="message-input" class="encounter-page-send-message form-control" placeholder="Type a message" required></textarea>
-                        <button id="submit-msg" class="btn waves-effect waves-light bg-Primary_color"><i class="fa fa-send"></i></button>
-                        <div class="clearfix"></div>
+                        <textarea rows="1" id="message-input" class="encounter-page-send-message form-control"
+                            placeholder="Type a message" required></textarea>
+                        <button id="submit-msg" class="btn waves-effect waves-light bg-Primary_color"><i
+                                class="fa fa-send"></i></button>
                     </div>
                 </div>
             </div>
 
             <div class="go-back-encounter text-muted" style="position: relative; top: 250px; text-align: center;">
-                <div><h1 class="typcn typcn-messages" style="font-size: 50px;"></h1></div>
-                <div><p>Start a conversation immediately...</p></div>
-                <a href="/app/encounters" role="button" class="btn waves-effect waves-light bg-Primary_color">See encounters</a>
+                <div>
+                    <h1 class="typcn typcn-messages" style="font-size: 50px;"></h1>
+                </div>
+                <div>
+                    <p>Start a conversation immediately...</p>
+                </div>
+                <a href="/app/encounters" role="button" class="btn waves-effect waves-light bg-Primary_color">See
+                    encounters</a>
             </div>
 
         </section>

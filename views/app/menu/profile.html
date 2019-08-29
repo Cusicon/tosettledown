@@ -48,7 +48,7 @@
                                                         placeholder="Enter Bio here..."
                                                         maxlength="200"><%= profile_user.personalInfo.bio %></textarea>
                                                     <small id="passwordHelp"
-                                                        class="form-text text-muted float-right">Max:
+                                                        class="form-text  float-right">Max:
                                                         200 characters.</small>
                                                 </div>
                                             </div>
@@ -104,7 +104,7 @@
                                                             Short</option>
                                                     </select>
                                                     <small id="heightHelp"
-                                                        class="form-text text-muted float-right">Default:
+                                                        class="form-text  float-right">Default:
                                                         Average</small>
                                                     <br>
                                                 </div>
@@ -115,7 +115,7 @@
                                                         title="What do you speak often?..."
                                                         aria-describedby="languageHelp">
                                                     <small id="languageHelp"
-                                                        class="form-text text-muted float-right">Default:
+                                                        class="form-text  float-right">Default:
                                                         English</small>
                                                     <br>
                                                 </div>
@@ -353,10 +353,10 @@
                                         <%= profile_user.dob.age %></span>
                                 </h1>
                             </div>
-                            <div class="username text-muted">
+                            <div class="username ">
                                 <h6 style="font-size: 13px;"><b>@<%= profile_user.username %></b></h6>
                             </div>
-                            <div class="bio float-left text-muted">
+                            <div class="bio float-left ">
                                 <p>
                                     <%= profile_user.personalInfo.bio %>
                                 </p>
@@ -376,32 +376,32 @@
                         <section class="row">
                             <div class="viewProfileLeft col-md-8">
                                 <div class="form-group">
-                                    <h5 class="text-muted" style="font-weight: lighter;">Location</h5>
+                                    <h5 class="" style="font-weight: lighter;">Location</h5>
                                     <p><%= profile_user.personalInfo.location %></p>
                                 </div>
                                 <div class="form-group">
-                                    <h5 class="text-muted" style="font-weight: lighter;">Work & Occupation
+                                    <h5 class="" style="font-weight: lighter;">Work & Occupation
                                     </h5>
                                     <p><%= profile_user.personalInfo.work %></p>
                                 </div>
                                 <div class="form-group">
-                                    <h5 class="text-muted" style="font-weight: lighter;">Education</h5>
+                                    <h5 class="" style="font-weight: lighter;">Education</h5>
                                     <p><%= profile_user.personalInfo.education %></p>
                                 </div>
                             </div>
                             <div class="viewProfileRight col-md-4">
-                                <h5 class="text-muted" style="font-weight: lighter;">Personal Info(s)</h5>
+                                <h5 class="" style="font-weight: lighter;">Personal Info(s)</h5>
                                 <div class="editPersonalInfo form-group">
                                     <div class="form-group">
-                                        <p><small class="text-muted">Height:
+                                        <p><small class="">Height:
                                             </small><%= profile_user.personalInfo.height %></p>
                                     </div>
                                     <div class="form-group">
-                                        <p><small class="text-muted">Language:
+                                        <p><small class="">Language:
                                             </small><%= profile_user.personalInfo.language %></p>
                                     </div>
                                     <div class="form-group">
-                                        <p><small class="text-muted">Religion:
+                                        <p><small class="">Religion:
                                             </small><%= profile_user.personalInfo.religion %></p>
                                     </div>
                                 </div>

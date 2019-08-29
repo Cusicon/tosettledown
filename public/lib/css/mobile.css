@@ -83,8 +83,25 @@
         width: 20%;
     }
 
-    .navBottom ul li a {
+    .navBottom {
+        display: inline-block !important;
+        margin-top: -30px !important;
+    }
+
+    .mainBody .displayWindow .imageWindow .overlayNav .navBottom .quickMessagePopUp {
+        left: 0%;
+    }
+
+    .mainBody .displayWindow .imageWindow .overlayNav .navBottom .quickMessagePopUp .card {
+        height: unset !important;
+    }
+
+    .mainBody .displayWindow .imageWindow .overlayNav .navBottom .quickMessagePopUp .card .card-body .top {
         display: none !important;
+    }
+
+    .mainBody .displayWindow .imageWindow .overlayNav .navBottom .quickMessagePopUp .card .card-body .bottom .container {
+        padding-left: 0px !important;
     }
 
     .profileMain .profileHeader footer ul li a {
@@ -173,9 +190,19 @@
 
     /* CHATS */
 
-    .Chat{
+    .Chat {
         margin: 0px !important;
         border: none !important;
+    }
+
+    .Chat .ChatWindow {
+        position: absolute;
+        width: 100%;
+        /* left: -120%; */
+    }
+
+    .Chat .ChatWindowHead {
+        padding: 5px !important;
     }
 
     /* END OF CHATS */

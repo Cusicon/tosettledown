@@ -1,6 +1,6 @@
 // Toggle Sign in (Anonymous)
 function toggleSignIn() {
-    var loginForm = $('#loginForm'),
+    let loginForm = $('#loginForm'),
         regForm = $('#regForm'),
         loginBtn = $('#loginBtn');
     loginBtn.click(() => {

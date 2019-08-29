@@ -39,17 +39,17 @@ li.user:last-child {
 }
 
 .Chat .ChatList .ChatBody ul li.user:hover {
-    /*box-shadow: 0px 1px 100px #0000002a !important;*/
+    box-shadow: 0px 1px 100px #0000002a !important;
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.11) !important;
+    /* background-color: rgba(0, 0, 0, 0.11) !important; */
 }
 
 .Chat .ChatList .ChatBody ul li.user.active {
-    background-color: rgba(0, 0, 0, 0.11) !important;
+    box-shadow: 0px 1px 100px #0000002a !important;
 }
 
 .Chat .ChatList .ChatBody ul li.user div.image-holder {
-    padding-left: 15px;
+    padding-left: 10px;
 }
 
 
@@ -72,7 +72,7 @@ li.user:last-child {
 
 .Chat .ChatList .ChatBody ul li.user div.username {
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 .Chat .ChatList .ChatBody ul li.user div.latest-message {
@@ -148,10 +148,11 @@ li.user:last-child {
 
 .Chat .ChatWindow .ChatWindowBody ul.chat-message-list {
     height: 480px;
+    padding-bottom: 10px;
 }
 
 .Chat .ChatWindow .ChatWindowBody ul.chat-message-list li {
-    padding: 5px 10px;
+    padding: 5px 5px;
     width: 100%;
     float: left;
 }

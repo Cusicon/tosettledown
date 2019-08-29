@@ -20,9 +20,8 @@ function mainMobile() {
         "border": "none"
     });
 
-    window.onscroll = e => {
-        displayinFullScreen();
-    }
+    // When click on a user in [Chats] the funciton fires
+    enterChatsWindow();
 }
 
 function overideInlineCss(selector, changes = {}) {
@@ -51,4 +50,36 @@ function displayinFullScreen() {
             navigationUI: "hide"
         });
     }
+}
+
+function enterChatsWindow() {
+    let userLink = $('.user.user-chat-listing');
+    let ChatWindow = $('.ChatWindow');
+    console.log("ChatWindow: ", ChatWindow.css("left"))
+    userLink.click(() => {
+        if (ChatWindow.css("left") != "0px") {
+            console.log("ChatWindow: ", ChatWindow)
+            ChatWindow.css({
+                "left": "0% !important"
+            });
+        } else {
+            ChatWindow.css({
+                "left": "-120% !important"
+            });
+        }
+    });
+
+    // if (location.href.includes("#regForm")) {
+    //     userLink.text("Sign in");
+    //     userLink.attr("href", "#loginForm");
+    //     loginForm.css({
+    //         "left": "-100%"
+    //     });
+    // } else if (location.href.includes("#loginForm")) {
+    //     userLink.text("Sign up");
+    //     userLink.attr("href", "#regForm");
+    //     loginForm.css({
+    //         "left": "0%"
+    //     });
+    // }
 }
