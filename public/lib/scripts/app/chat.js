@@ -89,6 +89,8 @@ $(document).on('ready', () => {
         let last_msg = (chat) ? chat.message : '';
         let comm_stat = (unread > 0) ? `<span class="badge">${unread}</span>` : "";
 
+        //-- chat listin
+
         return `
             <li id='${associate.username.toLowerCase()}-chat-listing' data-username="${associate.username.toLowerCase()}" class="user user-chat-listing">
                 <div class="image-holder">
@@ -194,7 +196,7 @@ $(document).on('ready', () => {
 
                 if($('.no-chat').length) $('.no-chat').remove();
 
-                let userChatListDom = $(`#${user.toLowerCase()}-chat-listing`);
+                let userChatListDom = $(`#${ jq( user.toLowerCase() )}-chat-listing`); //-- 1 username problem
 
                 if(userChatListDom.length)
                 {
@@ -302,7 +304,7 @@ $(document).on('ready', () => {
 
             arrayChats[toUser].push(message);
 
-            let userChatListDom = $(`#${user.slice(1).toLowerCase()}-chat-listing`);
+            let userChatListDom = $(`#${  jq( user.slice(1).toLowerCase()) }-chat-listing`);
             //message
             userChatListDom.find('.latest-message').text(`${message.message.trunc(30)}`);
             //time
@@ -382,7 +384,7 @@ $(document).on('ready', () => {
         */
         __socket.on(`${__user} composing`, function (msg) {
 
-            let element = $(`#${msg.from.slice(1).toLowerCase()}-chat-listing`);
+            let element = $(`#${  jq( msg.from.slice(1).toLowerCase() )}-chat-listing`);
             let window_chat = $('.ChatWindow');
 
             let is_active_chat = msg.from.slice(1).toLowerCase() === ((window.activeChat)? window.activeChat.toLowerCase() : null )
@@ -414,6 +416,12 @@ $(document).on('ready', () => {
             }, 1000);
 
         });
+    }
+
+    function jq( myid ) {
+
+        return myid.replace( /(:|\.|\[|\]|,|=|@)/g, "\\$1" );
+
     }
 
     //======================= ! START SOCKET ACTIVITY ==================
