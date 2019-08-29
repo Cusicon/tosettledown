@@ -146,6 +146,7 @@ function encounterDisplayingAndShuffling() {
         });
 
         function renderUserPhotos(photosArr, placeToInsertImage) {
+            $(placeToInsertImage).html("")
             let totalPhotos = $("#totalPhotos").html(photosArr.length); // Total photos count
             let currentPhoto = $("#currentPhoto").html("1"); // Current photos count
             photosArr = photosArr.reverse();

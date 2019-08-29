@@ -16,17 +16,16 @@ $(function () {
 function mainMobile() {
     // Overide some inline css declared
     overideInlineCss(".displayWindow", {
-        "height": "auto",
+        "height": "unset",
         "border": "none"
     });
 
-    // Display App in full screen mode
-    displayinFullScreen();
-
+    window.onscroll = e => {
+        displayinFullScreen();
+    }
 }
 
 function overideInlineCss(selector, changes = {}) {
-    console.log("Selector: ", changes)
     $(selector).css(changes);
 }
 

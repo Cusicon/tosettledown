@@ -40,14 +40,15 @@
     <div class="onMobile"
         style="border-bottom: 1px solid #eee; margin-bottom: 3px; width: 100%; padding: 15px; height: 70px; margin-bottom: 10px;">
         <div class="logoMobileCon">
-            <a href="/app/profile/<%= user.username %>" class="activeProfile hasStories" style="float: right;">
+            <a href="/app/profile/<%= user.username %>" class="activeProfile hasStories" style="float: right; padding: 1px;">
                 <div class="image"
                     style=" width: 35px; height: 35px; border-radius: 100%; background-image: url('<%= user.avatar %>');">
                 </div>
             </a>
             <center style="padding-top: 5px;">
                 <img src="/lib/img/logo/logo-icon.png" style="float: left;" width="45" id="logo" alt="Tosettledown">
-                <img src="/lib/img/logo/logo-text.png" style="padding-top: 10px;" width="120" id="logo" alt="Tosettledown">
+                <img src="/lib/img/logo/logo-text.png" style="padding-top: 10px;" width="120" id="logo"
+                    alt="Tosettledown">
             </center>
         </div>
     </div>
@@ -59,19 +60,23 @@
         <section class="mainBody col-md-9 col-sm-8" id="mainBody">
             <!--    Calling Page Content    -->
             <%- body %>
-
-            <!-- Footer -->
-            <%-partial('/app/layout/footer.html')%>
         </section>
     </section>
+
+
+    <!-- Footer -->
+    <%-partial('/app/layout/footer.html')%>
+
     <div class="onMobile">
         <div class="mobileNavigator">
             <ul class="row">
-                <li class="col-3"><a href="/app/encounters"><i class="typcn typcn-compass"></i></a></li>
+                <li class="col-2"><a href="/app/encounters"><i class="typcn typcn-compass"></i></a></li>
                 <li class="col-1"></li>
-                <li class="col-3"><a href="/app/chats"><i class="typcn typcn-messages"></i></a></li>
+                <li class="col-2"><a href="/app/chats"><i class="typcn typcn-messages"></i></a></li>
                 <li class="col-1"></li>
-                <li class="col-3"><a href="/app/likes"><i class="typcn typcn-heart-half-outline"></i></a></li>
+                <li class="col-2"><a href="/app/matched"><i class="typcn typcn-point-of-interest"></i></a></li>
+                <li class="col-1"></li>
+                <li class="col-2"><a href="/app/likes"><i class="typcn typcn-heart-half-outline"></i></a></li>
             </ul>
         </div>
     </div>

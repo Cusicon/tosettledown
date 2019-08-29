@@ -62,13 +62,16 @@
     box-shadow: 0px -2px 30px #dedede;
 }
 
+.profileMain .profileHeader footer div.left * {
+    color: #3b3b3b !important;
+}
+
 .profileMain .profileHeader footer div.left .bio {
     width: 265px;
-    height: 110px;
+    max-height: 110px;
     overflow: hidden;
     word-break: break-all;
     font-size: 14px;
-    color: #777;
 }
 
 .profileMain .editProfile,
@@ -98,7 +101,7 @@
 
 .profileMain .profileFooter {
     border-top: 1px solid #ededed;
-    margin-top: 110px;
+    margin-top: 170px;
 }
 
 .profileMain .profileFooter header {
