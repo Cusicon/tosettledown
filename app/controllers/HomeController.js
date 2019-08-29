@@ -1,5 +1,6 @@
 let User = require('@models/user');
 let MeetUp = require('@models/meetup');
+let Visitor = require('@models/visitor');
 
 module["exports"] = class HomeController{
 
@@ -71,7 +72,27 @@ module["exports"] = class HomeController{
 
     static visitors(req, res)
     {
-        res.render('./app/menu/visitors', { title: "Visitors" });
+        // user_id => the person you are visiting
+        // visitor_id => the person that is visiting
+
+        Visitor.aggregate([
+            {
+                $lookup: {
+                    from : 'users',
+                    localField: 'visitor',
+                    foreignField: 'username',
+                    as: 'visitUser'
+                }
+            },
+            { $match: { user: req.user.username } },
+
+        ]).then(visits => {
+            visits = visits.map(visit => {
+                visit.visitUser = new User(visit.visitUser[0]);
+                return visit;
+            })
+            res.render('./app/menu/visitors', { title: "Visitors", visits:visits });
+        });
     }
 
     static favourites(req, res)

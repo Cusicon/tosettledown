@@ -32,4 +32,23 @@
     background-color: #eee;
 }
 
+.visitors-holder{
+    width: 100%;
+    text-align: left;
+}
+
+
+.no-available{
+    width: 100%;
+    text-align: center;
+}
+.no-available .content-holder{
+    /*margin: 30% auto;*/
+}
+
+.no-available img{
+    width: 100px;
+    opacity: 0.5;
+}
+
 /* END OF VISITORS AND FAVOURITES */
