@@ -319,6 +319,10 @@ $(document).on('ready', () => {
         return false;
     });
 
+    $('#profile-link').on('click', function (e) {
+        window.location.href = `/app/profile/${activeChat}`;
+    })
+
     /*
     * Sending Message
     */
