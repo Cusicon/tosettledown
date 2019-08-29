@@ -375,4 +375,5 @@ li.user:last-child {
 
 .no-available img{
     width: 100px;
+    opacity: 0.5;
 }
