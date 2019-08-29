@@ -81,14 +81,14 @@ module["exports"] = class HomeController{
                     from : 'users',
                     localField: 'visitor',
                     foreignField: 'username',
-                    as: 'visitUser'
+                    as: 'visitorObj'
                 }
             },
-            { $match: { user: req.user.username } },
+            { $match: { visited_user: req.user.username } },
 
         ]).then(visits => {
             visits = visits.map(visit => {
-                visit.visitUser = new User(visit.visitUser[0]);
+                visit.visitorObj = new User(visit.visitorObj[0]);
                 return visit;
             })
             res.render('./app/menu/visitors', { title: "Visitors", visits:visits });

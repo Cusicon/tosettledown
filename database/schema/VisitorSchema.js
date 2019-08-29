@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 let visitor_schema = mongoose.Schema({
-    user: String,
+    visited_user: String,
     visitor: String,
     visited_at:{type: Date, default: new Date().toDateString()},
 });

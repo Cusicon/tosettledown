@@ -24,11 +24,11 @@
                             <li class="col-md-4 col-sm-6" style="padding: 10px;">
                                 <div class="card">
                                     <div id="card-handle"></div>
-                                    <div class="img" style="background-image: url('<%= visit.visitUser.avatar %>');">
+                                    <div class="img" style="background-image: url('<%= visit.visitorObj.avatar %>');">
                                     </div>
                                     <div class="text-left">
-                                        <a href="/app/profile/<%=visit.visitUser.username%>">
-                                            <h5 id="title"> <%=visit.visitUser.name%>, <%= visit.visitUser.dob.age %></h5>
+                                        <a href="/app/profile/<%=visit.visitorObj.username%>">
+                                            <h5 id="title"> <%=visit.visitorObj.name%>, <%= visit.visitorObj.dob.age %></h5>
                                         </a>
                                         <small class="text-muted" id="timeStamp">
                                             <i class="typcn typcn-world"></i>

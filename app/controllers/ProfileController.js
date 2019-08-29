@@ -22,9 +22,9 @@ module["exports"] = class ProfileController {
                             // user_id => the person you are visiting
                             // visitor_id => the person that is visiting
                             if(req.user.id !== user.id) {
-                                Visitor.findOne({user: user.username, visitor:req.user.username }, (err, visitor) => {
+                                Visitor.findOne({visited_user: user.username, visitor:req.user.username }, (err, visitor) => {
                                     if(! visitor) {
-                                        let visitor = new Visitor({user: user.username, visitor:req.user.username });
+                                        let visitor = new Visitor({visited_user: user.username, visitor:req.user.username });
                                         visitor.save()
                                     }
                                 })
