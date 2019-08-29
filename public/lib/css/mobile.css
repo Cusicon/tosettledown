@@ -198,7 +198,7 @@
     .Chat .ChatWindow {
         position: absolute;
         width: 100%;
-        /* left: -120%; */
+        left: -120%;
     }
 
     .Chat .ChatWindowHead {
