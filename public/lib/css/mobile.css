@@ -20,6 +20,15 @@
         margin: 0px !important;
     }
 
+    .mainBody .displayWindow .imageWindow .overlayNav .navBottom ul li a#like,
+    .mainBody .displayWindow .imageWindow .overlayNav .navBottom ul li a#skip {
+        display: block !important;
+        font-size: 35px !important;
+        min-width: 65px !important;
+        min-height: 65px !important;
+        padding-top: 3px !important;
+    }
+
     .wrapperOnMobile {
         text-align: center;
     }
@@ -31,6 +40,10 @@
     .wrapperOnMobile .displayWindow {
         box-shadow: none !important;
         display: inline-block !important;
+    }
+
+    .mainBody .displayWindow .imageWindow {
+        width: 100% !important;
     }
 
     .statusBar {
@@ -74,43 +87,97 @@
         display: none !important;
     }
 
-    #like,
-    #skip {
-
+    .profileMain .profileHeader footer ul li a {
         display: block !important;
-        font-size: 35px !important;
-        min-width: 65px !important;
-        min-height: 65px !important;
+        font-size: 22.5px !important;
+        min-width: 45px !important;
+        min-height: 45px !important;
         padding-top: 3px !important;
+        line-height: unset !important;
     }
 
     .onMobile .mobileNavigator {
         position: fixed;
         bottom: 0%;
         width: 100%;
-        /* height: 50px !important; */
-        box-shadow: 0px 3px 5px #797979;
-        background-color: #fff;
+        height: 50px !important;
+        z-index: 100;
+        box-shadow: 0px 3px 5px #797979 !important;
+        background-color: #fff !important;
         padding: 5px 10px;
     }
 
     .onMobile .mobileNavigator ul li {
         display: inline-block;
-        margin:0px;
+        margin: 0px;
     }
-    
+
     .onMobile .mobileNavigator ul li a {
         width: 100%;
         text-align: center;
-        /* padding: 5px; */
         font-size: 25px;
         color: #000;
     }
-    
 
+    div.profileImage {
+        width: 80px !important;
+        height: 80px !important;
+    }
 
+    .profileMain .profileHeader footer a.activeProfile {
+        margin-left: 5px !important;
+    }
 
+    .profileHeader #chatBtn {
+        display: none;
+    }
 
+    .profileHeader footer div.left {
+        padding-top: 5px !important;
+        padding-bottom: 45px !important;
+        margin-left: -0px !important;
+    }
 
+    .profileHeader footer div.left h1 {
+        font-size: 20px !important;
+        font-weight: 300 !important;
+    }
+
+    .profileMain .profileHeader footer div.left h1 span {
+        margin-left: -10px;
+    }
+
+    .profileMain .profileHeader footer div.left h6 b {
+        margin-left: -10px;
+        font-weight: 400 !important;
+    }
+
+    .profileHeader footer div.left .bio {
+        width: auto !important;
+        max-height: 80px !important;
+        padding: 10px !important;
+    }
+
+    .profileFooterHead div.profileHeadWrapper {
+        float: left;
+        margin-left: -15px !important;
+    }
+
+    .profileFooterHead div.profileHeadWrapper .profileHeadWrapperBtn {
+        margin: auto !important;
+    }
+
+    footer.footer {
+        display: none;
+    }
+
+    /* CHATS */
+
+    .Chat{
+        margin: 0px !important;
+        border: none !important;
+    }
+
+    /* END OF CHATS */
 
 }

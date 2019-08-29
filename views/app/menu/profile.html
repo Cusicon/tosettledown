@@ -226,7 +226,7 @@
                                                 </div>
                                             </center>
                                             <input type="file" name="addPhotos" id="addPhotos" class="hide"
-                                                accept="image/*" multiple required>
+                                                accept="image/*" required>
                                         </div>
                                     </div>
                                     <div class="separator"></div>
@@ -253,7 +253,7 @@
                         </div>
                         <div class="displayImageCon"
                             style="padding: 10px 0px; background-color: transparent; text-align: center !important;">
-                            <img src="" id="displayImage" alt="image" height="425"
+                            <img src="" id="displayImage" alt="image" width="800"
                                 style="border: 1px solid transparent; max-width: 100%;">
                             <% if (profile_user.username == user.username) { %>
                             <br>
@@ -274,7 +274,7 @@
                             <% if (user.username != profile_user.username) { %>
                             <a href="/app/chats/<%= profile_user.username %>"
                                 class="btn waves-effect waves-light bg-Primary_color" id="chatBtn" role="button"
-                                style="color: #1a1a1a; padding: 10px 25px !important; margin-right: 10px; text-align: center;">
+                                style="padding: 10px 25px; margin-right: 10px; text-align: center;">
                                 Chat <b><%= profile_user.fullname.firstname %></b> up</a>
                             <% } %>
                         </li>
@@ -285,6 +285,14 @@
                                     <i class="icon-options-vertical" style="font-size: 20px;"></i>
                                 </a>
                                 <div class="dropdownContent" id="dropdownContent">
+                                    <% if (user.username != profile_user.username) { %>
+                                    <div class="onMobile">
+                                        <a href="/app/chats/<%= profile_user.username %>">
+                                            Send a message
+                                        </a>
+                                        <div class="separator"></div>
+                                    </div>
+                                    <% } %>
                                     <% if (user.username != profile_user.username) { %>
                                     <a href="#">Add to favourites</a>
                                     <% } %>
@@ -310,10 +318,9 @@
 
                     </ul>
                 </header>
-                <br>
                 <footer>
                     <div class="profileFooterHead">
-                        <div style="float: left; margin: 0px 5px;">
+                        <div style="float: left; margin: 0px 5px;" class="profileHeadWrapper">
 
                             <a href=javascript:void(0); class="activeProfile hasStories">
                                 <div class="image profileImage"
@@ -321,7 +328,7 @@
                                 </div>
                             </a>
 
-                            <ul style="display: block; margin: 0px 45px;">
+                            <ul class="profileHeadWrapperBtn" style="display: block; margin: 0px 50px;">
                                 <!-- Like and Dislike -->
                                 <% if (user.username != profile_user.username) { %>
                                 <li style="display: inline-block;">
@@ -356,7 +363,6 @@
                             </div>
                         </div>
                     </div>
-                    <br><br><br>
                     <a href=javascript:void(0); id="dropdownToggleBtn"
                         class="float-right dropdownToggleBtn text-dark btn waves-effect waves-light" role="button"
                         style="border: none !important; font-size: 30px;">
@@ -408,14 +414,14 @@
                     <ul>
                         <center>
                             <div class="row">
-                                <li class="col-md-1 col-sm-1"></li>
-                                <li class="col-md-10 col-sm-10">
+                                <li class="col-1 col-md-1 col-sm-1"></li>
+                                <li class="col-10 col-md-10 col-sm-10">
                                     <a href=javascript:void(0); class="text-dark photos ">
                                         <span class="active"><i class="typcn typcn-th-large-outline"></i>
                                             &nbsp;PHOTOS</span>
                                     </a>
                                 </li>
-                                <li class="col-md-1 col-sm-1">
+                                <li class="col-1 col-md-1 col-sm-1">
                                     <% if (user.username == profile_user.username) { %>
                                     <a href=javascript:void(0); class="text-dark btn waves-effect waves-light addImages"
                                         id="addPhotosBtn" role="button" data-toggle="modal" data-target=".addPhotosCon"
