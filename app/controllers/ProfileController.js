@@ -3,6 +3,7 @@ const path = require('path');
 
 let User = require('@models/user');
 let Photo = require('@models/media');
+let Visitor = require('@models/visitor');
 
 
 module["exports"] = class ProfileController {
@@ -16,6 +17,19 @@ module["exports"] = class ProfileController {
                     Photo.getPhotosbyUsername(username, (err, photos) => {
                         if (err) throw err;
                         if (req.user.gender !== user.gender) {
+                            // add to visitor page here
+
+                            // user_id => the person you are visiting
+                            // visitor_id => the person that is visiting
+                            if(req.user.id !== user.id) {
+                                Visitor.findOne({user: user.username, visitor:req.user.username }, (err, visitor) => {
+                                    if(! visitor) {
+                                        let visitor = new Visitor({user: user.username, visitor:req.user.username });
+                                        visitor.save()
+                                    }
+                                })
+                            }
+
                             res.render('./app/menu/profile', {
                                 title: `${user.fullname.firstname}'s profile`,
                                 profile_user: user,

@@ -1,9 +1,7 @@
 const mongoose = require("mongoose");
-const media_schema = require('@schema/MediaSchema').schema;
 const card_schema = require('@schema/CardSchema').schema;
 const like_schema = require('@schema/LikeSchema').schema;
 const match_schema = require('@schema/MatchSchema').schema;
-const visitor_schema = require('@schema/VisitorSchema').schema;
 const favourite_schema = require('@schema/FavouriteSchema').schema;
 
 
