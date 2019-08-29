@@ -52,13 +52,18 @@ $(document).on('ready', () => {
                 });
 
                 //Sort ChatList To Dom, Putting User To Dom
-                populateChatUserList()
+                populateChatUserList('all')
                 // Put Active User On windowChatDiv
                 populateWindowChat()
 
                 //Fire Resolver
                 setInterval(newChatResolver,100); //-- resolve new chat from socket
                 setInterval(unresolvedChatResolver,100); //-- resolve new chat from socket
+                setInterval(() => {
+                    arrayUser.forEach((user) => {
+                        updateUserActivity(user);
+                    })
+                }, 60*3)
             },
         });
     }
@@ -69,17 +74,45 @@ $(document).on('ready', () => {
 
     //======================= BUILDING THE LIST LAYOUT ==================
 
-    function populateChatUserList() {
-        window.chatListHolder.find('.lazy-box-group').fadeOut(750).remove();
+    function populateChatUserList(type) {
+
+        window.chatListHolder.find('*').fadeOut(750).remove();
 
         if(Object.keys(arrayUser).length > 0)
         {
-            Object.values(arrayUser).forEach(function(associate) {
-                window.chatListHolder.prepend(buildChatUserList(associate, arrayChats[associate.username].last()));
-            });
+            let selectedUser = [];
+            if(type === 'all') {
+                selectedUser = Object.values(arrayUser);
+            }else {
+                selectedUser = Object.values(arrayUser).filter(user => {
+                    return getLastActivity(user.last_activity_at);
+                });
+            }
+
+            if(selectedUser.length > 0) {
+                selectedUser.forEach(function(associate) {
+                    window.chatListHolder.append(buildChatUserList(associate, arrayChats[associate.username].last()));
+                });
+            }else {
+                window.chatListHolder.append(`
+                    <li class="no-available no-chat">
+                        <div class="content-holder">
+                            <img src="/lib/img/logo/logo-icon.png" alt="Logo">  
+                            <h3>No Online User</h3>
+                        </div>
+                    </li>`);
+            }
+
+
         }
         else {
-            window.chatListHolder.append(`<li class="no-chat">No Chat</li>`);
+            window.chatListHolder.append(`
+                    <li class="no-available no-chat">
+                        <div class="content-holder">
+                            <img src="/lib/img/logo/logo-icon.png" alt="Logo">  
+                            <h3>No Chat</h3>
+                        </div>
+                    </li>`);
         }
     }
 
@@ -194,6 +227,7 @@ $(document).on('ready', () => {
                 let user = msg.from.slice(1);
                 arrayChats[user].push(msg)
 
+                // noinspection JSJQueryEfficiency
                 if($('.no-chat').length) $('.no-chat').remove();
 
                 let userChatListDom = $(`#${ jq( user.toLowerCase() )}-chat-listing`); //-- 1 username problem
@@ -249,6 +283,17 @@ $(document).on('ready', () => {
                     }
                 },
             });
+        }
+    }
+
+    function updateUserActivity(user) {
+
+        let is_online = (getLastActivity(user.last_activity_at)) ? 'is_online' : 'is_offline'; //last_activity_at
+
+        $(`#${  jq( user.username.toLowerCase()) }-chat-listing`).find('.status').removeClass('is_online').removeClass('is_offline').addClass(is_online)
+
+        if(user.username === activeChat) {
+            $('#chat-status').removeClass('is_online').removeClass('is_offline').addClass(is_online)
         }
     }
 
@@ -330,6 +375,10 @@ $(document).on('ready', () => {
         }
     });
 
+    $('#searchUsers').on('change', function(e){
+        populateChatUserList($(this).val())
+    })
+
     //======================= ! EVENT LISTENERS ==================
 
 
@@ -346,7 +395,28 @@ $(document).on('ready', () => {
         });
     }
 
+
     function preAjaxSocketListener() {
+
+        /*
+       * update user last activity,
+       */
+        __socket.on('am active', function (msg) {
+            let user = msg.user.slice(1);
+
+            if(arrayUser[user]){
+                arrayUser[user].last_activity_at = Date.now();
+
+                updateUserActivity(arrayUser[user]);
+                // $(`#${  jq( user.toLowerCase()) }-chat-listing`).find('.status').removeClass('is_offline').addClass('is_online');
+                //
+                // if(user === activeChat) {
+                //     $('#chat-status').removeClass('is_offline').addClass('is_online');
+                // }
+
+                console.log(user , 'is active')
+            }
+        });
 
         /*
         * listen for Acknowledgment notification from the serve when you send a message,
@@ -419,7 +489,7 @@ $(document).on('ready', () => {
     }
 
     function jq( myid ) {
-
+        // noinspection RegExpSingleCharAlternation,RegExpRedundantEscape
         return myid.replace( /(:|\.|\[|\]|,|=|@)/g, "\\$1" );
 
     }

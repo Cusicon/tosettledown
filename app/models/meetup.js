@@ -50,8 +50,22 @@ module["exports"] = class MeetUp extends Model{
                 });
                 chat.save();
             }
+            this.updateUserLastActivity(msg);
         });
 
+    }
+
+    static updateUserLastActivity(msg) {
+        console.log(msg.from.slice(1))
+        //update the from user last activity here
+        User.findOne({username: msg.from.slice(1)}, (err, user) => {
+            if(user){
+                user.last_activity_at = Date.now();
+                user.save();
+            }else {
+                console.log(user);
+            }
+        });
     }
 
     static getMyEncounters(username, callback)

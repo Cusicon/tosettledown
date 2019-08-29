@@ -90,8 +90,9 @@ module['exports'] = class Bootstrap {
 
             //-- on listen to typing... notification
             socket.on('chat composing', (msg) => {
-                console.log(`${msg.to} composing`)
                 this.io.emit(`${msg.to} composing`, msg);
+                meetups.updateUserLastActivity(msg);
+                this.io.emit('am active', {user: msg.from}); //-- send online shout to other user
             });
 
             //-- on listen to message from channel
@@ -99,6 +100,7 @@ module['exports'] = class Bootstrap {
                 meetups.appendOrCreate(msg); //-- Added To Meetup Table
                 this.io.emit(`${msg.from} acknowledge`, msg); //-- send back Acknowledge Message
                 this.io.emit(`${msg.to} message`, msg); //-- send to other user
+                this.io.emit('am active', {user: msg.from}); //-- send online shout to other user
             });
 
             socket.on('chat received', (msg) => {
@@ -106,19 +108,6 @@ module['exports'] = class Bootstrap {
                 this.io.emit(`${msg.from} delivered`, msg);
             });
 
-
-            //-- on listen to delivery feedback from other user
-            // socket.on('chat delivery', (msg) => {
-            //     meetups.appendOrCreate(msg); //-- Added To Meetup Table
-            //     this.io.emit(msg.to, msg);
-            // });
-
-
-
-
-
-
-            console.log('a user connected');
         });
     }
 
