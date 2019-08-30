@@ -80,12 +80,12 @@ showDropdown();
     if (window.Notification) {
         Notification.requestPermission().then(function (status) {
             if (status === "denied") {
-                mySnackbar('Notification Off')
+                // alert("/lib/img/logo/favicon.ico", "Turn on Notifications", "Know right away when people follow you or like and comment on your photos.", ["Cancel", "Turn on"])
             }
         });
     } else {
         //-- snackbar here
-        mySnackbar('Browser Doesn\'t support notification' )
+        // alert("/lib/img/logo/favicon.ico", "Turn on Notifications", "Browser Doesn\'t support notification", ["Ok"])
     }
 })();
 
