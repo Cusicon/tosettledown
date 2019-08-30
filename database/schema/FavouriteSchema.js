@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 let favourite_schema = mongoose.Schema({
-    user_id: String,
-    favourited: String,
+    user: String,
+    favourite_user: String,
     favourite_at:{type: Date, default: new Date().toDateString()},
 });
 

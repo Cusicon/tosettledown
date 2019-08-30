@@ -1,8 +1,5 @@
 const mongoose = require("mongoose");
 const card_schema = require('@schema/CardSchema').schema;
-const like_schema = require('@schema/LikeSchema').schema;
-const match_schema = require('@schema/MatchSchema').schema;
-const favourite_schema = require('@schema/FavouriteSchema').schema;
 
 
 let user_schema = mongoose.Schema({
@@ -74,7 +71,6 @@ let user_schema = mongoose.Schema({
             default: null
         }
     },
-    likes: [like_schema] || null,
     cards: [card_schema] || null
 });
 

@@ -1,14 +1,9 @@
 const mongoose = require("mongoose");
 let like_schema = mongoose.Schema({
-    user_id: String,
-    name: String,
-    username: String,
-    dob: {
-        type: Date,
-        default: null
-    },
+    liker: String,
+    liked_user: String,
     isLiked: {
-        type: String,
+        type: Boolean,
         default: false
     },
     liked_at: {
