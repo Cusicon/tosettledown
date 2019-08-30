@@ -76,29 +76,29 @@ function showDropdown() {
 showDropdown();
 
 /* Requesting Desktop Notification */
-// (function requestWebDesktopNotificationPermission() {
-//     if (window.Notification) {
-//         Notification.requestPermission().then(function (status) {
-//             if (status == "denied") {
-//                 alert(
-//                     '/lib/img/logo/favicon.ico',
-//                     'Turn on Notifications',
-//                     'You will be able to receive incoming chats and so on...',
-//                     ["Close", "Turn on"],
-//                     () => {
-//                         Notification.requestPermission().then((__status_) => {
-//                             var _status_ = Notification.permission = 'granted';
-//                             __status_ = _status_;
-//
-//                         });
-//                     }
-//                 // );
-//             }
-//         });
-//     } else {
-//         alert('/lib/img/logo/favicon.ico', 'Turn on Notifications', 'Sorry, your browser doesn\'t support notifications.');
-//     }
-// })
+(function requestWebDesktopNotificationPermission() {
+    if (window.Notification) {
+        Notification.requestPermission().then(function (status) {
+            if (status == "denied") {
+                alert(
+                    '/lib/img/logo/favicon.ico',
+                    'Turn on Notifications',
+                    'You will be able to receive incoming chats and so on...',
+                    ["Close", "Turn on"],
+                    () => {
+                        Notification.requestPermission().then((__status_) => {
+                            var _status_ = Notification.permission = 'granted';
+                            __status_ = _status_;
+
+                        });
+                    }
+                );
+            }
+        });
+    } else {
+        alert('/lib/img/logo/favicon.ico', 'Turn on Notifications', 'Sorry, your browser doesn\'t support notifications.');
+    }
+})
 
 $(document).on('ready', () => {
     var page_name = $('.page-identifier').data('page-name');

@@ -45,6 +45,9 @@
 }
 
 .profileMain .profileHeader footer ul li a {
+    position: absolute;
+    top: 25%;
+    left: 20%;
     display: block;
     font-size: 35px;
     min-width: 70px;
@@ -101,7 +104,7 @@
 
 .profileMain .profileFooter {
     border-top: 1px solid #ededed;
-    margin-top: 180px;
+    margin-top: 150px;
 }
 
 .profileMain .profileFooter header {
