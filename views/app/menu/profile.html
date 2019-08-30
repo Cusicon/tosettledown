@@ -47,8 +47,7 @@
                                                     <textarea type="text" name="bio" class="form-control"
                                                         placeholder="Enter Bio here..."
                                                         maxlength="200"><%= profile_user.personalInfo.bio %></textarea>
-                                                    <small id="passwordHelp"
-                                                        class="form-text  float-right">Max:
+                                                    <small id="passwordHelp" class="form-text  float-right">Max:
                                                         200 characters.</small>
                                                 </div>
                                             </div>
@@ -103,8 +102,7 @@
                                                             <%= profile_user.personalInfo.height == 'Short' ? 'selected' : 'Short' %>>
                                                             Short</option>
                                                     </select>
-                                                    <small id="heightHelp"
-                                                        class="form-text  float-right">Default:
+                                                    <small id="heightHelp" class="form-text  float-right">Default:
                                                         Average</small>
                                                     <br>
                                                 </div>
@@ -114,8 +112,7 @@
                                                         placeholder="What do you speak often?..."
                                                         title="What do you speak often?..."
                                                         aria-describedby="languageHelp">
-                                                    <small id="languageHelp"
-                                                        class="form-text  float-right">Default:
+                                                    <small id="languageHelp" class="form-text  float-right">Default:
                                                         English</small>
                                                     <br>
                                                 </div>
@@ -294,7 +291,8 @@
                                     </div>
                                     <% } %>
                                     <% if (user.username != profile_user.username) { %>
-                                    <a id="favourite-drpdown" href="javascript:void(0);" data-username="<%=profile_user.username%>" >Add to favourites</a>
+                                    <a id="favourite-drpdown" href="javascript:void(0);"
+                                        data-username="<%=profile_user.username%>">Add to favourites</a>
                                     <% } %>
                                     <a href="#">Share</a>
                                     <% if (user.username == profile_user.username) { %>
@@ -332,7 +330,8 @@
                                 <!-- Like and Dislike -->
                                 <% if (user.username != profile_user.username) { %>
                                 <li style="display: inline-block;">
-                                    <a href="javascript: void(0);" id="like" title="Like" data-username="<%=profile_user.username%>"
+                                    <a href="javascript: void(0);" id="like" title="Like"
+                                        data-username="<%=profile_user.username%>"
                                         style="border: 1px solid #ececec; color: #ff6878 !important;">
                                         <i class="typcn typcn-heart-full-outline"></i>
                                     </a>
