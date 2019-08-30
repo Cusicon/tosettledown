@@ -88,8 +88,8 @@ module["exports"] = class User extends Model {
 
     get dob() {
         return {
-            date: super.dob.date,
-            age: Math.abs(Moment(super.dob).diff(Moment(), 'years')),
+            date: super.dob || 'N/A',
+            age: Math.abs(Moment(super.dob).diff(Moment(), 'years')) || 'N/A',
         }
     }
 

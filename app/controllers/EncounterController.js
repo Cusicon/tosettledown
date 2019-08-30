@@ -132,20 +132,32 @@ module["exports"] = class EncounterController {
             })
             exceptionUsersObj = exceptionUsersObj.map(obj => obj.liked_user);
 
-            User.findOne({username: {$nin: exceptionUsersObj}, gender: gender}).then(user => {
-                user = new User(user); // To cast the user  from aggregate to user model
-                if (user) {
-                    Photo.getPhotosbyUsername(user.username, (err, photos) => {
-                        if (err) throw err;
-                        else {
-                            res.send({
-                                data: {
-                                    photos: photos,
-                                    user: user
-                                }
-                            })
+            User.aggregate([
+                { $match : {username: {$nin: exceptionUsersObj}, gender: gender} },
+                { $sample: { size: 1 } }
+            ]).then(user => {
+                if(user.length === 1){
+                    user = new User(user.pop()); // To cast the user  from aggregate to user model
+                    if (user) {
+                        Photo.getPhotosbyUsername(user.username, (err, photos) => {
+                            if (err) throw err;
+                            else {
+                                res.send({
+                                    data: {
+                                        photos: photos,
+                                        user: user
+                                    }
+                                })
+                            }
+                        });
+                    }
+                }else {
+                    res.send({
+                        data: {
+                            photos: null,
+                            user: null
                         }
-                    });
+                    })
                 }
             })
         });

@@ -294,7 +294,7 @@
                                     </div>
                                     <% } %>
                                     <% if (user.username != profile_user.username) { %>
-                                    <a href="#">Add to favourites</a>
+                                    <a id="favourite-drpdown" href="javascript:void(0);" data-username="<%=profile_user.username%>" >Add to favourites</a>
                                     <% } %>
                                     <a href="#">Share</a>
                                     <% if (user.username == profile_user.username) { %>

@@ -78,7 +78,7 @@ function cropImage() {
     });
 }
 
-$(".profileHeadWrapperBtn #like").on('click', function(e){
+$("#like").on('click', function(e){
     let value = $(this).data('username');
 
     $.ajax({
@@ -104,7 +104,7 @@ $(".profileHeadWrapperBtn #like").on('click', function(e){
     });
 })
 
-$(".profileHeadWrapperBtn #favourite").on('click', function(e){
+$("#favourite, #favourite-drpdown").on('click', function(e){
     let value = $(this).data('username');
 
     $.ajax({
