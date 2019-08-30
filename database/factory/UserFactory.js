@@ -1,12 +1,15 @@
 let faker = require('faker');
+let moment = require('moment')
 
 module['exports'] = function () {
+    let maxAge = 40;
+    let minAge = 18
    return {
        name: `${faker.name.firstName()} ${faker.name.lastName()}`,
        username: faker.internet.userName(),
        email: faker.internet.email(),
        password: "password",
-       dob: new Date().toDateString(),
+       dob: moment().subtract( (Math.floor(Math.random() * (maxAge - minAge) ) + minAge), 'years').format() ,
        gender: faker.random.arrayElement(['male', 'female']),
        agreed_terms: true,
        joined: new Date().toDateString(),
