@@ -17,114 +17,37 @@
             </div>
         </center>
         <div class="likes container">
-            <center>
-                <ul>
-                    <div class="row">
-                        <li class="col-md-4 col-sm-6" style="padding: 10px;">
-                            <div class="card">
-                                <div id="card-handle"></div>
-                                <div class="img"
-                                    style="background-image: url('/lib/img/assets/reduced/user.png'); border-radius: 100%;">
-                                </div>
-                                <div class="text-center">
-                                    <a href="/app/profile/username">
-                                        <h5 id="title">Grace, 21</h5>
-                                    </a>
-                                    <small class="text-muted" id="timeStamp">
-                                        <i class="typcn typcn-world"></i>
-                                        Today, 4:17am
-                                    </small>
-                                </div>
+            <div style="text-align: center;">
+                <ul class="likes-holder">
+                    <% if(likes.length > 0) { %>
+                    <% likes.forEach(like => { %>
+                    <li class="col-md-4 col-sm-6" style="padding: 10px;">
+                        <div class="card">
+                            <div id="card-handle"></div>
+                            <div class="img" style="background-image: url('<%= like.likerObj.avatar %>');">
                             </div>
-                        </li>
-                        <li class="col-md-4 col-sm-6" style="padding: 10px;">
-                            <div class="card">
-                                <div id="card-handle"></div>
-                                <div class="img"
-                                    style="background-image: url('/lib/img/assets/reduced/user.png'); border-radius: 100%;">
-                                </div>
-                                <div class="text-center">
-                                    <a href="/app/profile/username">
-                                        <h5 id="title">Grace, 21</h5>
-                                    </a>
-                                    <small class="text-muted" id="timeStamp">
-                                        <i class="typcn typcn-world"></i>
-                                        Today, 4:17am
-                                    </small>
-                                </div>
+                            <div class="text-left">
+                                <a href="/app/profile/<%=like.likerObj.username%>">
+                                    <h5 id="title"> <%=like.likerObj.name%>, <%= like.likerObj.dob.age %></h5>
+                                </a>
+                                <small class="text-muted" id="timeStamp">
+                                    <i class="typcn typcn-world"></i>
+                                    <%=Moment(like.liked_at).format("MMM Do YY") %>
+                                </small>
                             </div>
-                        </li>
-                        <li class="col-md-4 col-sm-6" style="padding: 10px;">
-                            <div class="card">
-                                <div id="card-handle"></div>
-                                <div class="img"
-                                    style="background-image: url('/lib/img/assets/reduced/user.png'); border-radius: 100%;">
-                                </div>
-                                <div class="text-center">
-                                    <a href="/app/profile/username">
-                                        <h5 id="title">Grace, 21</h5>
-                                    </a>
-                                    <small class="text-muted" id="timeStamp">
-                                        <i class="typcn typcn-world"></i>
-                                        Today, 4:17am
-                                    </small>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="col-md-4 col-sm-6" style="padding: 10px;">
-                            <div class="card">
-                                <div id="card-handle"></div>
-                                <div class="img"
-                                    style="background-image: url('/lib/img/assets/reduced/user.png'); border-radius: 100%;">
-                                </div>
-                                <div class="text-center">
-                                    <a href="/app/profile/username">
-                                        <h5 id="title">Grace, 21</h5>
-                                    </a>
-                                    <small class="text-muted" id="timeStamp">
-                                        <i class="typcn typcn-world"></i>
-                                        Today, 4:17am
-                                    </small>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="col-md-4 col-sm-6" style="padding: 10px;">
-                            <div class="card">
-                                <div id="card-handle"></div>
-                                <div class="img"
-                                    style="background-image: url('/lib/img/assets/reduced/user.png'); border-radius: 100%;">
-                                </div>
-                                <div class="text-center">
-                                    <a href="/app/profile/username">
-                                        <h5 id="title">Grace, 21</h5>
-                                    </a>
-                                    <small class="text-muted" id="timeStamp">
-                                        <i class="typcn typcn-world"></i>
-                                        Today, 4:17am
-                                    </small>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="col-md-4 col-sm-6" style="padding: 10px;">
-                            <div class="card">
-                                <div id="card-handle"></div>
-                                <div class="img"
-                                    style="background-image: url('/lib/img/assets/reduced/user.png'); border-radius: 100%;">
-                                </div>
-                                <div class="text-center">
-                                    <a href="/app/profile/username">
-                                        <h5 id="title">Grace, 21</h5>
-                                    </a>
-                                    <small class="text-muted" id="timeStamp">
-                                        <i class="typcn typcn-world"></i>
-                                        Today, 4:17am
-                                    </small>
-                                </div>
-                            </div>
-                        </li>
-                    </div>
+                        </div>
+                    </li>
+                    <%})%>
+                    <%} else {%>
+                    <li class="no-available">
+                        <div class="content-holder">
+                            <img src="/lib/img/logo/logo-icon.png" alt="Logo">
+                            <h3>No Likes</h3>
+                        </div>
+                    </li>
+                    <%} %>
                 </ul>
-            </center>
+            </div>
         </div>
     </div>
 </div>

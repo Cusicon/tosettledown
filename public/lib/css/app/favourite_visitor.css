@@ -32,7 +32,7 @@
     background-color: #eee;
 }
 
-.visitors-holder{
+.visitors-holder,.favourites-holder{
     width: 100%;
     text-align: left;
 }

@@ -30,8 +30,7 @@ module["exports"] = class EncounterController {
                     liked_user: req.query.username,
                     isLiked: (req.query.type === 'like'),
                 })
-                like.save((err, like)=> {
-                    console.log(err, like);
+                like.save(()=> {
                     EncounterController.getOneUserAndPictures(req, res);
                 })
             }

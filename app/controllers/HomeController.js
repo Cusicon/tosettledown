@@ -1,6 +1,8 @@
 let User = require('@models/user');
 let MeetUp = require('@models/meetup');
 let Visitor = require('@models/visitor');
+let Favourite = require('@models/favourite');
+let Like = require('@models/like');
 
 module["exports"] = class HomeController{
 
@@ -62,12 +64,55 @@ module["exports"] = class HomeController{
 
     static matched(req, res)
     {
-        res.render('./app/menu/matched', { title: "Matched" });
+
+        Like.find({liked_user: req.user.username, isLiked : true}).then(likes => {
+            let likers = likes.map(like => like.liker);
+
+            Like.aggregate([
+                {
+                    $lookup: {
+                        from : 'users',
+                        localField: 'liked_user',
+                        foreignField: 'username',
+                        as: 'matchObj'
+                    }
+                },
+                { $match: { liker: req.user.username, isLiked: true, liked_user: {$in: likers } } },
+            ]).then(matches => {
+
+                matches = matches.map(match => {
+                    match.matchObj = new User(match.matchObj[0]);
+                    return match;
+                })
+
+                res.render('./app/menu/matched', { title: "Likes" , matches:matches });
+            });
+        });
     }
 
     static likes(req, res)
     {
-        res.render('./app/menu/likes', { title: "Likes" });
+
+        Like.aggregate([
+            {
+                $lookup: {
+                    from : 'users',
+                    localField: 'liked_user',
+                    foreignField: 'username',
+                    as: 'likerObj'
+                }
+            },
+            { $match: { liker: req.user.username, isLiked: true} },
+
+        ]).then(likes => {
+            likes = likes.map(like => {
+                like.likerObj = new User(like.likerObj[0]);
+                return like;
+            })
+            res.render('./app/menu/likes', { title: "Likes" , likes:likes });
+        });
+
+
     }
 
     static visitors(req, res)
@@ -97,7 +142,24 @@ module["exports"] = class HomeController{
 
     static favourites(req, res)
     {
-        res.render('./app/menu/favourites', { title: "Favourites" });
+        Favourite.aggregate([
+            {
+                $lookup: {
+                    from : 'users',
+                    localField: 'favourite_user',
+                    foreignField: 'username',
+                    as: 'favouriteObj'
+                }
+            },
+            { $match: { user: req.user.username } },
+
+        ]).then(favourites => {
+            favourites = favourites.map(favourite => {
+                favourite.favouriteObj = new User(favourite.favouriteObj[0]);
+                return favourite;
+            })
+            res.render('./app/menu/favourites', { title: "Favourites", favourites:favourites });
+        });
     }
 
     static shop(req, res)
