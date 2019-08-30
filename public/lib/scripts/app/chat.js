@@ -391,7 +391,7 @@ $(document).on('ready', () => {
             var ChatWindow = $(".ChatWindow");
             var ChatList = $(".ChatList");
             if (ChatWindow.css("left") != "0px") {
-                ChatWindow.css({"left": "0px", "transition": "ease .3s"});
+                ChatWindow.css({"left": "0px", "transition": "ease .5s"});
             }
         })();
     });

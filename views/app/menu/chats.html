@@ -5,6 +5,12 @@
 <!-- Call Style Script Tag Here -->
 <% script('/lib/scripts/app/chat.js') -%>
 
+<style>
+    .logoHeader{
+        display: none;
+    }
+</style>
+
 <div class="row page-identifier" data-page-name="chat">
     <div class="displayWindow col-md-12 row Chat"
         style="box-shadow: none; border-radius: 0px; padding: 20px 30px; border-left: 1px solid #eee; overflow: visible;">
@@ -106,8 +112,8 @@
                 <div class="ChatWindowHead">
                     <div class="float-left">
                         <div class="onMobile float-left">
-                            <a href="javascript:void();" class="back" style="font-size: 30px; padding: 0px 5px;">
-                                <i class="typcn typcn-chevron-left-outline"></i>
+                            <a href="javascript:void();" class="back" onclick="$('.ChatWindow').css({'left': '-120%', 'transition': 'ease .3s'});" style="font-size: 20px; padding: 0px 5px;">
+                                <i class="icon-arrow-left"></i>
                             </a>
                         </div>
                         <div id="chat-status" class="activity_status "></div>

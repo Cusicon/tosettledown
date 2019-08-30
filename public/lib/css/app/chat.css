@@ -126,9 +126,9 @@ li.user:last-child {
 }
 
 .Chat .ChatWindow .ChatWindowHead h6#chat-username-holder {
-    margin: 6px 0 0px;
+    margin: 10px 0 0px;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .Chat .ChatWindow .ChatWindowHead small#chat-typing {
