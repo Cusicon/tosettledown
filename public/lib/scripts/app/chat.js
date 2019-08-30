@@ -22,7 +22,7 @@ $(document).on('ready', () => {
     }
 
     function getMeetups() {
-        let url = (getActiveChat())? `?user=${getActiveChat()}` : '';
+        let url = (getActiveChat()) ? `?user=${getActiveChat()}` : '';
 
         $.ajax({
             url: `/app/meetups${url}`, // send active user also
@@ -30,8 +30,7 @@ $(document).on('ready', () => {
             success: (data) => {
                 preAjaxSocketListener()
 
-                if(data.activeChat)
-                {
+                if (data.activeChat) {
                     window.activeChat = data.activeChat.username
                     window.arrayUser[data.activeChat.username] = data.activeChat;
                     window.arrayChats[data.activeChat.username] = [];
@@ -39,13 +38,12 @@ $(document).on('ready', () => {
 
                 //Sort User MeetUps To User Array and Chat Array
                 data.meetups.forEach((meetup, index) => {
-                    let meetupObj = data.meetup_obj.find(function(meetupObj) {
+                    let meetupObj = data.meetup_obj.find(function (meetupObj) {
                         return meetupObj.id === meetup._id;
                     });
                     //-- Setting Window Active In case Active Chat Is Null
-                    if(index === 0)
-                    {
-                        window.activeChat = (window.activeChat)? window.activeChat : meetupObj.associate.username;
+                    if (index === 0) {
+                        window.activeChat = (window.activeChat) ? window.activeChat : meetupObj.associate.username;
                     }
                     arrayUser[meetupObj.associate.username] = meetupObj.associate;
                     arrayChats[meetupObj.associate.username] = meetupObj.chats;
@@ -57,13 +55,13 @@ $(document).on('ready', () => {
                 populateWindowChat()
 
                 //Fire Resolver
-                setInterval(newChatResolver,100); //-- resolve new chat from socket
-                setInterval(unresolvedChatResolver,100); //-- resolve new chat from socket
+                setInterval(newChatResolver, 100); //-- resolve new chat from socket
+                setInterval(unresolvedChatResolver, 100); //-- resolve new chat from socket
                 setInterval(() => {
                     arrayUser.forEach((user) => {
                         updateUserActivity(user);
                     })
-                }, 60*3)
+                }, 60 * 3)
             },
         });
     }
@@ -78,39 +76,46 @@ $(document).on('ready', () => {
 
         window.chatListHolder.find('*').fadeOut(750).remove();
 
-        if(Object.keys(arrayUser).length > 0)
-        {
+        if (Object.keys(arrayUser).length > 0) {
             let selectedUser = [];
-            if(type === 'all') {
+            if (type === 'all') {
                 selectedUser = Object.values(arrayUser);
-            }else {
+            } else {
                 selectedUser = Object.values(arrayUser).filter(user => {
                     return getLastActivity(user.last_activity_at);
                 });
             }
 
-            if(selectedUser.length > 0) {
-                selectedUser.forEach(function(associate) {
+            if (selectedUser.length > 0) {
+                selectedUser.forEach(function (associate) {
                     window.chatListHolder.append(buildChatUserList(associate, arrayChats[associate.username].last()));
                 });
-            }else {
+            } else {
                 window.chatListHolder.append(`
                     <li class="no-available no-chat">
                         <div class="content-holder">
                             <img src="/lib/img/logo/logo-icon.png" alt="Logo">  
-                            <h3>No Online User</h3>
+                            <div class="spinner">
+                                <div class="bounce1"></div>
+                                <div class="bounce2"></div>
+                                <div class="bounce3"></div>
+                            </div>
+                        </div>
                         </div>
                     </li>`);
             }
 
 
-        }
-        else {
+        } else {
             window.chatListHolder.append(`
                     <li class="no-available no-chat">
                         <div class="content-holder">
-                            <img src="/lib/img/logo/logo-icon.png" alt="Logo">  
-                            <h3>No Chat</h3>
+                            <img src="/lib/img/logo/logo-icon.png" alt="Logo">
+                            <div class="spinner">
+                                <div class="bounce1"></div>
+                                <div class="bounce2"></div>
+                                <div class="bounce3"></div>
+                            </div>
                         </div>
                     </li>`);
         }
@@ -125,18 +130,20 @@ $(document).on('ready', () => {
         //-- chat listin
 
         return `
-            <li id='${associate.username.toLowerCase()}-chat-listing' data-username="${associate.username.toLowerCase()}" class="user user-chat-listing">
-                <div class="image-holder">
-                    <div class="status ${is_online}"></div>
-                    <div class="profile-img" style="background-image: url(${associate.avatar})"></div>
-                </div>
-                <div class="message-holder">
-                    <div class="time text-muted">${time}</div>
-                    <div class="username text-dark" data-username="${associate.username}">${associate.name}</div>
-                    <div class="latest-message text-muted">${last_msg.trunc(30)}</div>
-                    <div class="communication-status" data-unread-msg="${unread}">${comm_stat}</div>
-                </div>
-            </li>
+            <a href="javascript:void(0);" class="userCon">
+                <li id='${associate.username.toLowerCase()}-chat-listing' data-username="${associate.username.toLowerCase()}" class="user user-chat-listing">
+                    <div class="image-holder">
+                        <div class="status ${is_online}"></div>
+                        <div class="profile-img" style="background-image: url(${associate.avatar})"></div>
+                    </div>
+                    <div class="message-holder">
+                        <div class="time text-muted">${time}</div>
+                        <div class="username text-dark" data-username="${associate.username}">${associate.name}</div>
+                        <div class="latest-message text-muted">${last_msg.trunc(30)}</div>
+                        <div class="communication-status" data-unread-msg="${unread}">${comm_stat}</div>
+                    </div>
+                </li>
+            </a>
             `;
     }
 
@@ -147,7 +154,7 @@ $(document).on('ready', () => {
     //======================= BUILDING THE MESSAGE LAYOUT ==================
 
     function populateWindowChat(username = null) {
-        username = (username)? username : activeChat;
+        username = (username) ? username : activeChat;
 
         if (username) {
             let chats_list_box = $('.chat-message-list');
@@ -159,18 +166,18 @@ $(document).on('ready', () => {
             //-- user property to dom
             $('#chat-status').removeClass('is_online').removeClass('is_offline').addClass(is_online)
             $('#chat-username-holder').text(user.name);
-            $('#chat-profile-img').css('background-image',`url(${user.avatar})`);
+            $('#chat-profile-img').css('background-image', `url(${user.avatar})`);
 
             chats_list_box.find('*').remove();
 
-            $('.go-back-encounter').css('display','none');
-            $('.chat-window-holder').css('display','block');
+            $('.go-back-encounter').css('display', 'none');
+            $('.chat-window-holder').css('display', 'block');
 
-            if(chats){
+            if (chats) {
                 chats.forEach(chat => {
                     chats_list_box.append(buildChatMessage(chat));
                 })
-                let  element = $(".ChatWindowBody");
+                let element = $(".ChatWindowBody");
                 element[0].scrollTop = element[0].scrollHeight;
             }
         }
@@ -178,14 +185,22 @@ $(document).on('ready', () => {
 
     function buildChatMessage(chat, sending = null) {
 
-        let is_outbox_or_inbox = (chat.from !== `${__user}`)? 'inbox' : 'outbox';
+        let is_outbox_or_inbox = (chat.from !== `${__user}`) ? 'inbox' : 'outbox';
         let message_status = '';
 
-        if(is_outbox_or_inbox === 'outbox'){
-            if(chat.sent_at) { message_status = `<i class="fa fa-check fa-1"></i>`; }
-            if(chat.delivered_at) { message_status = `<i class="fa fa-check fa-1"></i><i class="fa fa-check fa-1"></i>`; }
-            if(chat.read_at) { message_status = `<i style="color: orange" class="fa fa-check fa-1"></i> <i style="color: orange" class="fa fa-check fa-1"></i>`; }
-            if(sending) { message_status = `<i class="fa fa-spinner fa-1"></i>`; }
+        if (is_outbox_or_inbox === 'outbox') {
+            if (chat.sent_at) {
+                message_status = `<i class="typcn typcn-tick"></i>`;
+            }
+            if (chat.delivered_at) {
+                message_status = `<i class="typcn typcn-tick"></i><i class="typcn typcn-tick" style="margin-left: -7px; opacity: .7;"></i>`;
+            }
+            if (chat.read_at) {
+                message_status = `<i class="typcn typcn-thumb-ok"></i>`;
+            }
+            if (sending) {
+                message_status = `<i class="fa fa-spinner fa-1"></i>`;
+            }
         }
 
         return `
@@ -204,9 +219,9 @@ $(document).on('ready', () => {
     //======================= MINIMAL HELPER FUNCTIONS =============
     function getLastActivity(last_activity) {
 
-        if(last_activity){
+        if (last_activity) {
             let diffSec = Math.abs(moment(last_activity).diff(moment(), 'seconds'))
-            return (diffSec <= 60*5);
+            return (diffSec <= 60 * 5);
         }
         return false;
     }
@@ -217,55 +232,49 @@ $(document).on('ready', () => {
 
     function newChatResolver() {
 
-        if(arrayNewMsg.length > 0)
-        {
+        if (arrayNewMsg.length > 0) {
             let msg = arrayNewMsg.shift()
 
             //user from exist in user array
-            if(arrayUser[msg.from.slice(1)])
-            {
+            if (arrayUser[msg.from.slice(1)]) {
                 let user = msg.from.slice(1);
                 arrayChats[user].push(msg)
 
                 // noinspection JSJQueryEfficiency
-                if($('.no-chat').length) $('.no-chat').remove();
+                if ($('.no-chat').length) $('.no-chat').remove();
 
                 let userChatListDom = $(`#${ jq( user.toLowerCase() )}-chat-listing`); //-- 1 username problem
 
-                if(userChatListDom.length)
-                {
+                if (userChatListDom.length) {
                     //message
                     userChatListDom.find('.latest-message').text(`${msg.message.trunc(30)}`);
                     //time
                     userChatListDom.find('.time').text(`${formatListDomTime(msg.sent_at)}`);
 
-                    if(msg.from.slice(1) !== activeChat){
+                    if (msg.from.slice(1) !== activeChat) {
                         let unread = parseInt(userChatListDom.find('.communication-status').data('unread-msg'));
-                        userChatListDom.find('.communication-status').html(`<span class="badge">${unread+1}</span>`).data('unread-msg', unread+1);
+                        userChatListDom.find('.communication-status').html(`<span class="badge">${unread+1}</span>`).data('unread-msg', unread + 1);
                     }
 
                     userChatListDom.parent().prepend(userChatListDom);
-                }else {
+                } else {
                     //append him to the dom
-                    window.chatListHolder.append(buildChatUserList(arrayUser[user],  msg, 1));
+                    window.chatListHolder.append(buildChatUserList(arrayUser[user], msg, 1));
                 }
 
                 //push message to user chat if is active and exist in array
-                if(msg.from.slice(1) === activeChat){
+                if (msg.from.slice(1) === activeChat) {
                     $('.chat-message-list').append(buildChatMessage(msg));
                 }
-            }
-            else
-            {
-                unresolvedMsg.push(msg);// if not push message to unsolved array
+            } else {
+                unresolvedMsg.push(msg); // if not push message to unsolved array
             }
 
         }
     }
 
-    function unresolvedChatResolver(){
-        if(unresolvedMsg.length > 0)
-        {
+    function unresolvedChatResolver() {
+        if (unresolvedMsg.length > 0) {
             let msg = unresolvedMsg.shift()
             let username = msg.from.slice(1)
 
@@ -275,8 +284,7 @@ $(document).on('ready', () => {
                 success: (data) => {
                     preAjaxSocketListener()
 
-                    if(data.user)
-                    {
+                    if (data.user) {
                         arrayUser[data.user.username] = data.user;
                         arrayChats[data.user.username] = [];
                         arrayNewMsg.unshift(msg); //put it back to new Msg for processing
@@ -292,13 +300,12 @@ $(document).on('ready', () => {
 
         $(`#${  jq( user.username.toLowerCase()) }-chat-listing`).find('.status').removeClass('is_online').removeClass('is_offline').addClass(is_online)
 
-        if(user.username === activeChat) {
+        if (user.username === activeChat) {
             $('#chat-status').removeClass('is_online').removeClass('is_offline').addClass(is_online)
         }
     }
 
-    function markAllActiveMsgAsRead()
-    {
+    function markAllActiveMsgAsRead() {
         //-- All msg are marked as delivered and read when click on li, also goes to database
     }
 
@@ -311,10 +318,14 @@ $(document).on('ready', () => {
 
     //======================= EVENT SOCKET EMIT LISTENERS ==================
     /*
-    * Sending Typing... notification,
-    */
-    $("#message-input").on('keyup',function() {
-        let message = {from: __user, to: `@${window.activeChat}`, type: "composing"};
+     * Sending Typing... notification,
+     */
+    $("#message-input").on('keyup', function () {
+        let message = {
+            from: __user,
+            to: `@${window.activeChat}`,
+            type: "composing"
+        };
         __socket.emit('chat composing', message);
         return false;
     });
@@ -324,16 +335,16 @@ $(document).on('ready', () => {
     })
 
     /*
-    * Sending Message
-    */
-    $('#submit-msg').on('click', function(e){
+     * Sending Message
+     */
+    $('#submit-msg').on('click', function (e) {
         e.preventDefault();
         let toUser = activeChat;
-        let user =  `@${toUser}`;
+        let user = `@${toUser}`;
         let message_holder = $('#message-input');
         let messageTxt = message_holder.val();
 
-        if(messageTxt.trim() !== ''){
+        if (messageTxt.trim() !== '') {
             // noinspection JSUnusedLocalSymbols
             let message = {
                 __id: new Date().getUnixTime(),
@@ -342,8 +353,8 @@ $(document).on('ready', () => {
                 to: user,
                 type: "chat-message",
                 format: "text",
-                message : messageTxt,
-                sent_at : Date.now(),
+                message: messageTxt,
+                sent_at: Date.now(),
             };
             __socket.emit('chat message', message);
 
@@ -365,11 +376,10 @@ $(document).on('ready', () => {
         return false;
     });
 
-    $(document).on('click', '.user-chat-listing', function() {
+    $(document).on('click', '.user-chat-listing', function () {
         let element = $(this);
         let username = element.find('.username').data('username');
-        if(username)
-        {
+        if (username) {
             $('.user-chat-listing').removeClass('active')
             element.addClass('active')
             window.activeChat = username;
@@ -377,9 +387,16 @@ $(document).on('ready', () => {
             populateWindowChat(username);
             markAllActiveMsgAsRead()
         }
+        (function enterChatsWindow() {
+            var ChatWindow = $(".ChatWindow");
+            var ChatList = $(".ChatList");
+            if (ChatWindow.css("left") != "0px") {
+                ChatWindow.css({"left": "0px", "transition": "ease .3s"});
+            }
+        })();
     });
 
-    $('#searchUsers').on('change', function(e){
+    $('#searchUsers').on('change', function (e) {
         populateChatUserList($(this).val())
     })
 
@@ -391,8 +408,8 @@ $(document).on('ready', () => {
     function postAjaxSocketListener() {
 
         /*
-        * listen for incoming message on your own channel, and store in array for new chats
-        */
+         * listen for incoming message on your own channel, and store in array for new chats
+         */
         __socket.on(`${__user} message`, msg => {
             __socket.emit('chat received', msg);
             arrayNewMsg.push(msg);
@@ -403,12 +420,12 @@ $(document).on('ready', () => {
     function preAjaxSocketListener() {
 
         /*
-       * update user last activity,
-       */
+         * update user last activity,
+         */
         __socket.on('am active', function (msg) {
             let user = msg.user.slice(1);
 
-            if(arrayUser[user]){
+            if (arrayUser[user]) {
                 arrayUser[user].last_activity_at = Date.now();
 
                 updateUserActivity(arrayUser[user]);
@@ -418,83 +435,80 @@ $(document).on('ready', () => {
                 //     $('#chat-status').removeClass('is_offline').addClass('is_online');
                 // }
 
-                console.log(user , 'is active')
+                console.log(user, 'is active')
             }
         });
 
         /*
-        * listen for Acknowledgment notification from the serve when you send a message,
-        */
+         * listen for Acknowledgment notification from the serve when you send a message,
+         */
         __socket.on(`${__user} acknowledge`, function (msg) {
 
-            if(msg.to.slice(1) === activeChat){
-                let chat = arrayChats[activeChat].find(function(chats) {
+            if (msg.to.slice(1) === activeChat) {
+                let chat = arrayChats[activeChat].find(function (chats) {
                     return chats.__id === msg.__id;
                 });
                 let chatbox = $(`#chat-${chat.u_id}`);
-                chatbox.find('#message-status').html('<i class="fa fa-check fa-1"></i>')
+                chatbox.find('#message-status').html('<i class="typcn typcn-tick"></i>')
             }
         });
 
         /*
-        * listen for chat delivered notification on your channel for message you sent
-        */
+         * listen for chat delivered notification on your channel for message you sent
+         */
         __socket.on(`${__user} delivered`, function (msg) {
 
-            let chat = arrayChats[msg.to.slice(1)].find(function(chats) {
+            let chat = arrayChats[msg.to.slice(1)].find(function (chats) {
                 return chats.__id === msg.__id;
             });
             chat.delivered_at = Date.now();
 
-            if(msg.to.slice(1) === activeChat){
+            if (msg.to.slice(1) === activeChat) {
                 let chatbox = $(`#chat-${chat.u_id}`);
-                chatbox.find('#message-status').html('<i class="fa fa-check fa-1"></i><i class="fa fa-check fa-1"></i>')
+                chatbox.find('#message-status').html('<i class="typcn typcn-tick"></i><i class="typcn typcn-tick"></i>')
             }
         });
 
 
         /*
-        * listen for typing notification on your own channel,
-        */
+         * listen for typing notification on your own channel,
+         */
         __socket.on(`${__user} composing`, function (msg) {
 
             let element = $(`#${  jq( msg.from.slice(1).toLowerCase() )}-chat-listing`);
             let window_chat = $('.ChatWindow');
 
-            let is_active_chat = msg.from.slice(1).toLowerCase() === ((window.activeChat)? window.activeChat.toLowerCase() : null )
+            let is_active_chat = msg.from.slice(1).toLowerCase() === ((window.activeChat) ? window.activeChat.toLowerCase() : null)
 
-            if(is_active_chat) {
+            if (is_active_chat) {
 
                 window_chat.find('#chat-typing').text('typing...')
                 element.find('.communication-status').text('typing...')
-            }
-            else
-            {
+            } else {
                 element.find('.communication-status').text('typing...')
             }
 
             //-- To Remove typing .....
-            setTimeout(function(){
-                if(is_active_chat) {
+            setTimeout(function () {
+                if (is_active_chat) {
                     window_chat.find('#chat-typing').text('')
                 }
                 let comm_stat = element.find('.communication-status');
-                if(comm_stat.text() === 'typing...'){
-                    if(parseInt(comm_stat.data('unread-msg')) > 0 ){
+                if (comm_stat.text() === 'typing...') {
+                    if (parseInt(comm_stat.data('unread-msg')) > 0) {
                         comm_stat.text(`<span class="badge">${comm_stat}</span>`)
-                    }
-                    else {
+                    } else {
                         comm_stat.text('')
                     }
                 }
-            }, 1000);
+            }, 3000);
 
         });
     }
 
-    function jq( myid ) {
+    function jq(myid) {
         // noinspection RegExpSingleCharAlternation,RegExpRedundantEscape
-        return myid.replace( /(:|\.|\[|\]|,|=|@)/g, "\\$1" );
+        return myid.replace(/(:|\.|\[|\]|,|=|@)/g, "\\$1");
 
     }
 

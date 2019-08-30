@@ -1,5 +1,9 @@
 @media (max-width: 576px) {
 
+    .windowFrame{
+        max-width: 100% !important;
+    }
+
     iframe#adsCon {
         display: none;
     }
@@ -32,14 +36,15 @@
     .wrapperOnMobile {
         text-align: center;
     }
-
+    
     .wrapperOnMobile.row {
         display: unset !important;
     }
-
+    
     .wrapperOnMobile .displayWindow {
         box-shadow: none !important;
         display: inline-block !important;
+        border-radius: 20px !important;
     }
 
     .mainBody .displayWindow .imageWindow {
@@ -195,9 +200,13 @@
         border: none !important;
     }
 
+    .Chat .ChatList {
+        border: 0px !important;
+    }
+
     .Chat .ChatWindow {
         position: absolute;
-        width: 100%;
+        width: 100% !important;
         left: -120%;
     }
 

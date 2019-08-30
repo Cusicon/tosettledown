@@ -134,6 +134,7 @@ li.user:last-child {
 .Chat .ChatWindow .ChatWindowHead small#chat-typing {
     font-weight: 500;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #f55e5e;
     display: block;
 }
 
@@ -310,13 +311,13 @@ li.user:last-child {
 
 .Chat .ChatWindow .ChatWindowHead #chat-username-holder {
     min-width: 120px;
-    height: 30px;
+    /* height: 30px; */
 }
 
 .Chat .ChatWindow .ChatWindowHead #chat-typing {
     width: 80px;
     height: 10px;
-    margin-top: 2px;
+    color: #f55e5e;
 }
 
 .Chat .ChatWindow .ChatWindowBody ul.chat-message-list li div.big-text {
@@ -364,17 +365,18 @@ li.user:last-child {
     float: left;
 }
 
-.no-available{
+.no-available {
     width: 100%;
     height: 100%;
     vertical-align: center;
     text-align: center;
 }
-.no-available .content-holder{
-    margin: 30% auto;
+
+.no-available .content-holder {
+    margin: 45% auto;
 }
 
-.no-available img{
+.no-available img {
     width: 100px;
     opacity: 0.5;
 }

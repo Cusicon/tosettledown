@@ -105,8 +105,12 @@
             <div class="chat-window-holder" style="display: none">
                 <div class="ChatWindowHead">
                     <div class="float-left">
+                        <div class="onMobile float-left">
+                            <a href="javascript:void();" class="back" style="font-size: 30px; padding: 0px 5px;">
+                                <i class="typcn typcn-chevron-left-outline"></i>
+                            </a>
+                        </div>
                         <div id="chat-status" class="activity_status "></div>
-                        <!-- <a href="javascript:void();" class="back"><i class="icon-arrow-left"></i></a> -->
                         <div id="chat-profile-img" class="">
                         </div>
                         <div id="chat-username" class="text-dark">
@@ -126,11 +130,12 @@
 
                                 <div class="dropdownContent" id="dropdownContent">
                                     <a href="#">Add to favourites</a>
-                                    <a href="#">Give a gift</a>
-                                    <a href="#">Delete conversation</a>
+                                    <a href="#" class="hide">Give a gift</a>
+                                    <a href="#" class="hide">Delete conversation</a>
                                     <a href="#" class="color">Block or Report</a>
                                     <div class="separator"></div>
-                                    <a id="profile-link" href="javascript:void(0);" class="dropdownBottom" style="color: #000;">
+                                    <a id="profile-link" href="javascript:void(0);" class="dropdownBottom"
+                                        style="color: #000;">
                                         View profile
                                         <span class="typcn typcn-user float-right"></span>
                                     </a>
