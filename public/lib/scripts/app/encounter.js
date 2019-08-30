@@ -248,3 +248,40 @@ function renderUserDetails(user) {
 function calculateAge(dob) {
     return Math.abs(moment(dob).diff(moment(), 'years'));
 }
+
+$('#next, #previous').on("click",function () {
+    scrollImg(($(this).attr('id') === 'next') ? 'next' : 'previous')
+})
+
+
+function scrollImg(type) {
+    let currentPhotoElement = $('#currentPhoto');
+    let currentPhoto = parseInt(currentPhotoElement.text());
+    let totalPhoto = parseInt($('#totalPhotos').text());
+    let renderBox = $('.renderUserPhotos');
+    let imgSize = parseInt(renderBox.width());
+
+    if(type === 'next'){
+
+        if(currentPhoto !== totalPhoto)
+        {
+            console.log((imgSize * currentPhoto))
+
+            let nextPosition = currentPhoto + 1;
+            renderBox.animate({scrollLeft: (imgSize * nextPosition) - imgSize }, 800);
+            currentPhotoElement.text(nextPosition)
+
+            console.log('scrolled next')
+        }
+
+    } else {
+        if(currentPhoto > 1)
+        {
+            let prevPosition = currentPhoto - 1;
+            renderBox.animate({scrollLeft: (imgSize * prevPosition) - imgSize }, 800);
+            currentPhotoElement.text(prevPosition)
+
+            console.log('scrolled back')
+        }
+    }
+}
