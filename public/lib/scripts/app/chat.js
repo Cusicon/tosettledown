@@ -477,7 +477,7 @@ $(document).on('ready', () => {
 
             if (msg.to.slice(1) === activeChat) {
                 let chatbox = $(`#chat-${chat.u_id}`);
-                chatbox.find('#message-status').html('<i class="typcn typcn-tick"></i><i class="typcn typcn-tick"></i>')
+                chatbox.find('#message-status').html('<i class="typcn typcn-tick"></i><i class="typcn typcn-tick" style="margin-left: -7px; opacity: .7;"></i>')
             }
         });
 
