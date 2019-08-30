@@ -1,48 +1,116 @@
 let User = require('@models/user');
 let Photo = require('@models/media');
+let Like = require('@models/like');
+let Favourite = require('@models/favourite');
 
-const EncounterController = class EncounterController {
-    constructor() {}
+module["exports"] = class EncounterController {
 
-    index(req, res) {
-        User.find({
-            gender: req.user.gender == "male" ? "female" : "male"
-        }, (err, users) => {
-            if (err) throw err;
-            else {
-                res.render('./app/menu/encounters', {
-                    title: "Encounters",
-                    users: users.sort(() => Math.random() - 0.5 * 0.5) // Shuffle the array
-                });
-            }
-        }).limit(5);
-    }
-
-    getUsers(req, res) {
-        User.find({
-            gender: req.user.gender == "male" ? "female" : "male"
-        }, (err, users) => {
-            if (err) throw err;
-            else {
-                res.send({
-                    users: users.sort(() => Math.random() - 0.5 * 0.5) // Shuffle the array
-                });
-            }
+    static index(req, res) {
+        res.render('./app/menu/encounters', {
+            title: "Encounters",
         });
     }
 
-    getUserPhotos(req, res) {
-        let username = req.params.username;
-        Photo.getPhotosbyUsername(username, (err, photos) => {
-            if (err) throw err;
-            else {
+    static getUserAndPhoto(req, res) {
+        EncounterController.getOneUserAndPictures(req, res);
+    }
+
+    static addToLikeAndGetAnotherUser(req, res){
+        Like.findOne({liker:req.user.username, liked_user:req.query.username}).then(like => {
+            if(like) {
+                if(!like.isLiked && req.query.type === 'like'){
+                    like.isLiked = true;
+                    like.liked_at = new Date().toDateString();
+                    like.save()
+                }
+                EncounterController.getOneUserAndPictures(req, res);
+            }else {
+                like = new Like({
+                    liker: req.user.username,
+                    liked_user: req.query.username,
+                    isLiked: (req.query.type === 'like'),
+                })
+                like.save((err, like)=> {
+                    console.log(err, like);
+                    EncounterController.getOneUserAndPictures(req, res);
+                })
+            }
+        })
+
+    }
+
+    static addToFavoriteAndGetAnotherUser(req, res){
+
+        Favourite.findOne({user:req.user.username, favourite_user:req.query.username}).then(favourite => {
+            console.log(favourite);
+            console.log({user:req.user.username, favourite_user:req.query.username})
+            if(favourite) {
                 res.send({
-                    photos: photos
+                    data: {
+                        status: "success",
+                        message: "Already Added"
+                    }
+                })
+            }else {
+                favourite = new Like({
+                    user: req.user.username,
+                    favourite_user: req.query.username,
+                })
+                favourite.save((err)=> {
+                    if(err)
+                    {
+                        res.send({
+                            data: {
+                                status: "error",
+                                message: "Error Occur"
+                            }
+                        })
+                    }else {
+                        res.send({
+                            data: {
+                                status: "success",
+                                message: "Added Successfully"
+                            }
+                        })
+                    }
                 })
             }
         });
     }
 
-};
+    static getOneUserAndPictures(req, res) {
+        let gender = req.user.gender === "male" ? "female" : "male";
+        let noOfDaysInterval = 15;
 
-module["exports"] = new EncounterController();
+        Like.find({liker:req.user.username}).then(likedUsersObj => {
+
+            let exceptionUsersObj = likedUsersObj.filter((likedUserObj) => {
+                if (likedUserObj.isLiked === true) {
+                    return true
+                } else {
+                    let diffSec = Math.abs(Moment(likedUserObj.liked_at).diff(Moment(), 'seconds'))
+                    return (diffSec <= 86400 * noOfDaysInterval);
+                }
+            })
+            exceptionUsersObj = exceptionUsersObj.map(obj => obj.liked_user);
+
+            User.findOne({username: {$nin: exceptionUsersObj}, gender: gender}).then(user => {
+                user = new User(user); // To cast the user  from aggregate to user model
+                if (user) {
+                    Photo.getPhotosbyUsername(user.username, (err, photos) => {
+                        if (err) throw err;
+                        else {
+                            res.send({
+                                data: {
+                                    photos: photos,
+                                    user: user
+                                }
+                            })
+                        }
+                    });
+                }
+            })
+        });
+    }
+
+};
