@@ -2,10 +2,10 @@ $(function () {
     var windowWidth = window.outerWidth;
 
     function onMobile(width) {
-        console.log("Width: ", width);
-        console.log("Outside Mobile");
+        // console.log("Width: ", width);
+        // console.log("Outside Mobile");
         if (width <= 576) {
-            console.log("inside Mobile");
+            // console.log("inside Mobile");
             // Run this function if user is on mobile.
             mainMobile();
         }

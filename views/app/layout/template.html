@@ -18,6 +18,7 @@
 
     <!-- Global Css For App  -->
     <link rel="stylesheet" href="/lib/css/app/_main.css">
+    <link rel="stylesheet" href="/lib/css/app/snackbar.css">
 
     <!--  Include Page CSS Dynamically  -->
     <%-stylesheets%>
@@ -40,7 +41,8 @@
     <div class="onMobile logoHeader"
         style="border-bottom: 1px solid #eee; margin-bottom: 3px; width: 100%; padding: 15px; height: 70px; margin-bottom: 10px;">
         <div class="logoMobileCon">
-            <a href="/app/profile/<%= user.username %>" class="activeProfile hasStories" style="float: right; padding: 1px;">
+            <a href="/app/profile/<%= user.username %>" class="activeProfile hasStories"
+                style="float: right; padding: 1px;">
                 <div class="image"
                     style=" width: 35px; height: 35px; border-radius: 100%; background-image: url('<%= user.avatar %>');">
                 </div>
@@ -52,6 +54,8 @@
             </center>
         </div>
     </div>
+    <!-- The actual snackbar -->
+    <div id="snackbar">Welcome to Tosettledown(TSD)...</div>
     <section class="windowFrame container row" id="windowFrame">
         <!-- ProfileBar -->
         <%-partial('/app/layout/profileBar.html')%>
@@ -104,6 +108,7 @@
     <!-- App Scripts -->
     <script src="/lib/scripts/main.js"></script>
     <script src="/lib/scripts/app/_main.js"></script>
+    <script src="/lib/scripts/app/snackbar.js"></script>
     <script src="/lib/scripts/mobile.js"></script>
 
     <!--  Include Page JS Dynamically  -->

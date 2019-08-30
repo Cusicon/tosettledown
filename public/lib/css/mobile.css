@@ -111,8 +111,8 @@
 
     .profileMain .profileHeader footer ul li a {
         position: absolute !important;
-        top: 10% !important;
-        left: 17% !important;
+        top: 7% !important;
+        left: 16% !important;
         display: block !important;
         font-size: 22.5px !important;
         min-width: 45px !important;
@@ -122,7 +122,7 @@
     }
 
     .profileMain .profileFooter {
-        margin-top: 120px !important;
+        margin-top: 140px !important;
     }
 
     .onMobile .mobileNavigator {
