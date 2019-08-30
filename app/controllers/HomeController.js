@@ -85,7 +85,7 @@ module["exports"] = class HomeController{
                     return match;
                 })
 
-                res.render('./app/menu/matched', { title: "Likes" , matches:matches });
+                res.render('./app/menu/matched', { title: "Matched" , matches:matches });
             });
         });
     }
