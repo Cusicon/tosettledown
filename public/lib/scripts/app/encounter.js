@@ -284,7 +284,7 @@ function scrollImg(type) {
         if(currentPhoto !== totalPhoto)
         {
             let nextPosition = currentPhoto + 1;
-            renderBox.animate({scrollLeft: (imgSize * nextPosition) - imgSize }, 800);
+            renderBox.animate({scrollLeft: (imgSize * nextPosition) - imgSize }, 300);
             currentPhotoElement.text(nextPosition)
         }
 
@@ -292,7 +292,7 @@ function scrollImg(type) {
         if(currentPhoto > 1)
         {
             let prevPosition = currentPhoto - 1;
-            renderBox.animate({scrollLeft: (imgSize * prevPosition) - imgSize }, 800);
+            renderBox.animate({scrollLeft: (imgSize * prevPosition) - imgSize }, 300);
             currentPhotoElement.text(prevPosition)
         }
     }
