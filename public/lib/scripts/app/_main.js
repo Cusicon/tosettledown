@@ -33,10 +33,10 @@ function onclickWindow(clickedBtn, containerClass) {
         // Close the dropdown menu if the user clicks outside of it
         if (e.target != clickedBtn) {
 
-            var dropdowns = document.getElementsByClassName(containerClass);
-            var i;
+            let dropdowns = document.getElementsByClassName(containerClass);
+            let i;
             for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
+                let openDropdown = dropdowns[i];
                 if (openDropdown.classList.contains('show')) {
                     openDropdown.classList.remove('show');
                 }
@@ -56,15 +56,15 @@ function showDropdown() {
     });
 
     if (document.getElementById("dropBtn") != null) {
-        var dropBtn = document.getElementById("dropBtn").children.item(0);
-        var dropdownContent = document.getElementById("dropdownContent");
+        let dropBtn = document.getElementById("dropBtn").children.item(0);
+        let dropdownContent = document.getElementById("dropdownContent");
     }
 
     function dropdownFunction() {
         dropdownContent.classList.toggle("show");
         // Close any popUp, by hitting 'Esc' button
         $('body').keyup((e) => {
-            if (e.keyCode == 27) { // Escape key
+            if (e.keyCode === 27) { // Escape key
                 dropdownContent.classList.remove("show");
             }
         });
@@ -79,46 +79,49 @@ showDropdown();
 (function requestWebDesktopNotificationPermission() {
     if (window.Notification) {
         Notification.requestPermission().then(function (status) {
-            if (status == "denied") {
-                alert(
-                    '/lib/img/logo/favicon.ico',
-                    'Turn on Notifications',
-                    'You will be able to receive incoming chats and so on...',
-                    ["Close", "Turn on"],
-                    () => {
-                        Notification.requestPermission().then((__status_) => {
-                            var _status_ = Notification.permission = 'granted';
-                            __status_ = _status_;
+            if (status === "denied") {
 
-                        });
-                    }
-                );
+                //-- snackbar here
+                console.log('Notification Off' );
+
+                // alert(
+                //     '/lib/img/logo/favicon.ico',
+                //     'Turn on Notifications',
+                //     'You will be able to receive incoming chats and so on...',
+                //     ["Close", "Turn on"],
+                //     () => {
+                //         Notification.requestPermission().then((__status_) => {
+                //             let _status_ = Notification.permission = 'granted';
+                //             __status_ = _status_;
+                //
+                //         });
+                //     }
+                // );
+
             }
         });
     } else {
-        alert('/lib/img/logo/favicon.ico', 'Turn on Notifications', 'Sorry, your browser doesn\'t support notifications.');
+        //-- snackbar here
+        console.log('Browser Doesn\'t support notification' );
     }
-})
+})();
 
 $(document).on('ready', () => {
-    var page_name = $('.page-identifier').data('page-name');
+    let page_name = $('.page-identifier').data('page-name');
     if (page_name !== 'chat') {
         /*
          * listen for message on your own channel, will appear in all pages except chat Page
          */
         __socket.on(`${__user} message`, function (msg) {
-            var options = {
+            let options = {
                 body: msg.message, // body part of the notification
-                dir: 'ltr', // use for derection of message
+                dir: 'ltr', // use for direction of message
                 icon: '/lib/img/logo/favicon.ico' // use for show image
-
             };
-            var audio = new Audio('/lib/media/notify.mp3');
+            let audio = new Audio('/lib/media/notify.mp3');
             audio.play().then(() => {
                 new Notification(msg.from, options);
             });
         });
-
-        // console.log(Math.round(new Date().getTime() / 1000));
     }
 });
