@@ -37,6 +37,17 @@
     }
 
     function onArrowClick() { // When user click on the arrow button this function fires
+        var renderUserPhotos = document.querySelector(".renderUserPhotos")
+        var nextButton = $(".navMiddle #next");
+        var previousButton = $(".navMiddle #previous");
+        nextButton.on("click", (e) => {
+            var imageWidth = $(".renderUserPhotos .userDisplayedPhotoCon img").width();
+            var renderUserPhotosWidth = renderUserPhotos.scrollWidth
+            var result = imageWidth + imageWidth;
+            renderUserPhotosWidth = result;
+        });
+
+
 
     }
     onArrowClick();
@@ -75,9 +86,9 @@ $('.encounter-page-send-chat').submit(function (e) {
     e.preventDefault();
     let user = $("#username").text();
 
-    if(user.slice(1) === 'N/A'){
+    if (user.slice(1) === 'N/A') {
         return false;
-    }else {
+    } else {
         let message_holder = $('.encounter-page-send-message');
         let messageTxt = message_holder.val();
         // noinspection JSUnusedLocalSymbols
@@ -126,9 +137,9 @@ function getAUserAndPhotos() {
 }
 
 function addToFavourite(username) {
-    if(username === 'N/A') {
+    if (username === 'N/A') {
         return false;
-    }else {
+    } else {
         $.ajax({
             url: '/app/encounters/addFavourite',
             data: {
@@ -143,9 +154,9 @@ function addToFavourite(username) {
 }
 
 function sendLikeOrSkip(username, type) {
-    if(username === 'N/A') {
+    if (username === 'N/A') {
         return false;
-    }else {
+    } else {
         $.ajax({
             url: '/app/encounters/addLikeAndOneUser',
             data: {
@@ -170,7 +181,7 @@ function populateEncounter(user, photos) {
 
 function renderUserPhotos(photos, placeToInsertImage) {
 
-    if(photos && photos.length > 0) {
+    if (photos && photos.length > 0) {
         $(placeToInsertImage).html("")
         $("#totalPhotos").html(photos.length); // Total photos count
         $("#currentPhoto").html("1"); // Current photos count
@@ -186,7 +197,7 @@ function renderUserPhotos(photos, placeToInsertImage) {
                 .prependTo(placeToInsertImage)
                 .wrap(`<div class="userDisplayedPhotoCon" id="${index}"></div>`);
         })
-    }else {
+    } else {
         $("#totalPhotos").html('0'); // Total photos count
         $("#currentPhoto").html("0"); // Current photos count
 
@@ -197,31 +208,31 @@ function renderUserPhotos(photos, placeToInsertImage) {
 }
 
 function renderUserDetails(user) {
-        // Assign values to the letiables
-        let fullname = (user) ? user.name : 'N/A';
-        let username = (user) ? user.username : 'N/A';
-        let age = (user && user.dob) ? calculateAge(user.dob) : 'N/A';
+    // Assign values to the letiables
+    let fullname = (user) ? user.name : 'N/A';
+    let username = (user) ? user.username : 'N/A';
+    let age = (user && user.dob) ? calculateAge(user.dob) : 'N/A';
 
-        let bio = (user) ? user.personalInfo.bio : 'N/A';
-        let height = (user) ? user.personalInfo.height : 'N/A';
-        let language = (user) ? user.personalInfo.language : 'N/A';
-        let _location = (user) ? user.personalInfo.location : 'N/A';
-        let href = (user) ? `/app/profile/${username}` : '#'
-        // let userdirectorieslocation = user.userdirectorieslocation;
+    let bio = (user) ? user.personalInfo.bio : 'N/A';
+    let height = (user) ? user.personalInfo.height : 'N/A';
+    let language = (user) ? user.personalInfo.language : 'N/A';
+    let _location = (user) ? user.personalInfo.location : 'N/A';
+    let href = (user) ? `/app/profile/${username}` : '#'
+    // let userdirectorieslocation = user.userdirectorieslocation;
 
-        // Assign letiables to html tags
-        $("span#fullname").text(`${fullname}`);
-        $("#age").text(`${age}`);
-        $("#username").text(`@${username}`).attr({
-            "title": `Visit ${fullname}'s profile`,
-            "href": `${href}`
-        });
-        $("#bio").html(`${bio}`);
-        $("#height").html(`${height}`);
-        $("#language").html(`${language}`);
-        $("#location").html(`${_location}`);
+    // Assign letiables to html tags
+    $("span#fullname").text(`${fullname}`);
+    $("#age").text(`${age}`);
+    $("#username").text(`@${username}`).attr({
+        "title": `Visit ${fullname}'s profile`,
+        "href": `${href}`
+    });
+    $("#bio").html(`${bio}`);
+    $("#height").html(`${height}`);
+    $("#language").html(`${language}`);
+    $("#location").html(`${_location}`);
 }
 
 function calculateAge(dob) {
-   return Math.abs(moment(dob).diff(moment(), 'years'));
+    return Math.abs(moment(dob).diff(moment(), 'years'));
 }

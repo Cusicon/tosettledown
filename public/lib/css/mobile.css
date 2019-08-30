@@ -110,12 +110,19 @@
     }
 
     .profileMain .profileHeader footer ul li a {
+        position: absolute !important;
+        top: 10% !important;
+        left: 17% !important;
         display: block !important;
         font-size: 22.5px !important;
         min-width: 45px !important;
         min-height: 45px !important;
         padding-top: 3px !important;
         line-height: unset !important;
+    }
+
+    .profileMain .profileFooter {
+        margin-top: 120px !important;
     }
 
     .onMobile .mobileNavigator {
@@ -156,7 +163,7 @@
 
     .profileHeader footer div.left {
         padding-top: 5px !important;
-        padding-bottom: 45px !important;
+        padding-bottom: 15px !important;
         margin-left: -0px !important;
     }
 
