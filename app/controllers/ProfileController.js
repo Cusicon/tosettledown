@@ -97,16 +97,12 @@ module["exports"] = class ProfileController {
 
         }).array("addPhotos", 5);
 
-
-
         upload(req, res, (err) => {
-
             if (err) {
                 req.flash("error", "Error uploading photo, Try again.");
                 res.redirect(`/app/profile/${req.user.username}`)
             } else {
                 req.files.forEach((file) => {
-
                     let photo = new Photo({
                         user_id: req.user.id,
                         username: req.user.username,
@@ -118,14 +114,13 @@ module["exports"] = class ProfileController {
                         is_visible: true,
                     });
 
-                    photo.save(photo, (err, photo) => {
+                    photo.save(photo, (err) => {
                         if (err) throw err;
                         else {
                             userLog(`"${req.user.username}" just uploaded some photos.`);
                             console.log(`@${req.user.username} just uploaded some photos!, @ ${new Date().toTimeString()}`);
                         }
                     });
-
                 })
                 res.redirect(`/app/profile/${req.user.username}`);
             }

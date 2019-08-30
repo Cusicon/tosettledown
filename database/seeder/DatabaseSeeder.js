@@ -5,7 +5,7 @@ new Bootstrap(`${__dirname}/../../`).initConsole();
 class DatabaseSeeder{
 
     run() {
-        this.call('UserSeeder', 100);
+        this.call('UserSeeder', 5);
 
     }
 

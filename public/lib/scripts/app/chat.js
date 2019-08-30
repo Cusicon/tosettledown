@@ -330,7 +330,7 @@ $(document).on('ready', () => {
         return false;
     });
 
-    $('#profile-link').on('click', function (e) {
+    $('#profile-link').on('click', function () {
         window.location.href = `/app/profile/${activeChat}`;
     })
 
@@ -388,16 +388,38 @@ $(document).on('ready', () => {
             markAllActiveMsgAsRead()
         }
         (function enterChatsWindow() {
-            var ChatWindow = $(".ChatWindow");
-            var ChatList = $(".ChatList");
-            if (ChatWindow.css("left") != "0px") {
+            let ChatWindow = $(".ChatWindow");
+            if (ChatWindow.css("left") !== "0px") {
                 ChatWindow.css({"left": "0px", "transition": "ease .5s"});
             }
         })();
     });
 
-    $('#searchUsers').on('change', function (e) {
+    $('#searchUsers').on('change', function () {
         populateChatUserList($(this).val())
+    })
+
+    $("#favourite-drpdown").on('click', function(){
+        $.ajax({
+            url: '/app/encounters/addFavourite',
+            data: {
+                username: activeChat,
+            },
+            method: "GET",
+            success: (response) => {
+                if(response.data.status === 'success') {
+                    alert(
+                        '/lib/img/logo/favicon.ico',
+                        response.data.message,
+                    )
+                }else {
+                    alert(
+                        '/lib/img/logo/favicon.ico',
+                        response.data.message,
+                    )
+                }
+            },
+        });
     })
 
     //======================= ! EVENT LISTENERS ==================

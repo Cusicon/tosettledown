@@ -1,17 +1,17 @@
 $(document).ready(() => {
-    var message = $("div#messages ul");
-    // var image = $("div#messages ul").attr('data-src');
-    var text = $("div#messages ul li").text();
-    var mode = $("div#messages ul").attr("class");
+    let message = $("div#messages ul");
+    // let image = $("div#messages ul").attr('data-src');
+    let text = $("div#messages ul li").text();
+    let mode = $("div#messages ul").attr("class");
 
-    if (text != "") {
+    if (text !== "") {
         alert(mode, mode, text);
     }
     message.html("");
 });
 
 function alert(icon, mode, msg, buttons = [], buttonAction) {
-    var upperMode = mode.replace(mode.charAt(0), mode.charAt(0).toUpperCase());
+    let upperMode = mode.replace(mode.charAt(0), mode.charAt(0).toUpperCase());
     swal({
         title: upperMode,
         text: msg,
@@ -22,7 +22,8 @@ function alert(icon, mode, msg, buttons = [], buttonAction) {
         buttons: buttons.length > 0 ? buttons : null // If buttons length is more than 0, then execute the function 
     }).then(actions => {
         if (actions) {
-            buttonAction(); // Action for the first button from the right.
+            if(buttonAction && typeof(buttonAction) === 'function')
+                buttonAction(); // Action for the first button from the right.
         } else {
             swal.close();
         }

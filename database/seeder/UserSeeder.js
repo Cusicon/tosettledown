@@ -8,7 +8,7 @@ module['exports'] = function (number_of_loop = 10) {
                 console.log(err);
             }
             else {
-                console.log(`A new account was created, "@${user.username}"`);
+                console.log(`A new account was created, "${user.username}"`);
             }
         });
 
