@@ -1,5 +1,5 @@
 // show quickMessagePopUp
-function quickMessagePopUp() {
+(function quickMessagePopUp() {
     let sendAMessageBtn = $("#sendAMessage");
     sendAMessageBtn.click(() => {
         $(".overlayNav").css({
@@ -11,7 +11,8 @@ function quickMessagePopUp() {
     });
 
     // Close on Click 'x' button
-    $('#closeQuickMessagePopUp').click(() => {
+    $('#closeQuickMessagePopUp i').click(() => {
+        console.log('yesyse')
         $(".quickMessagePopUp textarea").val("");
         $(".overlayNav").css({
             "background-color": "transparent"
@@ -20,11 +21,10 @@ function quickMessagePopUp() {
             "bottom": "-50%"
         }).hide(500);
     });
-}
-quickMessagePopUp();
+})();
 
 // navigate Images in Encounters
-function navigateImages() {
+(function navigateImages() {
 
     // Next photo function
     function nextPhoto(currentTarget) {
@@ -55,8 +55,7 @@ function navigateImages() {
         });
     }
     onKeyboardArrowHit();
-}
-navigateImages();
+})();
 
 function activeProfileMenu() {
     $(".profileFooter header a.photos").click((e) => {
@@ -75,23 +74,26 @@ activeProfileMenu();
 $('.encounter-page-send-chat').submit(function (e) {
     e.preventDefault();
     let user = $("#username").text();
-    let message_holder = $('.encounter-page-send-message');
-    let messageTxt = message_holder.val();
-    // noinspection JSUnusedLocalSymbols
-    let message = {
-        from: __user,
-        to: user,
-        type: "chat-message",
-        format: "text",
-        message: messageTxt,
-        sent_at: Date.now(),
-    };
 
-    //-- emit --send message
-    __socket.emit('chat message', message);
-
-    message_holder.val('');
-    return false;
+    if(user.slice(1) === 'N/A'){
+        return false;
+    }else {
+        let message_holder = $('.encounter-page-send-message');
+        let messageTxt = message_holder.val();
+        // noinspection JSUnusedLocalSymbols
+        let message = {
+            from: __user,
+            to: user,
+            type: "chat-message",
+            format: "text",
+            message: messageTxt,
+            sent_at: Date.now(),
+        };
+        //-- emit --send message
+        __socket.emit('chat message', message);
+        message_holder.val('');
+        return false;
+    }
 });
 
 $(document).ready(function (e) {
@@ -124,30 +126,41 @@ function getAUserAndPhotos() {
 }
 
 function addToFavourite(username) {
-    $.ajax({
-        url: '/app/encounters/addFavourite',
-        data: {
-            username: username,
-        },
-        method: "GET",
-        success: (response) => {
-            console.log(response)
-        },
-    });
+    if(username === 'N/A') {
+        return false;
+    }else {
+        $.ajax({
+            url: '/app/encounters/addFavourite',
+            data: {
+                username: username,
+            },
+            method: "GET",
+            success: (response) => {
+                console.log(response)
+            },
+        });
+    }
 }
 
 function sendLikeOrSkip(username, type) {
-    $.ajax({
-        url: '/app/encounters/addLikeAndOneUser',
-        data: {
-            username: username,
-            type: type,
-        },
-        method: "GET",
-        success: (usersObj) => {
-            populateEncounter(usersObj.data.user, usersObj.data.photos)
-        },
-    });
+    if(username === 'N/A') {
+        return false;
+    }else {
+        $.ajax({
+            url: '/app/encounters/addLikeAndOneUser',
+            data: {
+                username: username,
+                type: type,
+            },
+            method: "GET",
+            success: (usersObj) => {
+                populateEncounter(usersObj.data.user, usersObj.data.photos)
+            },
+        });
+    }
+
+
+
 }
 
 function populateEncounter(user, photos) {
@@ -155,35 +168,45 @@ function populateEncounter(user, photos) {
     renderUserPhotos(photos, "div.renderUserPhotos");
 }
 
-function renderUserPhotos(photosArr, placeToInsertImage) {
-    // $(placeToInsertImage).html("")
-    let totalPhotos = $("#totalPhotos").html(photosArr.length); // Total photos count
-    let currentPhoto = $("#currentPhoto").html("1"); // Current photos count
-    photosArr = photosArr.reverse();
-    for (let i = 0; i < photosArr.length; i++) {
-        const photo = photosArr[i];
-        $($.parseHTML("<img>"))
-            .attr({
-                src: photo.location,
-                style: "margin: auto 0%",
-                class: "userDisplayedPhoto",
-                alt: "Photo"
-            })
-            .prependTo(placeToInsertImage)
-            .wrap(`<div class="userDisplayedPhotoCon" id="${i}"></div>`);
+function renderUserPhotos(photos, placeToInsertImage) {
+
+    if(photos && photos.length > 0) {
+        $(placeToInsertImage).html("")
+        $("#totalPhotos").html(photos.length); // Total photos count
+        $("#currentPhoto").html("1"); // Current photos count
+
+        photos.reverse().forEach((photo, index) => {
+            $($.parseHTML("<img>"))
+                .attr({
+                    src: photo.location,
+                    style: "margin: auto 0%",
+                    class: "userDisplayedPhoto",
+                    alt: "Photo"
+                })
+                .prependTo(placeToInsertImage)
+                .wrap(`<div class="userDisplayedPhotoCon" id="${index}"></div>`);
+        })
+    }else {
+        $("#totalPhotos").html('0'); // Total photos count
+        $("#currentPhoto").html("0"); // Current photos count
+
+        $(placeToInsertImage).html(`<div class="userDisplayedPhotoCon" id="0">
+            <img src="/lib/img/logo/favicon.ico" style="margin: auto 0%; visibility: hidden !important;" class="userDisplayedPhoto" alt="Photo">
+            </div>`)
     }
 }
 
 function renderUserDetails(user) {
         // Assign values to the letiables
-        let fullname = user.name;
-        let username = user.username;
-        let age = calculateAge(user.dob);
+        let fullname = (user) ? user.name : 'N/A';
+        let username = (user) ? user.username : 'N/A';
+        let age = (user && user.dob) ? calculateAge(user.dob) : 'N/A';
 
-        let bio = user.personalInfo.bio;
-        let height = user.personalInfo.height;
-        let language = user.personalInfo.language;
-        let _location = user.personalInfo.location;
+        let bio = (user) ? user.personalInfo.bio : 'N/A';
+        let height = (user) ? user.personalInfo.height : 'N/A';
+        let language = (user) ? user.personalInfo.language : 'N/A';
+        let _location = (user) ? user.personalInfo.location : 'N/A';
+        let href = (user) ? `/app/profile/${username}` : '#'
         // let userdirectorieslocation = user.userdirectorieslocation;
 
         // Assign letiables to html tags
@@ -191,7 +214,7 @@ function renderUserDetails(user) {
         $("#age").text(`${age}`);
         $("#username").text(`@${username}`).attr({
             "title": `Visit ${fullname}'s profile`,
-            "href": `/app/profile/${username}`
+            "href": `${href}`
         });
         $("#bio").html(`${bio}`);
         $("#height").html(`${height}`);
