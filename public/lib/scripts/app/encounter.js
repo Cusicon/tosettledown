@@ -264,6 +264,15 @@ $(function() {
     });
 });
 
+$(document).on('keyup', function (e) {
+    let key = e['keyCode'];
+
+    if(key === 39 || key === 37){
+        scrollImg((key === 39) ? 'next' : 'previous');
+    }
+
+})
+
 $(window).resize(function(){
     let currentPhotoElement = $('#currentPhoto');
     let currentPhoto = parseInt(currentPhotoElement.text());
