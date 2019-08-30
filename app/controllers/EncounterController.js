@@ -38,7 +38,48 @@ module["exports"] = class EncounterController {
 
     }
 
-    static addToFavoriteAndGetAnotherUser(req, res){
+    static addToLike(req, res){
+        Like.findOne({liker:req.user.username, liked_user:req.query.username}).then(like => {
+            if(like) {
+                if(!like.isLiked && req.query.type === 'like'){
+                    like.isLiked = true;
+                    like.liked_at = new Date().toDateString();
+                    like.save(() => {
+                        res.send({
+                            data: {
+                                status: "success",
+                                message: "Added Successfully"
+                            }
+                        })
+                    })
+                } else {
+                    res.send({
+                        data: {
+                            status: "success",
+                            message: "Already Added"
+                        }
+                    })
+                }
+            }else {
+                like = new Like({
+                    liker: req.user.username,
+                    liked_user: req.query.username,
+                    isLiked: (req.query.type === 'like'),
+                })
+                like.save(()=> {
+                    res.send({
+                        data: {
+                            status: "success",
+                            message: "Added Successfully"
+                        }
+                    })
+                })
+            }
+        })
+
+    }
+
+    static addToFavorite(req, res){
 
         Favourite.findOne({user:req.user.username, favourite_user:req.query.username}).then(favourite => {
             if(favourite) {

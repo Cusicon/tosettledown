@@ -3,8 +3,9 @@ let router = require('express')();
 //-- encounters Router
 router.get("/encounters", (require('@app/controllers/EncounterController')).index);
 router.get("/encounters/getUser", (require('@app/controllers/EncounterController')).getUserAndPhoto);
-router.get("/encounters/addLike", (require('@app/controllers/EncounterController')).addToLikeAndGetAnotherUser);
-router.get("/encounters/addFavourite", (require('@app/controllers/EncounterController')).addToFavoriteAndGetAnotherUser);
+router.get("/encounters/addLikeAndOneUser", (require('@app/controllers/EncounterController')).addToLikeAndGetAnotherUser);
+router.get("/encounters/addLike", (require('@app/controllers/EncounterController')).addToLike);
+router.get("/encounters/addFavourite", (require('@app/controllers/EncounterController')).addToFavorite);
 
 //-- profile Router
 router.get("/profile/:username", (require('@app/controllers/ProfileController')).show);

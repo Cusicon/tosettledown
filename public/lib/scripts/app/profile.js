@@ -77,3 +77,54 @@ function cropImage() {
         },
     });
 }
+
+$(".profileHeadWrapperBtn #like").on('click', function(e){
+    let value = $(this).data('username');
+
+    $.ajax({
+        url: '/app/encounters/addLike',
+        data: {
+            username: value,
+            type: 'like',
+        },
+        method: "GET",
+        success: (response) => {
+            if(response.data.status === 'success') {
+                alert(
+                    '/lib/img/logo/favicon.ico',
+                    response.data.message,
+                )
+            }else {
+                alert(
+                    '/lib/img/logo/favicon.ico',
+                    response.data.message,
+                )
+            }
+        },
+    });
+})
+
+$(".profileHeadWrapperBtn #favourite").on('click', function(e){
+    let value = $(this).data('username');
+
+    $.ajax({
+        url: '/app/encounters/addFavourite',
+        data: {
+            username: value,
+        },
+        method: "GET",
+        success: (response) => {
+            if(response.data.status === 'success') {
+                alert(
+                    '/lib/img/logo/favicon.ico',
+                    response.data.message,
+                )
+            }else {
+                alert(
+                    '/lib/img/logo/favicon.ico',
+                    response.data.message,
+                )
+            }
+        },
+    });
+})

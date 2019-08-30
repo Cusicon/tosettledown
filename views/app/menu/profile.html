@@ -332,15 +332,15 @@
                                 <!-- Like and Dislike -->
                                 <% if (user.username != profile_user.username) { %>
                                 <li style="display: inline-block;">
-                                    <a href="javascript: void(0);" id="like" title="Like"
+                                    <a href="javascript: void(0);" id="like" title="Like" data-username="<%=profile_user.username%>"
                                         style="border: 1px solid #ececec; color: #ff6878 !important;">
                                         <i class="typcn typcn-heart-full-outline"></i>
                                     </a>
                                 </li>
                                 <li style="display: inline-block;">
-                                    <a href="javascript: void(0);" id="skip" title="Skip"
+                                    <a href="javascript: void(0);" id="favourite" title="Favourite" data-username="<%=profile_user.username%>"
                                         style="border: 1px solid #ececec; color: #303030 !important;">
-                                        <i class="typcn typcn-times"></i>
+                                        <i class="typcn typcn-star"></i>
                                     </a>
                                 </li>
                                 <% } %>

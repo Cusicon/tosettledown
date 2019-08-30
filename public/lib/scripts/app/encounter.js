@@ -138,7 +138,7 @@ function addToFavourite(username) {
 
 function sendLikeOrSkip(username, type) {
     $.ajax({
-        url: '/app/encounters/addLike',
+        url: '/app/encounters/addLikeAndOneUser',
         data: {
             username: username,
             type: type,
