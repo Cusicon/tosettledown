@@ -407,17 +407,7 @@ $(document).on('ready', () => {
             },
             method: "GET",
             success: (response) => {
-                if(response.data.status === 'success') {
-                    alert(
-                        '/lib/img/logo/favicon.ico',
-                        response.data.message,
-                    )
-                }else {
-                    alert(
-                        '/lib/img/logo/favicon.ico',
-                        response.data.message,
-                    )
-                }
+                mySnackbar(response.data.message)
             },
         });
     })

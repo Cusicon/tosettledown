@@ -58,6 +58,9 @@ function showDropdown() {
     if (document.getElementById("dropBtn") != null) {
         let dropBtn = document.getElementById("dropBtn").children.item(0);
         let dropdownContent = document.getElementById("dropdownContent");
+
+        // Close the dropdown menu if the user clicks outside of it
+        onclickWindow(dropBtn, "dropdownContent");
     }
 
     function dropdownFunction() {
@@ -69,9 +72,6 @@ function showDropdown() {
             }
         });
     }
-
-    // Close the dropdown menu if the user clicks outside of it
-    onclickWindow(dropBtn, "dropdownContent");
 }
 showDropdown();
 
@@ -80,29 +80,12 @@ showDropdown();
     if (window.Notification) {
         Notification.requestPermission().then(function (status) {
             if (status === "denied") {
-
-                //-- snackbar here
-                console.log('Notification Off' );
-
-                // alert(
-                //     '/lib/img/logo/favicon.ico',
-                //     'Turn on Notifications',
-                //     'You will be able to receive incoming chats and so on...',
-                //     ["Close", "Turn on"],
-                //     () => {
-                //         Notification.requestPermission().then((__status_) => {
-                //             let _status_ = Notification.permission = 'granted';
-                //             __status_ = _status_;
-                //
-                //         });
-                //     }
-                // );
-
+                mySnackbar('Notification Off')
             }
         });
     } else {
         //-- snackbar here
-        console.log('Browser Doesn\'t support notification' );
+        mySnackbar('Browser Doesn\'t support notification' )
     }
 })();
 

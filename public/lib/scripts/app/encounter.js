@@ -90,19 +90,31 @@ $('.encounter-page-send-chat').submit(function (e) {
         return false;
     } else {
         let message_holder = $('.encounter-page-send-message');
-        let messageTxt = message_holder.val();
-        // noinspection JSUnusedLocalSymbols
-        let message = {
-            from: __user,
-            to: user,
-            type: "chat-message",
-            format: "text",
-            message: messageTxt,
-            sent_at: Date.now(),
-        };
-        //-- emit --send message
-        __socket.emit('chat message', message);
-        message_holder.val('');
+        let messageTxt = message_holder.val().trim();
+        if(messageTxt.length > 0) {
+            // noinspection JSUnusedLocalSymbols
+            let message = {
+                from: __user,
+                to: user,
+                type: "chat-message",
+                format: "text",
+                message: messageTxt,
+                sent_at: Date.now(),
+            };
+            //-- emit --send message
+            __socket.emit('chat message', message);
+
+            /*
+             * listen for Acknowledgment notification from the serve when you send a message,
+             */
+            __socket.on(`${__user} acknowledge`, function (msg) {
+                mySnackbar('Message Sent');
+                message_holder.val('');
+            });
+        }else {
+            mySnackbar('Message Cannot Be Empty');
+            message_holder.val('');
+        }
         return false;
     }
 });
@@ -147,7 +159,7 @@ function addToFavourite(username) {
             },
             method: "GET",
             success: (response) => {
-                console.log(response)
+                mySnackbar(response.data.message)
             },
         });
     }

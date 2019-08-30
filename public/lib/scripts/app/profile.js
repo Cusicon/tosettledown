@@ -89,17 +89,7 @@ $("#like").on('click', function(e){
         },
         method: "GET",
         success: (response) => {
-            if(response.data.status === 'success') {
-                alert(
-                    '/lib/img/logo/favicon.ico',
-                    response.data.message,
-                )
-            }else {
-                alert(
-                    '/lib/img/logo/favicon.ico',
-                    response.data.message,
-                )
-            }
+            mySnackbar(response.data.message)
         },
     });
 })
@@ -114,17 +104,7 @@ $("#favourite, #favourite-drpdown").on('click', function(e){
         },
         method: "GET",
         success: (response) => {
-            if(response.data.status === 'success') {
-                alert(
-                    '/lib/img/logo/favicon.ico',
-                    response.data.message,
-                )
-            }else {
-                alert(
-                    '/lib/img/logo/favicon.ico',
-                    response.data.message,
-                )
-            }
+            mySnackbar(response.data.message)
         },
     });
 })
