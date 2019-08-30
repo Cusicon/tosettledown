@@ -42,8 +42,6 @@ module["exports"] = class EncounterController {
     static addToFavoriteAndGetAnotherUser(req, res){
 
         Favourite.findOne({user:req.user.username, favourite_user:req.query.username}).then(favourite => {
-            console.log(favourite);
-            console.log({user:req.user.username, favourite_user:req.query.username})
             if(favourite) {
                 res.send({
                     data: {
@@ -52,7 +50,7 @@ module["exports"] = class EncounterController {
                     }
                 })
             }else {
-                favourite = new Like({
+                favourite = new Favourite({
                     user: req.user.username,
                     favourite_user: req.query.username,
                 })
