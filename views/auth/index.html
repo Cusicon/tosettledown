@@ -32,7 +32,7 @@
                 </p>
                 <br>
                 <div class="btnCon waves-effect waves-light">
-                    <a href="#loginForm" role="button" class="btn waves-effect waves-light" id="loginBtn">Sign
+                    <a href="#loginForm" role="button" class="btn waves-effect waves-light" style="width: 100px;" id="loginBtn">Sign
                         in</a>
                 </div>
             </div>
@@ -69,17 +69,14 @@
                         <input type="password" name="password" id="reg_password" class="form-control"
                             aria-describedby="passwordHelp" placeholder="Create a password" minlength="8" maxlength="30"
                             required>
-                        <small id="passwordHelp" class="form-text text-muted">Password must be up to 8
-                            characters.</small>
                     </div>
                     <!-- Gender & DOB -->
-                    <div class="form-row align-items-center">
+                    <div class="form-row">
                         <!-- DOB -->
                         <div class="col-7 col-md-7 col-sm-6 col-auto mb-3">
-                            <input type="date" name="dob" id="dob" max="<%= new Date().getFullYear() - 18 %>-01-31"
+                            <input type="date" name="dob" id="dob" placeholder="dd/mm/yyyy" max="<%= new Date().getFullYear() - 18 %>-01-31"
                                 min="<%= new Date().getFullYear() - 100 %>-12-31" class="form-control"
                                 aria-describedby="dobHelp" required>
-                            <small id="dobHelp" class="form-text text-muted">Age: should be 18+ only.</small>
                         </div>
                         <!-- Gender -->
                         <div class="col-5 col-md-5 col-sm-6 col-auto mb-3">
@@ -172,7 +169,7 @@
             <footer class="footer text-muted float-right" style="padding: 10px; padding-right: 40px;">
                 <br>
                 <footer class="footer text-muted float-right" style="border: none; left: unset;">
-                    <small>All right reserved, &copy; <%= new Date().getFullYear() %> <b class="text-dark">Tosettledown
+                    <small>All right reserved &copy; <%= new Date().getFullYear() %> <b class="text-dark">Tosettledown
                             (TSD), Inc.</b></small>
                 </footer>
                 <br><br>
