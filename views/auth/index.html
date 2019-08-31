@@ -32,8 +32,9 @@
                 </p>
                 <br>
                 <div class="btnCon waves-effect waves-light">
-                    <a href="#loginForm" role="button" class="btn waves-effect waves-light" style="width: 100px;" id="loginBtn">Sign
-                        in</a>
+                    <a href="#loginForm" role="button" class="btn waves-effect waves-light" style="width: 100px;"
+                        id="loginBtn">Sign
+                        In</a>
                 </div>
             </div>
         </div>
@@ -49,42 +50,42 @@
                 <div class="details">
                     <!-- Full Name -->
                     <div class="form-group mb-3">
-                        <input type="text" name="fullname" id="fullname" class="form-control"
-                            placeholder="Enter full name" maxlength="50" required>
+                        <input type="text" name="fullname" id="fullname" class="form-control" placeholder="fullname"
+                            maxlength="50" required>
                     </div>
                     <div class="form-row align-items-center">
                         <!-- Username -->
                         <div class="col-6 col-md-6 col-sm-6 col-auto mb-3">
                             <input type="text" name="username" id="reg_username" class="form-control"
-                                placeholder="Pick a username" required>
+                                placeholder="username" required>
                         </div>
                         <!-- Email -->
                         <div class="col-6 col-md-6 col-sm-6 col-auto mb-3">
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Enter email"
+                            <input type="email" name="email" id="email" class="form-control" placeholder="email"
                                 required>
                         </div>
                     </div>
                     <!-- Password -->
                     <div class="form-group mb-4">
                         <input type="password" name="password" id="reg_password" class="form-control"
-                            aria-describedby="passwordHelp" placeholder="Create a password" minlength="8" maxlength="30"
+                            aria-describedby="passwordHelp" placeholder="password" minlength="8" maxlength="30"
                             required>
                     </div>
                     <!-- Gender & DOB -->
                     <div class="form-row">
                         <!-- DOB -->
                         <div class="col-7 col-md-7 col-sm-6 col-auto mb-3">
-                            <input type="date" name="dob" id="dob" placeholder="dd/mm/yyyy" max="<%= new Date().getFullYear() - 18 %>-01-31"
-                                min="<%= new Date().getFullYear() - 100 %>-12-31" class="form-control"
-                                aria-describedby="dobHelp" required>
+                            <input type="date" name="dob" id="dob" placeholder="dd/mm/yyyy"
+                                max="<%= new Date().getFullYear() - 18 %>-01-31"
+                                min="<%= new Date().getFullYear() - 100 %>-12-31" class="form-control" required>
                         </div>
                         <!-- Gender -->
                         <div class="col-5 col-md-5 col-sm-6 col-auto mb-3">
                             <select name="gender" id="gender" class="form-control"
                                 style="border-radius: 15px !important;" required>
-                                <option label="Gender">Gender</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
+                                <option label="Gender">gender</option>
+                                <option value="male">male</option>
+                                <option value="female">female</option>
                             </select>
                             <br>
                         </div>
