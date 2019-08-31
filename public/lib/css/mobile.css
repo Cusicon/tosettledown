@@ -4,6 +4,10 @@
         max-width: 100% !important;
     }
 
+    .btnCon #loginBtn {
+        display: block !important;
+    }
+
     iframe#adsCon {
         display: none;
     }

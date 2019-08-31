@@ -221,7 +221,7 @@ function renderUserPhotos(photos, placeToInsertImage) {
 
 function renderUserDetails(user) {
     // Assign values to the letiables
-    let fullname = (user) ? user.name : 'N/A';
+    let fullname = (user) ? user.name.split(" ")[0] : 'N/A';
     let username = (user) ? user.username : 'N/A';
     let age = (user && user.dob) ? calculateAge(user.dob) : 'N/A';
 
