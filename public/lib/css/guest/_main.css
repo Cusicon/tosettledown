@@ -97,16 +97,6 @@ section.Frame .infoCon div#jb p {
 
 }
 
-section.Frame .infoCon div#otherSignupMethod {
-  float: right;
-  margin-bottom: 10px;
-}
-
-section.Frame .infoCon div#otherSignupMethod a {
-  background-color: transparent;
-  padding: 10px 20px;
-}
-
 section.Frame div.detailsCon {
   position: relative;
   padding: 0px;
@@ -161,18 +151,6 @@ section.Frame div.detailsCon form#loginForm {
 
   section.Frame .infoCon div#jb h1 {
     font-size: 50px !important;
-  }
-
-  section.Frame .infoCon div#otherSignupMethod {
-    float: none;
-  }
-
-  section.Frame .infoCon div#otherSignupMethod i {
-    display: block;
-  }
-
-  section.Frame .infoCon div#otherSignupMethod a {
-    padding: 10px 20px !important;
   }
 
   section.Frame div.detailsCon form {
