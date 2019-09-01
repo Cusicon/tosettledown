@@ -17,9 +17,8 @@
     display: -webkit-box; /* Chrome Browser */
     display: -moz-box; /* Mozilla Firefox Browser */
     position: relative;
-    left: -11px;
     height: 100%;
-    width: 102%;
+    width: 100%;
     overflow: hidden;
     overflow-x: scroll;
 }
@@ -29,7 +28,6 @@
     left: 0px; /* Gives stack scroll animation */
     display: flex; /* Centralizes the image */
     width: 100%;
-    border-left: 10px solid #000;
     background-color: #000;
 }
 

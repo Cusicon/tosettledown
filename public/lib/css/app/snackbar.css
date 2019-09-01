@@ -47,7 +47,7 @@ However, delay the fade out process for 2.5 seconds */
 
     to {
         bottom: 60px;
-        opacity: 1;
+        opacity: .9;
     }
 }
 
@@ -59,14 +59,14 @@ However, delay the fade out process for 2.5 seconds */
 
     to {
         bottom: 60px;
-        opacity: 1;
+        opacity: .9;
     }
 }
 
 @-webkit-keyframes fadeout {
     from {
         bottom: 60px;
-        opacity: 1;
+        opacity: .9;
     }
 
     to {
@@ -78,7 +78,7 @@ However, delay the fade out process for 2.5 seconds */
 @keyframes fadeout {
     from {
         bottom: 60px;
-        opacity: 1;
+        opacity: .9;
     }
 
     to {

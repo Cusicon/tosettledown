@@ -293,6 +293,8 @@ a[role="button"]:active {
 body {
   background-color: #f6f6f6;
   transition: 0.2s linear !important;
+  overflow: hidden !important;
+  overflow-y: auto !important;
 }
 
 *:active,

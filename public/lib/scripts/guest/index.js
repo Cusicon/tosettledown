@@ -1,18 +1,19 @@
 // Toggle Sign In (Anonymous)
 function toggleSignIn() {
     let loginForm = $('#loginForm'),
-        loginBtn = $('#loginBtn');
+        loginBtn = $('#loginBtn'),
+        formLeft = Number(loginForm.css("left").split("px")[0]);
     loginBtn.click(() => {
-        console.log(loginForm.css("left") != "0px");
-        if (`${location.origin}${location.pathname}` == location.href) {
+        if ((`${location.origin}${location.pathname}` == location.href) ||
+            (`${location.origin}${location.pathname}#regForm` == location.href)) {
             loginBtn.text("Sign Up");
-            loginBtn.attr("href", "/#regForm");
+            loginBtn.attr("href", "/#loginForm");
             loginForm.css({
                 "left": "0%"
             });
         } else {
             loginBtn.text("Sign In");
-            loginBtn.attr("href", "/#loginForm");
+            loginBtn.attr("href", "/#regForm");
             loginForm.css({
                 "left": "-100%"
             });

@@ -53,8 +53,10 @@ body {
   margin: 0px;
   padding-top: 20px;
   padding-bottom: 20px;
-  /* background-image: repeating-linear-gradient(#006870a2, #ff6878); */
-  background-image: url('/store/users/5d63bc1852102f3b792bdf18/photos/photo_1566829628353.jpg')
+  background-image: repeating-linear-gradient(#006870a2, #ff6878);
+  background-image: url('/lib/img/bg.jpg');
+  overflow: hidden !important;
+  overflow-y: auto !important;
 }
 
 .infoCon header.header nav {
