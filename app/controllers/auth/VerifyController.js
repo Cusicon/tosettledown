@@ -6,7 +6,7 @@ module['exports'] = class VerifyController {
     static notice(req, res)
     {
         if(req.user && req.user.email_verified_at != null){
-            res.redirect('/');
+            res.redirect('/#regForm');
         }
         res.render('./auth/verify', { title: "Verification Mail" });
     }
@@ -32,7 +32,7 @@ module['exports'] = class VerifyController {
                     if (err)
                         res.redirect('/auth/0/verify');
                     else
-                        res.redirect('/')
+                        res.redirect('/#regForm')
                 });
             }
         })

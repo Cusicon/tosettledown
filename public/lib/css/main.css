@@ -153,12 +153,10 @@ h6 {
 }
 
 .badge {
-  padding: 5px 7px;
-  border: 1px solid #ff661b;
-  color: #ff661b;
-  background-color: transparent !important;
+  padding: 5px;
+  background-color: #ff6878 !important;
   border-radius: 10px !important;
-  font-weight: lighter;
+  font-weight: 400;
 }
 
 .hide {
@@ -376,7 +374,7 @@ body {
 }
 
 body {
-  overflow-x: hidden;
+  overflow-x: hidden !important;
 }
 
 

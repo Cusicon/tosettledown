@@ -12,7 +12,6 @@
 
     // Close on Click 'x' button
     $('#closeQuickMessagePopUp i').click(() => {
-        console.log('yesyse')
         $(".quickMessagePopUp textarea").val("");
         $(".overlayNav").css({
             "background-color": "transparent"
@@ -21,51 +20,6 @@
             "bottom": "-50%"
         }).hide(500);
     });
-})();
-
-// navigate Images in Encounters
-(function navigateImages() {
-
-    // Next photo function
-    function nextPhoto(currentTarget) {
-        console.log(currentTarget)
-    }
-
-    // Previous photo function
-    function previousPhoto(currentTarget) {
-        console.log(currentTarget)
-    }
-
-    function onArrowClick() { // When user click on the arrow button this function fires
-        var renderUserPhotos = document.querySelector(".renderUserPhotos")
-        var nextButton = $(".navMiddle #next");
-        var previousButton = $(".navMiddle #previous");
-        nextButton.on("click", (e) => {
-            var imageWidth = $(".renderUserPhotos .userDisplayedPhotoCon img").width();
-            var renderUserPhotosWidth = renderUserPhotos.scrollWidth
-            var result = imageWidth + imageWidth;
-            renderUserPhotosWidth = result;
-        });
-
-
-
-    }
-    onArrowClick();
-
-    function onKeyboardArrowHit() { // When the user hit the RIGHT or LEFT KEYBOARD ARROWS this function fires
-        let renderUserPhotos = document.querySelector('.renderUserPhotos');
-        $(renderUserPhotos).keyup((e) => {
-            let quickMessagePopUp = document.querySelector('.encounter-page-send-message');
-            if (e.target != quickMessagePopUp) {
-                if (e.keyCode == 37) { // Left Arrow
-                    previousPhoto(e.target);
-                } else if (e.keyCode == 39) { // Right Arrow
-                    nextPhoto(e.target);
-                }
-            }
-        });
-    }
-    onKeyboardArrowHit();
 })();
 
 function activeProfileMenu() {
@@ -91,7 +45,7 @@ $('.encounter-page-send-chat').submit(function (e) {
     } else {
         let message_holder = $('.encounter-page-send-message');
         let messageTxt = message_holder.val().trim();
-        if(messageTxt.length > 0) {
+        if (messageTxt.length > 0) {
             // noinspection JSUnusedLocalSymbols
             let message = {
                 from: __user,
@@ -108,11 +62,11 @@ $('.encounter-page-send-chat').submit(function (e) {
              * listen for Acknowledgment notification from the serve when you send a message,
              */
             __socket.on(`${__user} acknowledge`, function (msg) {
-                mySnackbar('Message Sent');
+                mySnackbar('Message sent');
                 message_holder.val('');
             });
-        }else {
-            mySnackbar('Message Cannot Be Empty');
+        } else {
+            mySnackbar('Message cannot be empty');
             message_holder.val('');
         }
         return false;
@@ -249,16 +203,16 @@ function calculateAge(dob) {
     return Math.abs(moment(dob).diff(moment(), 'years'));
 }
 
-$('#next, #previous').on("click",function () {
+$('#next, #previous').on("click", function () {
     scrollImg(($(this).attr('id') === 'next') ? 'next' : 'previous')
 })
 
-$(function() {
-    $('.navMiddle').swipe( {
-        swipeLeft:function() {
+$(function () {
+    $('.navMiddle').swipe({
+        swipeLeft: function () {
             scrollImg('next')
         },
-        swipeRight:function() {
+        swipeRight: function () {
             scrollImg('previous')
         },
     });
@@ -266,19 +220,22 @@ $(function() {
 
 $(document).on('keyup', function (e) {
     let key = e['keyCode'];
-
-    if(key === 39 || key === 37){
-        scrollImg((key === 39) ? 'next' : 'previous');
+    let quickMessagePopUp = document.querySelector('.encounter-page-send-message');
+    if (e.target != quickMessagePopUp) {
+        if (key === 39 || key === 37) {
+            scrollImg((key === 39) ? 'next' : 'previous');
+        }
     }
-
 })
 
-$(window).resize(function(){
+$(window).resize(function () {
     let currentPhotoElement = $('#currentPhoto');
     let currentPhoto = parseInt(currentPhotoElement.text());
     let renderBox = $('.renderUserPhotos');
     let imgSize = parseInt(renderBox.width());
-    renderBox.animate({scrollLeft: (imgSize * currentPhoto) - imgSize }, 0);
+    renderBox.animate({
+        scrollLeft: (imgSize * currentPhoto) - imgSize
+    }, 0);
 });
 
 function scrollImg(type) {
@@ -288,20 +245,22 @@ function scrollImg(type) {
     let renderBox = $('.renderUserPhotos');
     let imgSize = parseInt(renderBox.width());
 
-    if(type === 'next'){
+    if (type === 'next') {
 
-        if(currentPhoto !== totalPhoto)
-        {
+        if (currentPhoto !== totalPhoto) {
             let nextPosition = currentPhoto + 1;
-            renderBox.animate({scrollLeft: (imgSize * nextPosition) - imgSize }, 300);
+            renderBox.animate({
+                scrollLeft: (imgSize * nextPosition) - imgSize
+            }, 300);
             currentPhotoElement.text(nextPosition)
         }
 
     } else {
-        if(currentPhoto > 1)
-        {
+        if (currentPhoto > 1) {
             let prevPosition = currentPhoto - 1;
-            renderBox.animate({scrollLeft: (imgSize * prevPosition) - imgSize }, 300);
+            renderBox.animate({
+                scrollLeft: (imgSize * prevPosition) - imgSize
+            }, 300);
             currentPhotoElement.text(prevPosition)
         }
     }

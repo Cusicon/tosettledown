@@ -42,11 +42,11 @@ module["exports"] = class ProfileController {
                                 photos: photos
                             });
                         } else {
-                            res.redirect("/");
+                            res.redirect("/#regForm");
                         }
                     });
                 } else {
-                    res.redirect('/');
+                    res.redirect('/#regForm');
                 }
             }
         });

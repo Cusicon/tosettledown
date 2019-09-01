@@ -6,7 +6,7 @@ const passport = require("passport/lib");
 */
 
 //-- Render [SIGN IN], If user is not signed in.
-router.get("/signin", (req, res) => req.user ? res.redirect("/app/encounters") : res.redirect('/'));
+router.get("/signin", (req, res) => req.user ? res.redirect("/app/encounters") : res.redirect('/#regForm'));
 
 //-- LOCAL sign in
 router.post("/signin", passport.authenticate("local", {

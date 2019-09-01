@@ -508,7 +508,7 @@ $(document).on('ready', () => {
                 let comm_stat = element.find('.communication-status');
                 if (comm_stat.text() === 'typing...') {
                     if (parseInt(comm_stat.data('unread-msg')) > 0) {
-                        comm_stat.html(`<span class="badge">${comm_stat}</span>`)
+                        comm_stat.html(`<span class="badge">${comm_stat.data('unread-msg')}</span>`)
                     } else {
                         comm_stat.html('')
                     }
