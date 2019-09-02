@@ -49,8 +49,8 @@ module['exports'] = class RegisterController {
                         education: "",
                         height: "Average",
                         language: "English",
-                        religion: "",
-                        relationship: ""
+                        relationship: "Single",
+                        religion: ""
                     }
                 });
 

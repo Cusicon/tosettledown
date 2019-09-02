@@ -17,7 +17,7 @@ function alert(icon, mode, msg, buttons = [], buttonAction) {
         text: msg,
         icon: icon || null,
         closeOnEsc: true,
-        closeOnClickOutside: true,
+        closeOnClickOutside: false,
         dangerMode: true,
         buttons: buttons.length > 0 ? buttons : null // If buttons length is more than 0, then execute the function 
     }).then(actions => {

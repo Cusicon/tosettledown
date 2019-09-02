@@ -77,7 +77,11 @@ function overideInlineCss(selector, changes = {}) {
         success: (usersObj) => {
             let photos = usersObj.photos;
             if (photos.length < 1) {
-                alert("/lib/img/logo/favicon.ico", "Must upload a picture", "Sorry, you are required to upload at least one picture!")
+                let username = $("#activeUser_username").text().split("@")[1].trim();
+                alert("/lib/img/logo/favicon.ico", "Must upload a picture", "Sorry, you are required to upload at least one picture!", ["Close", location.href.includes(`/app/profile/${username}`) ? "Upload photo" : "Go to profile"], () => {
+                    (location.href.includes(`/app/profile/${username}`)) ?
+                    $('#addPhotosBtn').trigger('click'): location.href = `/app/profile/${username}`
+                })
             }
         },
     });
