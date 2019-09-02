@@ -51,12 +51,9 @@
     }
 
     .wrapperOnMobile .displayWindow {
-        /* box-shadow: none !important; */
+        box-shadow: none !important;
         display: inline-block !important;
         border-radius: 20px !important;
-        overflow: hidden !important;
-        height: 500px !important;
-        overflow-y: auto !important;
     }
 
     .mainBody .displayWindow .imageWindow {
