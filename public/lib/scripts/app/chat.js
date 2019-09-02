@@ -395,7 +395,7 @@ $(document).on('ready', () => {
                     "transition": "ease .5s"
                 });
                 $(".mobileNavigator").css({
-                    "bottom": "-10%",
+                    "bottom": "-50%",
                     "transition": "ease .5s"
                 })
             }
