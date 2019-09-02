@@ -1,7 +1,7 @@
 let User = require('@models/user');
 let UserFactory = require('@database/factory/UserFactory');
 
-module['exports'] = function (number_of_loop = 10) {
+module['exports'] = function (number_of_loop = 5) {
     for (let i =0 ; i < number_of_loop; i++)  {
         User.createUser(new User(UserFactory()), (err, user) => {
             if (err) {

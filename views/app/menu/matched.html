@@ -9,17 +9,15 @@
 <div class="row page-identifier" data-page-name="match">
     <div class="displayWindow col-md-12"
         style="height: 620px; overflow: hidden; overflow-y: scroll; box-shadow: none; border-radius: 0px; padding: 20px 30px; border-left: 1px solid #eee;">
-        <center>
-            <div style="margin-bottom: 50px;">
-                <h3 class="text-muted">
-                    <%= title %>
-                </h3>
-                <p class="text-muted">
-                    All <b>Visitors</b>, that match your likes preferences.
-                </p>
-                <div class="borderBottom"></div>
-            </div>
-        </center>
+        <div style="margin-bottom: 50px;">
+            <h3 class="text-dark">
+                <%= title %>
+            </h3>
+            <p class="text-muted notMobile">
+                All <b>Visitors</b>, that match your likes preferences.
+            </p>
+            <div class="borderBottom" style="width: 30%;"></div>
+        </div>
         <div class="matched container">
             <div style="text-align: center;">
                 <ul class="match-holder">
@@ -32,7 +30,10 @@
                             </div>
                             <div class="text-left">
                                 <a href="/app/profile/<%=match.matchObj.username%>">
-                                    <h5 id="title"> <%=match.matchObj.name%>, <%= match.matchObj.dob.age %></h5>
+                                    <h5 id="title"> 
+                                        <%=match.matchObj.name.split(" ")[0]%>, 
+                                        <%= match.matchObj.dob.age %>
+                                    </h5>
                                 </a>
                                 <small class="text-muted" id="timeStamp">
                                     <i class="typcn typcn-world"></i>

@@ -2,6 +2,7 @@
 
 .encounterPage{
     margin-top: 20px;
+    width: 100% !important;
 }
 
 .mainBody .displayWindow .imageWindow {
@@ -145,14 +146,13 @@
     width: 50px;
     height: 50px;
     background-color: #eee;
-    border: 2px solid #eee;
+    border: 2px solid #fff;
     border-radius: 100%;
 }
 
 .mainBody .displayWindow .imageWindow .overlayNav .navBottom .quickMessagePopUp .card .card-body .bottom {
-    background-color: #f9f9f9;
     height: 100px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid #f9f9f9;
 }
 
 .mainBody .displayWindow .detailsCon {

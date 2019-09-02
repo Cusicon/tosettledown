@@ -12,6 +12,7 @@ app.use(require('@routes/docs'));
 
 //-- Catch 404 and forward to error handler
 app.use((req, res, next) => {
+    res.redirect("/");
     next(createError(404))
 });
 

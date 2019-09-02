@@ -9,6 +9,7 @@ router.get("/encounters/addFavourite", (require('@app/controllers/EncounterContr
 
 //-- profile Router
 router.get("/profile/:username", (require('@app/controllers/ProfileController')).show);
+router.get("/profile/:username/countPhotos", (require('@app/controllers/ProfileController')).countPhotos);
 router.post("/profile/update/:username", (require('@app/controllers/ProfileController')).update);
 router.post("/profile/update/:username/addPhotos", (require('@app/controllers/ProfileController')).addPhotos);
 router.get("/profile/update/:username/setAvatar/:photo_id", (require('@app/controllers/ProfileController')).setAvatar);

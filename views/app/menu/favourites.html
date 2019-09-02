@@ -8,13 +8,11 @@
 <div class="row page-identifier" data-page-name="favourite">
     <div class="displayWindow col-md-12"
         style="height: 620px; overflow: hidden; overflow-y: scroll; box-shadow: none; border-radius: 0px; padding: 20px 30px; border-left: 1px solid #eee;">
-        <center>
-            <div style="margin-bottom: 50px;">
-                <h3 class="text-muted"><%= title %></h3>
-                <p class="text-muted">See all that made you their favourite, and begin a conversation.</p>
-                <div class="borderBottom"></div>
-            </div>
-        </center>
+        <div style="margin-bottom: 50px;">
+            <h3 class="text-dark"><%= title %></h3>
+            <p class="text-muted notMobile">See all that made you their favourite, and begin a conversation.</p>
+            <div class="borderBottom" style="width: 30%;"></div>
+        </div>
         <div class="favourites container">
             <div style="text-align: center;">
                 <ul class="favourites-holder">
@@ -27,7 +25,10 @@
                             </div>
                             <div class="text-left">
                                 <a href="/app/profile/<%=favourite.favouriteObj.username%>">
-                                    <h5 id="title"> <%=favourite.favouriteObj.name%>, <%= favourite.favouriteObj.dob.age %></h5>
+                                    <h5 id="title">
+                                        <%=favourite.favouriteObj.name.split(" ")[0]%>,
+                                        <%= favourite.favouriteObj.dob.age %>
+                                    </h5>
                                 </a>
                                 <small class="text-muted" id="timeStamp">
                                     <i class="typcn typcn-world"></i>

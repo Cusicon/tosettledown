@@ -11,7 +11,7 @@ module['exports'] = class RegisterController {
             let email = req.body.email.trim().toLowerCase();
             let password = req.body.password.trim();
             let dob = req.body.dob;
-            let gender = req.body.gender;
+            let gender = req.body.gender.toLowerCase();
             let agreed_terms = true;
             let joined = new Date().toDateString();
 
@@ -50,6 +50,7 @@ module['exports'] = class RegisterController {
                         height: "Average",
                         language: "English",
                         religion: "",
+                        relationship: ""
                     }
                 });
 

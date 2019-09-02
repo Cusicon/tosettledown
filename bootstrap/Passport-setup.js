@@ -28,7 +28,7 @@ passport.use(new LocalStrategy({
     },
     (username, password, done) => {
         process.nextTick(() => {
-            User.getUserByUsername(username, (err, user) => {
+            User.getUserByUsername(username.toLowerCase(), (err, user) => {
                 if (err) return done(err);
                 if (!user) {
                     return done(null, false, {

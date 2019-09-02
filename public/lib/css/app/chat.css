@@ -178,12 +178,11 @@ li.user:last-child {
     color: #fff;
     max-width: 250px;
     overflow: hidden;
-    word-break: break-all;
     box-shadow: 0.5px 0.5px 0.5px #ccc !important;
 }
 
 .Chat .ChatWindow .ChatWindowBody ul.chat-message-list li div .message {
-    padding: 5px 10px;
+    padding: 5px 10px 5px 0px;
     font-size: 14px;
 }
 
@@ -217,7 +216,7 @@ li.user:last-child {
 /* Safari 4.0 - 8.0 */
 @-webkit-keyframes mymove {
     0% {
-        opacity: 1;
+        opacity: 0.9;
     }
 
     50% {
@@ -225,13 +224,13 @@ li.user:last-child {
     }
 
     100% {
-        opacity: 1;
+        opacity: 0.9;
     }
 }
 
 @keyframes mymove {
     0% {
-        opacity: 1;
+        opacity: 0.9;
     }
 
     50% {
@@ -239,7 +238,7 @@ li.user:last-child {
     }
 
     100% {
-        opacity: 1;
+        opacity: 0.9;
     }
 }
 

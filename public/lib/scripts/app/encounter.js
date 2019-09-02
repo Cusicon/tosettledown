@@ -10,8 +10,16 @@
         }).show(300);
     });
 
-    // Close on Click 'x' button
-    $('#closeQuickMessagePopUp i').click(() => {
+    // Close on Clicking outside the popUp 
+    $('.navMiddle').click(() => {
+        $(".quickMessagePopUp textarea").val("");
+        $(".overlayNav").css({
+            "background-color": "transparent"
+        });
+        $(".quickMessagePopUp").css({
+            "bottom": "-50%"
+        }).hide(500);
+    }).scroll(() => {
         $(".quickMessagePopUp textarea").val("");
         $(".overlayNav").css({
             "background-color": "transparent"
@@ -167,9 +175,11 @@ function renderUserPhotos(photos, placeToInsertImage) {
         $("#totalPhotos").html('0'); // Total photos count
         $("#currentPhoto").html("0"); // Current photos count
 
-        $(placeToInsertImage).html(`<div class="userDisplayedPhotoCon" id="0">
-            <img src="/lib/img/logo/favicon.ico" style="margin: auto 0%; visibility: hidden !important;" class="userDisplayedPhoto" alt="Photo">
-            </div>`)
+        $(placeToInsertImage).html(`
+            <div class="userDisplayedPhotoCon" id="0">
+                <img src="/lib/img/logo/favicon.ico" style="margin: auto 0%; opacity: 0.5; visibility: hidden !important;" class="userDisplayedPhoto" alt="Photo">
+            </div>
+        `)
     }
 }
 
@@ -183,8 +193,8 @@ function renderUserDetails(user) {
     let height = (user) ? user.personalInfo.height : 'N/A';
     let language = (user) ? user.personalInfo.language : 'N/A';
     let _location = (user) ? user.personalInfo.location : 'N/A';
+    let relationship = (user) ? user.personalInfo.relationship : 'N/A';
     let href = (user) ? `/app/profile/${username}` : '#'
-    // let userdirectorieslocation = user.userdirectorieslocation;
 
     // Assign letiables to html tags
     $("span#fullname").text(`${fullname}`);
@@ -197,6 +207,7 @@ function renderUserDetails(user) {
     $("#height").html(`${height}`);
     $("#language").html(`${language}`);
     $("#location").html(`${_location}`);
+    $("#relationship").html(`${relationship}`);
 }
 
 function calculateAge(dob) {

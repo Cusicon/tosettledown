@@ -247,7 +247,7 @@ $(document).on('ready', () => {
 
                 if (userChatListDom.length) {
                     //message
-                    userChatListDom.find('.latest-message').text(`${msg.message.trunc(30)}`);
+                    userChatListDom.find('.latest-message').html(`${msg.message.trunc(30)}`);
                     //time
                     userChatListDom.find('.time').text(`${formatListDomTime(msg.sent_at)}`);
 
@@ -366,7 +366,7 @@ $(document).on('ready', () => {
 
             let userChatListDom = $(`#${  jq( user.slice(1).toLowerCase()) }-chat-listing`);
             //message
-            userChatListDom.find('.latest-message').text(`${message.message.trunc(30)}`);
+            userChatListDom.find('.latest-message').html(`${message.message.trunc(30)}`);
             //time
             userChatListDom.find('.time').text(`${formatListDomTime(message.sent_at)}`);
 
@@ -390,7 +390,14 @@ $(document).on('ready', () => {
         (function enterChatsWindow() {
             let ChatWindow = $(".ChatWindow");
             if (ChatWindow.css("left") !== "0px") {
-                ChatWindow.css({"left": "0px", "transition": "ease .5s"});
+                ChatWindow.css({
+                    "left": "0px",
+                    "transition": "ease .5s"
+                });
+                $(".mobileNavigator").css({
+                    "bottom": "-10%",
+                    "transition": "ease .5s"
+                })
             }
         })();
     });
@@ -399,7 +406,7 @@ $(document).on('ready', () => {
         populateChatUserList($(this).val())
     })
 
-    $("#favourite-drpdown").on('click', function(){
+    $("#favourite-drpdown").on('click', function () {
         $.ajax({
             url: '/app/encounters/addFavourite',
             data: {

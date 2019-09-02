@@ -40,7 +40,7 @@
     padding-top: 25px;
 }
 
-.profileMain .profileHeader footer ul {
+.profileMain .profileHeader footer ul li {
     padding: 0px 5px;
 }
 
@@ -70,11 +70,11 @@
 }
 
 .profileMain .profileHeader footer div.left .bio {
-    width: 265px;
-    max-height: 110px;
+    padding-top: 5px;
+    width: 250px;
+    max-height: 100px;
     overflow: hidden;
-    word-break: break-all;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .profileMain .editProfile,

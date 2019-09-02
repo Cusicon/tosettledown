@@ -26,34 +26,6 @@ router.get("/signin/google/return",
         failureFlash: 'It seems we got nothing, Try again.'
     }),require('@app/controllers/auth/LoginController').googleLoginCallback);
 
-// //-- FACEBOOK signin
-// router.get('/signin/facebook', passport.authenticate('facebook', {
-//     scope: ['read_stream']
-// }));
-
-// // Return route for Facebook to redirect to...
-// router.get("/signin/facebook/return",
-//     passport.authenticate("facebook", {
-//         successRedirect: '/app/encounters',
-//         failureRedirect: '/#loginForm',
-//         failureFlash: 'It seems we got nothing, Try again.'
-//     })
-// );
-
-// //-- INSTAGRAM signin
-// router.get('/signin/instagram', passport.authenticate('instagram', {
-//     scope: ['basic']
-// }));
-
-// // Return route for instagram to redirect to...
-// router.get("/signin/instagram/return",
-//     passport.authenticate("instagram", {
-//         successRedirect: '/app/encounters',
-//         failureRedirect: '/#loginForm',
-//         failureFlash: 'It seems we got nothing, Try again.'
-//     })
-// );
-
 /*
 * SignIn Routes End
 */

@@ -11,6 +11,14 @@
   border-radius: 15px;
 }
 
+.swal-title {
+  font-size: 20px !important;
+}
+
+.swal-text {
+  font-size: 14px !important;
+}
+
 .swal-icon.swal-icon--custom {
   border-radius: 100%;
   border: 1px solid #eee;

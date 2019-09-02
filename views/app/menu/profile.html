@@ -74,12 +74,13 @@
                                                     Education</h5>
                                                 <div class="form-group">
                                                     <select name="education" id="education" class="form-control">
-                                                        <option label="Your education status?..."></option>
+                                                        <option label="Your education status..." value="">Your education
+                                                            status...</option>
                                                         <option value="Graduate"
-                                                            <%= profile_user.personalInfo.education == 'Graduate' ? 'selected' : 'Graduate' %>>
+                                                            <%= profile_user.personalInfo.education == 'Graduate' ? 'selected' : '' %>>
                                                             Graduate</option>
                                                         <option value="Undergraduate"
-                                                            <%= profile_user.personalInfo.education == 'Undergraduate' ? 'selected' : 'Undergraduate' %>>
+                                                            <%= profile_user.personalInfo.education == 'Undergraduate' ? 'selected' : '' %>>
                                                             Undergraduate</option>
                                                     </select>
                                                 </div>
@@ -91,15 +92,15 @@
                                                 <div class="form-group">
                                                     <select name="height" id="height" class="form-control"
                                                         aria-describedby="heightHelp">
-                                                        <option label="Your height?..."></option>
+                                                        <option label="Your height..." value="">Your height...</option>
                                                         <option value="Tall"
-                                                            <%= profile_user.personalInfo.height == 'Tall' ? 'selected' : 'Tall' %>>
+                                                            <%= profile_user.personalInfo.height == 'Tall' ? 'selected' : '' %>>
                                                             Tall</option>
                                                         <option value="Average"
-                                                            <%= profile_user.personalInfo.height == 'Average' ? 'selected' : 'Average' %>>
+                                                            <%= profile_user.personalInfo.height == 'Average' ? 'selected' : '' %>>
                                                             Average</option>
                                                         <option value="Short"
-                                                            <%= profile_user.personalInfo.height == 'Short' ? 'selected' : 'Short' %>>
+                                                            <%= profile_user.personalInfo.height == 'Short' ? 'selected' : '' %>>
                                                             Short</option>
                                                     </select>
                                                     <small id="heightHelp" class="form-text  float-right">Default:
@@ -109,8 +110,8 @@
                                                 <div class="form-group">
                                                     <input type="text" name="language" class="form-control"
                                                         value="<%= profile_user.personalInfo.language %>"
-                                                        placeholder="What do you speak often?..."
-                                                        title="What do you speak often?..."
+                                                        placeholder="What do you speak often..."
+                                                        title="What do you speak often..."
                                                         aria-describedby="languageHelp">
                                                     <small id="languageHelp" class="form-text  float-right">Default:
                                                         English</small>
@@ -118,16 +119,34 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <select name="religion" id="religion" class="form-control">
-                                                        <option label="What's religion?..."></option>
+                                                        <option label="What's your religion..." value="">What's your
+                                                            religion...</option>
                                                         <option value="Christianity"
-                                                            <%= profile_user.personalInfo.religion == 'Christianity' ? 'selected' : 'Christianity' %>>
+                                                            <%= profile_user.personalInfo.religion == 'Christianity' ? 'selected' : '' %>>
                                                             Christianity</option>
                                                         <option value="Islam"
-                                                            <%= profile_user.personalInfo.religion == 'Islam' ? 'selected' : 'Islam' %>>
+                                                            <%= profile_user.personalInfo.religion == 'Islam' ? 'selected' : '' %>>
                                                             Islam</option>
                                                         <option value="Others"
-                                                            <%= profile_user.personalInfo.religion == 'Others' ? 'selected' : 'Others' %>>
+                                                            <%= profile_user.personalInfo.religion == 'Others' ? 'selected' : '' %>>
                                                             Others</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <select name="relationship" id="relationship" class="form-control">
+                                                        <option label="What's your relationship status..."></option>
+                                                        <option value="Single"
+                                                            <%= profile_user.personalInfo.relationship == 'Single' ? 'selected' : '' %>>
+                                                            I'm Single</option>
+                                                        <option value="Dating"
+                                                            <%= profile_user.personalInfo.relationship == 'Dating' ? 'selected' : '' %>>
+                                                            I'm Dating</option>
+                                                        <option value="Married"
+                                                            <%= profile_user.personalInfo.relationship == 'Married' ? 'selected' : '' %>>
+                                                            I'm Married</option>
+                                                        <option value="Divorced"
+                                                            <%= profile_user.personalInfo.relationship == 'Divorced' ? 'selected' : '' %>>
+                                                            I'm Divorced</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -244,7 +263,7 @@
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content" style="background-color: transparent;">
                         <div class="modal-header" style="border: 0px;">
-                            <h4 class="modal-title" id="addPhotosModal" style="color: #fff;">Photo <span
+                            <h4 class="modal-title" id="addPhotosModal" style="color: #fff !important;">Photo <span
                                     class="bg-Primary_color" style="border-radius: 5px; padding: 5px;">Preview</span>
                             </h4>
                         </div>
@@ -267,14 +286,14 @@
             <section class="profileHeader">
                 <header>
                     <ul>
+                        <% if (user.username != profile_user.username) { %>
                         <li>
-                            <% if (user.username != profile_user.username) { %>
                             <a href="/app/chats/<%= profile_user.username %>"
                                 class="btn waves-effect waves-light bg-Primary_color" id="chatBtn" role="button"
                                 style="padding: 10px 25px; margin-right: 10px; text-align: center;">
                                 Chat <b><%= profile_user.fullname.firstname %></b> up</a>
-                            <% } %>
                         </li>
+                        <% } %>
                         <li>
                             <div class="dropdown">
                                 <a href="#" class="btn waves-effect waves-light dropBtn" id="dropBtn" role="button"
@@ -283,12 +302,12 @@
                                 </a>
                                 <div class="dropdownContent" id="dropdownContent">
                                     <% if (user.username != profile_user.username) { %>
-                                    <div class="onMobile">
+                                    <span class="onMobile">
                                         <a href="/app/chats/<%= profile_user.username %>">
-                                            Send a message
+                                            Chat <%= profile_user.gender == "male" ? "Him" : "Her" %> up
                                         </a>
                                         <div class="separator"></div>
-                                    </div>
+                                    </span>
                                     <% } %>
                                     <% if (user.username != profile_user.username) { %>
                                     <a id="favourite-drpdown" href="javascript:void(0);"
@@ -298,6 +317,14 @@
                                     <% if (user.username == profile_user.username) { %>
                                     <a href="#" id="editProfileBtn" data-toggle="modal"
                                         data-target=".editProfileCon">Edit profile</a>
+                                    <% } %>
+                                    <% if (user.username == profile_user.username) { %>
+                                    <div class="onMobile">
+                                        <a href="/app/visitors">My visitors</a>
+                                    </div>
+                                    <div class="onMobile">
+                                        <a href="/app/favourites">My favourites</a>
+                                    </div>
                                     <% } %>
                                     <% if (user.username != profile_user.username) { %>
                                     <a href="#" class="color">Block or Report</a>
@@ -320,24 +347,27 @@
                     <div class="profileFooterHead">
                         <div style="float: left; margin: 0px 5px;" class="profileHeadWrapper">
 
-                            <a href=javascript:void(0); class="activeProfile hasStories">
-                                <div class="image profileImage"
-                                    style="background-image: url('<%= profile_user.avatar %>');">
-                                </div>
-                            </a>
-
-                            <ul class="profileHeadWrapperBtn">
-                                <!-- Like and Dislike -->
-                                <% if (user.username != profile_user.username) { %>
-                                <li style="display: inline-block;">
-                                    <a href="javascript: void(0);" id="like" title="Like"
-                                        data-username="<%=profile_user.username%>"
-                                        style="border: 1px solid #ececec; color: #ff6878 !important;">
-                                        <i class="typcn typcn-heart-full-outline"></i>
+                            <div>
+                                <center>
+                                    <a href=javascript:void(0); class="activeProfile hasStories">
+                                        <div class="image profileImage"
+                                            style="background-image: url('<%= profile_user.avatar %>');">
+                                        </div>
                                     </a>
-                                </li>
-                                <% } %>
-                            </ul>
+                                    <ul class="profileHeadWrapperBtn">
+                                        <% if (user.username != profile_user.username) { %>
+                                        <!-- Like and Dislike -->
+                                        <li style="display: inline-block;">
+                                            <a href="javascript: void(0);" id="like" title="Like"
+                                                data-username="<%=profile_user.username%>"
+                                                style="border: 1px solid #ececec; color: #ff6878 !important;">
+                                                <i class="typcn typcn-heart-full-outline"></i>
+                                            </a>
+                                        </li>
+                                        <% } %>
+                                    </ul>
+                                </center>
+                            </div>
                         </div>
                         <div class="left">
                             <div class="fullname">
@@ -369,21 +399,21 @@
                         <section class="row">
                             <div class="viewProfileLeft col-md-8">
                                 <div class="form-group">
-                                    <h5 class="" style="font-weight: lighter;">Location</h5>
+                                    <h5 class="" style="font-weight: lighter; font-weight: 500;">Location</h5>
                                     <p><%= profile_user.personalInfo.location %></p>
                                 </div>
                                 <div class="form-group">
-                                    <h5 class="" style="font-weight: lighter;">Work & Occupation
+                                    <h5 class="" style="font-weight: lighter; font-weight: 500;">Work & Occupation
                                     </h5>
                                     <p><%= profile_user.personalInfo.work %></p>
                                 </div>
                                 <div class="form-group">
-                                    <h5 class="" style="font-weight: lighter;">Education</h5>
+                                    <h5 class="" style="font-weight: lighter; font-weight: 500;">Education</h5>
                                     <p><%= profile_user.personalInfo.education %></p>
                                 </div>
                             </div>
                             <div class="viewProfileRight col-md-4">
-                                <h5 class="" style="font-weight: lighter;">Personal Info(s)</h5>
+                                <h5 class="" style="font-weight: lighter; font-weight: 500;">Personal Info(s)</h5>
                                 <div class="editPersonalInfo form-group">
                                     <div class="form-group">
                                         <p><small class="">Height:
@@ -392,6 +422,10 @@
                                     <div class="form-group">
                                         <p><small class="">Language:
                                             </small><%= profile_user.personalInfo.language %></p>
+                                    </div>
+                                    <div class="form-group">
+                                        <p><small class="">Relationship:
+                                            </small>I'm <%= profile_user.personalInfo.relationship %></p>
                                     </div>
                                     <div class="form-group">
                                         <p><small class="">Religion:
@@ -414,15 +448,15 @@
                                             &nbsp;PHOTOS</span>
                                     </a>
                                 </li>
+                                <% if (user.username == profile_user.username) { %>
                                 <li class="col-1 col-md-1 col-sm-1">
-                                    <% if (user.username == profile_user.username) { %>
                                     <a href=javascript:void(0); class="text-dark btn waves-effect waves-light addImages"
-                                        id="addPhotosBtn" role="button" data-toggle="modal" data-target=".addPhotosCon"
+                                        id="addPhotosBtn" role="button" data-toggle="modal" data-countbtn="0" data-target=".addPhotosCon"
                                         onclick="$('#addPhotos').trigger('click');">
                                         <i class="typcn typcn-plus-outline"></i>
                                     </a>
-                                    <% } %>
                                 </li>
+                                <% } %>
 
                                 <!-- In the future -->
                                 <li class="col-md-5 col-sm-5 hide">
@@ -466,11 +500,11 @@
                         </ul>
                         <% } %>
                         <% if (photos.length == 0 && profile_user.username == user.username) { %>
-                        <section style="padding: 25px;">
-                            <span style="font-size: 100px; font-weight: lighter !important;">
+                        <section style="padding: 10px;">
+                            <div style="font-size: 80px;">
                                 <i class="fi-marquee-plus"></i>
-                            </span>
-                            <br><br>
+                            </div>
+                            <br>
                             <p style="font-size: 15px !important;">When you upload your photos, they will appear here on
                                 your profile...</p>
                             <a href=javascript:void(0); class="color btn waves-effect waves-light" id="addPhotosBtn"
@@ -481,8 +515,8 @@
                         </section>
                         <% } %>
                         <% if (photos.length == 0 && profile_user.username != user.username) { %>
-                        <section style="padding: 25px;">
-                            <span style="font-size: 100px; font-weight: lighter !important;">
+                        <section style="padding: 10px;">
+                            <span style="font-size: 80px;">
                                 <i class="dripicons-photo-group"></i>
                             </span>
                             <p style="font-size: 15px;">Sorry, <b><%= profile_user.fullname.firstname %></b> has no

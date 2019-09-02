@@ -6,8 +6,8 @@ module['exports'] = function () {
     let minAge = 18
    return {
        name: `${faker.name.firstName()} ${faker.name.lastName()}`,
-       username: faker.internet.userName(),
-       email: faker.internet.email(),
+       username: faker.internet.userName().toLowerCase(),
+       email: faker.internet.email().toLowerCase(),
        password: "password",
        dob: moment().subtract( (Math.floor(Math.random() * (maxAge - minAge) ) + minAge), 'years').format() ,
        gender: faker.random.arrayElement(['male', 'female']),
@@ -22,6 +22,7 @@ module['exports'] = function () {
            height: "Average",
            language: "English",
            religion: faker.random.arrayElement(['Christianity', 'Islam', 'Others']),
+           relationship: faker.random.arrayElement(['Single', 'Dating', 'Married', "Divorced"]),
        }
    }
 };

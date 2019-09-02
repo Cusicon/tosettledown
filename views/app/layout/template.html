@@ -41,12 +41,15 @@
     <div class="onMobile logoHeader"
         style="border-bottom: 1px solid #eee; margin-bottom: 3px; width: 100%; padding: 15px; height: 70px; margin-bottom: 10px;">
         <div class="logoMobileCon">
-            <a href="/app/profile/<%= user.username %>" class="activeProfile hasStories"
-                style="float: right; padding: 2px; margin-top: 2px;">
-                <div class="image"
-                    style=" width: 35px; height: 35px; border-radius: 100%; background-image: url('<%= user.avatar %>');">
-                </div>
-            </a>
+            <span id="profileLinkCon">
+                <a href="/app/profile/<%= user.username %>" class="activeProfile hasStories"
+                    style="float: right; padding: 2px;">
+                    <div class="image"
+                        style=" width: 35px; height: 35px; border-radius: 100%; background-image: url('<%= user.avatar %>');">
+                    </div>
+                </a>
+            </span>
+
             <center style="padding-top: 5px;">
                 <img src="/lib/img/logo/logo-icon.png" style="float: left;" width="45" id="logo" alt="Tosettledown">
                 <img src="/lib/img/logo/logo-text.png" style="padding-top: 10px;" width="120" id="logo"

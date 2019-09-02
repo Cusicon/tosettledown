@@ -44,7 +44,7 @@ let user_schema = mongoose.Schema({
     personalInfo: {
         bio: {
             type: String,
-            default: null
+            default: "Hey there, I'm here to find love on TSD"
         },
         location: {
             type: String,
@@ -60,15 +60,19 @@ let user_schema = mongoose.Schema({
         },
         height: {
             type: String,
-            default: null
+            default: "Average"
         },
         language: {
             type: String,
-            default: null
+            default: "English"
         },
         religion: {
             type: String,
             default: null
+        },
+        relationship: {
+            type: String,
+            default: "Single"
         }
     },
     cards: [card_schema] || null

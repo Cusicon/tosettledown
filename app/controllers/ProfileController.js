@@ -51,6 +51,48 @@ module["exports"] = class ProfileController {
             }
         });
     }
+    
+    static countPhotos(req, res) {
+        let username = req.params.username;
+        User.getUserByUsername(username, (err, user) => {
+            if (err) console.log(err);
+            else {
+                if (user != null) {
+                    Photo.getPhotosbyUsername(username, (err, photos) => {
+                        if (err) throw err;
+                        if (req.user.gender !== user.gender) {
+                            // add to visitor page here
+
+                            // user_id => the person you are visiting
+                            // visitor_id => the person that is visiting
+                            if(req.user.id !== user.id) {
+                                Visitor.findOne({visited_user: user.username, visitor:req.user.username }, (err, visitor) => {
+                                    if(! visitor) {
+                                        let visitor = new Visitor({visited_user: user.username, visitor:req.user.username });
+                                        visitor.save()
+                                    }
+                                })
+                            }
+
+                            res.send({
+                                profile_user: user,
+                                photos: photos
+                            });
+                        } else if (req.user.gender === user.gender && req.user.username === user.username) {
+                            res.send({
+                                profile_user: user,
+                                photos: photos
+                            });
+                        } else {
+                            res.redirect("/#regForm");
+                        }
+                    });
+                } else {
+                    res.redirect('/#regForm');
+                }
+            }
+        });
+    }
 
     static update(req, res) {
         let id = req.user.id;
@@ -63,7 +105,8 @@ module["exports"] = class ProfileController {
                 education: req.body.education.trim() || '',
                 height: req.body.height.trim() || '',
                 language: req.body.language.trim() || '',
-                religion: req.body.religion.trim() || ''
+                religion: req.body.religion.trim() || '',
+                relationship: req.body.religion.trim() || ''
             }
         }, (err, user) => err ? console.log(err) : res.redirect(`/app/profile/${user.username}`));
     }

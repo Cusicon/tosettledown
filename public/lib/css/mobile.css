@@ -17,6 +17,10 @@
         display: block;
     }
 
+    .notMobile {
+        display: none;
+    }
+
     .onMobile * {
         display: block;
     }
@@ -47,9 +51,12 @@
     }
 
     .wrapperOnMobile .displayWindow {
-        box-shadow: none !important;
+        /* box-shadow: none !important; */
         display: inline-block !important;
         border-radius: 20px !important;
+        overflow: hidden !important;
+        height: 500px !important;
+        overflow-y: auto !important;
     }
 
     .mainBody .displayWindow .imageWindow {
@@ -115,7 +122,6 @@
     }
 
     .profileMain .profileHeader footer ul li a {
-        border: 1px solid red;
         top: 11% !important;
         left: 16% !important;
         display: block !important;
@@ -127,7 +133,7 @@
     }
 
     .profileMain .profileFooter {
-        margin-top: 140px !important;
+        margin-top: 100px !important;
     }
 
     .onMobile .mobileNavigator {
@@ -167,14 +173,14 @@
     }
 
     .profileHeader footer div.left {
-        padding-top: 5px !important;
+        padding-top: 7px !important;
         padding-bottom: 15px !important;
         margin-left: -0px !important;
     }
 
     .profileHeader footer div.left h1 {
-        font-size: 20px !important;
-        font-weight: 300 !important;
+        font-size: 17px !important;
+        font-weight: 500 !important;
     }
 
     .profileMain .profileHeader footer div.left h1 span {
@@ -187,9 +193,7 @@
     }
 
     .profileHeader footer div.left .bio {
-        width: auto !important;
-        max-height: 80px !important;
-        padding: 10px !important;
+        font-size: 13px !important;
     }
 
     .profileFooterHead div.profileHeadWrapper {
