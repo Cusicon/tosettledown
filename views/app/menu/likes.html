@@ -12,7 +12,7 @@
         <div style="margin-bottom: 50px;">
             <h3 class="text-dark"><%= title %></h3>
             <p class="text-muted notMobile">See all those that liked you or likes you.</p>
-            <div class="borderBottom" style="width: 30%;"></div>
+            <div class="borderBottom"></div>
         </div>
         <div class="likes container">
             <div style="text-align: center;">
@@ -42,8 +42,10 @@
                     <%} else {%>
                     <li class="no-available">
                         <div class="content-holder">
-                            <img src="/lib/img/logo/logo-icon.png" alt="Logo">
-                            <h3>No Likes</h3>
+                            <br>
+                            <img src="/lib/img/logo/logo-icon.png" style="width: 100px;" alt="Logo">
+                            <h5 class="text-muted">No likes yet...</h5>
+                            <br>
                         </div>
                     </li>
                     <%} %>

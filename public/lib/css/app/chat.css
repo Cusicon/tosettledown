@@ -100,6 +100,7 @@ li.user:last-child {
 .Chat .ChatWindow {
     padding: 0 !important;
     /* border: 1px solid red; */
+    background-color: #eee;
 }
 
 .Chat .ChatWindow .ChatWindowHead {
@@ -142,13 +143,12 @@ li.user:last-child {
     border-bottom: 1px solid #eee;
     /*margin-bottom: 7px;*/
     background-color: #eee;
-    height: 480px;
     width: 100%;
     overflow: scroll;
+    height: 480px;
 }
 
 .Chat .ChatWindow .ChatWindowBody ul.chat-message-list {
-    height: 480px;
     padding-bottom: 10px;
 }
 
@@ -338,10 +338,10 @@ li.user:last-child {
 
 .ChatWindowFooter {
     width: 100%;
-    min-height: 70px;
-    /*background-color: #eee;*/
+    height: 70px;
+    background-color: #fff;
     margin-top: 10px;
-    background-color: transparent;
+    padding-top: 10px !important;
 }
 
 .ChatWindowFooter #message-input {

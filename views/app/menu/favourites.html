@@ -11,7 +11,7 @@
         <div style="margin-bottom: 50px;">
             <h3 class="text-dark"><%= title %></h3>
             <p class="text-muted notMobile">See all that made you their favourite, and begin a conversation.</p>
-            <div class="borderBottom" style="width: 30%;"></div>
+            <div class="borderBottom"></div>
         </div>
         <div class="favourites container">
             <div style="text-align: center;">
@@ -41,8 +41,10 @@
                     <%} else {%>
                     <li class="no-available">
                         <div class="content-holder">
-                            <img src="/lib/img/logo/logo-icon.png" alt="Logo">
-                            <h3>No Favourite</h3>
+                            <br>
+                            <img src="/lib/img/logo/logo-icon.png" style="width: 100px;" alt="Logo">
+                            <h5 class="text-muted">No favourites yet...</h5>
+                            <br>
                         </div>
                     </li>
                     <%} %>

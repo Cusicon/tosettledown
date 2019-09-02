@@ -30,7 +30,7 @@ let user_schema = mongoose.Schema({
 
     email_verified_at: {
         type: Date,
-        default: null
+        default: Date.now()
     },
     joined: {
         type: Date,
