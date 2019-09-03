@@ -1,10 +1,4 @@
-
 /* VISITORS AND FAVOURITES */
-
-.visitors,
-.favourites {
-    padding: 20px 20px;
-}
 
 .visitors ul li,
 .favourites ul li {
@@ -32,23 +26,28 @@
     background-color: #eee;
 }
 
-.visitors-holder,.favourites-holder{
+.visitors-holder,
+.favourites-holder {
     width: 100%;
     text-align: left;
 }
 
 
-.no-available{
+.no-available {
     width: 100%;
+    height: 100%;
+    vertical-align: center;
     text-align: center;
-}
-.no-available .content-holder{
-    /*margin: 30% auto;*/
+    overflow: hidden !important;
 }
 
-.no-available img{
-    width: 100px;
-    opacity: 0.5;
+.no-available .content-holder {
+    margin: 15% auto 0% auto;
+}
+
+.no-available img {
+    width: 60px;
+    opacity: .5;
 }
 
 /* END OF VISITORS AND FAVOURITES */

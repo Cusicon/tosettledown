@@ -25,6 +25,14 @@
         display: block;
     }
 
+    .modal .modal-dialog .modal-title {
+        font-size: 20px;
+    }
+
+    .modal .btn.bg-Primary_color {
+        width: 100%;
+    }
+
     body {
         background-color: #fff !important;
     }
@@ -50,14 +58,22 @@
         display: unset !important;
     }
 
+    .mainBody .displayWindow {
+        height: auto !important;
+        border: none !important;
+    }
+
     .wrapperOnMobile .displayWindow {
-        box-shadow: none !important;
         display: inline-block !important;
+        box-shadow: 0px 5px 20px #64646471 !important;
         border-radius: 20px !important;
+        /* overflow: hidden auto !important; */
+        /* height: 430px !important; */
     }
 
     .mainBody .displayWindow .imageWindow {
         width: 100% !important;
+        height: 500px !important;
     }
 
     .statusBar {
@@ -130,7 +146,7 @@
     }
 
     .profileMain .profileFooter {
-        margin-top: 100px !important;
+        margin-top: 110px !important;
     }
 
     .onMobile .mobileNavigator {
@@ -249,6 +265,12 @@
         position: fixed;
         bottom: 0%;
         width: 100%;
+        border-top: 1px solid #eee;
+        box-shadow: 0px -1px 5px #c9c9c928 !important;
+    }
+
+    .Chat .ChatWindow .ChatWindowHead h6#chat-username-holder {
+        margin: 5px 0px 0px 0px !important;
     }
 
     /* END OF CHATS */

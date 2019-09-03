@@ -83,7 +83,8 @@ li.user:last-child {
 .Chat .ChatList .ChatBody ul li.user div.communication-status {
     font-size: 12px;
     float: right;
-    color: orange;
+    color: #ff6878;
+    font-weight: 500;
 }
 
 .Chat .ChatList .ChatBody ul li.user div.time {
@@ -127,25 +128,24 @@ li.user:last-child {
 }
 
 .Chat .ChatWindow .ChatWindowHead h6#chat-username-holder {
-    margin: 10px 0 0px;
+    margin: 10px 0px 0px 0px;
     font-weight: 500;
     font-size: 16px;
 }
 
 .Chat .ChatWindow .ChatWindowHead small#chat-typing {
+    display: block;
     font-weight: 500;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: #f55e5e;
-    display: block;
+    color: #ff6878;
 }
 
 .Chat .ChatWindow .ChatWindowBody {
     border-bottom: 1px solid #eee;
-    /*margin-bottom: 7px;*/
     background-color: #eee;
     width: 100%;
     overflow: scroll;
-    height: 480px;
+    height: 500px;
 }
 
 .Chat .ChatWindow .ChatWindowBody ul.chat-message-list {
@@ -167,8 +167,7 @@ li.user:last-child {
 
 .Chat .ChatWindow .ChatWindowBody ul.chat-message-list li.outbox div {
     border-radius: 25px 0px 25px 25px;
-    background-color: #f55e5e;
-    /* color: #000; */
+    background-color: #ff6878;
     float: right;
 }
 
@@ -316,7 +315,6 @@ li.user:last-child {
 .Chat .ChatWindow .ChatWindowHead #chat-typing {
     width: 80px;
     height: 10px;
-    color: #f55e5e;
 }
 
 .Chat .ChatWindow .ChatWindowBody ul.chat-message-list li div.big-text {
@@ -340,7 +338,6 @@ li.user:last-child {
     width: 100%;
     height: 70px;
     background-color: #fff;
-    margin-top: 10px;
     padding-top: 10px !important;
 }
 
@@ -369,13 +366,16 @@ li.user:last-child {
     height: 100%;
     vertical-align: center;
     text-align: center;
+    overflow: hidden !important;
 }
 
 .no-available .content-holder {
-    margin: 45% auto;
+    margin: 45% auto 0% auto;
 }
 
 .no-available img {
-    width: 100px;
-    opacity: 0.5;
+    width: 60px;
+    opacity: .5;
 }
+
+/* END OF CHATS */

@@ -97,12 +97,12 @@ module["exports"] = class HomeController{
             {
                 $lookup: {
                     from : 'users',
-                    localField: 'liked_user',
+                    localField: 'liker',
                     foreignField: 'username',
                     as: 'likerObj'
                 }
             },
-            { $match: { liker: req.user.username, isLiked: true} },
+            { $match: { liked_user: req.user.username, isLiked: true} },
 
         ]).then(likes => {
             likes = likes.map(like => {
@@ -146,12 +146,12 @@ module["exports"] = class HomeController{
             {
                 $lookup: {
                     from : 'users',
-                    localField: 'favourite_user',
+                    localField: 'user',
                     foreignField: 'username',
                     as: 'favouriteObj'
                 }
             },
-            { $match: { user: req.user.username } },
+            { $match: { favourite_user: req.user.username } },
 
         ]).then(favourites => {
             favourites = favourites.map(favourite => {

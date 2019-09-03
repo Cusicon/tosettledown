@@ -95,11 +95,7 @@ $(document).on('ready', () => {
                     <li class="no-available no-chat">
                         <div class="content-holder">
                             <img src="/lib/img/logo/logo-icon.png" alt="Logo">  
-                            <div class="spinner">
-                                <div class="bounce1"></div>
-                                <div class="bounce2"></div>
-                                <div class="bounce3"></div>
-                            </div>
+                            <h5 class="text-muted">No chats or messages...</h5>
                         </div>
                         </div>
                     </li>`);
@@ -111,11 +107,7 @@ $(document).on('ready', () => {
                     <li class="no-available no-chat">
                         <div class="content-holder">
                             <img src="/lib/img/logo/logo-icon.png" alt="Logo">
-                            <div class="spinner">
-                                <div class="bounce1"></div>
-                                <div class="bounce2"></div>
-                                <div class="bounce3"></div>
-                            </div>
+                            <h5 class="text-muted">No chats or messages...</h5>
                         </div>
                     </li>`);
         }
@@ -139,7 +131,7 @@ $(document).on('ready', () => {
                     <div class="message-holder">
                         <div class="time text-muted">${time}</div>
                         <div class="username text-dark" data-username="${associate.username}">${associate.name.split(" ")[0]}</div>
-                        <div class="latest-message text-muted">${last_msg.trunc(30)}</div>
+                        <div class="latest-message text-muted">${last_msg.trunc(25)}</div>
                         <div class="communication-status" data-unread-msg="${unread}">${comm_stat}</div>
                     </div>
                 </li>

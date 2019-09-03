@@ -15,40 +15,45 @@
         </div>
         <div class="favourites container">
             <div style="text-align: center;">
-                <ul class="favourites-holder">
-                    <% if(favourites.length > 0) { %>
-                    <% favourites.forEach(favourite => { %>
-                    <li class="col-md-4 col-sm-6" style="padding: 10px;">
-                        <div class="card">
-                            <div id="card-handle"></div>
-                            <div class="img" style="background-image: url('<%= favourite.favouriteObj.avatar %>');">
+                <div class="row">
+                    <ul class="favourites-holder">
+                        <% if(favourites.length > 0) { %>
+                        <% favourites.forEach(favourite => { %>
+                        <li class="col-md-4 col-sm-6" style="padding: 10px;">
+                            <center>
+                                <div class="card">
+                                    <div id="card-handle"></div>
+                                    <div class="img"
+                                        style="background-image: url('<%= favourite.favouriteObj.avatar %>');">
+                                    </div>
+                                    <div class="text-left">
+                                        <a href="/app/profile/<%=favourite.favouriteObj.username%>" class="color">
+                                            <h5 id="title" style="color: inherit !important;">
+                                                <%=favourite.favouriteObj.name.split(" ")[0]%>,
+                                                <%= favourite.favouriteObj.dob.age %>
+                                            </h5>
+                                        </a>
+                                        <small class="text-muted" id="timeStamp">
+                                            <i class="typcn typcn-world"></i>
+                                            <%=Moment(favourite.favourite_at).format("MMM Do YY") %>
+                                        </small>
+                                    </div>
+                                </div>
+                            </center>
+                        </li>
+                        <%})%>
+                        <%} else {%>
+                        <li class="no-available">
+                            <div class="content-holder">
+                                <br>
+                                <img src="/lib/img/logo/logo-icon.png" alt="Logo">
+                                <h5 class="text-muted">No favourites yet...</h5>
+                                <br>
                             </div>
-                            <div class="text-left">
-                                <a href="/app/profile/<%=favourite.favouriteObj.username%>">
-                                    <h5 id="title">
-                                        <%=favourite.favouriteObj.name.split(" ")[0]%>,
-                                        <%= favourite.favouriteObj.dob.age %>
-                                    </h5>
-                                </a>
-                                <small class="text-muted" id="timeStamp">
-                                    <i class="typcn typcn-world"></i>
-                                    <%=Moment(favourite.favourite_at).format("MMM Do YY") %>
-                                </small>
-                            </div>
-                        </div>
-                    </li>
-                    <%})%>
-                    <%} else {%>
-                    <li class="no-available">
-                        <div class="content-holder">
-                            <br>
-                            <img src="/lib/img/logo/logo-icon.png" style="width: 100px;" alt="Logo">
-                            <h5 class="text-muted">No favourites yet...</h5>
-                            <br>
-                        </div>
-                    </li>
-                    <%} %>
-                </ul>
+                        </li>
+                        <%} %>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

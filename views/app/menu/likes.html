@@ -16,40 +16,44 @@
         </div>
         <div class="likes container">
             <div style="text-align: center;">
-                <ul class="likes-holder">
-                    <% if(likes.length > 0) { %>
-                    <% likes.forEach(like => { %>
-                    <li class="col-md-4 col-sm-6" style="padding: 10px;">
-                        <div class="card">
-                            <div id="card-handle"></div>
-                            <div class="img" style="background-image: url('<%= like.likerObj.avatar %>');">
+                <div class="row">
+                    <ul class="likes-holder">
+                        <% if(likes.length > 0) { %>
+                        <% likes.forEach(like => { %>
+                        <li class="col-md-4 col-sm-6" style="padding: 10px;">
+                            <center>
+                                <div class="card">
+                                    <div id="card-handle"></div>
+                                    <div class="img" style="background-image: url('<%= like.likerObj.avatar %>');">
+                                    </div>
+                                    <div class="text-left">
+                                        <a href="/app/profile/<%=like.likerObj.username%>" class="color">
+                                            <h5 id="title" style="color: inherit !important;">
+                                                <%=like.likerObj.name.split(" ")[0]%>,
+                                                <%= like.likerObj.dob.age %>
+                                            </h5>
+                                        </a>
+                                        <small class="text-muted" id="timeStamp">
+                                            <i class="typcn typcn-world"></i>
+                                            <%=Moment(like.liked_at).format("MMM Do YY") %>
+                                        </small>
+                                    </div>
+                                </div>
+                            </center>
+                        </li>
+                        <%})%>
+                        <%} else {%>
+                        <li class="no-available">
+                            <div class="content-holder">
+                                <br>
+                                <img src="/lib/img/logo/logo-icon.png" alt="Logo">
+                                <h5 class="text-muted">No likes yet...</h5>
+                                <br>
                             </div>
-                            <div class="text-left">
-                                <a href="/app/profile/<%=like.likerObj.username%>">
-                                    <h5 id="title"> 
-                                        <%=like.likerObj.name.split(" ")[0]%>, 
-                                        <%= like.likerObj.dob.age %>
-                                    </h5>
-                                </a>
-                                <small class="text-muted" id="timeStamp">
-                                    <i class="typcn typcn-world"></i>
-                                    <%=Moment(like.liked_at).format("MMM Do YY") %>
-                                </small>
-                            </div>
-                        </div>
-                    </li>
-                    <%})%>
-                    <%} else {%>
-                    <li class="no-available">
-                        <div class="content-holder">
-                            <br>
-                            <img src="/lib/img/logo/logo-icon.png" style="width: 100px;" alt="Logo">
-                            <h5 class="text-muted">No likes yet...</h5>
-                            <br>
-                        </div>
-                    </li>
-                    <%} %>
-                </ul>
+                        </li>
+                        <%} %>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

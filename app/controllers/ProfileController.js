@@ -21,10 +21,16 @@ module["exports"] = class ProfileController {
 
                             // user_id => the person you are visiting
                             // visitor_id => the person that is visiting
-                            if(req.user.id !== user.id) {
-                                Visitor.findOne({visited_user: user.username, visitor:req.user.username }, (err, visitor) => {
-                                    if(! visitor) {
-                                        let visitor = new Visitor({visited_user: user.username, visitor:req.user.username });
+                            if (req.user.id !== user.id) {
+                                Visitor.findOne({
+                                    visited_user: user.username,
+                                    visitor: req.user.username
+                                }, (err, visitor) => {
+                                    if (!visitor) {
+                                        let visitor = new Visitor({
+                                            visited_user: user.username,
+                                            visitor: req.user.username
+                                        });
                                         visitor.save()
                                     }
                                 })
@@ -51,8 +57,8 @@ module["exports"] = class ProfileController {
             }
         });
     }
-    
-    static countPhotos(req, res) {
+
+    static mustHavePhotos(req, res) {
         let username = req.params.username;
         User.getUserByUsername(username, (err, user) => {
             if (err) console.log(err);
@@ -61,19 +67,6 @@ module["exports"] = class ProfileController {
                     Photo.getPhotosbyUsername(username, (err, photos) => {
                         if (err) throw err;
                         if (req.user.gender !== user.gender) {
-                            // add to visitor page here
-
-                            // user_id => the person you are visiting
-                            // visitor_id => the person that is visiting
-                            if(req.user.id !== user.id) {
-                                Visitor.findOne({visited_user: user.username, visitor:req.user.username }, (err, visitor) => {
-                                    if(! visitor) {
-                                        let visitor = new Visitor({visited_user: user.username, visitor:req.user.username });
-                                        visitor.save()
-                                    }
-                                })
-                            }
-
                             res.send({
                                 profile_user: user,
                                 photos: photos
@@ -108,7 +101,15 @@ module["exports"] = class ProfileController {
                 religion: req.body.religion.trim() || '',
                 relationship: req.body.religion.trim() || ''
             }
-        }, (err, user) => err ? console.log(err) : res.redirect(`/app/profile/${user.username}`));
+        }, (err, user) => {
+            if (err) {
+                console.log(err);
+            } else {
+                userLog(`"${req.user.username}" just updated their profile.`);
+                console.log(`@${req.user.username} just updated their profile!, @ ${new Date().toTimeString()}`);
+                res.redirect(`/app/profile/${user.username}`);
+            }
+        });
     }
 
     /**
@@ -176,7 +177,15 @@ module["exports"] = class ProfileController {
         Photo.getPhotoById(photo_id, (err, photo) => {
             User.getUserByIdandUpdate(id, {
                 avatar: `${req.user.userDirectoriesLocation}/photos/${photo.name}`
-            }, (err, user) => err ? console.log(err) : res.redirect(`/app/profile/${user.username}`));
+            }, (err, user) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    userLog(`"${req.user.username}" just updated their profile picture.`);
+                    console.log(`@${req.user.username} just updated their profile picture!, @ ${new Date().toTimeString()}`);
+                    res.redirect(`/app/profile/${user.username}`);
+                }
+            });
         });
     }
 

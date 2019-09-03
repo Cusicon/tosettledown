@@ -27,7 +27,7 @@
                                         style="border-radius: 5px; padding: 5px;">Profile</span></h4>
                                 <button type="button" class="btn waves-effect waves-light" data-dismiss="modal"
                                     aria-hidden="true">
-                                    <i class="typcn typcn-times"></i>
+                                    <i class="typcn typcn-times" style="font-size: 15px;"></i>
                                 </button>
                             </div>
                             <div class="modal-body">
@@ -181,28 +181,40 @@
                                 <h4 class="modal-title" id="SettingsModal">Profile <span class="bg-Primary_color"
                                         style="border-radius: 5px; padding: 5px;">Settings</span></h4>
                             </div>
-                            <div class="modal-body" style="padding: 15px; text-align: center !important;">
-                                <a href="#" style="font-weight: lighter; display: block;">
-                                    <i style="font-size: 20px;" class="typcn typcn-user"></i>&nbsp; Account</a>
-                                <div class="separator"></div>
+                            <div class="modal-body" style="padding: 5px; text-align: center !important;">
+                                <a href="#"
+                                    style="font-weight: 400; border-bottom: 1px solid #eee; display: block; padding: 8px;"
+                                    data-dismiss="modal">
+                                    <i style="font-size: 20px;" class="typcn typcn-user"></i>
+                                    &nbsp; Account
+                                </a>
 
-                                <a href="#" style="font-weight: lighter; display: block;">
-                                    <i style="font-size: 20px;" class="typcn typcn-credit-card"></i>&nbsp;
-                                    Payments</a>
-                                <div class="separator"></div>
+                                <a href="#"
+                                    style="font-weight: 400; border-bottom: 1px solid #eee; display: block; padding: 8px;"
+                                    data-dismiss="modal">
+                                    <i style="font-size: 20px;" class="typcn typcn-credit-card"></i>
+                                    &nbsp;Payments
+                                </a>
 
-                                <a href="#" style="font-weight: lighter; display: block;">
-                                    <i style="font-size: 20px;" class="typcn typcn-key-outline"></i>&nbsp;
-                                    Security</a>
-                                <div class="separator"></div>
+                                <a href="#"
+                                    style="font-weight: 400; border-bottom: 1px solid #eee; display: block; padding: 8px;"
+                                    data-dismiss="modal">
+                                    <i style="font-size: 20px;" class="typcn typcn-key-outline"></i>
+                                    &nbsp;Security
+                                </a>
 
-                                <a href="#" style="font-weight: lighter; display: block;">
-                                    <i style="font-size: 20px;" class="typcn typcn-support"></i>&nbsp; Help</a>
-                                <div class="separator"></div>
+                                <a href="#"
+                                    style="font-weight: 400; border-bottom: 1px solid #eee; display: block; padding: 8px;"
+                                    data-dismiss="modal">
+                                    <i style="font-size: 20px;" class="typcn typcn-support"></i>
+                                    &nbsp; Help
+                                </a>
 
                                 <!-- Sign Out -->
                                 <a href="/auth/0/signin/out" id="SignOut" class="color"
-                                    style="font-weight: lighter; display: block;"><b>Sign Out</b></a>
+                                    style="font-weight: 400; display: block; padding: 8px;">
+                                    &nbsp; Sign Out
+                                </a>
                             </div>
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
@@ -218,7 +230,8 @@
                                         style="border-radius: 5px; padding: 5px;">Photos</span>
                                 </h4>
                                 <a href="javascript: void(0);" onclick="$('#addPhotos').trigger('click');"
-                                    class="btn waves-effect waves-light float-right" style="font-size: 20px;">
+                                    class="btn waves-effect waves-light float-right"
+                                    style="font-size: 20px; padding: 5px 10px !important;">
                                     <i class="typcn typcn-plus"></i>
                                 </a>
                             </div>
@@ -269,7 +282,7 @@
                         </div>
                         <div class="displayImageCon"
                             style="padding: 10px 0px; background-color: transparent; text-align: center !important;">
-                            <img src="" id="displayImage" alt="image" width="800"
+                            <img src="" id="displayImage" alt="image" width="800" data-dismiss="modal"
                                 style="border: 1px solid transparent; max-width: 100%;">
                             <% if (profile_user.username == user.username) { %>
                             <br>
@@ -350,7 +363,7 @@
                             <div>
                                 <center>
                                     <a href=javascript:void(0); class="activeProfile hasStories">
-                                        <div class="image profileImage"
+                                        <div class="image profileImage" id="profileImage"
                                             style="background-image: url('<%= profile_user.avatar %>');">
                                         </div>
                                     </a>
@@ -394,7 +407,7 @@
                 </footer>
             </section>
             <section class="profileFooter">
-                <div class="moreDetails">
+                <div class="moreDetails" style="display: none;">
                     <div class="viewProfile">
                         <section class="row">
                             <div class="viewProfileLeft col-md-8">
@@ -451,8 +464,8 @@
                                 <% if (user.username == profile_user.username) { %>
                                 <li class="col-1 col-md-1 col-sm-1">
                                     <a href=javascript:void(0); class="text-dark btn waves-effect waves-light addImages"
-                                        id="addPhotosBtn" role="button" data-toggle="modal" data-countbtn="0" data-target=".addPhotosCon"
-                                        onclick="$('#addPhotos').trigger('click');">
+                                        id="addPhotosBtn" role="button" data-toggle="modal" data-countbtn="0"
+                                        data-target=".addPhotosCon" onclick="$('#addPhotos').trigger('click');">
                                         <i class="typcn typcn-plus-outline"></i>
                                     </a>
                                 </li>

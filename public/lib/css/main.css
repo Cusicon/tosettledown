@@ -120,11 +120,6 @@ h6 {
   /* Pinkish_red */
 }
 
-.orange-color {
-  color: #ff661b;
-  /* Orange */
-}
-
 .bg-Primary_color {
   background-color: #ff6878 !important;
   color: #fff !important;
@@ -156,7 +151,7 @@ h6 {
 .borderBottom {
   padding: 1px;
   background-color: #ff6878;
-  width: 4%;
+  width: 5%;
   margin-bottom: 5px;
 }
 
@@ -223,7 +218,7 @@ h6 {
 }
 
 .dropdownContent div.separator {
-  margin-bottom: 0px;
+  margin-bottom: 5px;
 }
 
 .dropdownContent a {
@@ -243,7 +238,7 @@ h6 {
 }
 
 .btn {
-  padding: 10px 15px !important;
+  padding: 10px 20px !important;
   border-radius: 15px !important;
   color: unset;
   font-size: 14px;
@@ -332,9 +327,9 @@ a:active {
 }
 
 div.separator {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border: 0.5px solid #eee;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-top: 0.5px solid #eee;
 }
 
 

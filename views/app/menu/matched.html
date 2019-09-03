@@ -20,40 +20,44 @@
         </div>
         <div class="matched container">
             <div style="text-align: center;">
-                <ul class="match-holder">
-                    <% if(matches.length > 0) { %>
-                    <% matches.forEach(match => { %>
-                    <li class="col-md-4 col-sm-6" style="padding: 10px;">
-                        <div class="card">
-                            <div id="card-handle"></div>
-                            <div class="img" style="background-image: url('<%= match.matchObj.avatar %>');">
+                <div class="row">
+                    <ul class="match-holder">
+                        <% if(matches.length > 0) { %>
+                        <% matches.forEach(match => { %>
+                        <li class="col-md-4 col-sm-6" style="padding: 10px;">
+                            <center>
+                                <div class="card">
+                                    <div id="card-handle"></div>
+                                    <div class="img" style="background-image: url('<%= match.matchObj.avatar %>');">
+                                    </div>
+                                    <div class="text-left">
+                                        <a href="/app/profile/<%=match.matchObj.username%>" class="color">
+                                            <h5 id="title" style="color: inherit !important;">
+                                                <%=match.matchObj.name.split(" ")[0]%>,
+                                                <%= match.matchObj.dob.age %>
+                                            </h5>
+                                        </a>
+                                        <small class="text-muted" id="timeStamp">
+                                            <i class="typcn typcn-world"></i>
+                                            <%=Moment(match.liked_at).format("MMM Do YY") %>
+                                        </small>
+                                    </div>
+                                </div>
+                            </center>
+                        </li>
+                        <%})%>
+                        <%} else {%>
+                        <li class="no-available">
+                            <div class="content-holder">
+                                <br>
+                                <img src="/lib/img/logo/logo-icon.png" alt="Logo">
+                                <h5 class="text-muted">No matches yet...</h5>
+                                <br>
                             </div>
-                            <div class="text-left">
-                                <a href="/app/profile/<%=match.matchObj.username%>">
-                                    <h5 id="title"> 
-                                        <%=match.matchObj.name.split(" ")[0]%>, 
-                                        <%= match.matchObj.dob.age %>
-                                    </h5>
-                                </a>
-                                <small class="text-muted" id="timeStamp">
-                                    <i class="typcn typcn-world"></i>
-                                    <%=Moment(match.liked_at).format("MMM Do YY") %>
-                                </small>
-                            </div>
-                        </div>
-                    </li>
-                    <%})%>
-                    <%} else {%>
-                    <li class="no-available">
-                        <div class="content-holder">
-                            <br>
-                            <img src="/lib/img/logo/logo-icon.png" style="width: 100px;" alt="Logo">
-                            <h5 class="text-muted">No matches yet...</h5>
-                            <br>
-                        </div>
-                    </li>
-                    <%} %>
-                </ul>
+                        </li>
+                        <%} %>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
