@@ -1,0 +1,252 @@
+/* ENCOUNTERS */
+
+.encounterPage{
+    margin-top: 20px;
+    width: 100% !important;
+}
+
+.mainBody .displayWindow .imageWindow {
+    /* border: 1px solid #eee; */
+    background-color: #000;
+    background-position: top center;
+    padding: 0px;
+    height: 560px;
+    width: 100%;
+}
+
+.mainBody .displayWindow .imageWindow div.renderUserPhotos {
+    display: -webkit-box; /* Chrome Browser */
+    display: -moz-box; /* Mozilla Firefox Browser */
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    overflow-x: scroll;
+}
+
+.mainBody .displayWindow .imageWindow div.renderUserPhotos .userDisplayedPhotoCon {
+    position: sticky; /* Gives stack scroll animation */
+    left: 0px; /* Gives stack scroll animation */
+    display: flex; /* Centralizes the image */
+    width: 100%;
+    background-color: #000;
+}
+
+.mainBody .displayWindow .imageWindow div.renderUserPhotos .userDisplayedPhotoCon img {
+    width: 100%;
+}
+
+.mainBody .displayWindow .imageWindow .overlayNav {
+    position: absolute;
+    top: 0%;
+    box-shadow: 0px -130px 100px #00000036 inset;
+    height: 100%;
+    width: 100%;
+    /* z-index: -5; */
+}
+
+.mainBody .displayWindow .imageWindow .overlayNav .navTop {
+    margin-bottom: 50px;
+    padding: 10px;
+    padding-right: 15px;
+}
+
+.mainBody .displayWindow .imageWindow .overlayNav .imageCounter {
+    border-radius: 5px;
+    padding: 2.2px 10px;
+    background-color: #00000044;
+    font-weight: lighter;
+    float: right;
+    color: #fff;
+}
+
+.mainBody .displayWindow .imageWindow .overlayNav .imageCounter p {
+    margin: 0px 5px;
+}
+
+.mainBody .displayWindow .imageWindow .overlayNav .navMiddle {
+    height: 65%;
+}
+
+.mainBody .displayWindow .imageWindow .overlayNav .navMiddle a,
+.mainBody .displayWindow .imageWindow .overlayNav .navMiddle a {
+    font-size: 50px;
+    padding: 7px;
+    padding-top: 150px;
+    padding-bottom: 150px;
+    transform: scaleX(0.5);
+    color: #fff4;
+}
+
+.mainBody .displayWindow .imageWindow .overlayNav .navMiddle a:active {
+    color: #706c6c88;
+    transform: scaleX(0.4);
+}
+
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom ul li {
+    display: inline-block;
+    padding: 5px;
+}
+
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom ul li a {
+    display: block;
+    font-size: 19px;
+    min-width: 35px;
+    min-height: 35px;
+    border-radius: 100%;
+    border: 1px solid #fff !important;
+    color: #fff;
+}
+
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom ul li a#sendAMessage:active,
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom ul li a#sendCrush:active {
+    transform: scale(1.1555);
+    background-color: #706c6c44;
+}
+
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom ul li a#like,
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom ul li a#skip {
+    display: block;
+    font-size: 45px;
+    min-width: 85px;
+    min-height: 85px;
+    padding-top: 4px;
+    border-radius: 100%;
+    background-color: #fff;
+}
+
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom ul li a#like:active,
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom ul li a#skip:active {
+    transform: scale(1.15) translateY(-3px);
+}
+
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom .quickMessagePopUp {
+    display: none;
+    position: absolute;
+    width: 100% !important;
+    bottom: -10%;
+}
+
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom .quickMessagePopUp .card {
+    height: 250px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom .quickMessagePopUp .card #card-handle {
+    width: 10%;
+}
+
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom .quickMessagePopUp .card .card-body .top {
+    padding: 0px 20px;
+    height: 60px;
+}
+
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom .quickMessagePopUp .card .card-body .top .profileImg {
+    width: 50px;
+    height: 50px;
+    background-color: #eee;
+    border: 2px solid #fff;
+    border-radius: 100%;
+}
+
+.mainBody .displayWindow .imageWindow .overlayNav .navBottom .quickMessagePopUp .card .card-body .bottom {
+    height: 100px;
+    border-top: 1px solid #f9f9f9;
+}
+
+.mainBody .displayWindow .detailsCon {
+    padding: 20px;
+    padding-top: 30px;
+    background-color: #fff;
+    z-index: 2;
+}
+
+.mainBody .displayWindow .detailsCon .detailsHeader {
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+}
+
+.mainBody .displayWindow .detailsCon .detailsHeader span {
+    font-weight: lighter;
+    /* color: #000; */
+}
+
+.mainBody .displayWindow .detailsCon .bio {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.mainBody .displayWindow .detailsCon .personalInfo {
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+}
+
+.mainBody .displayWindow .detailsCon .personalInfo ul li {
+    padding: 5px 0px;
+}
+
+/* End of MainBody */
+
+/* StatusBar */
+
+.statusBar {
+    margin-left: 15px;
+    padding: 10px;
+}
+
+.statusBar ul li {
+    display: inline-flex;
+    margin-left: -5px;
+}
+
+.statusBar ul li a {
+    display: block;
+    border-radius: 100%;
+    padding: 2px;
+    cursor: default;
+}
+
+.statusBar ul li a div.image {
+    border: 2px solid #f6f6f6;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    background-color: #eee;
+}
+
+/* End of StatusBar */
+
+/* shopAds */
+
+.shopAds {
+    height: 360px;
+    overflow: hidden;
+    margin-left: 30px;
+    padding: 10px;
+}
+
+.shopAds ul li {
+    display: inline-block;
+    margin-left: -5px;
+}
+
+.shopAds ul li a {
+    display: block;
+    border-radius: 100%;
+    padding: 2px;
+    cursor: default;
+}
+
+.shopAds ul li a div.image {
+    border: 2px solid #f6f6f6;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    background-color: #eee;
+}
+
+/* End of shopAds */
+
+/* END OF ENCOUNTERS */

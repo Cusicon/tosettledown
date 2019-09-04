@@ -1,0 +1,380 @@
+/* CHATS */
+
+.Chat {
+    padding: 0px;
+}
+
+.Chat .ChatList {
+    padding: 0px;
+    border-right: 1px solid #eee;
+}
+
+.Chat .ChatList .ChatHead {
+    padding: 10px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.Chat .ChatList .ChatHead h3 {
+    margin-top: 20px;
+}
+
+.Chat .ChatList .ChatBody {
+    background-color: #fff;
+    overflow: scroll;
+    height: 490px;
+}
+
+.Chat .ChatList .ChatBody ul {
+    height: 100%;
+}
+
+.Chat .ChatList .ChatBody ul li.user {
+    display: block;
+    height: 71px;
+    width: 100%;
+}
+
+li.user:last-child {
+    border-bottom: 0px;
+}
+
+.Chat .ChatList .ChatBody ul li.user:hover {
+    box-shadow: 0px 1px 100px #0000002a !important;
+    cursor: pointer;
+    /* background-color: rgba(0, 0, 0, 0.11) !important; */
+}
+
+.Chat .ChatList .ChatBody ul li.user.active {
+    box-shadow: 0px 1px 100px #0000002a !important;
+}
+
+.Chat .ChatList .ChatBody ul li.user div.image-holder {
+    padding-left: 10px;
+}
+
+
+.Chat .ChatList .ChatBody ul li.user div.profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color: #eee;
+    float: left;
+}
+
+
+.chat-list li.user div.status {
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    border: 1px solid #fff;
+    border-radius: 100%;
+}
+
+.Chat .ChatList .ChatBody ul li.user div.username {
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.Chat .ChatList .ChatBody ul li.user div.latest-message {
+    font-size: 12px;
+    float: left;
+}
+
+.Chat .ChatList .ChatBody ul li.user div.communication-status {
+    font-size: 12px;
+    float: right;
+    color: #ff6878;
+    font-weight: 500;
+}
+
+.Chat .ChatList .ChatBody ul li.user div.time {
+    font-size: 12px;
+    float: right;
+    color: #aaa !important;
+}
+
+/* END OF CHATS LIST */
+
+
+/* Windows Chat Begin*/
+
+.Chat .ChatWindow {
+    padding: 0 !important;
+    background-image: url('/lib/img/wallpaper2.jpg');
+    background-color: #eee;
+}
+
+.Chat .ChatWindow .ChatWindowHead {
+    display: block;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+    padding: 10px 20px;
+    height: 70px;
+}
+
+.Chat .ChatWindow .ChatWindowHead div#chat-profile-img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 100%;
+    background-color: #eee;
+    float: left;
+}
+
+.Chat .ChatWindow .ChatWindowHead div#chat-username {
+    font-size: 15px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.Chat .ChatWindow .ChatWindowHead h6#chat-username-holder {
+    margin: 10px 0px 0px 0px;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.Chat .ChatWindow .ChatWindowHead small#chat-typing {
+    display: block;
+    font-weight: 500;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #ff6878;
+}
+
+.Chat .ChatWindow .ChatWindowBody {
+    width: 100%;
+    overflow: scroll;
+    height: 500px;
+    padding: 5px;
+}
+
+.Chat .ChatWindow .ChatWindowBody ul.chat-message-list {
+    padding-bottom: 10px;
+}
+
+.Chat .ChatWindow .ChatWindowBody ul.chat-message-list li {
+    padding: 5px 5px;
+    width: 100%;
+    float: left;
+}
+
+.Chat .ChatWindow .ChatWindowBody ul.chat-message-list li.inbox div {
+    border-radius: 0px 25px 25px 25px;
+    background-color: #fff;
+    color: #2b2b2b;
+    float: left;
+}
+
+.Chat .ChatWindow .ChatWindowBody ul.chat-message-list li.outbox div {
+    border-radius: 25px 0px 25px 25px;
+    background-color: #ff6878;
+    float: right;
+}
+
+.Chat .ChatWindow .ChatWindowBody ul.chat-message-list li div {
+    display: inline-block;
+    padding: 10px 15px;
+    color: #fff;
+    max-width: 250px;
+    overflow: hidden;
+    box-shadow: 0px 2.5px 0px #4949496c !important;
+}
+
+.Chat .ChatWindow .ChatWindowBody ul.chat-message-list li div .message {
+    padding: 5px 10px 5px 0px;
+    font-size: 14px;
+}
+
+.Chat .ChatWindow .ChatWindowBody ul.chat-message-list li div .time {
+    font-size: 11px;
+    font-weight: lighter;
+    float: right;
+    margin-top: 5px;
+}
+
+/* ! Window Chat Ends */
+
+
+
+/*Lazy Loader Begins*/
+.lazy-box-loader {
+    background-color: #eee;
+    border-radius: 5px;
+    -webkit-animation: mymove 3s infinite;
+    /* Safari 4.0 - 8.0 */
+    animation: mymove 3s infinite;
+}
+
+.lazy-message-box-loader {
+    border-radius: 5px;
+    -webkit-animation: mymove 3s infinite;
+    /* Safari 4.0 - 8.0 */
+    animation: mymove 3s infinite;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes mymove {
+    0% {
+        opacity: 0.9;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 0.9;
+    }
+}
+
+@keyframes mymove {
+    0% {
+        opacity: 0.9;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 0.9;
+    }
+}
+
+/* ! Lazy Loader Ends*/
+
+
+
+/* Apply Lazy Loader To Chat LIST Element Height And Weight */
+
+.chat-list li .message-holder {
+    float: left;
+    width: 78%;
+    height: 71px;
+    border-bottom: 1px solid #eee;
+    padding: 15px 15px 15px 0px;
+}
+
+.chat-list li .image-holder {
+    float: left;
+    width: 22%;
+    height: 71px;
+    padding: 10px 5px 10px 5px;
+}
+
+.chat-list li.user div.time.lazy-box-loader {
+    width: 55px;
+    height: 18px;
+}
+
+.chat-list li.user div.username.lazy-box-loader {
+    width: 220px;
+    height: 22px;
+}
+
+.chat-list li.user div.latest-message.lazy-box-loader {
+    width: 280px;
+    height: 18px;
+    margin-top: 4px;
+}
+
+.chat-list li.user div.profile-img.lazy-box-loader {
+    width: 50px;
+    height: 50px;
+    margin-top: 4px;
+}
+
+.chat-list li.user div.status.lazy-box-loader {
+    width: 13px;
+    height: 13px;
+    background-color: #eee !important;
+}
+
+/* ! Apply Lazy Loader To Chat LIST Element Height And Weight */
+
+
+/* Apply Lazy Loader To ChatWindow Element Height And Weight */
+
+.Chat .ChatWindow .ChatWindowHead #chat-profile-img {
+    width: 50px;
+    height: 50px;
+}
+
+.Chat .ChatWindow .ChatWindowHead div.activity_status.lazy-box-loader {
+    width: 13px;
+    height: 13px;
+    /*margin-top: 4px;*/
+    background-color: #eee !important;
+}
+
+.Chat .ChatWindow .ChatWindowHead #chat-username-holder {
+    min-width: 120px;
+    /* height: 30px; */
+}
+
+.Chat .ChatWindow .ChatWindowHead #chat-typing {
+    width: 80px;
+    height: 10px;
+}
+
+.Chat .ChatWindow .ChatWindowBody ul.chat-message-list li div.big-text {
+    width: 350px;
+    height: 150px;
+}
+
+.Chat .ChatWindow .ChatWindowBody ul.chat-message-list li div.medium-text {
+    width: 250px;
+    height: 100px;
+}
+
+.Chat .ChatWindow .ChatWindowBody ul.chat-message-list li div.small-text {
+    width: 150px;
+    height: 50px;
+}
+
+/* ! Apply Lazy Loader To ChatWindow Element Height And Weight */
+
+.ChatWindowFooter {
+    width: 100%;
+    height: 70px;
+    background-color: #fff;
+    padding-top: 10px !important;
+}
+
+.ChatWindowFooter #message-input {
+    padding: 0;
+    resize: none;
+    min-height: 45px !important;
+    border: 1px solid #eee !important;
+    width: calc(100% - 65px);
+    float: left;
+    border-bottom-right-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    /*background-color: #eee;*/
+}
+
+.ChatWindowFooter button {
+    border-bottom-left-radius: 0px !important;
+    border-top-left-radius: 0px !important;
+    /*border-radius: 1000px;*/
+    width: 65px;
+    float: left;
+}
+
+.no-available {
+    width: 100%;
+    height: 100%;
+    vertical-align: center;
+    text-align: center;
+    overflow: hidden !important;
+}
+
+.no-available .content-holder {
+    margin: 45% auto 0% auto;
+}
+
+.no-available img {
+    width: 60px;
+    opacity: .5;
+}
+
+/* END OF CHATS */
