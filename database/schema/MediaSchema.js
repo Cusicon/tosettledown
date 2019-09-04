@@ -14,7 +14,5 @@ let media_schema = mongoose.Schema({
     is_visible: {type: Boolean, default: true},
 });
 
-console.log((config('medialibrary', (Var) => { return Var})));
-
 module['exports'].schema = media_schema;
 module['exports'].model = mongoose.model(config('medialibrary', (Var) => { return Var['media_model']}), media_schema);

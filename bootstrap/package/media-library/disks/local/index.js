@@ -20,8 +20,6 @@ class LocalStorage {
             cb(null, name)
         }
 
-        console.log('got here before error');
-
         let file_filter = function (req, file, callback) {
             let ext = path.extname(file.originalname);
             if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {

@@ -16,9 +16,6 @@ class DigitalOceanStorage {
 
     upload(model, name, newName = null, callback){
 
-
-
-
         let filename = function(req, file, cb){
             let image_path = path.join(req.user.id.toString() , 'photos', Date.now().toString());
             let name = (newName)? path.join(image_path, newName.concat(path.extname(file.originalname))) : path.join(image_path, file.originalname);
@@ -59,7 +56,6 @@ class DigitalOceanStorage {
 
 
         upload(this.req, this.res, (err) => {
-            console.log(this.req.files)
             this.saveModel(model, this.req)
             callback(this.req, this.res, err)
         });

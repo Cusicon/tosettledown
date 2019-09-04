@@ -27,18 +27,17 @@ class hasMedia extends Media {
 
         const ClassPath = path.join('..','disks', drive_folder, 'index.js');
 
-        console.log(ClassPath)
         let Storage = require(ClassPath)
         this.instance = new Storage(this.req, this.res, disk);
 
-        fs.access(ClassPath, fs.F_OK, (err) => {
-            if (err) {
-                console.error(err)
-                return null;
-            }
-            let Storage = require(ClassPath)
-            this.instance = new Storage(this.req, this.res, disk);
-        });
+        // fs.access(ClassPath, fs.F_OK, (err) => {
+        //     if (err) {
+        //         console.error(err)
+        //         return null;
+        //     }
+        //     let Storage = require(ClassPath)
+        //     this.instance = new Storage(this.req, this.res, disk);
+        // });
     }
 }
 module.exports = hasMedia;
