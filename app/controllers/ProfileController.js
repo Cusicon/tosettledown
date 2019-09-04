@@ -36,13 +36,13 @@ module["exports"] = class ProfileController {
                             res.render('./app/menu/profile', {
                                 title: `${user.fullname.firstname}'s profile`,
                                 profile_user: user,
-                                photos: photos
+                                photos: photos.reverse()
                             });
                         } else if (req.user.gender === user.gender && req.user.username === user.username) {
                             res.render('./app/menu/profile', {
                                 title: `${user.fullname.firstname}'s profile`,
                                 profile_user: user,
-                                photos: photos
+                                photos: photos.reverse()
                             });
                         } else {
                             res.redirect("/#regForm");
