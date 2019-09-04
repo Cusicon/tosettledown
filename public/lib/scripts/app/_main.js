@@ -79,13 +79,23 @@ showDropdown();
 (function requestWebDesktopNotificationPermission() {
     if (window.Notification) {
         Notification.requestPermission().then(function (status) {
-            if (status === "denied") {
-                // alert("/lib/img/logo/favicon.ico", "Turn on Notifications", "Know right away when people follow you or like and comment on your photos.", ["Cancel", "Turn on"])
+            if (status != "granted") {
+                console.log(`Notification ${status}!`);
+                // alert("/lib/img/logo/favicon.ico",
+                //     "Turn on Notifications",
+                //     "Know right away when people follow you or like and comment on your photos.",
+                //     ["Cancel", "Turn on"],
+                //     () => {
+
+                //     }
+                // );
+            } else {
+                console.log(`Notification ${status}!`);
             }
         });
     } else {
         //-- snackbar here
-        // alert("/lib/img/logo/favicon.ico", "Turn on Notifications", "Browser Doesn\'t support notification", ["Ok"])
+        alert("/lib/img/logo/favicon.ico", "Turn on Notifications", "Sorry, your browser doesn\'t support notifications", [null, "Close"]);
     }
 })();
 

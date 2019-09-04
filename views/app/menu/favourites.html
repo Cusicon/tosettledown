@@ -19,15 +19,16 @@
                     <ul class="favourites-holder">
                         <% if(favourites.length > 0) { %>
                         <% favourites.forEach(favourite => { %>
-                        <li class="col-md-4 col-sm-6" style="padding: 10px;">
+                        <li class="col-md-3 col-sm-6">
                             <center>
-                                <div class="card">
+                                <div class="card"
+                                    onclick="location.href = '/app/profile/<%=favourite.favouriteObj.username%>';">
                                     <div id="card-handle"></div>
                                     <div class="img"
                                         style="background-image: url('<%= favourite.favouriteObj.avatar %>');">
                                     </div>
                                     <div class="text-left">
-                                        <a href="/app/profile/<%=favourite.favouriteObj.username%>" class="color">
+                                        <a href="/app/profile/<%=favourite.favouriteObj.username%>">
                                             <h5 id="title" style="color: inherit !important;">
                                                 <%=favourite.favouriteObj.name.split(" ")[0]%>,
                                                 <%= favourite.favouriteObj.dob.age %>

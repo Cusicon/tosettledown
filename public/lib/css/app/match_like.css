@@ -1,4 +1,4 @@
-/* MATCHED AND LIKES */
+/* LIKES AND MATCHED */
 
 .likes ul li,
 .matched ul li {
@@ -10,28 +10,30 @@
     width: 200px;
     border-radius: 40px;
     border: 1px solid #ddd;
+    cursor: pointer !important;
 }
 
 .likes .card:hover,
 .matched .card:hover {
-    box-shadow: -0px 2px 8px #ddd;
+    box-shadow: 0px 1px 50px #0000002a !important;
 }
 
 .likes .card .img,
 .matched .card .img {
-    border-radius: 100%;
+    border-radius: 10px;
     margin-bottom: 15px;
     width: 160px;
     height: 160px;
     background-color: #eee;
+    border-radius: 100%;
 }
 
-
 .likes-holder,
-.match-holder {
+.matched-holder {
     width: 100%;
     text-align: left;
 }
+
 
 .no-available {
     width: 100%;
@@ -50,4 +52,4 @@
     opacity: .5;
 }
 
-/* END OF MATCHED AND LIKES */
+/* END OF LIKES AND MATCHED */

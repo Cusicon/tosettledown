@@ -132,6 +132,8 @@
 
     .mainBody .displayWindow .imageWindow .overlayNav .navBottom .quickMessagePopUp .card .card-body .bottom .container {
         padding-left: 0px !important;
+        padding-right: 25px !important;
+
     }
 
     .profileMain .profileHeader footer ul li a {
@@ -235,9 +237,11 @@
 
     .Chat .ChatWindow {
         position: absolute;
-        width: 100% !important;
-        height: 100%;
         left: -120%;
+        width: 100% !important;
+        height: 100% !important;
+        background-size: cover !important;
+        background-attachment: fixed;
     }
 
     .Chat .ChatWindowHead {

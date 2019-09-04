@@ -95,7 +95,8 @@
                 <div class="regFoot">
                     <div class="form-group">
                         <button type="submit" id="regSubmitForm" class="form-control btn bg-success text-light"
-                            style="padding: 15px 0px !important; margin-bottom: 5px;" aria-describedby="submitFormHelp">Sign
+                            style="padding: 15px 0px !important; margin-bottom: 5px;"
+                            aria-describedby="submitFormHelp">Sign
                             up with Tosettledown (TSD)</button>
                         <small id="submitFormHelp" class="form-text text-muted">By clicking
                             <i>"Sign Up with Tosettledown (TSD)"</i>,
@@ -127,8 +128,8 @@
                     </div>
                     <!-- Remember me -->
                     <div class="custom-control custom-checkbox mb-4" style="padding-left: 30px;">
-                        <input type="checkbox" id="remember" name="remember" class="custom-control-input" value="remember"
-                            checked>
+                        <input type="checkbox" id="remember" name="remember" class="custom-control-input"
+                            value="remember" checked>
                         <label class="custom-control-label" for="remember">Remember Me</label>
                     </div>
                     <!-- Sign Btn -->
@@ -136,6 +137,12 @@
                         <div class="form-group">
                             <button type="submit" id="loginSubmitForm" class="form-control btn bg-success text-light"
                                 style="padding: 15px !important;">Sign In</button>
+                        </div>
+                        <div class="text-center">
+                            <small>
+                                <a href="/#regForm" onclick="$('#loginBtn').trigger('click');">
+                                    Not a user?, Sign Up</a>
+                            </small>
                         </div>
                     </div>
                 </div>

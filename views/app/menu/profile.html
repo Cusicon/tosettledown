@@ -328,16 +328,16 @@
                                     <% } %>
                                     <a href="#">Share</a>
                                     <% if (user.username == profile_user.username) { %>
-                                    <a href="#" id="editProfileBtn" data-toggle="modal"
-                                        data-target=".editProfileCon">Edit profile</a>
+                                    <div class="onMobile">
+                                        <a href="/app/visitors">Visitors</a>
+                                    </div>
+                                    <div class="onMobile">
+                                        <a href="/app/favourites">Favourites</a>
+                                    </div>
                                     <% } %>
                                     <% if (user.username == profile_user.username) { %>
-                                    <div class="onMobile">
-                                        <a href="/app/visitors">My visitors</a>
-                                    </div>
-                                    <div class="onMobile">
-                                        <a href="/app/favourites">My favourites</a>
-                                    </div>
+                                    <a href="#" id="editProfileBtn" data-toggle="modal"
+                                        data-target=".editProfileCon">Edit profile</a>
                                     <% } %>
                                     <% if (user.username != profile_user.username) { %>
                                     <a href="#" class="color">Block or Report</a>

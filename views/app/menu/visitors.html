@@ -14,31 +14,29 @@
             <div class="borderBottom"></div>
         </div>
         <div class="visitors container">
-            <div style="text-align: center;">
-                <div class="row">
-                    <ul class="visitors-holder">
+            <center>
+                <ul>
+                    <div class="row">
                         <% if(visits.length > 0) { %>
                         <% visits.forEach(visit => { %>
                         <li class="col-md-4 col-sm-6" style="padding: 10px;">
-                            <center>
-                                <div class="card">
-                                    <div id="card-handle"></div>
-                                    <div class="img" style="background-image: url('<%= visit.visitorObj.avatar %>');">
-                                    </div>
-                                    <div class="text-left">
-                                        <a href="/app/profile/<%=visit.visitorObj.username%>" class="color">
-                                            <h5 id="title" style="color: inherit !important;">
-                                                <%=visit.visitorObj.name.split(" ")[0]%>,
-                                                <%= visit.visitorObj.dob.age %>
-                                            </h5>
-                                        </a>
-                                        <small class="text-muted" id="timeStamp">
-                                            <i class="typcn typcn-world"></i>
-                                            <%=Moment(visit.visited_at).format("MMM Do YY") %>
-                                        </small>
-                                    </div>
+                            <div class="card" onclick="location.href = '/app/profile/<%=visit.visitorObj.username%>';">
+                                <div id="card-handle"></div>
+                                <div class="img" style="background-image: url('<%= visit.visitorObj.avatar %>');">
                                 </div>
-                            </center>
+                                <div class="text-center">
+                                    <a href="/app/profile/<%=visit.visitorObj.username%>">
+                                        <h5 id="title">
+                                            <%=visit.visitorObj.name.split(" ")[0]%>,
+                                            <%= visit.visitorObj.dob.age %>
+                                        </h5>
+                                    </a>
+                                    <small class="text-muted" id="timeStamp">
+                                        <i class="typcn typcn-world"></i>
+                                        <%=Moment(visit.visited_at).format("MMM Do YY") %>
+                                    </small>
+                                </div>
+                            </div>
                         </li>
                         <%})%>
                         <%} else {%>
@@ -46,14 +44,14 @@
                             <div class="content-holder">
                                 <br>
                                 <img src="/lib/img/logo/logo-icon.png" alt="Logo">
-                                <h5 class="text-muted">No visitors yet...</h5>
+                                <h5 class="text-muted">No matches yet...</h5>
                                 <br>
                             </div>
                         </li>
                         <%} %>
-                    </ul>
-                </div>
-            </div>
+                    </div>
+                </ul>
+            </center>
         </div>
     </div>
 </div>

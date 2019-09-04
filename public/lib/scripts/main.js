@@ -87,8 +87,8 @@ if (!Array.last) {
                             var checkForProfileImage = document.getElementById("profileImage").style.backgroundImage.includes(photoNAME);
                             if (!checkForProfileImage) {
                                 location.replace(__url);
-                                console.log("Profile not Changed!");
-                            } else console.log("Profile changed Changed!");
+                                console.log("Profile not changed!");
+                            }
                         }
                     }
                 });

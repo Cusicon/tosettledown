@@ -19,31 +19,29 @@
             <div class="borderBottom"></div>
         </div>
         <div class="matched container">
-            <div style="text-align: center;">
-                <div class="row">
-                    <ul class="match-holder">
+            <center>
+                <ul>
+                    <div class="row">
                         <% if(matches.length > 0) { %>
                         <% matches.forEach(match => { %>
                         <li class="col-md-4 col-sm-6" style="padding: 10px;">
-                            <center>
-                                <div class="card">
-                                    <div id="card-handle"></div>
-                                    <div class="img" style="background-image: url('<%= match.matchObj.avatar %>');">
-                                    </div>
-                                    <div class="text-left">
-                                        <a href="/app/profile/<%=match.matchObj.username%>" class="color">
-                                            <h5 id="title" style="color: inherit !important;">
-                                                <%=match.matchObj.name.split(" ")[0]%>,
-                                                <%= match.matchObj.dob.age %>
-                                            </h5>
-                                        </a>
-                                        <small class="text-muted" id="timeStamp">
-                                            <i class="typcn typcn-world"></i>
-                                            <%=Moment(match.liked_at).format("MMM Do YY") %>
-                                        </small>
-                                    </div>
+                            <div class="card" onclick="location.href = '/app/profile/<%=match.matchObj.username%>';">
+                                <div id="card-handle"></div>
+                                <div class="img" style="background-image: url('<%= match.matchObj.avatar %>');">
                                 </div>
-                            </center>
+                                <div class="text-center">
+                                    <a href="/app/profile/<%=match.matchObj.username%>">
+                                        <h5 id="title">
+                                            <%=match.matchObj.name.split(" ")[0]%>,
+                                            <%= match.matchObj.dob.age %>
+                                        </h5>
+                                    </a>
+                                    <small class="text-muted" id="timeStamp">
+                                        <i class="typcn typcn-world"></i>
+                                        <%=Moment(match.liked_at).format("MMM Do YY") %>
+                                    </small>
+                                </div>
+                            </div>
                         </li>
                         <%})%>
                         <%} else {%>
@@ -56,9 +54,9 @@
                             </div>
                         </li>
                         <%} %>
-                    </ul>
-                </div>
-            </div>
+                    </div>
+                </ul>
+            </center>
         </div>
     </div>
 </div>

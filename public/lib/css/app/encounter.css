@@ -159,6 +159,7 @@
     padding: 20px;
     padding-top: 30px;
     background-color: #fff;
+    z-index: 2;
 }
 
 .mainBody .displayWindow .detailsCon .detailsHeader {
