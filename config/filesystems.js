@@ -40,12 +40,12 @@ module['exports'] = {
     */
 
     'disks' :{
-        'local' : {
+        'local' : { // Pointing to logs folders
             'driver' : 'local',
             'root' : storage_path(),
         },
 
-        'public' : {
+        'public' : { // Pointing to pulic/store
             'driver' : 'local',
             'root' : public_path('store'),
             'url' : `${get_env('APP_URL')}/store`,
