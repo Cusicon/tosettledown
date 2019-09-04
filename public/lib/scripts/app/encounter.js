@@ -149,7 +149,6 @@ function sendLikeOrSkip(username, type) {
 }
 
 function populateEncounter(user, photos) {
-    console.log(user)
     renderUserDetails(user);
     renderUserPhotos(photos, "div.renderUserPhotos");
 }

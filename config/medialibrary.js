@@ -17,11 +17,11 @@ module['exports'] = {
      */
     'media_model': 'media',
 
-    's3': {
+    'do': {
         /*
          * The domain that should be prepended when generating urls.
          */
-        'domain': `https://${get_env('AWS_BUCKET')}.s3.amazonaws.com`,
+        'domain': `https://${get_env('DO_BUCKET')}.sfo2.digitaloceanspaces.com`,
     },
 
     'remote': {

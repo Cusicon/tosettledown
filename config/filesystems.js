@@ -52,13 +52,13 @@ module['exports'] = {
             'visibility' : 'public',
         },
 
-        's3' : {
-            'driver' : 's3',
-            'key' : get_env('AWS_ACCESS_KEY_ID'),
-            'secret' : get_env('AWS_SECRET_ACCESS_KEY'),
-            'region' : get_env('AWS_DEFAULT_REGION'),
-            'bucket' : get_env('AWS_BUCKET'),
-            'url' : get_env('AWS_URL'),
+        'digitalocean' : {
+            'driver' : 'digitalocean',
+            'key' : get_env('DO_ACCESS_KEY_ID'),
+            'secret' : get_env('DO_SECRET_ACCESS_KEY'),
+            'region' : get_env('DO_DEFAULT_REGION'),
+            'bucket' : get_env('DO_BUCKET'),
+            'url' : get_env('DO_URL'),
         },
 
     }
