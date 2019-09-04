@@ -4,13 +4,13 @@ module["exports"] = function (err, req, res, next) {
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-    if(err)
-    {
+    if(err) {
         console.log(err.status , err.stack)
-        //- render the error page
+
         res.status(err.status || 500);
 
-        res.send(`Server Error : ${err.status || 500} --- ${err.message}`);
+        res.send(`Server Error : ${err.status || 500} --- ${err.message} \n ${err.stack}`);
+
         res.render('./error/404', {
             title: "Error"
         });

@@ -488,7 +488,7 @@
                         <ul class="row">
                             <% for (let i = 0; i < photos.length; i++) { %>
                             <% const photo = photos[i]; %>
-                            <% if(profile_user.username == user.username && photo.user_id == profile_user.id) { %>
+                            <% if(profile_user.username == user.username && photo.model_id == profile_user.id) { %>
                             <!-- Duplicate Here... -->
                             <li class="col-md-4 col-sm-6">
                                 <a href="javascript:void(0);" data-toggle="modal" data-target=".displayPhotosCon"
@@ -499,7 +499,7 @@
                                 "></a>
                             </li>
                             <% } %>
-                            <% if (profile_user.username != user.username && photo.user_id == profile_user.id) { %>
+                            <% if (profile_user.username != user.username && photo.model_id == profile_user.id) { %>
                             <li class="col-md-4 col-sm-6">
                                 <a href="javascript:void(0);" data-toggle="modal" data-target=".displayPhotosCon"
                                     style="background-image: url('<%= photo.location %>'); width: 280px;"
