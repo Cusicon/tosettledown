@@ -1,24 +1,33 @@
-<style>
-    ._404 {
-        width: 70%;
-        margin: 0 auto;
-        margin-top: 10%;
-        text-align: center;
-    }
+<% layout('/auth/layout/template.html') -%>
 
-    ._404 h1,
-    ._404 p {
-        font-weight: lighter;
-    }
+<!-- Call Page Style Tag Here -->
+<% stylesheet('/lib/css/guest/docs.css') -%>
+<!-- Call Style Script Tag Here -->
+<% script('/lib/scripts/guest/docs.js') -%>
 
-    p {
-        color: #aaa;
-    }
-</style>
-
-<section class="_404" style="padding: 50px;">
-    <h1>Oops, You're lost!.</h1>
-    <p>Address not found...</p>
+<section class="cookieMessage">
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav>
+            <br>
+            <center>
+                <a href="javascript:void(0);" style="display: block;" class="logoCon" style="box-sizing: content-box;">
+                    <img src="/lib/img/logo/logoLandscape.png" id="logo" width="200" alt="logo">
+                </a>
+            </center>
+            <br><br>
+        </nav>
+    </header>
     <br>
-    <a href="/#regForm" role="button" class="btn waves-effect waves-light bg-Primary_color">Back to Home</a>
+    <center>
+        <section class="text-center text-dark"
+            style="width: 50%; padding: 50px; margin-bottom: 70px; border-radius: 10px; background-color: #f6f6f6;">
+            <br>
+            <h2 style="font-weight: lighter;">Oops, Your lost...</h2>
+            <br>
+            <p>Address not foud!</p>
+            <a href="/" role="button" class="btn waves-effect waves-light bg-Primary_color">Go Home</a>
+        </section>
+    </center>
+    <br><br><br><br><br><br><br>
 </section>
