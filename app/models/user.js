@@ -55,7 +55,6 @@ module["exports"] = class User extends Model {
             else {
                 bcrypt.hash(newUser.password, salt, (err, hash) => {
                     newUser.password = hash;
-                    newUser.userDirectoriesLocation = createUserDirectory(newUser._id).displayPath;
                     newUser.save(callback);
                 });
             }

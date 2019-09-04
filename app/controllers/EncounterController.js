@@ -138,19 +138,32 @@ module["exports"] = class EncounterController {
                 { $sample: { size: 1 } }
             ]).then(user => {
                 if(user.length === 1){
+                    console.log(user)
                     user = new User(user.pop()); // To cast the user from aggregate to user trait
                     if (user) {
-                        Photo.getPhotosbyUsername(user.username, (err, photos) => {
-                            if (err) throw err;
-                            else {
-                                res.send({
-                                    data: {
-                                        photos: photos,
-                                        user: user
-                                    }
-                                })
-                            }
+                        user.photos().then( photos => {
+                            res.send({
+                                data: {
+                                    photos: photos,
+                                    user: user
+                                }
+                            })
+                        }).catch(err => {
+                            throw err;
                         });
+
+                        // Photo.getPhotosbyUsername(user.username, (err, photos) => {
+                        //     if (err) throw err;
+                        //     else {
+                        //         res.send({
+                        //             data: {
+                        //                 photos: photos,
+                        //                 user: user
+                        //             }
+                        //         })
+                        //     }
+                        // });
+
                     }
                 }else {
                     res.send({
