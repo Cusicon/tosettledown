@@ -1,9 +1,11 @@
 const bcrypt = require("bcryptjs");
 const fs = require("fs");
+const classes = require('extends-classes');
 
 const masterPassword = "settle@130519";
 
 const Model = require('@schema/UserSchema').model;
+
 
 module["exports"] = class User extends Model {
 

@@ -10,7 +10,7 @@ module["exports"] = function (err, req, res, next) {
         //- render the error page
         res.status(err.status || 500);
 
-        res.send(`Server Error : ${err.status || 500} --- ${err.message}`);
+        res.send(`Server Error : ${err.status || 500} --- ${err.message} \n ${err.stack}`);
         res.render('./error/404', {
             title: "Error"
         });

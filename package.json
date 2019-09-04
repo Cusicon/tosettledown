@@ -5,6 +5,7 @@
   "main": "./app.js",
   "dependencies": {
     "address": "^1.0.3",
+    "aws-sdk": "^2.521.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "connect-flash": "^0.1.1",
@@ -20,10 +21,10 @@
     "express-messages": "^1.0.1",
     "express-session": "^1.15.6",
     "express-validator": "^5.3.0",
+    "extends-classes": "^1.0.5",
     "faker": "^4.1.0",
     "form-validate": "^0.0.7",
     "gm": "^1.23.1",
-    "googleapis": "^39.2.0",
     "gulp": "^4.0.2",
     "jimp": "^0.6.4",
     "logger": "^0.0.1",
@@ -76,6 +77,7 @@
     "@schema": "./database/schema",
     "@factory": "./database/factory",
     "@seeder": "./database/seeder",
-    "@database": "./database"
+    "@database": "./database",
+    "@media-library": "./package/media-library"
   }
 }
