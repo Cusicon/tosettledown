@@ -1,11 +1,9 @@
 const bcrypt = require("bcryptjs");
 const fs = require("fs");
-const classes = require('extends-classes');
-
 const masterPassword = "settle@130519";
 
 const Model = require('@schema/UserSchema').model;
-
+const Photo = require('@models/media')
 
 module["exports"] = class User extends Model {
 
@@ -51,7 +49,6 @@ module["exports"] = class User extends Model {
 
     //-- CreateUser
     static createUser(newUser, callback) {
-        newUser.gender == 'male' ? newUser.avatar = `/lib/img/assets/reduced/male.png` : newUser.avatar = `/lib/img/assets/reduced/female.png`
         //-- Hash Password and save.
         bcrypt.genSalt(10, (err, salt) => {
             if (err) throw Error;
@@ -63,21 +60,10 @@ module["exports"] = class User extends Model {
                 });
             }
         });
+    }
 
-        //-- Create User root directory
-        function createUserDirectory(userID) {
-            let loc = public_path(`store/users/${userID}`);
-            fs.mkdir(loc, {
-                recursive: true
-            }, err => {
-                let msg = `A new account signing up...`;
-                err ? console.log(err) : console.log(msg);
-            });
-            return {
-                displayPath: `/store/users/${userID}`,
-                absolutePath: loc
-            };
-        }
+    async photos() {
+        return await Photo.find({model: 'user', model_id: this.id});
     }
 
     get fullname() {
@@ -95,6 +81,7 @@ module["exports"] = class User extends Model {
         }
     }
 
+    // noinspection JSUnusedGlobalSymbols
     get isOnline() {
         if (this.last_activity_at) {
             let diffSec = Math.abs(Moment(this.last_activity_at).diff(Moment(), 'seconds'))
@@ -103,4 +90,14 @@ module["exports"] = class User extends Model {
         return false;
     }
 
-};
+    get avatar(){
+        if(super.avatar)
+        {
+            return super.avatar;
+        }else {
+            return (this.gender === 'male')? `/lib/img/assets/reduced/male.png` : `/lib/img/assets/reduced/female.png`;
+        }
+    }
+}
+
+;

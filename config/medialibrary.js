@@ -13,9 +13,9 @@ module['exports'] = {
     'max_file_size': 1024 * 1024 * 10,
 
     /*
-     * The name of the media model.
+     * The name of the media trait.
      */
-    'media_model': 'mediatest',
+    'media_model': 'media',
 
     's3': {
         /*

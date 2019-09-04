@@ -1,6 +1,6 @@
 const multer = require('multer');
 const path = require('path');
-const Media = require('../../model/media')
+const Media = require('@models/media')
 
 class LocalStorage {
 
@@ -49,13 +49,17 @@ class LocalStorage {
 
     saveModel(model, req){
         req.files.forEach((file) => {
+            let filePath = file.path.split('/public/store/')[1];
+            let diskUrl = this.disk.url;
+
             let media = new Media({
                 model: model.type,
                 model_id: model.id,
                 name: file.filename,
                 mime_type: file.mimetype,
                 disk: this.filesystem,
-                path: file.path.split('/public/store/')[1]
+                path: filePath,
+                location: `${diskUrl}/${filePath}`
             });
 
             media.save((err) => {

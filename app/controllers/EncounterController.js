@@ -138,7 +138,7 @@ module["exports"] = class EncounterController {
                 { $sample: { size: 1 } }
             ]).then(user => {
                 if(user.length === 1){
-                    user = new User(user.pop()); // To cast the user from aggregate to user model
+                    user = new User(user.pop()); // To cast the user from aggregate to user trait
                     if (user) {
                         Photo.getPhotosbyUsername(user.username, (err, photos) => {
                             if (err) throw err;

@@ -1,4 +1,4 @@
-const Media = require('./media');
+const Media = require('@models/media');
 
 class hasMedia extends Media {
 
