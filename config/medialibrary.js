@@ -7,36 +7,9 @@ module['exports'] = {
     'disk_name': get_env('MEDIA_DISK', 'public'),
 
     /*
-     * The maximum file size of an item in bytes.
-     * Adding a larger file will result in an exception.
-     */
-    'max_file_size': 1024 * 1024 * 10,
-
-    /*
      * The name of the media model.
      */
     'media_model': 'media',
-
-    'do': {
-        /*
-         * The domain that should be prepended when generating urls.
-         */
-        'domain': `https://${get_env('DO_BUCKET')}.sfo2.digitaloceanspaces.com`,
-    },
-
-    'remote': {
-        /*
-         * Any extra headers that should be included when uploading media to
-         * a remote disk. Even though supported headers may vary between
-         * different drivers, a sensible default has been provided.
-         *
-         * Supported by S3: CacheControl, Expires, StorageClass,
-         * ServerSideEncryption, Metadata, ACL, ContentEncoding
-         */
-        'extra_headers': {
-            'CacheControl': 'max-age=604800',
-        }
-    },
 
     'responsive_images': {
 
