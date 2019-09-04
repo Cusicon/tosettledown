@@ -1,5 +1,4 @@
-const aws = require('aws-sdk');
-const express = require('express');
+const aws = require('aws-sdk/index');
 const multer = require('multer');
 const multerS3 = require('multer-s3');
 

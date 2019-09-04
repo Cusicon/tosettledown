@@ -24,7 +24,7 @@ module['exports'] = {
     |
     */
 
-    'cloud' : get_env('FILESYSTEM_CLOUD', 's3'),
+    'cloud' : get_env('FILESYSTEM_CLOUD', 'digitalocean'),
 
     /*
     |--------------------------------------------------------------------------

@@ -13,7 +13,7 @@ module['exports'] = {
     'max_file_size': 1024 * 1024 * 10,
 
     /*
-     * The name of the media trait.
+     * The name of the media model.
      */
     'media_model': 'media',
 

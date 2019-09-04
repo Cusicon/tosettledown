@@ -79,6 +79,6 @@
     "@factory": "./database/factory",
     "@seeder": "./database/seeder",
     "@database": "./database",
-    "@media-library": "./package/media-library"
+    "@media-library": "./bootstrap/package/media-library"
   }
 }
