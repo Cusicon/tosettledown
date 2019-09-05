@@ -24,7 +24,7 @@
     .onMobile * {
         display: block;
     }
-
+    
     .modal .modal-dialog .modal-title {
         font-size: 20px;
     }
@@ -38,7 +38,7 @@
     }
 
     .encounterPage {
-        margin: 0px !important;
+        margin: 5px 0px 15px 0px !important;
     }
 
     .mainBody .displayWindow .imageWindow .overlayNav .navBottom ul li a#like,
@@ -65,7 +65,7 @@
 
     .wrapperOnMobile .displayWindow {
         display: inline-block !important;
-        box-shadow: 0px 5px 20px #64646471 !important;
+        box-shadow: 0px 5px 10px #7c7c7c71 !important;
         border-radius: 20px !important;
         /* overflow: hidden auto !important; */
         /* height: 430px !important; */

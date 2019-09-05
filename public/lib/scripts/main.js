@@ -57,7 +57,7 @@ if (!Array.last) {
 }
 
 (function () {
-    let username = $("#activeUser_username").text().split("@")[1].trim();
+    let username = $("#activeUser_username").text().trim().split("@")[1];
     let __url = `/app/profile/${username}`;
     $.ajax({
         url: `/app/profile/${username}/mustHavePhotos`,

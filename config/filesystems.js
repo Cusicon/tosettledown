@@ -52,7 +52,7 @@ module['exports'] = {
             'visibility' : 'public',
         },
 
-        'digitalocean' : {
+        'digitalocean' : { // Pointing to digital ocean
             'driver' : 'digitalocean',
             'key' : get_env('DO_ACCESS_KEY_ID'),
             'secret' : get_env('DO_SECRET_ACCESS_KEY'),

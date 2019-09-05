@@ -26,8 +26,8 @@
                                 <h4 class="modal-title" id="editProfileModal">Edit <span class="bg-Primary_color"
                                         style="border-radius: 5px; padding: 5px;">Profile</span></h4>
                                 <button type="button" class="btn waves-effect waves-light" data-dismiss="modal"
-                                    aria-hidden="true">
-                                    <i class="typcn typcn-times" style="font-size: 15px;"></i>
+                                    aria-hidden="true" style="padding: 5px 10px !important;">
+                                    <i class="typcn typcn-times" style="font-size: 20px;"></i>
                                 </button>
                             </div>
                             <div class="modal-body">
@@ -41,12 +41,12 @@
                                                         Fullname</h5>
                                                     <input type="text" name="fullname" class="form-control"
                                                         value="<%= profile_user.fullname.all %>"
-                                                        placeholder="Enter fullname..." maxlength="50">
+                                                        placeholder="Enter fullname..." maxlength="50" required>
                                                     <h5 style="font-weight: lighter;">
                                                         Bio</h5>
                                                     <textarea type="text" name="bio" class="form-control"
                                                         placeholder="Enter Bio here..."
-                                                        maxlength="200"><%= profile_user.personalInfo.bio %></textarea>
+                                                        maxlength="200" required><%= profile_user.personalInfo.bio %></textarea>
                                                     <small id="passwordHelp" class="form-text  float-right">Max:
                                                         200 characters.</small>
                                                 </div>
@@ -90,7 +90,7 @@
                                             <h5 style="font-weight: lighter;">Personal Info(s)</h5>
                                             <div class="editPersonalInfo form-group">
                                                 <div class="form-group">
-                                                    <select name="height" id="height" class="form-control"
+                                                    <select name="height" id="height" class="form-control" required
                                                         aria-describedby="heightHelp">
                                                         <option label="Your height..." value="">Your height...</option>
                                                         <option value="Tall"
@@ -111,14 +111,14 @@
                                                     <input type="text" name="language" class="form-control"
                                                         value="<%= profile_user.personalInfo.language %>"
                                                         placeholder="What do you speak often..."
-                                                        title="What do you speak often..."
+                                                        title="What do you speak often..." required
                                                         aria-describedby="languageHelp">
                                                     <small id="languageHelp" class="form-text  float-right">Default:
                                                         English</small>
                                                     <br>
                                                 </div>
                                                 <div class="form-group">
-                                                    <select name="religion" id="religion" class="form-control">
+                                                    <select name="religion" id="religion" class="form-control" required>
                                                         <option label="What's your religion..." value="">What's your
                                                             religion...</option>
                                                         <option value="Christianity"
@@ -133,20 +133,20 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <select name="relationship" id="relationship" class="form-control">
+                                                    <select name="relationship" id="relationship" class="form-control" required>
                                                         <option label="What's your relationship status..."></option>
                                                         <option value="Single"
                                                             <%= profile_user.personalInfo.relationship == 'Single' ? 'selected' : '' %>>
-                                                            I'm Single</option>
+                                                            Single</option>
                                                         <option value="Dating"
                                                             <%= profile_user.personalInfo.relationship == 'Dating' ? 'selected' : '' %>>
-                                                            I'm Dating</option>
+                                                            Dating</option>
                                                         <option value="Married"
                                                             <%= profile_user.personalInfo.relationship == 'Married' ? 'selected' : '' %>>
-                                                            I'm Married</option>
+                                                            Married</option>
                                                         <option value="Divorced"
                                                             <%= profile_user.personalInfo.relationship == 'Divorced' ? 'selected' : '' %>>
-                                                            I'm Divorced</option>
+                                                            Divorced</option>
                                                     </select>
                                                 </div>
                                             </div>
