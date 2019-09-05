@@ -47,6 +47,7 @@ module["exports"] = class ProfileController {
                         } else {
                             res.redirect("/#regForm");
                         }
+
                     }).catch(err => {
                         throw err;
                     })

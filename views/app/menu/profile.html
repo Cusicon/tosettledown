@@ -3,7 +3,6 @@
 <!-- Call Page Style Tag Here -->
 <% stylesheet('/components/cropperjs/dist/cropper.css') -%>
 <% stylesheet('/lib/css/app/profile.css') -%>
-
 <!-- Call Style Script Tag Here -->
 <% script('/components/cropperjs/dist/cropper.js') -%>
 <% script('/lib/scripts/app/profile.js') -%>
@@ -14,261 +13,262 @@
         style="height: 620px; overflow: hidden; overflow-y: scroll; box-shadow: none; border-radius: 0px; padding: 10px 15px; border-left: 1px solid #eee;">
         <div class="profileMain">
             <% if (user.username == profile_user.username) { %>
-            <!-- Space for modals -->
-            <div class="modalCon">
+                <!-- Space for modals -->
+                <div class="modalCon">
 
-                <!-- Edit Profile Modal -->
-                <div class="modal fade editProfileCon" tabindex="-1" role="dialog" aria-labelledby="editProfileModal"
-                    style="display: none;" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="editProfileModal">Edit <span class="bg-Primary_color"
-                                        style="border-radius: 5px; padding: 5px;">Profile</span></h4>
-                                <button type="button" class="btn waves-effect waves-light" data-dismiss="modal"
-                                    aria-hidden="true">
-                                    <i class="typcn typcn-times" style="font-size: 15px;"></i>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="editProfile">
-                                    <form action="/app/profile/update/<%= profile_user.username %>" method="POST"
-                                        id="editProfileForm" class="row">
-                                        <div class="container-fluid">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <h5 style="font-weight: lighter;">
-                                                        Fullname</h5>
-                                                    <input type="text" name="fullname" class="form-control"
-                                                        value="<%= profile_user.fullname.all %>"
-                                                        placeholder="Enter fullname..." maxlength="50">
-                                                    <h5 style="font-weight: lighter;">
-                                                        Bio</h5>
-                                                    <textarea type="text" name="bio" class="form-control"
-                                                        placeholder="Enter Bio here..."
-                                                        maxlength="200"><%= profile_user.personalInfo.bio %></textarea>
-                                                    <small id="passwordHelp" class="form-text  float-right">Max:
-                                                        200 characters.</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Other form inputs -->
-                                        <div class="editProfileLeft col-md-8">
-                                            <div class="form-group">
-                                                <h5 style="font-weight: lighter;">
-                                                    Location</h5>
-                                                <input type="text" name="location" class="form-control"
-                                                    value="<%= profile_user.personalInfo.location %>"
-                                                    placeholder="Location Here...">
-                                            </div>
-                                            <div class=" form-group">
-                                                <h5 style="font-weight: lighter;">
-                                                    Work & Occupation
-                                                </h5>
-                                                <input type="text" name="work" class="form-control"
-                                                    value="<%= profile_user.personalInfo.work %>"
-                                                    placeholder="Work Here...">
-                                            </div>
-                                            <div class=" form-group">
-                                                <h5 style="font-weight: lighter;">
-                                                    Education</h5>
-                                                <div class="form-group">
-                                                    <select name="education" id="education" class="form-control">
-                                                        <option label="Your education status..." value="">Your education
-                                                            status...</option>
-                                                        <option value="Graduate"
-                                                            <%= profile_user.personalInfo.education == 'Graduate' ? 'selected' : '' %>>
-                                                            Graduate</option>
-                                                        <option value="Undergraduate"
-                                                            <%= profile_user.personalInfo.education == 'Undergraduate' ? 'selected' : '' %>>
-                                                            Undergraduate</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class=" editProfileRight col-md-4">
-                                            <h5 style="font-weight: lighter;">Personal Info(s)</h5>
-                                            <div class="editPersonalInfo form-group">
-                                                <div class="form-group">
-                                                    <select name="height" id="height" class="form-control"
-                                                        aria-describedby="heightHelp">
-                                                        <option label="Your height..." value="">Your height...</option>
-                                                        <option value="Tall"
-                                                            <%= profile_user.personalInfo.height == 'Tall' ? 'selected' : '' %>>
-                                                            Tall</option>
-                                                        <option value="Average"
-                                                            <%= profile_user.personalInfo.height == 'Average' ? 'selected' : '' %>>
-                                                            Average</option>
-                                                        <option value="Short"
-                                                            <%= profile_user.personalInfo.height == 'Short' ? 'selected' : '' %>>
-                                                            Short</option>
-                                                    </select>
-                                                    <small id="heightHelp" class="form-text  float-right">Default:
-                                                        Average</small>
-                                                    <br>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="text" name="language" class="form-control"
-                                                        value="<%= profile_user.personalInfo.language %>"
-                                                        placeholder="What do you speak often..."
-                                                        title="What do you speak often..."
-                                                        aria-describedby="languageHelp">
-                                                    <small id="languageHelp" class="form-text  float-right">Default:
-                                                        English</small>
-                                                    <br>
-                                                </div>
-                                                <div class="form-group">
-                                                    <select name="religion" id="religion" class="form-control">
-                                                        <option label="What's your religion..." value="">What's your
-                                                            religion...</option>
-                                                        <option value="Christianity"
-                                                            <%= profile_user.personalInfo.religion == 'Christianity' ? 'selected' : '' %>>
-                                                            Christianity</option>
-                                                        <option value="Islam"
-                                                            <%= profile_user.personalInfo.religion == 'Islam' ? 'selected' : '' %>>
-                                                            Islam</option>
-                                                        <option value="Others"
-                                                            <%= profile_user.personalInfo.religion == 'Others' ? 'selected' : '' %>>
-                                                            Others</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <select name="relationship" id="relationship" class="form-control">
-                                                        <option label="What's your relationship status..."></option>
-                                                        <option value="Single"
-                                                            <%= profile_user.personalInfo.relationship == 'Single' ? 'selected' : '' %>>
-                                                            I'm Single</option>
-                                                        <option value="Dating"
-                                                            <%= profile_user.personalInfo.relationship == 'Dating' ? 'selected' : '' %>>
-                                                            I'm Dating</option>
-                                                        <option value="Married"
-                                                            <%= profile_user.personalInfo.relationship == 'Married' ? 'selected' : '' %>>
-                                                            I'm Married</option>
-                                                        <option value="Divorced"
-                                                            <%= profile_user.personalInfo.relationship == 'Divorced' ? 'selected' : '' %>>
-                                                            I'm Divorced</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p class="float-left" style="width: 90%;">
-                                            <i class="typcn typcn-warning text-warning" style="font-size: 20px;"></i>
-                                            <b>Note:</b>
-                                            Username can't be modified or changed
-                                        </p>
-                                    </form>
-                                    <br>
-                                    <!-- Modal footer -->
-                                    <div class="separator"></div>
-                                    <center>
-                                        <button type="submit" role="button" form="editProfileForm"
-                                            class="btn waves-effect waves-light bg-Primary_color">
-                                            Save
-                                        </button>
-                                    </center>
+                    <!-- Edit Profile Modal -->
+                    <div class="modal fade editProfileCon" tabindex="-1" role="dialog" aria-labelledby="editProfileModal"
+                        style="display: none;" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="editProfileModal">Edit <span class="bg-Primary_color"
+                                            style="border-radius: 5px; padding: 5px;">Profile</span></h4>
+                                    <button type="button" class="btn waves-effect waves-light" data-dismiss="modal"
+                                        aria-hidden="true">
+                                        <i class="typcn typcn-times" style="font-size: 15px;"></i>
+                                    </button>
                                 </div>
-                            </div>
-                        </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
-                </div>
-
-                <!-- Settings Modal -->
-                <div class="modal fade settingsCon" id="settingsCon" tabindex="-1" role="dialog"
-                    aria-labelledby="SettingsModal" style="display: none;" aria-hidden="true">
-                    <div class="modal-dialog modal-md modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="SettingsModal">Profile <span class="bg-Primary_color"
-                                        style="border-radius: 5px; padding: 5px;">Settings</span></h4>
-                            </div>
-                            <div class="modal-body" style="padding: 5px; text-align: center !important;">
-                                <a href="#"
-                                    style="font-weight: 400; border-bottom: 1px solid #eee; display: block; padding: 8px;"
-                                    data-dismiss="modal">
-                                    <i style="font-size: 20px;" class="typcn typcn-user"></i>
-                                    &nbsp; Account
-                                </a>
-
-                                <a href="#"
-                                    style="font-weight: 400; border-bottom: 1px solid #eee; display: block; padding: 8px;"
-                                    data-dismiss="modal">
-                                    <i style="font-size: 20px;" class="typcn typcn-credit-card"></i>
-                                    &nbsp;Payments
-                                </a>
-
-                                <a href="#"
-                                    style="font-weight: 400; border-bottom: 1px solid #eee; display: block; padding: 8px;"
-                                    data-dismiss="modal">
-                                    <i style="font-size: 20px;" class="typcn typcn-key-outline"></i>
-                                    &nbsp;Security
-                                </a>
-
-                                <a href="#"
-                                    style="font-weight: 400; border-bottom: 1px solid #eee; display: block; padding: 8px;"
-                                    data-dismiss="modal">
-                                    <i style="font-size: 20px;" class="typcn typcn-support"></i>
-                                    &nbsp; Help
-                                </a>
-
-                                <!-- Sign Out -->
-                                <a href="/auth/0/signin/out" id="SignOut" class="color"
-                                    style="font-weight: 400; display: block; padding: 8px;">
-                                    &nbsp; Sign Out
-                                </a>
-                            </div>
-                        </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
-                </div>
-
-                <!-- Add Photos Modal -->
-                <div class="modal fade addPhotosCon" id="addPhotosCon" tabindex="-1" role="dialog"
-                    aria-labelledby="addPhotosModal" style="display: none;" aria-hidden="true">
-                    <div class="modal-dialog modal-lg modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="addPhotosModal">Add <span class="bg-Primary_color"
-                                        style="border-radius: 5px; padding: 5px;">Photos</span>
-                                </h4>
-                                <a href="javascript: void(0);" onclick="$('#addPhotos').trigger('click');"
-                                    class="btn waves-effect waves-light float-right"
-                                    style="font-size: 20px; padding: 5px 10px !important;">
-                                    <i class="typcn typcn-plus"></i>
-                                </a>
-                            </div>
-                            <div class="modal-body" style="padding: 15px; text-align: center !important;">
-                                <form action="/app/profile/update/<%= profile_user.username %>/addPhotos"
-                                    enctype="multipart/form-data" id="addPhotosForm" method="POST">
-                                    <!-- Image previewer -->
-                                    <div style="position: relative;" class="addPhotosCon">
-                                        <!-- Display container -->
-                                        <div class="info" style="position: inherit;">
-                                            <div class="displayCon" style="overflow: hidden; overflow-x: auto;">
-                                                <div id="container"></div>
-                                            </div>
-                                            <center>
-                                                <div
-                                                    style="text-align: center; width: 100%; padding-top: 56px; height: 232px;">
-                                                    <h4 style="font-weight: lighter;">Click &nbsp;<b>+</b>&nbsp; to
-                                                        select your photos</h4>
-                                                    <p style="margin-bottom: 10px; display: block; color: #ccc;">Note:
-                                                        To upload photos, select all images at once.</p>
+                                <div class="modal-body">
+                                    <div class="editProfile">
+                                        <form action="/app/profile/update/<%= profile_user.username %>" method="POST"
+                                            id="editProfileForm" class="row">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <h5 style="font-weight: lighter;">
+                                                            Fullname</h5>
+                                                        <input type="text" name="fullname" class="form-control"
+                                                            value="<%= profile_user.fullname.all %>"
+                                                            placeholder="Enter fullname..." maxlength="50">
+                                                        <h5 style="font-weight: lighter;">
+                                                            Bio</h5>
+                                                        <textarea type="text" name="bio" class="form-control"
+                                                            placeholder="Enter Bio here..."
+                                                            maxlength="200"><%= profile_user.personalInfo.bio %></textarea>
+                                                        <small id="passwordHelp" class="form-text  float-right">Max:
+                                                            200 characters.</small>
+                                                    </div>
                                                 </div>
-                                            </center>
-                                            <input type="file" name="addPhotos" id="addPhotos" class="hide"
-                                                accept="image/*" required>
-                                        </div>
+                                            </div>
+                                            <!-- Other form inputs -->
+                                            <div class="editProfileLeft col-md-8">
+                                                <div class="form-group">
+                                                    <h5 style="font-weight: lighter;">
+                                                        Location</h5>
+                                                    <input type="text" name="location" class="form-control"
+                                                        value="<%= profile_user.personalInfo.location %>"
+                                                        placeholder="Location Here...">
+                                                </div>
+                                                <div class=" form-group">
+                                                    <h5 style="font-weight: lighter;">
+                                                        Work & Occupation
+                                                    </h5>
+                                                    <input type="text" name="work" class="form-control"
+                                                        value="<%= profile_user.personalInfo.work %>"
+                                                        placeholder="Work Here...">
+                                                </div>
+                                                <div class=" form-group">
+                                                    <h5 style="font-weight: lighter;">
+                                                        Education</h5>
+                                                    <div class="form-group">
+                                                        <select name="education" id="education" class="form-control">
+                                                            <option label="Your education status..." value="">Your education
+                                                                status...</option>
+                                                            <option value="Graduate"
+                                                                <%= profile_user.personalInfo.education == 'Graduate' ? 'selected' : '' %>>
+                                                                Graduate</option>
+                                                            <option value="Undergraduate"
+                                                                <%= profile_user.personalInfo.education == 'Undergraduate' ? 'selected' : '' %>>
+                                                                Undergraduate</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class=" editProfileRight col-md-4">
+                                                <h5 style="font-weight: lighter;">Personal Info(s)</h5>
+                                                <div class="editPersonalInfo form-group">
+                                                    <div class="form-group">
+                                                        <select name="height" id="height" class="form-control"
+                                                            aria-describedby="heightHelp">
+                                                            <option label="Your height..." value="">Your height...</option>
+                                                            <option value="Tall"
+                                                                <%= profile_user.personalInfo.height == 'Tall' ? 'selected' : '' %>>
+                                                                Tall</option>
+                                                            <option value="Average"
+                                                                <%= profile_user.personalInfo.height == 'Average' ? 'selected' : '' %>>
+                                                                Average</option>
+                                                            <option value="Short"
+                                                                <%= profile_user.personalInfo.height == 'Short' ? 'selected' : '' %>>
+                                                                Short</option>
+                                                        </select>
+                                                        <small id="heightHelp" class="form-text  float-right">Default:
+                                                            Average</small>
+                                                        <br>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" name="language" class="form-control"
+                                                            value="<%= profile_user.personalInfo.language %>"
+                                                            placeholder="What do you speak often..."
+                                                            title="What do you speak often..."
+                                                            aria-describedby="languageHelp">
+                                                        <small id="languageHelp" class="form-text  float-right">Default:
+                                                            English</small>
+                                                        <br>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <select name="religion" id="religion" class="form-control">
+                                                            <option label="What's your religion..." value="">What's your
+                                                                religion...</option>
+                                                            <option value="Christianity"
+                                                                <%= profile_user.personalInfo.religion == 'Christianity' ? 'selected' : '' %>>
+                                                                Christianity</option>
+                                                            <option value="Islam"
+                                                                <%= profile_user.personalInfo.religion == 'Islam' ? 'selected' : '' %>>
+                                                                Islam</option>
+                                                            <option value="Others"
+                                                                <%= profile_user.personalInfo.religion == 'Others' ? 'selected' : '' %>>
+                                                                Others</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <select name="relationship" id="relationship" class="form-control">
+                                                            <option label="What's your relationship status..."></option>
+                                                            <option value="Single"
+                                                                <%= profile_user.personalInfo.relationship == 'Single' ? 'selected' : '' %>>
+                                                                I'm Single</option>
+                                                            <option value="Dating"
+                                                                <%= profile_user.personalInfo.relationship == 'Dating' ? 'selected' : '' %>>
+                                                                I'm Dating</option>
+                                                            <option value="Married"
+                                                                <%= profile_user.personalInfo.relationship == 'Married' ? 'selected' : '' %>>
+                                                                I'm Married</option>
+                                                            <option value="Divorced"
+                                                                <%= profile_user.personalInfo.relationship == 'Divorced' ? 'selected' : '' %>>
+                                                                I'm Divorced</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p class="float-left" style="width: 90%;">
+                                                <i class="typcn typcn-warning text-warning" style="font-size: 20px;"></i>
+                                                <b>Note:</b>
+                                                Username can't be modified or changed
+                                            </p>
+                                        </form>
+                                        <br>
+                                        <!-- Modal footer -->
+                                        <div class="separator"></div>
+                                        <center>
+                                            <button type="submit" role="button" form="editProfileForm"
+                                                class="btn waves-effect waves-light bg-Primary_color">
+                                                Save
+                                            </button>
+                                        </center>
                                     </div>
-                                    <div class="separator"></div>
-                                    <button type="submit" role="button"
-                                        class="btn waves-effect waves-light bg-Primary_color">Save</button>
-                                </form>
-                            </div>
-                        </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div>
+
+                    <!-- Settings Modal -->
+                    <div class="modal fade settingsCon" id="settingsCon" tabindex="-1" role="dialog"
+                        aria-labelledby="SettingsModal" style="display: none;" aria-hidden="true">
+                        <div class="modal-dialog modal-md modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="SettingsModal">Profile <span class="bg-Primary_color"
+                                            style="border-radius: 5px; padding: 5px;">Settings</span></h4>
+                                </div>
+                                <div class="modal-body" style="padding: 5px; text-align: center !important;">
+                                    <a href="#"
+                                        style="font-weight: 400; border-bottom: 1px solid #eee; display: block; padding: 8px;"
+                                        data-dismiss="modal">
+                                        <i style="font-size: 20px;" class="typcn typcn-user"></i>
+                                        &nbsp; Account
+                                    </a>
+
+                                    <a href="#"
+                                        style="font-weight: 400; border-bottom: 1px solid #eee; display: block; padding: 8px;"
+                                        data-dismiss="modal">
+                                        <i style="font-size: 20px;" class="typcn typcn-credit-card"></i>
+                                        &nbsp;Payments
+                                    </a>
+
+                                    <a href="#"
+                                        style="font-weight: 400; border-bottom: 1px solid #eee; display: block; padding: 8px;"
+                                        data-dismiss="modal">
+                                        <i style="font-size: 20px;" class="typcn typcn-key-outline"></i>
+                                        &nbsp;Security
+                                    </a>
+
+                                    <a href="#"
+                                        style="font-weight: 400; border-bottom: 1px solid #eee; display: block; padding: 8px;"
+                                        data-dismiss="modal">
+                                        <i style="font-size: 20px;" class="typcn typcn-support"></i>
+                                        &nbsp; Help
+                                    </a>
+
+                                    <!-- Sign Out -->
+                                    <a href="/auth/0/signin/out" id="SignOut" class="color"
+                                        style="font-weight: 400; display: block; padding: 8px;">
+                                        &nbsp; Sign Out
+                                    </a>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div>
+
+                    <!-- Add Photos Modal -->
+                    <div class="modal fade addPhotosCon" id="addPhotosCon" tabindex="-1" role="dialog"
+                        aria-labelledby="addPhotosModal" style="display: none;" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="addPhotosModal">Add <span class="bg-Primary_color"
+                                            style="border-radius: 5px; padding: 5px;">Photos</span>
+                                    </h4>
+                                    <a href="javascript: void(0);" onclick="$('#addPhotos').trigger('click');"
+                                        class="btn waves-effect waves-light float-right"
+                                        style="font-size: 20px; padding: 5px 10px !important;">
+                                        <i class="typcn typcn-plus"></i>
+                                    </a>
+                                </div>
+                                <div class="modal-body" style="padding: 15px; text-align: center !important;">
+                                    <form action="/app/profile/update/<%= profile_user.username %>/addPhotos"
+                                        enctype="multipart/form-data" id="addPhotosForm" method="POST">
+                                        <!-- Image previewer -->
+                                        <div style="position: relative;" class="addPhotosCon">
+                                            <!-- Display container -->
+                                            <div class="info" style="position: inherit;">
+                                                <div class="displayCon" style="overflow: hidden; overflow-x: auto;">
+                                                    <div id="container"></div>
+                                                </div>
+                                                <center>
+                                                    <div
+                                                        style="text-align: center; width: 100%; padding-top: 56px; height: 232px;">
+                                                        <h4 style="font-weight: lighter;">Click &nbsp;<b>+</b>&nbsp; to
+                                                            select your photos</h4>
+                                                        <p style="margin-bottom: 10px; display: block; color: #ccc;">Note:
+                                                            To upload photos, select all images at once.</p>
+                                                    </div>
+                                                </center>
+                                                <input type="file" name="addPhotos" id="addPhotos" class="hide"
+                                                    accept="image/*" required>
+                                            </div>
+                                        </div>
+                                        <div class="separator"></div>
+                                        <button type="submit" role="button"
+                                            class="btn waves-effect waves-light bg-Primary_color">Save</button>
+                                    </form>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div>
                 </div>
-            </div>
             <% } %>
             <!-- Show the cropped image in modal -->
+
 
             <!-- Photos Display Modal -->
             <div class="modal fade displayPhotosCon" id="displayPhotosCon" tabindex="-1" role="dialog"
@@ -296,72 +296,76 @@
                 </div><!-- /.modal-dialog -->
             </div>
             <!-- End of Photos Display Modal -->
+
+
             <section class="profileHeader">
                 <header>
                     <ul>
                         <% if (user.username != profile_user.username) { %>
-                        <li>
-                            <a href="/app/chats/<%= profile_user.username %>"
-                                class="btn waves-effect waves-light bg-Primary_color" id="chatBtn" role="button"
-                                style="padding: 10px 25px; margin-right: 10px; text-align: center;">
-                                Chat <b><%= profile_user.fullname.firstname %></b> up</a>
-                        </li>
+                            <li>
+                                <a href="/app/chats/<%= profile_user.username %>"
+                                    class="btn waves-effect waves-light bg-Primary_color" id="chatBtn" role="button"
+                                    style="padding: 10px 25px; margin-right: 10px; text-align: center;">
+                                    Chat <b><%= profile_user.fullname.firstname %></b> up</a>
+                            </li>
                         <% } %>
+
+
                         <li>
                             <div class="dropdown">
                                 <a href="#" class="btn waves-effect waves-light dropBtn" id="dropBtn" role="button"
                                     style="padding: 13px 5px 10px 5px !important; color: #1a1a1a;">
                                     <i class="icon-options-vertical" style="font-size: 20px;"></i>
                                 </a>
+
                                 <div class="dropdownContent" id="dropdownContent">
                                     <% if (user.username != profile_user.username) { %>
-                                    <span class="onMobile">
-                                        <a href="/app/chats/<%= profile_user.username %>">
-                                            Chat <%= profile_user.gender == "male" ? "Him" : "Her" %> up
-                                        </a>
+                                        <span class="onMobile">
+                                            <a href="/app/chats/<%= profile_user.username %>">
+                                                Chat <%= profile_user.gender == "male" ? "Him" : "Her" %> up
+                                            </a>
+                                            <div class="separator"></div>
+                                        </span>
+
+                                        <a id="favourite-drpdown" href="javascript:void(0);"
+                                           data-username="<%=profile_user.username%>">Add to favourites</a>
+
+                                        <a href="#">Share</a>
+
+                                        <a href="#" class="color">Block or Report</a>
+
+                                    <% } else { %>
+
+                                        <a href="#">Share</a>
+
+                                        <div class="onMobile">
+                                            <a href="/app/visitors">Visitors</a>
+                                        </div>
+                                        <div class="onMobile">
+                                            <a href="/app/favourites">Favourites</a>
+                                        </div>
+
+                                        <a href="#" id="editProfileBtn" data-toggle="modal"
+                                           data-target=".editProfileCon">Edit profile</a>
+
                                         <div class="separator"></div>
-                                    </span>
-                                    <% } %>
-                                    <% if (user.username != profile_user.username) { %>
-                                    <a id="favourite-drpdown" href="javascript:void(0);"
-                                        data-username="<%=profile_user.username%>">Add to favourites</a>
-                                    <% } %>
-                                    <a href="#">Share</a>
-                                    <% if (user.username == profile_user.username) { %>
-                                    <div class="onMobile">
-                                        <a href="/app/visitors">Visitors</a>
-                                    </div>
-                                    <div class="onMobile">
-                                        <a href="/app/favourites">Favourites</a>
-                                    </div>
-                                    <% } %>
-                                    <% if (user.username == profile_user.username) { %>
-                                    <a href="#" id="editProfileBtn" data-toggle="modal"
-                                        data-target=".editProfileCon">Edit profile</a>
-                                    <% } %>
-                                    <% if (user.username != profile_user.username) { %>
-                                    <a href="#" class="color">Block or Report</a>
-                                    <% } %>
-                                    <% if (user.username == profile_user.username) { %>
-                                    <div class="separator"></div>
-                                    <a href="#" class="dropdownBottom" id="settingsBtn" data-toggle="modal"
-                                        data-target=".settingsCon" style="color: #000;">
-                                        Settings
-                                        <span class="typcn typcn-cog float-right"></span>
-                                    </a>
+                                        <a href="#" class="dropdownBottom" id="settingsBtn" data-toggle="modal"
+                                           data-target=".settingsCon" style="color: #000;">
+                                            Settings
+                                            <span class="typcn typcn-cog float-right"></span>
+                                        </a>
                                     <% } %>
                                 </div>
                             </div>
                         </li>
-
                     </ul>
                 </header>
+
                 <footer>
                     <div class="profileFooterHead">
                         <div style="float: left; margin: 0px 5px;" class="profileHeadWrapper">
-
                             <div>
-                                <center>
+                                <div style="text-align: center;">
                                     <a href=javascript:void(0); class="activeProfile hasStories">
                                         <div class="image profileImage" id="profileImage"
                                             style="background-image: url('<%= profile_user.avatar %>');">
@@ -369,36 +373,35 @@
                                     </a>
                                     <ul class="profileHeadWrapperBtn">
                                         <% if (user.username != profile_user.username) { %>
-                                        <!-- Like and Dislike -->
-                                        <li style="display: inline-block;">
-                                            <a href="javascript: void(0);" id="like" title="Like"
-                                                data-username="<%=profile_user.username%>"
-                                                style="border: 1px solid #ececec; color: #ff6878 !important;">
-                                                <i class="typcn typcn-heart-full-outline"></i>
-                                            </a>
-                                        </li>
+                                            <!-- Like and Dislike -->
+                                            <li style="display: inline-block;">
+                                                <a href="javascript: void(0);" id="like" title="Like"
+                                                    data-username="<%=profile_user.username%>"
+                                                    style="border: 1px solid #ececec; color: #ff6878 !important;">
+                                                    <i class="typcn typcn-heart-full-outline"></i>
+                                                </a>
+                                            </li>
                                         <% } %>
                                     </ul>
-                                </center>
+                                </div>
                             </div>
                         </div>
+
                         <div class="left">
                             <div class="fullname">
                                 <h1 style="font-weight: lighter;">
-                                    <span><%= profile_user.fullname.all %>,
-                                        <%= profile_user.dob.age %></span>
+                                    <span><%= profile_user.fullname.all %>, <%= profile_user.dob.age %></span>
                                 </h1>
                             </div>
                             <div class="username ">
                                 <h6 style="font-size: 13px;"><b>@<%= profile_user.username %></b></h6>
                             </div>
                             <div class="bio float-left ">
-                                <p>
-                                    <%= profile_user.personalInfo.bio %>
-                                </p>
+                                <p><%= profile_user.personalInfo.bio %></p>
                             </div>
                         </div>
                     </div>
+
                     <a href=javascript:void(0); id="dropdownToggleBtn"
                         class="float-right dropdownToggleBtn text-dark btn waves-effect waves-light" role="button"
                         style="font-size: 30px; padding: 5px 10px 0px 10px !important;">
@@ -406,6 +409,8 @@
                     </a>
                 </footer>
             </section>
+
+
             <section class="profileFooter">
                 <div class="moreDetails" style="display: none;">
                     <div class="viewProfile">
@@ -425,6 +430,7 @@
                                     <p><%= profile_user.personalInfo.education %></p>
                                 </div>
                             </div>
+
                             <div class="viewProfileRight col-md-4">
                                 <h5 class="" style="font-weight: lighter; font-weight: 500;">Personal Info(s)</h5>
                                 <div class="editPersonalInfo form-group">
@@ -447,28 +453,29 @@
                                 </div>
                             </div>
                         </section>
-                        </form>
                     </div>
                 </div>
+
+
                 <header>
                     <ul>
-                        <center>
+                        <div style="text-align: center;">
                             <div class="row">
                                 <li class="col-1 col-md-1 col-sm-1"></li>
                                 <li class="col-10 col-md-10 col-sm-10">
                                     <a href=javascript:void(0); class="text-dark photos ">
-                                        <span class="active"><i class="typcn typcn-th-large-outline"></i>
-                                            &nbsp;PHOTOS</span>
+                                        <span class="active"><i class="typcn typcn-th-large-outline"></i>&nbsp;PHOTOS</span>
                                     </a>
                                 </li>
+
                                 <% if (user.username == profile_user.username) { %>
-                                <li class="col-1 col-md-1 col-sm-1">
-                                    <a href=javascript:void(0); class="text-dark btn waves-effect waves-light addImages"
-                                        id="addPhotosBtn" role="button" data-toggle="modal" data-countbtn="0"
-                                        data-target=".addPhotosCon" onclick="$('#addPhotos').trigger('click');">
-                                        <i class="typcn typcn-plus-outline"></i>
-                                    </a>
-                                </li>
+                                    <li class="col-1 col-md-1 col-sm-1">
+                                        <a href=javascript:void(0); class="text-dark btn waves-effect waves-light addImages"
+                                            id="addPhotosBtn" role="button" data-toggle="modal" data-countbtn="0"
+                                            data-target=".addPhotosCon" onclick="$('#addPhotos').trigger('click');">
+                                            <i class="typcn typcn-plus-outline"></i>
+                                        </a>
+                                    </li>
                                 <% } %>
 
                                 <!-- In the future -->
@@ -478,13 +485,14 @@
                                     </a>
                                 </li>
                             </div>
-                        </center>
+                        </div>
                     </ul>
                 </header>
+
+
                 <footer>
-                    <center>
-                        <% if (typeof photos != "undefined") { %>
-                        <% if (photos.length > 0) { %>
+                    <div style="text-align: center;">
+                        <% if (typeof photos != "undefined" && photos.length > 0) { %>
                         <ul class="row">
                             <% for (let i = 0; i < photos.length; i++) { %>
                             <% const photo = photos[i]; %>
@@ -492,8 +500,8 @@
                             <!-- Duplicate Here... -->
                             <li class="col-md-4 col-sm-6">
                                 <a href="javascript:void(0);" data-toggle="modal" data-target=".displayPhotosCon"
-                                    style="background-image: url('<%= photo.location %>'); width: 280px;"
-                                    class="userPhoto" onclick="
+                                    style="background-image: url('<%= (photo.manipulation == null)? photo.location : photo.responsive_images.profile.location %>'); width: 280px;"
+                                   class="userPhoto" onclick="
                                     $('#displayImage').attr('src', this.style.backgroundImage.slice(5, this.style.backgroundImage.length - 2));
                                     $('#setAvatarBtn').attr('href', `/app/profile/update/<%= profile_user.username %>/setAvatar/<%= photo.id %>`);
                                 "></a>
@@ -508,7 +516,6 @@
                                     $('#setAvatarBtn').attr('href', `/app/profile/update/<%= profile_user.username %>/setAvatar/<%= photo.id %>`);
                                 "></a>
                             </li>
-                            <%  } %>
                             <%  } %>
                         </ul>
                         <% } %>
@@ -525,6 +532,7 @@
                                 onclick="$('#addPhotos').trigger('click');">
                                 Upload your first photo.
                             </a>
+                            <div class="nophoto"></div>
                         </section>
                         <% } %>
                         <% if (photos.length == 0 && profile_user.username != user.username) { %>
@@ -538,7 +546,7 @@
                         </section>
                         <% } %>
                         <% } %>
-                    </center>
+                    </div>
                 </footer>
             </section>
         </div>

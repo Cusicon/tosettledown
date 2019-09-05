@@ -61,21 +61,22 @@ class LocalStorage {
                 path: filePath,
                 location: `${diskUrl}/${filePath}`
             });
-
             media.save((err, model) => {
                 if (err) throw err;
                 else {
+
                     let manipulation = new Manipulation(model)
                     manipulation.manipulate((model, options, files) => {
-
-                        model.manipulation = options.toString();
-                        model.responsive_images = this.put(this.disk, model, files);
-                        model.updated_at = Date.now();
-                        model.save((err, result) =>{
-                            if(err) throw err;
-                            console.log(result)
-                        })
+                        model.manipulation = options;
+                        this.put(this.disk, model, files, (model, images) => {
+                            model.responsive_images = images;
+                            model.updated_at = Date.now();
+                            model.save((err) => { if(err) throw err; })
+                            let groupFolderName = path.dirname(files[0].path)
+                            fs.rmdirSync(groupFolderName);
+                        });
                     });
+
                     userLog(`"${req.user.username}" just uploaded some photos.`);
                     console.log(`@${req.user.username} just uploaded some photos!, @ ${new Date().toTimeString()}`);
                 }
@@ -83,10 +84,11 @@ class LocalStorage {
         });
     }
 
-    put(disk, model, files){
+    put(disk, model, files, cb){
         let folderPath = path.dirname(model.path);
-        let remoteLocationPath = path.join(disk.url, folderPath, 'responsive_images');
-        let responsiveFolderPath = path.join(folderPath, 'responsive_images');
+        let remoteLocationPath = `${disk.url}/${path.join(folderPath, 'responsive-images')}`;
+        let responsiveFolderPath = path.join(folderPath, 'responsive-images');
+
         let imageNameWithoutExt = path.basename(model.name, path.extname(model.name));
         let ext = path.extname(model.name);
         let responsive_images = {};
@@ -94,20 +96,16 @@ class LocalStorage {
 
         if(files.length > 1){
             files.forEach(file => {
-                let folderLocation = path.join(responsiveFolderPath, `${imageNameWithoutExt}_${file.option.width}x${file.option.height}${ext}`);
-                let remoteLocation = path.join(remoteLocationPath, `${imageNameWithoutExt}_${file.option.width}x${file.option.height}${ext}`);
-
+                let folderLocation = path.join(responsiveFolderPath, `${imageNameWithoutExt}-${file.option.width}x${file.option.height}${ext}`);
+                let remoteLocation = `${remoteLocationPath}/${imageNameWithoutExt}-${file.option.width}x${file.option.height}${ext}`;
                 fs.renameSync(file.path, path.join(disk.root, folderLocation));
-
                 responsive_images[file.option.name] = {
                     path: folderLocation,
                     location: remoteLocation,
                 }
             });
-            let groupFolderName = path.dirname(files[0].path)
-            fs.rmdirSync(groupFolderName);
         }
-        return responsive_images.toString();
+        cb(model, responsive_images);
     }
 }
 module.exports = LocalStorage;

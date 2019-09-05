@@ -5,7 +5,7 @@ let app = require('express')();
 app.use("/auth/0/", require('@routes/auth'));
 
 //-- APP ROUTERS [encounters, chats and so on...] That Must Have Verification Middleware and auth middleware
-app.use('/app/', ...applyMiddleware(['auth', 'verify', 'update_last_activity']), require('@routes/app'));
+app.use('/app/', ...applyMiddleware(['auth', 'verify', 'update_last_activity','must_have_picture']), require('@routes/app'));
 
 //-- TERMS & POLICIES ROUTERS
 app.use(require('@routes/docs'));

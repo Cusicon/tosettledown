@@ -56,43 +56,43 @@ if (!Array.last) {
     };
 }
 
-(function () {
-    let username = $("#activeUser_username").text().split("@")[1].trim();
-    let __url = `/app/profile/${username}`;
-    $.ajax({
-        url: `/app/profile/${username}/mustHavePhotos`,
-        method: "GET",
-        success: (usersObj) => {
-            let photos = usersObj.photos;
-
-            // Checks if user has any photo, if true continue else redirect to profile page
-            if (photos.length < 1) {
-                if (location.href.includes(__url)) {
-                    alert("/lib/img/logo/favicon.ico", "Must upload a photo", "Sorry, you are required to upload at least one photo!", [null, location.href.includes(__url) ? "Upload photo" : "Go to profile"], () => {
-                        (location.href.includes(__url)) ?
-                        $('#addPhotosBtn').trigger('click'): location.href = __url
-                    });
-                } else location.replace(__url);
-            }
-
-            // Set the first image as default avatar is photos length is <= 1
-            if (photos.length == 1) {
-                let photoID = photos[0]._id;
-                let photoNAME = photos[0].name;
-                $.ajax({
-                    url: `/app/profile/update/${username}/setAvatar/${photoID}`,
-                    method: "GET",
-                    success: (htmlResult) => {
-                        if (location.href.includes(__url)) {
-                            var checkForProfileImage = document.getElementById("profileImage").style.backgroundImage.includes(photoNAME);
-                            if (!checkForProfileImage) {
-                                location.replace(__url);
-                                console.log("Profile not changed!");
-                            }
-                        }
-                    }
-                });
-            }
-        },
-    });
-})();
+// (function () {
+//     let username = $("#activeUser_username").text().split("@")[1].trim();
+//     let __url = `/app/profile/${username}`;
+//     $.ajax({
+//         url: `/app/profile/${username}/mustHavePhotos`,
+//         method: "GET",
+//         success: (usersObj) => {
+//             let photos = usersObj.photos;
+//
+//             // Checks if user has any photo, if true continue else redirect to profile page
+//             if (photos.length < 1) {
+//                 if (location.href.includes(__url)) {
+//                     alert("/lib/img/logo/favicon.ico", "Must upload a photo", "Sorry, you are required to upload at least one photo!", [null, location.href.includes(__url) ? "Upload photo" : "Go to profile"], () => {
+//                         (location.href.includes(__url)) ?
+//                         $('#addPhotosBtn').trigger('click'): location.href = __url
+//                     });
+//                 } else location.replace(__url);
+//             }
+//
+//             // Set the first image as default avatar is photos length is <= 1
+//             // if (photos.length == 1) {
+//             //     let photoID = photos[0]._id;
+//             //     let photoNAME = photos[0].name;
+//             //     $.ajax({
+//             //         url: `/app/profile/update/${username}/setAvatar/${photoID}`,
+//             //         method: "GET",
+//             //         success: (htmlResult) => {
+//             //             if (location.href.includes(__url)) {
+//             //                 var checkForProfileImage = document.getElementById("profileImage").style.backgroundImage.includes(photoNAME);
+//             //                 if (!checkForProfileImage) {
+//             //                     location.replace(__url);
+//             //                     console.log("Profile not changed!");
+//             //                 }
+//             //             }
+//             //         }
+//             //     });
+//             // }
+//         },
+//     });
+// });

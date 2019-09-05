@@ -50,13 +50,11 @@ class DigitalOceanStorage {
             key: filename,
             fileFilter: file_filter,
         })
-
         // Change bucket property to your Space name
         const upload = multer({
             storage: storage,
             limits: {fileSize: 5242880}, // Max: 5MB
         }).array(name, 5);
-
 
         upload(this.req, this.res, (err) => {
             this.saveModel(model, this.req)
@@ -75,17 +73,14 @@ class DigitalOceanStorage {
                 path: file.key,
                 location: file.location
             });
-
             media.save((err, model) => {
                 if (err) throw err;
                 else {
                     let manipulation = new Manipulation(model)
                     manipulation.manipulate((model, options, files) => {
-
-                        model.manipulation = options.toString();
-
+                        model.manipulation = options;
                         this.put(this.disk, model, files, (model, images) => {
-                            model.responsive_images = images.toString();
+                            model.responsive_images = images;
                             model.updated_at = Date.now();
                             model.save((err) => { if(err) throw err; })
                             let groupFolderName = path.dirname(files[0].path)
@@ -101,7 +96,6 @@ class DigitalOceanStorage {
 
 
     put(disk, model, files, cb){
-
         aws.config.update({
             accessKeyId: this.disk.key,
             secretAccessKey: this.disk.secret
@@ -109,39 +103,37 @@ class DigitalOceanStorage {
         const spacesEndpoint = new aws.Endpoint('sfo2.digitaloceanspaces.com');
 
         let folderPath = path.dirname(model.path);
-        let responsiveFolderPath = path.join(folderPath, 'responsive_images');
+        let responsiveFolderPath = path.join(folderPath, 'responsive-images');
         let imageNameWithoutExt = path.basename(model.name, path.extname(model.name));
         let ext = path.extname(model.name);
         let responsive_images = {};
 
         if(files.length > 1){
+            const s3FilesUpload = async () => {
+                for (const file of files) {
+                    let folderLocation = path.join(responsiveFolderPath, `${imageNameWithoutExt}-${file.option.width}x${file.option.height}${ext}`);
+                    let s3 = new aws.S3({endpoint: spacesEndpoint});
+                    let uploadParams = {Bucket: 'tosettledown', Key: folderLocation, Body: '', ACL: 'public-read'};
+                    // Configure the file stream and obtain the upload parameters
+                    let fileStream = fs.createReadStream(file.path);
 
-            files.forEach((file, index) => {
+                    fileStream.on('error', function (err) { console.log('File Error', err) });
+                    uploadParams.Body = fileStream;
 
-                let folderLocation = path.join(responsiveFolderPath, `${imageNameWithoutExt}_${file.option.width}x${file.option.height}${ext}`);
-                let s3 = new aws.S3({ endpoint: spacesEndpoint });
-                let uploadParams = {Bucket: 'tosettledown',Key: folderLocation, Body: ''};
-                // Configure the file stream and obtain the upload parameters
-                let fileStream = fs.createReadStream(file.path);
-                fileStream.on('error', function(err) {console.log('File Error', err);});
-                uploadParams.Body = fileStream;
-
-                // call S3 to retrieve upload file to specified bucket
-                s3.upload (uploadParams, function (err, data) {
-                    if (err) {
-                        console.log("Error", err);
-                    } if (data) {
+                    // call S3 to retrieve upload file to specified bucket
+                    await s3.upload(uploadParams).promise().then(data => {
                         responsive_images[file.option.name] = {
                             path: data.key,
                             location: data.Location,
                         }
+                        fs.unlinkSync(file.path);
+                    })
+                }
+            }
 
-                        if(index === files.length - 1){
-                            cb(model, responsive_images)
-                        }
-                    }
-                });
-                fs.unlinkSync(file.path);
+            s3FilesUpload().then(response => {
+                console.log(response);
+                cb(model, responsive_images)
             });
         }
     }

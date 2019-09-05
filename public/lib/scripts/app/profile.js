@@ -26,7 +26,6 @@ function addPhotosPreview(input, placeToInsertImagePreview) {
                     })
                     .prependTo(placeToInsertImagePreview);
             };
-
             reader.readAsDataURL(input.files[i]);
         }
     }
@@ -107,4 +106,12 @@ $("#favourite, #favourite-drpdown").on('click', function(e){
             mySnackbar(response.data.message)
         },
     });
+})
+
+$(document).on('ready', function (e) {
+    if($('.nophoto').length > 0){
+        alert("/lib/img/logo/favicon.ico", "Must upload a photo", "Sorry, you are required to upload at least one photo!", [null,"Upload photo"], () => {
+            $('#addPhotosBtn').trigger('click');
+        });
+    }
 })
