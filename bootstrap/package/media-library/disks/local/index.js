@@ -81,7 +81,6 @@ class LocalStorage {
                 }
             });
         });
-
     }
 
     put(disk, model, files){
