@@ -285,11 +285,11 @@
                             <img src="" id="displayImage" alt="image" width="800" data-dismiss="modal"
                                 style="border: 1px solid transparent; max-width: 100%;">
                             <% if (profile_user.username == user.username) { %>
-                            <br>
-                            <a href="/app/profile/update/<%= profile_user.username %>/setAvatar"
-                                class="btn waves-effect waves-light bg-Primary_color" style="margin: 15px 0px;"
-                                role="button" id="setAvatarBtn">
-                                Set as Display Picture</a>
+                                <br>
+                                <a href="/app/profile/update/<%= profile_user.username %>/setAvatar"
+                                    class="btn waves-effect waves-light bg-Primary_color" style="margin: 15px 0px;"
+                                    role="button" data-image-id="" id="setAvatarBtn">
+                                    Set as Display Picture</a>
                             <% } %>
                         </div>
                     </div><!-- /.modal-content -->
@@ -493,58 +493,47 @@
                 <footer>
                     <div style="text-align: center;">
                         <% if (typeof photos != "undefined" && photos.length > 0) { %>
-                        <ul class="row">
-                            <% for (let i = 0; i < photos.length; i++) { %>
-                            <% const photo = photos[i]; %>
-                            <% if(profile_user.username == user.username && photo.model_id == profile_user.id) { %>
-                            <!-- Duplicate Here... -->
-                            <li class="col-md-4 col-sm-6">
-                                <a href="javascript:void(0);" data-toggle="modal" data-target=".displayPhotosCon"
-                                    style="background-image: url('<%= (photo.manipulation == null)? photo.location : photo.responsive_images.profile.location %>'); width: 280px;"
-                                   class="userPhoto" onclick="
-                                    $('#displayImage').attr('src', this.style.backgroundImage.slice(5, this.style.backgroundImage.length - 2));
-                                    $('#setAvatarBtn').attr('href', `/app/profile/update/<%= profile_user.username %>/setAvatar/<%= photo.id %>`);
-                                "></a>
-                            </li>
+                            <ul class="row">
+                                <% photos.forEach(photo => { %>
+
+                                        <!-- Duplicate Here... -->
+                                        <li class="col-md-4 col-sm-6">
+                                            <a href="javascript:void(0);" data-toggle="modal" data-target=".displayPhotosCon"
+                                                style="background-image: url('<%= (photo.manipulation == null)? photo.location : photo.responsive_images.profile.location %>'); width: 280px;"
+                                                data-main-image="<%= photo.location%>"
+                                                data-image-id="<%= photo.id %>"
+                                                class="userPhoto image-blur"></a>
+                                        </li>
+
+                                <% }) %>
+                            </ul>
+                        <% } else {%>
+
+                            <% if (photos.length == 0 && profile_user.username == user.username) { %>
+                                <section style="padding: 10px;">
+                                    <div style="font-size: 80px;">
+                                        <i class="fi-marquee-plus"></i>
+                                    </div>
+                                    <br>
+                                    <p style="font-size: 15px !important;">When you upload your photos, they will appear here on
+                                        your profile...</p>
+                                    <a href=javascript:void(0); class="color btn waves-effect waves-light" id="addPhotosBtn"
+                                        role="button" data-toggle="modal" data-target=".addPhotosCon"
+                                        onclick="$('#addPhotos').trigger('click');">
+                                        Upload your first photo.
+                                    </a>
+                                    <div class="nophoto"></div>
+                                </section>
+                            <% } else { %>
+                                <section style="padding: 10px;">
+                                    <span style="font-size: 80px;">
+                                        <i class="dripicons-photo-group"></i>
+                                    </span>
+                                    <p style="font-size: 15px;">Sorry, <b><%= profile_user.fullname.firstname %></b> has no
+                                        photos, Tell
+                                        <%= profile_user.gender == 'male' ? 'Him' : "Her" %> to upload some.</p>
+                                </section>
                             <% } %>
-                            <% if (profile_user.username != user.username && photo.model_id == profile_user.id) { %>
-                            <li class="col-md-4 col-sm-6">
-                                <a href="javascript:void(0);" data-toggle="modal" data-target=".displayPhotosCon"
-                                    style="background-image: url('<%= photo.location %>'); width: 280px;"
-                                    class="userPhoto" onclick="
-                                    $('#displayImage').attr('src', this.style.backgroundImage.slice(5, this.style.backgroundImage.length - 2));
-                                    $('#setAvatarBtn').attr('href', `/app/profile/update/<%= profile_user.username %>/setAvatar/<%= photo.id %>`);
-                                "></a>
-                            </li>
-                            <%  } %>
-                        </ul>
-                        <% } %>
-                        <% if (photos.length == 0 && profile_user.username == user.username) { %>
-                        <section style="padding: 10px;">
-                            <div style="font-size: 80px;">
-                                <i class="fi-marquee-plus"></i>
-                            </div>
-                            <br>
-                            <p style="font-size: 15px !important;">When you upload your photos, they will appear here on
-                                your profile...</p>
-                            <a href=javascript:void(0); class="color btn waves-effect waves-light" id="addPhotosBtn"
-                                role="button" data-toggle="modal" data-target=".addPhotosCon"
-                                onclick="$('#addPhotos').trigger('click');">
-                                Upload your first photo.
-                            </a>
-                            <div class="nophoto"></div>
-                        </section>
-                        <% } %>
-                        <% if (photos.length == 0 && profile_user.username != user.username) { %>
-                        <section style="padding: 10px;">
-                            <span style="font-size: 80px;">
-                                <i class="dripicons-photo-group"></i>
-                            </span>
-                            <p style="font-size: 15px;">Sorry, <b><%= profile_user.fullname.firstname %></b> has no
-                                photos, Tell
-                                <%= profile_user.gender == 'male' ? 'Him' : "Her" %> to upload some.</p>
-                        </section>
-                        <% } %>
                         <% } %>
                     </div>
                 </footer>

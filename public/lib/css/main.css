@@ -382,6 +382,15 @@ body {
   overflow-x: hidden !important;
 }
 
+.image-blur{
+  filter: blur(3px);
+  transition: 1s all;
+}
+
+.image-no-blur{
+  transition: 1s all;
+}
+
 
 
 

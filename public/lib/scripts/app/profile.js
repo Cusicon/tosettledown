@@ -114,4 +114,32 @@ $(document).on('ready', function (e) {
             $('#addPhotosBtn').trigger('click');
         });
     }
+
+    $('.userPhoto').on('click', function (e) {
+        console.log('yeah')
+
+        let element = $(this);
+        let image_link = element.attr('src');
+        let image_id = element.data('image-id');
+
+        if($('#displayImage').length > 0){
+            $('#displayImage').attr('src','', image_link)
+        }
+
+        if($('#setAvatarBtn').length > 0){
+            $('#setAvatarBtn').attr('data-image-id', image_id)
+        }
+
+
+        // $("div").click(function() {
+        //     var bg = $(this).css('background-image');
+        //     bg = bg.replace('url(','').replace(')','').replace(/\"/gi, "");
+        //     alert(bg);
+        // });
+
+
+        // onclick="
+        // $('#displayImage').attr('src', this.style.backgroundImage.slice(5, this.style.backgroundImage.length - 2));
+        // $('#setAvatarBtn').attr('href', `/app/profile/update/<%= profile_user.username %>/setAvatar/<%= photo.id %>`);
+    })
 })
