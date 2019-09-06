@@ -2,6 +2,8 @@ let router = require('express')();
 
 //-- encounters Router
 router.get("/encounters", (require('@app/controllers/EncounterController')).index);
+
+/* Change to post request*/
 router.get("/encounters/getUser", (require('@app/controllers/EncounterController')).getUserAndPhoto);
 router.get("/encounters/addLikeAndOneUser", (require('@app/controllers/EncounterController')).addToLikeAndGetAnotherUser);
 router.get("/encounters/addLike", (require('@app/controllers/EncounterController')).addToLike);
@@ -9,7 +11,6 @@ router.get("/encounters/addFavourite", (require('@app/controllers/EncounterContr
 
 //-- profile Router
 router.get("/profile/:username", (require('@app/controllers/ProfileController')).show);
-
 router.post("/profile/update/:username", (require('@app/controllers/ProfileController')).update);
 // router.get("/profile/:username/mustHavePhotos", (require('@app/controllers/ProfileController')).mustHavePhotos);
 

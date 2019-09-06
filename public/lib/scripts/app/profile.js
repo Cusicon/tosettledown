@@ -115,32 +115,24 @@ $(document).on('ready', function (e) {
         });
     }
 
+    $('#editProfileForm').on('submit',  function (e) {
+        e.preventDefault();
+
+        console.log($(this).serialize())
+    })
+
     $('.userPhoto').on('click', function (e) {
 
         let element = $(this);
         let image_link = element.css('background-image').replace('url(','').replace(')','').replace(/\"/gi, "");
         let image_id = element.data('image-id');
-
         if($('#displayImage').length > 0){
             console.log(element)
             $('#displayImage').attr('src', image_link)
         }
-
         if($('#setAvatarBtn').length > 0){
             $('#setAvatarBtn').attr('data-image-id', image_id)
         }
-
-
-        // $("div").click(function() {
-        //     var bg = $(this).css('background-image');
-        //     bg = bg.replace('url(','').replace(')','').replace(/\"/gi, "");
-        //     alert(bg);
-        // });
-
-
-        // onclick="
-        // $('#displayImage').attr('src', this.style.backgroundImage.slice(5, this.style.backgroundImage.length - 2));
-        // $('#setAvatarBtn').attr('href', `/app/profile/update/<%= profile_user.username %>/setAvatar/<%= photo.id %>`);
     })
 
     $('#setAvatarBtn').on('click', function (e) {
@@ -149,6 +141,7 @@ $(document).on('ready', function (e) {
         let image_id = element.data('image-id')
 
         console.log(image_id)
+        /* Ajax Request For Updating Profile Picture*/
         $.ajax({
             url: `/app/profile/avatar/update`,
             method: "POST",
@@ -173,14 +166,9 @@ $(document).on('ready', function (e) {
                 }else{
                     mySnackbar(response.message)
                 }
-
-                // if (location.href.includes(__url)) {
-                //     var checkForProfileImage = document.getElementById("profileImage").style.backgroundImage.includes(photoNAME);
-                //     if (!checkForProfileImage) {
-                //         location.replace(__url);
-                //         console.log("Profile not changed!");
-                //     }
-                // }
+            },
+            error: function () {
+                mySnackbar('Error Occur While Updating Profile Picture');
             }
         });
 
