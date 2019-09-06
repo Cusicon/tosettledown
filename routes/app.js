@@ -14,7 +14,7 @@ router.post("/profile/update/:username", (require('@app/controllers/ProfileContr
 // router.get("/profile/:username/mustHavePhotos", (require('@app/controllers/ProfileController')).mustHavePhotos);
 
 router.post("/profile/update/:username/addPhotos", (require('@app/controllers/ProfileController')).addPhotos);
-router.get("/profile/update/:username/setAvatar/:photo_id", (require('@app/controllers/ProfileController')).setAvatar);
+router.post("/profile/avatar/update", (require('@app/controllers/ProfileController')).setAvatar);
 
 
 router.get("/profile", (req, res) => res.redirect("/app/encounters"));

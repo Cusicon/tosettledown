@@ -100,18 +100,16 @@ if (!Array.last) {
 $(document).on('ready', function (e) {
     let blurs = $('.image-blur');
 
-    blurs.each(index => {
+    blurs.each(function(){
+
         let image = $(this);
         let main = document.createElement('img')
         let mainImg = image.data('main-image')
 
         main.onload = function (){
-            console.log('dfdf');
-            image.src = mainImg;
+            image.css('background-image', `url('${mainImg}')`)
             image.removeClass('image-blur').addClass('image-no-blur');
         }
         main.src = mainImg;
-        main.complete
-        console.log('ay')
     })
 })

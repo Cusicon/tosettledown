@@ -116,14 +116,14 @@ $(document).on('ready', function (e) {
     }
 
     $('.userPhoto').on('click', function (e) {
-        console.log('yeah')
 
         let element = $(this);
-        let image_link = element.attr('src');
+        let image_link = element.css('background-image').replace('url(','').replace(')','').replace(/\"/gi, "");
         let image_id = element.data('image-id');
 
         if($('#displayImage').length > 0){
-            $('#displayImage').attr('src','', image_link)
+            console.log(element)
+            $('#displayImage').attr('src', image_link)
         }
 
         if($('#setAvatarBtn').length > 0){
@@ -142,4 +142,55 @@ $(document).on('ready', function (e) {
         // $('#displayImage').attr('src', this.style.backgroundImage.slice(5, this.style.backgroundImage.length - 2));
         // $('#setAvatarBtn').attr('href', `/app/profile/update/<%= profile_user.username %>/setAvatar/<%= photo.id %>`);
     })
+
+    $('#setAvatarBtn').on('click', function (e) {
+        e.preventDefault();
+        let element = $(this)
+        let image_id = element.data('image-id')
+
+        console.log(image_id)
+        $.ajax({
+            url: `/app/profile/avatar/update`,
+            method: "POST",
+            data :{photo_id : image_id},
+            success: function(response) {
+                console.log(response);
+
+                if(response.status === 'success'){
+                    mySnackbar(response.message)
+                    let location = response.photo.location;
+
+                    if($('.profileImg').length > 0){
+                        $('.profileImg').each(function () {
+                            $(this).css('background-image', `url('${location}')`);
+                        })
+                    }
+                    if($('.profileImage').length > 0){
+                        $('.profileImage').each(function () {
+                            $(this).css('background-image', `url('${location}')`);
+                        })
+                    }
+                }else{
+                    mySnackbar(response.message)
+                }
+
+                // if (location.href.includes(__url)) {
+                //     var checkForProfileImage = document.getElementById("profileImage").style.backgroundImage.includes(photoNAME);
+                //     if (!checkForProfileImage) {
+                //         location.replace(__url);
+                //         console.log("Profile not changed!");
+                //     }
+                // }
+            }
+        });
+
+
+    })
+
+
+
+
+
+
+
 })

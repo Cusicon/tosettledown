@@ -124,20 +124,43 @@ module["exports"] = class ProfileController {
     }
 
     static setAvatar(req, res) {
-        let id = req.user.id;
-        let photo_id = req.params.photo_id;
+        let photo_id = req.body.photo_id;
+
         Photo.getPhotoById(photo_id, (err, photo) => {
-            User.getUserByIdandUpdate(id, {
-                avatar: photo.location
-            }, (err, user) => {
-                if (err) {
-                    console.log(err);
-                } else {
-                    userLog(`"${req.user.username}" just updated their profile picture.`);
-                    console.log(`@${req.user.username} just updated their profile picture!, @ ${new Date().toTimeString()}`);
-                    res.redirect(`/app/profile/${user.username}`);
-                }
-            });
+
+            if(err || photo == null){
+                res.send({
+                    status: 'error',
+                    message: 'unable to update profile picture'
+                })
+            }else {
+                User.getUserByIdandUpdate(req.user.id, {
+                    avatar: photo.location
+                }, (err, user) => {
+
+                    if(err || photo == null){
+                        console.log(err);
+
+                        res.send({
+                            status: 'error',
+                            message: 'unable to update profile picture'
+                        })
+                    }else{
+                        console.log(err);
+
+                        res.send({
+                            status: 'success',
+                            photo: photo,
+                            message: 'profile picture updated successfully'
+                        })
+
+                        userLog(`"${req.user.username}" just updated their profile picture.`);
+                        console.log(`@${req.user.username} just updated their profile picture!, @ ${new Date().toTimeString()}`);
+                    }
+                });
+            }
+
+
 
         });
     }
