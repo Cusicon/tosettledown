@@ -118,7 +118,8 @@ module["exports"] = class EncounterController {
 
     static getOneUserAndPictures(req, res) {
         let gender = req.user.gender === "male" ? "female" : "male";
-        let IntervalInSec = 10 * 60; // 10 Mins
+        // {number of min} * 60 => time in seconds
+        let IntervalInSec = 10 * 60; // 10 Minutes
 
         Like.find({liker:req.user.username}).then(likedUsersObj => {
 
