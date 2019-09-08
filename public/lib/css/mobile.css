@@ -33,12 +33,28 @@
         width: 100%;
     }
 
+    .policyCon,
+    .termsCon,
+    .cookieCon {
+        padding: 10px !important;
+    }
+
+    .policyCon h2,
+    .termsCon h2,
+    .cookieCon h2 {
+        font-size: 20px !important;
+    }
+
+    .errorPage center section {
+        width: 90% !important;
+    }
+
     body {
         background-color: #fff !important;
     }
 
     .encounterPage {
-        margin: 0px !important;
+        margin: 5px 0px 15px 0px !important;
     }
 
     .mainBody .displayWindow .imageWindow .overlayNav .navBottom ul li a#like,
@@ -65,7 +81,7 @@
 
     .wrapperOnMobile .displayWindow {
         display: inline-block !important;
-        box-shadow: 0px 5px 20px #64646471 !important;
+        box-shadow: 0px 5px 10px #7c7c7c71 !important;
         border-radius: 20px !important;
         /* overflow: hidden auto !important; */
         /* height: 430px !important; */

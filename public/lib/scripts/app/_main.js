@@ -81,7 +81,7 @@ showDropdown();
         Notification.requestPermission().then(function (status) {
             if (status != "granted") {
                 console.log(`Notification ${status}!`);
-                // alert("/lib/img/logo/favicon.ico",
+                // alert("/lib/img/logo/favicon.png",
                 //     "Turn on Notifications",
                 //     "Know right away when people follow you or like and comment on your photos.",
                 //     ["Cancel", "Turn on"],
@@ -95,7 +95,7 @@ showDropdown();
         });
     } else {
         //-- snackbar here
-        alert("/lib/img/logo/favicon.ico", "Turn on Notifications", "Sorry, your browser doesn\'t support notifications", [null, "Close"]);
+        alert("/lib/img/logo/favicon.png", "Turn on Notifications", "Sorry, your browser doesn\'t support notifications", [null, "Close"]);
     }
 })();
 
@@ -109,7 +109,7 @@ $(document).on('ready', () => {
             let options = {
                 body: msg.message, // body part of the notification
                 dir: 'ltr', // use for direction of message
-                icon: '/lib/img/logo/favicon.ico' // use for show image
+                icon: '/lib/img/logo/favicon.png' // use for show image
             };
             let audio = new Audio('/lib/media/notify.mp3');
             audio.play().then(() => {

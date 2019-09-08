@@ -120,7 +120,6 @@ module["exports"] = class EncounterController {
         let gender = req.user.gender === "male" ? "female" : "male";
         // {number of min} * 60 => time in seconds
         let IntervalInSec = 10 * 60; // 10 Minutes
-
         Like.find({liker:req.user.username}).then(likedUsersObj => {
 
             let exceptionUsersObj = likedUsersObj.filter((likedUserObj) => {

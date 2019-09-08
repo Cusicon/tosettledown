@@ -181,6 +181,7 @@ li.user:last-child {
 .Chat .ChatWindow .ChatWindowBody ul.chat-message-list li div .message {
     padding: 5px 10px 5px 0px;
     font-size: 14px;
+    word-wrap: break-word;
 }
 
 .Chat .ChatWindow .ChatWindowBody ul.chat-message-list li div .time {

@@ -6,7 +6,7 @@
 <% script('/lib/scripts/app/chat.js') -%>
 
 <style>
-    .logoHeader{
+    .logoHeader {
         display: none;
     }
 </style>
@@ -112,7 +112,9 @@
                 <div class="ChatWindowHead">
                     <div class="float-left">
                         <div class="onMobile float-left">
-                            <a href="javascript:void(0);" class="back" onclick="$('.ChatWindow').css({'left': '-120%', 'transition': 'ease .3s'}); $('.mobileNavigator').css({'bottom': '0%', 'transition': 'ease .3s'})" style="font-size: 20px; padding: 0px 5px;">
+                            <a href="javascript:void(0);" class="back"
+                                onclick="$('.ChatWindow').css({'left': '-120%', 'transition': 'ease .3s'}); $('.mobileNavigator').css({'bottom': '0%', 'transition': 'ease .3s'})"
+                                style="font-size: 20px; padding: 0px 5px;">
                                 <i class="icon-arrow-left"></i>
                             </a>
                         </div>
@@ -159,10 +161,12 @@
 
                 <div class="ChatWindowFooter" style="padding: 5px 10px;">
                     <div class="form-group message-sender-holder">
-                        <textarea rows="1" id="message-input" class="encounter-page-send-message form-control"
+                        <textarea id="message-input" class="encounter-page-send-message form-control"
                             placeholder="Type a message" autofocus required></textarea>
-                        <button id="submit-msg" class="btn waves-effect waves-light bg-Primary_color"><i
-                                class="fa fa-send"></i></button>
+                        <button id="submit-msg" data-messenger="messenger"
+                            class="btn waves-effect waves-light bg-Primary_color">
+                            <i class="fa fa-send"></i>
+                        </button>
                     </div>
                 </div>
             </div>
