@@ -45,7 +45,7 @@ module['exports'] = {
             'root' : storage_path(),
         },
 
-        'public' : { // Pointing to pulic/store
+        'public' : { // Pointing to public/store
             'driver' : 'local',
             'root' : public_path('store'),
             'url' : `${get_env('APP_URL')}/store`,
