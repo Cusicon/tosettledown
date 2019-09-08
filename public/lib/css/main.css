@@ -262,7 +262,7 @@ a.activeProfile {
 }
 
 a.activeProfile.hasStories {
-  background-image: linear-gradient(#006870a2, #ff6878);
+  background-image: linear-gradient(to top left, #006870a2, #ff6878);
 }
 
 a.activeProfile.noStories {

@@ -24,13 +24,29 @@
     .onMobile * {
         display: block;
     }
-    
+
     .modal .modal-dialog .modal-title {
         font-size: 20px;
     }
 
     .modal .btn.bg-Primary_color {
         width: 100%;
+    }
+
+    .policyCon,
+    .termsCon,
+    .cookieCon {
+        padding: 10px !important;
+    }
+
+    .policyCon h2,
+    .termsCon h2,
+    .cookieCon h2 {
+        font-size: 20px !important;
+    }
+
+    .errorPage center section {
+        width: 90% !important;
     }
 
     body {

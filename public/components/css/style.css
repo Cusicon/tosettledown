@@ -1487,7 +1487,7 @@ a:focus {
 }
 
 .text-muted {
-	color: #98a6ad !important;
+	/* color: #98a6ad !important; */
 }
 
 .text-primary {

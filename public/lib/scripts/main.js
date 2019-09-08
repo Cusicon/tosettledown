@@ -68,7 +68,7 @@ if (!Array.last) {
             // Checks if user has any photo, if true continue else redirect to profile page
             if (photos.length < 1) {
                 if (location.href.includes(__url)) {
-                    alert("/lib/img/logo/favicon.ico", "Must upload a photo", "Sorry, you are required to upload at least one photo!", [null, location.href.includes(__url) ? "Upload photo" : "Go to profile"], () => {
+                    alert("/lib/img/logo/favicon.png", "Must upload a photo", "Sorry, you are required to upload at least one photo!", [null, location.href.includes(__url) ? "Upload photo" : "Go to profile"], () => {
                         (location.href.includes(__url)) ?
                         $('#addPhotosBtn').trigger('click'): location.href = __url
                     });
@@ -94,5 +94,10 @@ if (!Array.last) {
                 });
             }
         },
+    });
+
+    // Send message onclick of [data-messenger-btn="messengerBtn"]
+    $('data-messenger-btn="messengerBtn"').click((e) => {
+
     });
 })();

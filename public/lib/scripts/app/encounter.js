@@ -177,7 +177,7 @@ function renderUserPhotos(photos, placeToInsertImage) {
 
         $(placeToInsertImage).html(`
             <div class="userDisplayedPhotoCon" id="0">
-                <img src="/lib/img/logo/favicon.ico" style="margin: auto 0%; opacity: 0.5; visibility: hidden !important;" class="userDisplayedPhoto" alt="Photo">
+                <img src="/lib/img/logo/favicon.png" style="margin: auto 0%; opacity: 0.5; visibility: hidden !important;" class="userDisplayedPhoto" alt="Photo">
             </div>
         `)
     }
