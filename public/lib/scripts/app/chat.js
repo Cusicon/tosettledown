@@ -326,11 +326,7 @@ $(document).on('ready', () => {
         window.location.href = `/app/profile/${activeChat}`;
     })
 
-    /*
-     * Sending Message
-     */
-    $('#submit-msg').on('click', function (e) {
-        e.preventDefault();
+    function sendChat(){
         let toUser = activeChat;
         let user = `@${toUser}`;
         let message_holder = $('#message-input');
@@ -365,6 +361,22 @@ $(document).on('ready', () => {
             $('.chat-message-list').append(buildChatMessage(message, true));
             message_holder.val('');
         }
+    }
+
+    $('#message-input').on('keydown', function (e){
+        if (e.keyCode === 13){
+            e.preventDefault();
+            sendChat();
+            return false;
+        }
+    })
+
+    /*
+     * Sending Message
+     */
+    $('#submit-msg').on('click', function (e) {
+        e.preventDefault();
+        sendChat();
         return false;
     });
 

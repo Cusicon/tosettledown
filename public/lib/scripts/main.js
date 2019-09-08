@@ -55,7 +55,6 @@ if (!Array.last) {
         return this[this.length - 1];
     };
 }
-
 // (function () {
 //     let username = $("#activeUser_username").text().split("@")[1].trim();
 //     let __url = `/app/profile/${username}`;
