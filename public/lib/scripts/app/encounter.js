@@ -160,7 +160,7 @@ function renderUserPhotos(photos, placeToInsertImage) {
         $("#totalPhotos").html(photos.length); // Total photos count
         $("#currentPhoto").html("1"); // Current photos count
 
-        photos.reverse().forEach((photo, index) => {
+        photos.forEach((photo, index) => {
             $($.parseHTML("<img>"))
                 .attr({
                     src: photo.location,
