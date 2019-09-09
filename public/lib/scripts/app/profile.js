@@ -110,14 +110,35 @@ $("#favourite, #favourite-drpdown").on('click', function(e){
 
 $(document).on('ready', function (e) {
     if($('.nophoto').length > 0){
-        alert("/lib/img/logo/favicon.ico", "Must upload a photo", "Sorry, you are required to upload at least one photo!", [null,"Upload photo"], () => {
+        alert("/lib/img/logo/favicon.png", "Must upload a photo", "Sorry, you are required to upload at least one photo!", [null,"Upload photo"], () => {
             $('#addPhotosBtn').trigger('click');
         });
     }
 
     $('#editProfileForm').on('submit',  function (e) {
         e.preventDefault();
+        let formData = new FormData(this);
+        console.log(formData);
 
+        let form = $(this);
+        $.ajax({
+            type: 'POST',
+            url: form.attr('action'),
+            data: new FormData(this),
+            dataType: 'json',
+            contentType: false,
+            cache: false,
+            processData:false,
+            beforeSend: function(){
+                console.log('about to submit form')
+            },
+            success: function(response){ //console.log(response);
+                console.log(response)
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        });
         console.log($(this).serialize())
     })
 
@@ -171,8 +192,6 @@ $(document).on('ready', function (e) {
                 mySnackbar('Error Occur While Updating Profile Picture');
             }
         });
-
-
     })
 
 

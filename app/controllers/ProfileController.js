@@ -58,10 +58,9 @@ module["exports"] = class ProfileController {
     }
 
     static update(req, res) {
-        let username = req.params.username;
         let id = req.user.id;
-
         // Values from Body
+        console.log(req.body)
         let fullname = req.body.fullname.trim();
         let bio = req.body.bio.trim();
         let height = req.body.height.trim();
@@ -93,64 +92,28 @@ module["exports"] = class ProfileController {
 
         //-- Check for validation Error
         let errors = req.validationErrors();
-        if (errors) {
-            console.log("Errors: ", errors);
-            User.getUserByUsername(username, (err, user) => {
-                if (err) console.log(err);
-                else {
-                    if (user != null) {
-                        if (req.user.id !== user.id) {
-                            // user_id => the person you are visiting
-                            // visitor_id => the person that is visiting
-                            Visitor.findOne({
-                                visited_user: user.username,
-                                visitor: req.user.username
-                            }, (err, visitor) => {
-                                if (!visitor) {
-                                    let visitor = new Visitor({
-                                        visited_user: user.username,
-                                        visitor: req.user.username
-                                    });
-                                    visitor.save()
-                                }
-                            })
-                        }
 
-                        user.photos().then(photos => {
-                            if (req.user.gender !== user.gender) {
-                                // add to visitor page here
-                                res.render('./app/menu/profile', {
-                                    title: `${user.fullname.firstname}'s profile`,
-                                    errors: errors,
-                                    profile_user: user,
-                                    photos: photos.reverse()
-                                });
-                            } else if (req.user.gender === user.gender && req.user.username === user.username) {
-                                res.render('./app/menu/profile', {
-                                    title: `${user.fullname.firstname}'s profile`,
-                                    errors: errors,
-                                    profile_user: user,
-                                    photos: photos.reverse()
-                                });
-                            } else {
-                                res.redirect("/#regForm");
-                            }
-                        }).catch(err => {
-                            throw err;
-                        })
-                    } else {
-                        res.redirect('/#regForm');
-                    }
-                }
+        if (errors) {
+            res.send({
+                status: 'error',
+                message: 'validation error',
+                errors: errors,
+                data: null
             });
+
         } else {
             User.getUserByIdandUpdate(id, newUser, (err, user) => {
                 if (err) {
                     console.log(err);
                 } else {
+                    res.send({
+                        status: 'success',
+                        message: 'Update Successful',
+                        errors: errors,
+                        data: user,
+                    });
                     userLog(`"${req.user.username}" just updated their profile.`);
                     console.log(`@${req.user.username} just updated their profile!, @ ${new Date().toTimeString()}`);
-                    res.redirect(`/app/profile/${user.username}`);
                 }
             });
         }
