@@ -1,6 +1,8 @@
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
+const Jimp = require('jimp')
+
 const Media = require('@models/media')
 const Manipulation = require('@media-library/manipulation')
 
@@ -11,11 +13,53 @@ class LocalStorage {
         this.res = res;
         this.filesystem = config('medialibrary', (Var) => { return Var['disk_name']});
         this.disk = disk
+        this.file = null
     }
+
+    uploadBuffer(file, buffer){
+        // let dir = path.join(this.req.user.id.toString() , Date.now().toString());
+        let destination = path.join(this.req.user.id.toString() , 'photos', Date.now().toString());
+        let name = file.originalname;
+        let uploadPath = path.join(this.disk.root, destination, name);
+
+        file.newDestination = destination;
+        file.newPath = path.join(destination, name);
+
+        this.file = file;
+        return Jimp.read(buffer)
+            .then(image => {
+                return image.writeAsync(uploadPath);
+            });
+    }
+
+    async saveToDatabase(model){
+        console.log(this.file);
+
+        let media = new Media({
+            user_id: model.id,
+            name: this.file.originalname,
+            mime_type: this.file.mimetype,
+            disk: this.filesystem,
+            size: this.file.size,
+            path: this.file.newDestination,
+            location: `${diskUrl}/${this.file.newPath}`
+        });
+        media.save((err) => {
+            if (err) throw err;
+            else {
+                userLog(`"${model.username}" just uploaded some photos.`);
+                console.log(`@${model.username} just uploaded some photos!, @ ${new Date().toTimeString()}`);
+            }
+        });
+    }
+
+
 
     upload(model, name, newName = null, callback){
 
+        //this.disk.root
         let image_path = path.join(this.req.user.id.toString() , 'photos', Date.now().toString());
+
 
         let filename = function(req, file, cb){
             let name = (newName)? newName.concat(path.extname(file.originalname)) : file.originalname;

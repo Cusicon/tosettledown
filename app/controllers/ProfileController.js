@@ -1,5 +1,4 @@
-const HasMedia = require('@media-library/trait/hasMedia');
-
+const MediaLibrary = require('@media-library');
 let User = require('@models/user');
 let Photo = require('@models/media');
 let Visitor = require('@models/visitor');
@@ -160,9 +159,9 @@ module["exports"] = class ProfileController {
     /**
      *  Saves the photos into the DB
      */
-    static addPhotos(req, res) {
-        let media = new HasMedia(req, res, req.user);
-        media.addMedia('addPhotos', null, (req, res, err) => {
+    static async addPhotos(req, res) {
+        let medialibrary = new MediaLibrary(req, res);
+        await medialibrary.addMedia('addPhotos', (req, res, err) => {
             res.redirect(`/app/profile/${req.user.username}`);
         });
     }

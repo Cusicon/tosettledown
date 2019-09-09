@@ -136,25 +136,18 @@ module["exports"] = class EncounterController {
     static getOneUserAndPictures(req, res) {
         let gender = req.user.gender === "male" ? "female" : "male";
         let IntervalInSec = 10 * 60; // 10 Minutes // {number of min} * 60 => time in seconds
+
         Like.find({liker:req.user.username}).then(likedUsersObj => {
-            let exceptionUsersObj = likedUsersObj.filter((likedUserObj) => {
+            return likedUsersObj.filter((likedUserObj) => {
                 if (likedUserObj.isLiked === true) {
                     return true
                 } else {
                     let diffSec = Math.abs(Moment(likedUserObj.liked_at).diff(Moment(), 'seconds'))
                     return (diffSec <= IntervalInSec);
                 }
-            }).catch(err => {
-                res.send({
-                    data: {
-                        status: "error",
-                        message: err.message
-                    }
-                })
-            })
-
+            });
+        }).then(exceptionUsersObj => {
             exceptionUsersObj = exceptionUsersObj.map(obj => obj.liked_user);
-
             User.aggregate([
                 { $match : {username: {$nin: exceptionUsersObj}, gender: gender} },
                 { $sample: { size: 1 } }
@@ -186,15 +179,14 @@ module["exports"] = class EncounterController {
                         }
                     })
                 }
-            }).catch(err => {
-                res.send({
-                    data: {
-                        status: "error",
-                        message: err.message
-                    }
-                })
-            });
+            })
+        }).catch(err => {
+            res.send({
+                data: {
+                    status: "error",
+                    message: err.message
+                }
+            })
         });
     }
-
 };

@@ -22,10 +22,13 @@ class hasMedia extends Media {
 
     initialize(){
         let disk_name = config('medialibrary', (Var) => { return Var['disk_name'] });
-        let disk = config('filesystems', (Var) => { return Var.disks[disk_name]})
+        let disk = config('filesystems', (Var) => { return Var.disks[disk_name]});
         let drive_folder = disk.driver || null;
 
         const ClassPath = path.join('..','disks', drive_folder, 'index.js');
+
+        // check if file system is available
+
 
         let Storage = require(ClassPath)
         this.instance = new Storage(this.req, this.res, disk);
