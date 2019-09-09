@@ -4,6 +4,7 @@ let media_schema = mongoose.Schema({
     name: String,
     mime_type: {type: String},
     disk: {type: String},
+    size: {type: String},
     path: {type: String},
     location: {type: String},
     created_at: {type: Date, default: new Date().toDateString()},

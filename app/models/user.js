@@ -62,7 +62,7 @@ module["exports"] = class User extends Model {
     }
 
     async photos() {
-        return await Photo.find({model: 'user', model_id: this.id});
+        return await Photo.find({user_id: this.id});
     }
 
     get fullname() {

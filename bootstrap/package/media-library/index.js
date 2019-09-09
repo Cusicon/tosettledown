@@ -77,38 +77,19 @@ class MediaLibrary extends Media {
 
     async addMedia(name, callback) {
         if (this.instance !== null) {
-
             try{
-
                 await this.uploadToTemp(name);
-                console.log(this.req.file)
-
                 let buffer = await this.manipulateMedia(this.req.file)
-                console.log(buffer)
-
-                let upload = await this.instance.uploadBuffer(this.req.file, buffer)
-                console.log(upload)
-
-                await this.instance.saveToDatabase();
-
-
+                await this.instance.uploadBuffer(this.req.file, buffer)
+                await this.instance.saveToDatabase(this.req.user);
+                callback(this.req, this.res)
 
             }catch (err) {
                 throw err
             }
-
-
-
-            //manipulate
-            //savetodatabase
-
-            // this.instance.upload({type: model_type , id : model_id}, name, newName = null, callback);
-
         } else {
             throw new Error('The Media Instance Can\'t be Null');
         }
     }
-
-
 }
 module.exports = MediaLibrary;

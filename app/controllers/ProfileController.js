@@ -161,14 +161,13 @@ module["exports"] = class ProfileController {
      */
     static async addPhotos(req, res) {
         let medialibrary = new MediaLibrary(req, res);
-        await medialibrary.addMedia('addPhotos', (req, res, err) => {
+        await medialibrary.addMedia('addPhotos', (req, res) => {
             res.redirect(`/app/profile/${req.user.username}`);
         });
     }
 
     static setAvatar(req, res) {
         let photo_id = req.body.photo_id;
-
         Photo.getPhotoById(photo_id, (err, photo) => {
 
             if(err || photo == null){
@@ -202,9 +201,6 @@ module["exports"] = class ProfileController {
                     }
                 });
             }
-
-
-
         });
     }
 
