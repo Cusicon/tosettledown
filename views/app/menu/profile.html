@@ -32,6 +32,7 @@
                             </div>
                             <div class="modal-body">
                                 <div class="editProfile">
+                                    
                                     <form action="/app/profile/update/<%= profile_user.username %>" method="POST"
                                         id="editProfileForm" class="row">
                                         <div class="container-fluid">
@@ -52,6 +53,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <!-- Other form inputs -->
                                         <div class="editProfileLeft col-md-8">
                                             <div class="form-group">
@@ -150,8 +152,6 @@
                                                             Divorced</option>
                                                     </select>
 
-
-
                                                 </div>
                                             </div>
                                             <p class="float-left" style="width: 90%;">
@@ -159,10 +159,10 @@
                                                 <b>Note:</b>
                                                 Username can't be modified or changed
                                             </p>
-                                        </form>
+                                        </div>
+                                    </form>
+
                                         <br>
-
-
                                         <!-- Modal footer -->
                                         <div class="separator"></div>
                                         <div style="text-align: center;">
@@ -514,7 +514,6 @@
                                 <% }) %>
                             </ul>
                         <% } else {%>
-
                             <% if (photos.length == 0 && profile_user.username == user.username) { %>
                                 <section style="padding: 10px;">
                                     <div style="font-size: 80px;">

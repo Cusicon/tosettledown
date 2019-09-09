@@ -1,5 +1,4 @@
 let User = require('@models/user');
-let Photo = require('@models/media');
 let Like = require('@models/like');
 let Favourite = require('@models/favourite');
 
@@ -34,8 +33,14 @@ module["exports"] = class EncounterController {
                     EncounterController.getOneUserAndPictures(req, res);
                 })
             }
-        })
-
+        }).catch(err => {
+            res.send({
+                data: {
+                    status: "error",
+                    message: err.message
+                }
+            })
+        });
     }
 
     static addToLike(req, res){
@@ -75,12 +80,18 @@ module["exports"] = class EncounterController {
                     })
                 })
             }
-        })
+        }).catch(err => {
+            res.send({
+                data: {
+                    status: "error",
+                    message: err.message
+                }
+            })
+        });
 
     }
 
     static addToFavorite(req, res){
-
         Favourite.findOne({user:req.user.username, favourite_user:req.query.username}).then(favourite => {
             if(favourite) {
                 res.send({
@@ -113,15 +124,20 @@ module["exports"] = class EncounterController {
                     }
                 })
             }
+        }).catch(err => {
+            res.send({
+                data: {
+                    status: "error",
+                    message: err.message
+                }
+            })
         });
     }
 
     static getOneUserAndPictures(req, res) {
         let gender = req.user.gender === "male" ? "female" : "male";
-        // {number of min} * 60 => time in seconds
-        let IntervalInSec = 10 * 60; // 10 Minutes
+        let IntervalInSec = 10 * 60; // 10 Minutes // {number of min} * 60 => time in seconds
         Like.find({liker:req.user.username}).then(likedUsersObj => {
-
             let exceptionUsersObj = likedUsersObj.filter((likedUserObj) => {
                 if (likedUserObj.isLiked === true) {
                     return true
@@ -129,7 +145,15 @@ module["exports"] = class EncounterController {
                     let diffSec = Math.abs(Moment(likedUserObj.liked_at).diff(Moment(), 'seconds'))
                     return (diffSec <= IntervalInSec);
                 }
+            }).catch(err => {
+                res.send({
+                    data: {
+                        status: "error",
+                        message: err.message
+                    }
+                })
             })
+
             exceptionUsersObj = exceptionUsersObj.map(obj => obj.liked_user);
 
             User.aggregate([
@@ -147,7 +171,12 @@ module["exports"] = class EncounterController {
                                 }
                             })
                         }).catch(err => {
-                            throw err;
+                            res.send({
+                                data: {
+                                    status: "error",
+                                    message: err.message
+                                }
+                            })
                         });
                     }
                 }else {
@@ -158,7 +187,14 @@ module["exports"] = class EncounterController {
                         }
                     })
                 }
-            })
+            }).catch(err => {
+                res.send({
+                    data: {
+                        status: "error",
+                        message: err.message
+                    }
+                })
+            });
         });
     }
 
