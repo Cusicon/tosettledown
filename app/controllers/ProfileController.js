@@ -161,7 +161,8 @@ module["exports"] = class ProfileController {
      */
     static async addPhotos(req, res) {
         let medialibrary = new MediaLibrary(req, res);
-        await medialibrary.addMedia('addPhotos', (req, res) => {
+        await medialibrary.addMedia('addPhotos', (req, res, photo) => {
+            console.log(photo);
             res.redirect(`/app/profile/${req.user.username}`);
         });
     }

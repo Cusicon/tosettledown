@@ -3,6 +3,7 @@ const path = require('path')
 const multer = require('multer');
 const Media = require('@models/media');
 const Manipulation = require('@media-library/manipulation')
+// noinspection NodeJsCodingAssistanceForCoreModules
 const util = require('util');
 
 class MediaLibrary extends Media {
@@ -64,7 +65,6 @@ class MediaLibrary extends Media {
             })
             const upload = util.promisify(uploadConfig.single(name));
             await upload(this.req, this.res);
-            console.log('upload to temp done');
         } catch (err) {
             throw err;
         }
@@ -75,15 +75,22 @@ class MediaLibrary extends Media {
         return await manipulation.manipulate(file)
     }
 
+    async removeTempFile(file){
+        fs.unlink(file.path, (err) => {
+            if (err) throw err;
+            console.log(`${path.basename(file.path)} was deleted after upload`)
+        });
+    }
+
     async addMedia(name, callback) {
         if (this.instance !== null) {
             try{
                 await this.uploadToTemp(name);
                 let buffer = await this.manipulateMedia(this.req.file)
                 await this.instance.uploadBuffer(this.req.file, buffer)
-                await this.instance.saveToDatabase(this.req.user);
-                callback(this.req, this.res)
-
+                let photo = await this.instance.saveToDatabase(this.req.user);
+                this.removeTempFile(this.req.file).catch(err => console.log(err));
+                callback(this.req, this.res, photo)
             }catch (err) {
                 throw err
             }
