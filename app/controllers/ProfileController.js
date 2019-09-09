@@ -179,24 +179,16 @@ module["exports"] = class ProfileController {
             }else {
                 User.getUserByIdandUpdate(req.user.id, {
                     avatar: photo.location
-                }, (err, user) => {
+                }, (err) => {
 
                     if(err || photo == null){
-                        console.log(err);
-
-                        res.send({
-                            status: 'error',
-                            message: 'unable to update profile picture'
-                        })
+                        throw new Error(err.message || 'photo not found');
                     }else{
-                        console.log(err);
-
                         res.send({
                             status: 'success',
                             photo: photo,
                             message: 'profile picture updated successfully'
                         })
-
                         userLog(`"${req.user.username}" just updated their profile picture.`);
                         console.log(`@${req.user.username} just updated their profile picture!, @ ${new Date().toTimeString()}`);
                     }
@@ -204,5 +196,4 @@ module["exports"] = class ProfileController {
             }
         });
     }
-
 };

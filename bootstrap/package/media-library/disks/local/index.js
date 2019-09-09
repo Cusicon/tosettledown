@@ -13,15 +13,15 @@ class LocalStorage {
     }
 
     uploadBuffer(file, buffer){
-        let destination = path.join(this.req.user.id.toString() , 'photos', Date.now().toString());
+        let newPath = path.join(this.req.user.id.toString() , 'photos', Date.now().toString());
         let name = file.originalname;
-        let uploadPath = path.join(this.disk.root, destination, name);
+        let destination = path.join(newPath, name);
         file.newDestination = destination;
-        file.newPath = path.join(destination, name);
+        file.newPath = newPath
         this.file = file;
 
         return Jimp.read(buffer)
-            .then(image => image.writeAsync(uploadPath));
+            .then(image => image.writeAsync(path.join(this.disk.root, destination)));
     }
 
     async saveToDatabase(model){
@@ -31,8 +31,8 @@ class LocalStorage {
             mime_type: this.file.mimetype,
             disk: this.filesystem,
             size: this.file.size,
-            path: this.file.newDestination,
-            location: `${this.disk.url}/${this.file.newPath}`
+            path: this.file.newPath,
+            location: `${this.disk.url}/${this.file.newDestination}`
         });
         userLog(`"${model.username}" just uploaded some photos.`);
         console.log(`@${model.username} just uploaded some photos!, @ ${new Date().toTimeString()}`);

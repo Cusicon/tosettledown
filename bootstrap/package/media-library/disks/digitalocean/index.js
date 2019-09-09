@@ -15,7 +15,82 @@ class DigitalOceanStorage {
         this.res = res;
         this.filesystem = config('medialibrary', (Var) => { return Var['disk_name']});
         this.disk = disk
+
+        aws.config.update({
+            accessKeyId: this.disk.key,
+            secretAccessKey: this.disk.secret
+        });
     }
+
+    async uploadBuffer(file, buffer){
+        let destination = path.join(this.req.user.id.toString() , 'photos', Date.now().toString());
+        let name = file.originalname;
+        let uploadPath = path.join(destination, name);
+
+        const spacesEndpoint = new aws.Endpoint(`${this.disk.region}.digitaloceanspaces.com`);
+        let s3 = new aws.S3({ endpoint: spacesEndpoint });
+        let uploadParams = { Bucket: this.disk.bucket, Key: uploadPath, Body: buffer, ACL: 'public-read' };
+
+        // call S3 to retrieve upload file to specified bucket
+        let data = await s3.upload(uploadParams).promise();
+        file.newDestination = data.Location;
+        file.newPath = data.key
+        this.file = file;
+    }
+
+    async saveToDatabase(model){
+        let media = new Media({
+            user_id: model.id,
+            name: this.file.originalname,
+            mime_type: this.file.mimetype,
+            disk: this.filesystem,
+            size: this.file.size,
+            path: this.file.newPath,
+            location: this.file.newDestination
+        });
+        userLog(`"${model.username}" just uploaded some photos.`);
+        console.log(`@${model.username} just uploaded some photos!, @ ${new Date().toTimeString()}`);
+        return  await media.save();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     upload(model, name, newName = null, callback){
 
@@ -112,6 +187,7 @@ class DigitalOceanStorage {
             const s3FilesUpload = async () => {
                 for (const file of files) {
                     let folderLocation = path.join(responsiveFolderPath, `${imageNameWithoutExt}-${file.option.width}x${file.option.height}${ext}`);
+
                     let s3 = new aws.S3({endpoint: spacesEndpoint});
                     let uploadParams = {Bucket: 'tosettledown', Key: folderLocation, Body: '', ACL: 'public-read'};
                     // Configure the file stream and obtain the upload parameters
