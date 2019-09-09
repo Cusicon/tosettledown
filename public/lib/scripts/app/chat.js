@@ -363,13 +363,24 @@ $(document).on('ready', () => {
         }
     }
 
-    $('#message-input').on('keydown', function (e){
-        if (e.keyCode === 13){
-            e.preventDefault();
-            sendChat();
-            return false;
-        }
-    })
+    (function () {
+        let map = {13: false, 16: false};
+        $('#message-input').keydown(function(e) {
+            if (e.keyCode in map) {
+                map[e.keyCode] = true;
+                if (map[13] && !map[16]) {
+
+                    e.preventDefault();
+                    sendChat();
+                    return false;
+                }
+            }
+        }).keyup(function(e) {
+            if (e.keyCode in map) {
+                map[e.keyCode] = false;
+            }
+        });
+    })();
 
     /*
      * Sending Message

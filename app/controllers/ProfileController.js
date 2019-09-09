@@ -58,36 +58,6 @@ module["exports"] = class ProfileController {
         });
     }
 
-    static mustHavePhotos(req, res) {
-        let username = req.params.username;
-        User.getUserByUsername(username, (err, user) => {
-            if (err) console.log(err);
-            else {
-                if (user != null) {
-                    user.photos().then(photos => {
-                        if (req.user.gender !== user.gender) {
-                            res.send({
-                                profile_user: user,
-                                photos: photos
-                            });
-                        } else if (req.user.gender === user.gender && req.user.username === user.username) {
-                            res.send({
-                                profile_user: user,
-                                photos: photos
-                            });
-                        } else {
-                            res.redirect("/#regForm");
-                        }
-                    }).catch(err => {
-                        throw err;
-                    });
-                } else {
-                    res.redirect('/#regForm');
-                }
-            }
-        });
-    }
-
     static update(req, res) {
         let username = req.params.username;
         let id = req.user.id;

@@ -12,7 +12,6 @@ router.get("/encounters/addFavourite", (require('@app/controllers/EncounterContr
 //-- profile Router
 router.get("/profile/:username", (require('@app/controllers/ProfileController')).show);
 router.post("/profile/update/:username", (require('@app/controllers/ProfileController')).update);
-// router.get("/profile/:username/mustHavePhotos", (require('@app/controllers/ProfileController')).mustHavePhotos);
 
 router.post("/profile/update/:username/addPhotos", (require('@app/controllers/ProfileController')).addPhotos);
 router.post("/profile/avatar/update", (require('@app/controllers/ProfileController')).setAvatar);

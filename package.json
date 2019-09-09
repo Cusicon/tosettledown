@@ -24,6 +24,7 @@
     "extends-classes": "^1.0.5",
     "faker": "^4.1.0",
     "form-validate": "^0.0.7",
+    "formidable": "^1.2.1",
     "gm": "^1.23.1",
     "gulp": "^4.0.2",
     "jimp": "^0.6.8",

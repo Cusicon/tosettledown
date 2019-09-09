@@ -88,7 +88,6 @@ module["exports"] = class EncounterController {
                 }
             })
         });
-
     }
 
     static addToFavorite(req, res){
