@@ -20,8 +20,8 @@
 
 .Chat .ChatList .ChatBody {
     background-color: #fff;
-    overflow: scroll;
-    height: 490px;
+    overflow: hidden scroll;
+    height: 500px;
 }
 
 .Chat .ChatList .ChatBody ul {
@@ -32,6 +32,7 @@
     display: block;
     height: 71px;
     width: 100%;
+    border-bottom: 1px solid #eee;
 }
 
 li.user:last-child {
@@ -54,6 +55,7 @@ li.user:last-child {
 
 
 .Chat .ChatList .ChatBody ul li.user div.profile-img {
+    margin-top: -15px;
     width: 50px;
     height: 50px;
     border-radius: 100%;
@@ -63,7 +65,7 @@ li.user:last-child {
 
 
 .chat-list li.user div.status {
-    position: absolute;
+    position: relative;
     width: 13px;
     height: 13px;
     border: 1px solid #fff;
@@ -100,7 +102,8 @@ li.user:last-child {
 
 .Chat .ChatWindow {
     padding: 0 !important;
-    background-color: #eee;
+    overflow: hidden auto !important;
+    /* background-color: #eee; */
 }
 
 .Chat .ChatWindow .ChatWindowHead {
@@ -144,6 +147,8 @@ li.user:last-child {
     overflow: scroll;
     height: 500px;
     padding: 5px;
+    background-color: #f8f8f8 !important;
+    
 }
 
 .Chat .ChatWindow .ChatWindowBody ul.chat-message-list {
@@ -164,7 +169,7 @@ li.user:last-child {
 }
 
 .Chat .ChatWindow .ChatWindowBody ul.chat-message-list li.outbox div {
-    border-radius: 25px 0px 25px 25px;
+    border-radius: 25px 25px 0px 25px;
     background-color: #ff6878;
     float: right;
 }
@@ -173,9 +178,9 @@ li.user:last-child {
     display: inline-block;
     padding: 10px 15px;
     color: #fff;
-    max-width: 250px;
+    max-width: 350px;
     overflow: hidden;
-    box-shadow: 0px 2.5px 0px #4949496c !important;
+    box-shadow: 0px .5px 2px #7777776c !important;
 }
 
 .Chat .ChatWindow .ChatWindowBody ul.chat-message-list li div .message {
@@ -262,7 +267,7 @@ li.user:last-child {
 }
 
 .chat-list li.user div.time.lazy-box-loader {
-    width: 55px;
+    width: 45px;
     height: 18px;
 }
 
@@ -272,7 +277,7 @@ li.user:last-child {
 }
 
 .chat-list li.user div.latest-message.lazy-box-loader {
-    width: 280px;
+    width: 180px;
     height: 18px;
     margin-top: 4px;
 }
@@ -338,6 +343,8 @@ li.user:last-child {
     height: 70px;
     background-color: #fff;
     padding-top: 10px !important;
+    border-top: 1px solid #eee;
+    box-shadow: 0px -1px 5px #c9c9c928 !important;
 }
 
 .ChatWindowFooter #message-input {
@@ -373,7 +380,7 @@ li.user:last-child {
 }
 
 .no-available img {
-    width: 60px;
+    width: 80px;
     opacity: .5;
 }
 

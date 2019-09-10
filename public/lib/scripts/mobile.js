@@ -12,7 +12,7 @@ $(function () {
 
 function mainMobile() {
     // Overide some inline css declared
-    overideInlineCss(".displayWindow", {
+    overrideInlineCss(".displayWindow", {
         "height": "unset !important",
         "margin-bottom": "unset !important",
         "padding": "0px !important",
@@ -43,7 +43,7 @@ function replaceWithAddPhotosBtn(element) {
 
 }
 
-function overideInlineCss(selector, changes = {}) {
+function overrideInlineCss(selector, changes = {}) {
     $(selector).css(changes);
 }
 

@@ -97,7 +97,6 @@ $(document).on('ready', () => {
                             <img src="/lib/img/logo/logo-icon.png" alt="Logo">  
                             <h5 class="text-muted">No chats or messages...</h5>
                         </div>
-                        </div>
                     </li>`);
             }
 
@@ -367,6 +366,8 @@ $(document).on('ready', () => {
         if (e.keyCode === 13){
             e.preventDefault();
             sendChat();
+            let _element = $(".ChatWindowBody");
+            _element[0].scrollTop = _element[0].scrollHeight;
             return false;
         }
     })
@@ -377,6 +378,8 @@ $(document).on('ready', () => {
     $('#submit-msg').on('click', function (e) {
         e.preventDefault();
         sendChat();
+        let _element = $(".ChatWindowBody");
+        _element[0].scrollTop = _element[0].scrollHeight;
         return false;
     });
 
@@ -402,6 +405,8 @@ $(document).on('ready', () => {
                     "bottom": "-50%",
                     "transition": "ease .5s"
                 })
+                 let _element_ = $(".ChatWindow");
+                 _element_[0].scrollTop = _element_[0].scrollHeight;
             }
         })();
     });
@@ -524,7 +529,7 @@ $(document).on('ready', () => {
                         comm_stat.html('')
                     }
                 }
-            }, 3000);
+            }, 4000);
 
         });
     }

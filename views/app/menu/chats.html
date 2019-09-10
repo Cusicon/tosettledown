@@ -6,8 +6,13 @@
 <% script('/lib/scripts/app/chat.js') -%>
 
 <style>
-    .logoHeader {
-        display: none;
+    @media screen and (max-width: 576px) {
+        /* .logoHeader { */
+            /* display: none; */
+        /* } */
+        body {
+            overflow: hidden !important;
+        }
     }
 </style>
 
@@ -31,7 +36,6 @@
                             <div class="profile-img lazy-box-loader"></div>
                         </div>
                         <div class="message-holder">
-                            <div class="time text-muted lazy-box-loader"></div>
                             <div class="username text-dark lazy-box-loader"></div>
                             <div class="latest-message text-muted lazy-box-loader"></div>
                         </div>
@@ -42,7 +46,6 @@
                             <div class="profile-img lazy-box-loader"></div>
                         </div>
                         <div class="message-holder">
-                            <div class="time text-muted lazy-box-loader"></div>
                             <div class="username text-dark lazy-box-loader"></div>
                             <div class="latest-message text-muted lazy-box-loader"></div>
                         </div>
@@ -53,7 +56,6 @@
                             <div class="profile-img lazy-box-loader"></div>
                         </div>
                         <div class="message-holder">
-                            <div class="time text-muted lazy-box-loader"></div>
                             <div class="username text-dark lazy-box-loader"></div>
                             <div class="latest-message text-muted lazy-box-loader"></div>
                         </div>
@@ -64,7 +66,6 @@
                             <div class="profile-img lazy-box-loader"></div>
                         </div>
                         <div class="message-holder">
-                            <div class="time text-muted lazy-box-loader"></div>
                             <div class="username text-dark lazy-box-loader"></div>
                             <div class="latest-message text-muted lazy-box-loader"></div>
                         </div>
@@ -75,29 +76,6 @@
                             <div class="profile-img lazy-box-loader"></div>
                         </div>
                         <div class="message-holder">
-                            <div class="time text-muted lazy-box-loader"></div>
-                            <div class="username text-dark lazy-box-loader"></div>
-                            <div class="latest-message text-muted lazy-box-loader"></div>
-                        </div>
-                    </li>
-                    <li class="user lazy-box-group">
-                        <div class="image-holder">
-                            <div class="status is-online lazy-box-loader"></div>
-                            <div class="profile-img lazy-box-loader"></div>
-                        </div>
-                        <div class="message-holder">
-                            <div class="time text-muted lazy-box-loader"></div>
-                            <div class="username text-dark lazy-box-loader"></div>
-                            <div class="latest-message text-muted lazy-box-loader"></div>
-                        </div>
-                    </li>
-                    <li class="user lazy-box-group">
-                        <div class="image-holder">
-                            <div class="status is-online lazy-box-loader"></div>
-                            <div class="profile-img lazy-box-loader"></div>
-                        </div>
-                        <div class="message-holder">
-                            <div class="time text-muted lazy-box-loader"></div>
                             <div class="username text-dark lazy-box-loader"></div>
                             <div class="latest-message text-muted lazy-box-loader"></div>
                         </div>

@@ -19,7 +19,7 @@
     /* Padding */
     position: fixed;
     /* Sit on top of the screen */
-    z-index: 100;
+    z-index: 5000;
     /* Add a z-index if needed */
     left: 50%;
     /* Center the snackbar */
