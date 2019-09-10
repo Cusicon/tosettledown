@@ -22,7 +22,7 @@
             </header>
             <br>
             <div class="jb" id="jb">
-                <h1>Built for <span id="jb_lovers" class="bg-Primary_color" style="padding: 5px; border-radius: 10px;">Lovers</span></h1>
+                <h1>Built for <span id="jb_lovers" class="bg-Primary_color">Lovers</span></h1>
                 <br>
                 <p>
                     Tosettledown (TSD) is a <b>Matchmaking</b> and <b>Dating</b> platform inspired by the way singles
@@ -126,11 +126,13 @@
                         <input type="password" name="password" id="password" class="form-control" placeholder="Password"
                             autocomplete required>
                     </div>
-                    <!-- Remember me -->
-                    <div class="custom-control custom-checkbox mb-4" style="padding-left: 30px;">
-                        <input type="checkbox" id="remember" name="remember" class="custom-control-input"
-                            value="remember" checked>
-                        <label class="custom-control-label" for="remember">Remember Me</label>
+                    <div class="mb-2">
+                        <!-- Remember me -->
+                        <div class="custom-control custom-checkbox mb-2" style="padding-left: 30px;">
+                            <input type="checkbox" id="remember" name="remember" class="custom-control-input"
+                                value="remember" checked>
+                            <label class="custom-control-label" for="remember">Remember Me</label>
+                        </div>
                     </div>
                     <!-- Sign Btn -->
                     <div class="loginFoot">
@@ -140,8 +142,12 @@
                         </div>
                         <div class="text-center">
                             <small>
-                                <a href="/#regForm" onclick="$('#loginBtn').trigger('click');">
-                                    Not a user?, Sign Up</a>
+                                <a href="/#regForm" class="text-dark float-left" onclick="$('#loginBtn').trigger('click');">
+                                    Not a user?, Sign Up
+                                </a>
+
+                                <!-- Forgot Password -->
+                                <a href="/forgotPassword" class="float-right">Forgot password?</a>
                             </small>
                         </div>
                     </div>
