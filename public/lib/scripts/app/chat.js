@@ -168,8 +168,8 @@ $(document).on('ready', () => {
                 chats.forEach(chat => {
                     chats_list_box.append(buildChatMessage(chat));
                 })
-                let element = $(".ChatWindowBody");
-                element[0].scrollTop = element[0].scrollHeight;
+                let ChatWindowBody = $(".ChatWindowBody");
+                ChatWindowBody[0].scrollTop = ChatWindowBody[0].scrollHeight;
             }
         }
     }
@@ -325,7 +325,7 @@ $(document).on('ready', () => {
         window.location.href = `/app/profile/${activeChat}`;
     })
 
-    function sendChat(){
+    function sendChat() {
         let toUser = activeChat;
         let user = `@${toUser}`;
         let message_holder = $('#message-input');
@@ -362,12 +362,15 @@ $(document).on('ready', () => {
         }
     }
 
-    $('#message-input').on('keydown', function (e){
-        if (e.keyCode === 13){
+    $('#message-input').on('keydown', function (e) {
+        if (e.keyCode === 13) {
             e.preventDefault();
             sendChat();
-            let _element = $(".ChatWindowBody");
-            _element[0].scrollTop = _element[0].scrollHeight;
+            let ChatWindowBody = $(".ChatWindowBody"),
+                ChatWindow = $(".ChatWindow");
+
+            ChatWindowBody[0].scrollTop = ChatWindowBody[0].scrollHeight;
+            ChatWindow[0].scrollTop = ChatWindow[0].scrollHeight;
             return false;
         }
     })
@@ -378,8 +381,12 @@ $(document).on('ready', () => {
     $('#submit-msg').on('click', function (e) {
         e.preventDefault();
         sendChat();
-        let _element = $(".ChatWindowBody");
-        _element[0].scrollTop = _element[0].scrollHeight;
+        let ChatWindowBody = $(".ChatWindowBody"),
+            ChatWindow = $(".ChatWindow");
+
+        ChatWindowBody[0].scrollTop = ChatWindowBody[0].scrollHeight;
+        ChatWindow[0].scrollTop = ChatWindow[0].scrollHeight;
+
         return false;
     });
 
@@ -393,8 +400,11 @@ $(document).on('ready', () => {
             element.find('.communication-status').html(``).data('unread-msg', 0);
             populateWindowChat(username);
             markAllActiveMsgAsRead()
+            enterChatsWindow();
         }
-        (function enterChatsWindow() {
+
+        function enterChatsWindow() {
+            let ChatList = $(".ChatList");
             let ChatWindow = $(".ChatWindow");
             if (ChatWindow.css("left") !== "0px") {
                 ChatWindow.css({
@@ -405,10 +415,31 @@ $(document).on('ready', () => {
                     "bottom": "-50%",
                     "transition": "ease .5s"
                 })
-                 let _element_ = $(".ChatWindow");
-                 _element_[0].scrollTop = _element_[0].scrollHeight;
+                ChatList.css({
+                    "display": "none"
+                })
+                
+                ChatWindow[0].scrollTop = ChatWindow[0].scrollHeight;
             }
-        })();
+        };
+    });
+
+    // Go back to ChatList
+    $(".backtoChatList").on("click", (e) => {
+        let ChatList = $(".ChatList");
+        let ChatWindow = $(".ChatWindow");
+        let mobileNavigator = $(".mobileNavigator");
+        ChatWindow.css({
+            'left': '-120%',
+            'transition': 'ease .3s'
+        });
+        mobileNavigator.css({
+            'bottom': '0%',
+            'transition': 'ease .3s'
+        });
+        ChatList.css({
+            "display": "block"
+        });
     });
 
     $('#searchUsers').on('change', function () {

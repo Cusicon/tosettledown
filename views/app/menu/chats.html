@@ -7,8 +7,9 @@
 
 <style>
     @media screen and (max-width: 576px) {
+
         /* .logoHeader { */
-            /* display: none; */
+        /* display: none; */
         /* } */
         body {
             overflow: hidden !important;
@@ -18,7 +19,7 @@
 
 <div class="row page-identifier" data-page-name="chat">
     <div class="displayWindow col-md-12 row Chat"
-        style="box-shadow: none; border-radius: 0px; padding: 0px; border-left: 1px solid #eee; overflow: visible;">
+        style="border-radius: 0px; padding: 0px; border-left: 1px solid #eee; overflow: visible;">
         <section class="col-md-4 ChatList">
             <div class="ChatHead">
                 <h3 class="text-muted text-center"><%= title %></h3>
@@ -90,8 +91,7 @@
                 <div class="ChatWindowHead">
                     <div class="float-left">
                         <div class="onMobile float-left">
-                            <a href="javascript:void(0);" class="back"
-                                onclick="$('.ChatWindow').css({'left': '-120%', 'transition': 'ease .3s'}); $('.mobileNavigator').css({'bottom': '0%', 'transition': 'ease .3s'})"
+                            <a href="javascript:void(0);" id="backtoChatList" class="backtoChatList"
                                 style="font-size: 20px; padding: 0px 5px;">
                                 <i class="icon-arrow-left"></i>
                             </a>
@@ -135,21 +135,31 @@
                     <ul class="chat-message-list">
                         <!-- chat will be rendered inside here -->
                     </ul>
+                    <div class="chatAlertBelow" id="chatAlertBelow">
+                        <a href="#" id="chatAlertBelowBtn" class="hide">
+                            <!-- Incase user is not at the bottom of the page,
+                                and there are chats coming in,
+                                This will display with the amount of current messages
+                                not read and go to the bottom when clicked!
+                                But as of now [display: none] -->
+                            <span class="badge" style="position: absolute; top: -8px; right: 0px;">52</span>
+                            <i class="fi-arrow-down text-dark"></i>
+                        </a>
+                    </div>
                 </div>
 
                 <div class="ChatWindowFooter" style="padding: 5px 10px;">
                     <div class="form-group message-sender-holder">
                         <textarea id="message-input" class="encounter-page-send-message form-control"
                             placeholder="Type a message" autofocus required></textarea>
-                        <button id="submit-msg" data-messenger="messenger"
-                            class="btn waves-effect waves-light bg-Primary_color">
+                        <button id="submit-msg" class="btn waves-effect waves-light bg-Primary_color">
                             <i class="fa fa-send"></i>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="go-back-encounter text-muted" style="position: relative; top: 250px; text-align: center;">
+            <div class="go-back-encounter text-muted" style="position: relative; top: 225px; text-align: center;">
                 <div>
                     <h1 class="typcn typcn-messages" style="font-size: 50px;"></h1>
                 </div>

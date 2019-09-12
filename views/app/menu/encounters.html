@@ -6,26 +6,26 @@
 <% script('/lib/scripts/app/encounter.js') -%>
 <div class="page-identifier encounterPage" data-page-name="encounter">
     <div class="wrapperOnMobile" style="width: 100%;">
-        <div class="displayWindow col-md-12 row">
+        <div class="displayWindow col-md-12 row" style="box-shadow: 0px 3px 10px #ddd;">
             <!-- ImageWindow -->
             <div class="imageWindow col-lg-8 col-md-12 col-sm-12">
                 <div class="renderUserPhotos">
                 </div>
                 <div class="overlayNav">
                     <div class="navTop">
-                        <div class="imageCounter float-left">
-                            <p>
-                                <span id="currentPhoto" style="padding-right: 5px;"></span>/
-                                <span id="totalPhotos"></span>
-                            </p>
-                        </div>
-                        <div class="imageCounter reportFlag">
+                        <div class="imageCounter float-left reportFlag">
                             <p>
                                 <span>
                                     <a href="javascript: void(0);" style="color: #fff;" title="Report this profile">
                                         <i class="typcn typcn-flag"></i>
                                     </a>
                                 </span>
+                            </p>
+                        </div>
+                        <div class="imageCounter">
+                            <p>
+                                <span id="currentPhoto" class="text-light" style="padding-right: 5px;"></span>/
+                                <span id="totalPhotos" class="text-light"></span>
                             </p>
                         </div>
                     </div>
@@ -116,6 +116,9 @@
                         </span>
                         <div style="font-size: 15px; margin-top: 10px;">
                             <a href="#" id="username" title=""></a>
+                            <a href="javascript: void(0);" class="color" id="share" style="padding: 5px 10px; font-size: 18px;">
+                                <i class="fi-share"></i>
+                            </a>
                         </div>
                     </h3>
                 </div>

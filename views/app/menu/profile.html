@@ -11,7 +11,7 @@
 
 <div class="row page-identifier" data-page-name="profile">
     <div class="displayWindow col-md-12"
-        style="height: 620px; overflow: hidden; overflow-y: scroll; box-shadow: none; border-radius: 0px; padding: 10px 15px; border-left: 1px solid #eee;">
+        style="height: 620px; overflow: hidden; overflow-y: scroll; border-radius: 0px; padding: 10px 15px; border-left: 1px solid #eee;">
         <div class="profileMain">
             <% if (user.username == profile_user.username) { %>
             <!-- Space for modals -->
@@ -282,8 +282,8 @@
                         </div>
                         <div class="displayImageCon"
                             style="padding: 10px 0px; background-color: transparent; text-align: center !important;">
-                            <img src="" id="displayImage" alt="image" width="800" data-dismiss="modal"
-                                style="border: 1px solid transparent; max-width: 100%;">
+                            <img src="" id="displayImage" alt="image" data-dismiss="modal"
+                                style="border: 1px solid transparent; max-height: 500px; max-width: 100%;">
                             <% if (profile_user.username == user.username) { %>
                             <br>
                             <a href="/app/profile/update/<%= profile_user.username %>/setAvatar"

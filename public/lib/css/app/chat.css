@@ -103,7 +103,6 @@ li.user:last-child {
 .Chat .ChatWindow {
     padding: 0 !important;
     overflow: hidden auto !important;
-    /* background-color: #eee; */
 }
 
 .Chat .ChatWindow .ChatWindowHead {
@@ -147,8 +146,28 @@ li.user:last-child {
     overflow: scroll;
     height: 500px;
     padding: 5px;
-    background-color: #f8f8f8 !important;
-    
+    background-color: #f8f8f8;
+
+}
+
+/* .Chat .ChatWindow .ChatWindowBody .chatAlertBelow {} */
+
+.Chat .ChatWindow .ChatWindowBody .chatAlertBelow a#chatAlertBelowBtn {
+    position: fixed;
+    bottom: 150px;
+    right: 0px;
+    width: 50px;
+    height: 50px;
+    padding: 10px 12px;
+    margin: 50px;
+    border: 1px solid #eee;
+    background-color: #fff !important;
+    box-shadow: 0px .5px 15px #7777776c !important;
+    border-radius: 50%;
+}
+
+.Chat .ChatWindow .ChatWindowBody .chatAlertBelow a#chatAlertBelowBtn i {
+    font-size: 25px;
 }
 
 .Chat .ChatWindow .ChatWindowBody ul.chat-message-list {

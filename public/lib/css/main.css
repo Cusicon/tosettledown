@@ -257,7 +257,7 @@ h6 {
 a.activeProfile {
   display: inline-block;
   border-radius: 100%;
-  padding: 2px;
+  padding: 2px !important;
   background-color: #eee;
 }
 
@@ -322,8 +322,12 @@ a:active {
 }
 
 .activeMenu {
-  font-weight: 500;
-  color: #ff6878;
+  font-weight: 500 !important;
+  color: #ff6878 !important;
+}
+
+.text-darker {
+  color: #000000 !important;
 }
 
 div.separator {

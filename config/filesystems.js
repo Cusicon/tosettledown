@@ -48,7 +48,7 @@ module['exports'] = {
         'public' : { // Pointing to public/store
             'driver' : 'local',
             'root' : public_path('store'),
-            'url' : `${get_env('APP_URL')}/store`,
+            'url' : `/store`,
             'visibility' : 'public',
         },
 

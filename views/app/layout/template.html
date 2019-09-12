@@ -43,7 +43,7 @@
         <div class="logoMobileCon">
             <span id="profileLinkCon">
                 <a href="/app/profile/<%= user.username %>" class="activeProfile hasStories"
-                    style="float: right; padding: 2px;">
+                    style="float: right;">
                     <div class="image"
                         style=" width: 35px; height: 35px; border-radius: 100%; background-image: url('<%= user.avatar %>');">
                     </div>
@@ -51,8 +51,9 @@
             </span>
 
             <center>
-                <img src="/lib/img/logo/logo-icon.png" style="float: left; margin-top: -5px;" width="55" id="logo" alt="Tosettledown">
-                <img src="/lib/img/logo/logo-text.png" style="padding-top: 2.5px;" width="130" id="logo"
+                <img src="/lib/img/logo/logo-icon.png" style="float: left; margin-top: -5px;" width="55" id="logo"
+                    alt="Tosettledown">
+                <img src="/lib/img/logo/logo-text.png" style="padding-top: 1.5px;" width="130" id="logo"
                     alt="Tosettledown">
             </center>
         </div>
@@ -78,28 +79,28 @@
         <div class="mobileNavigator">
             <ul class="row">
                 <li class="col-2">
-                    <a href="/app/encounters">
+                    <a href="/app/encounters" class="<%= title.toLowerCase() == 'encounters' ? 'activeMenu' : 'text-darker' %>">
                         <i class="typcn typcn-compass"></i>
                         <small>Encounters</small>
                     </a>
                 </li>
                 <li class="col-1"></li>
                 <li class="col-2">
-                    <a href="/app/chats">
+                    <a href="/app/chats" class="<%= title.toLowerCase() == 'chats' ? 'activeMenu' : 'text-darker' %>">
                         <i class="typcn typcn-messages"></i>
                         <small>Chats</small>
                     </a>
                 </li>
                 <li class="col-1"></li>
                 <li class="col-2">
-                    <a href="/app/matched">
+                    <a href="/app/matched" class="<%= title.toLowerCase() == 'matched' ? 'activeMenu' : 'text-darker' %>">
                         <i class="typcn typcn-point-of-interest"></i>
                         <small>Matched</small>
                     </a>
                 </li>
                 <li class="col-1"></li>
                 <li class="col-2">
-                    <a href="/app/likes">
+                    <a href="/app/likes" class="<%= title.toLowerCase() == 'likes' ? 'activeMenu' : 'text-darker' %>">
                         <i class="typcn typcn-heart-half-outline"></i>
                         <small>Likes</small>
                     </a>

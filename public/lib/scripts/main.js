@@ -56,48 +56,52 @@ if (!Array.last) {
     };
 }
 
-(function () {
+(() => {
+    if (location.href.includes('/app/') && !location.href.includes('/signin/out')) {
+        console.log("At app")
+        userMustHaveAPhoto();
+    } else {
+        console.log("Not at app")
+    }
+})();
+
+
+
+function userMustHaveAPhoto() {
     let username = $("#activeUser_username").text().trim().split("@")[1];
     let __url = `/app/profile/${username}`;
+
     $.ajax({
         url: `/app/profile/${username}/mustHavePhotos`,
         method: "GET",
         success: (usersObj) => {
             let photos = usersObj.photos;
 
-            // Checks if user has any photo, if true continue else redirect to profile page
-            if (photos.length < 1) {
-                if (location.href.includes(__url)) {
+            if (photos.length < 1 || photos.length == 0) { // Checks if photos is less than 1 or 0
+                if (location.href.includes(__url)) { // Checks if user is at profile page...
+                    // If all is true, then alert the below...
                     alert("/lib/img/logo/favicon.png", "Must upload a photo", "Sorry, you are required to upload at least one photo!", [null, location.href.includes(__url) ? "Upload photo" : "Go to profile"], () => {
                         (location.href.includes(__url)) ?
                         $('#addPhotosBtn').trigger('click'): location.href = __url
                     });
-                } else location.replace(__url);
-            }
-
-            // Set the first image as default avatar is photos length is <= 1
-            if (photos.length == 1) {
+                } else location.replace(__url); // if user is not a profile page, redirect them to profile page...
+            } else if (photos.length === 1) { // If user has one photo, set it as avatar
                 let photoID = photos[0]._id;
                 let photoNAME = photos[0].name;
-                $.ajax({
-                    url: `/app/profile/update/${username}/setAvatar/${photoID}`,
-                    method: "GET",
-                    success: (htmlResult) => {
-                        if (location.href.includes(__url)) {
-                            var checkForProfileImage = document.getElementById("profileImage").style.backgroundImage.includes(photoNAME);
-                            if (!checkForProfileImage) {
+                let checkForProfileImage = document.getElementById("profileImage").style.backgroundImage.includes(photoNAME)
+                if (!checkForProfileImage) {
+                    $.ajax({
+                        url: `/app/profile/update/${username}/setAvatar/${photoID}`,
+                        method: "GET",
+                        success: () => {
+                            if (location.href.includes(__url)) {
                                 location.replace(__url);
-                                console.log("Profile not changed!");
-                            }
+                                console.log("ProfileImage changed!");
+                            } else console.log("ProfileImage not changed!");
                         }
-                    }
-                });
+                    });
+                }
             }
-        },
+        }
     });
-
-    // Send message onclick of [data-messenger-btn="messengerBtn"]
-    $('data-messenger-btn="messengerBtn"').click((e) => {
-
-    });
-})();
+}

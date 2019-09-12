@@ -36,10 +36,11 @@ function mainMobile() {
 
 function replaceWithAddPhotosBtn(element) {
     let username = $("#activeUser_username").text().trim().split("@")[1];
-    if (location.href.includes(`${username}`)) {
+    if (location.href.includes(`${username}`) && location.href.includes('/app/')) {
         $("#profileLinkCon").html(element);
         $(`[data-countbtn="0"]`).addClass("hide");
-    } else console.log("Not at user's profile page")
+    } 
+    // else console.log("Not at user's profile page")
 
 }
 

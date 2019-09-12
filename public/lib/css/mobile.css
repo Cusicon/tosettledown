@@ -46,17 +46,51 @@
     .termsCon,
     .cookieCon {
         padding: 10px !important;
+        background-color: transparent !important;
     }
 
     .policyCon h2,
     .termsCon h2,
     .cookieCon h2 {
-        font-size: 20px !important;
+        font-size: 18px !important;
+    }
+
+    .policyCon p,
+    .termsCon p,
+    .cookieCon p {
+        line-height: 20px;
+        font-size: 13px !important;
+    }
+
+    .policyCon a,
+    .termsCon a,
+    .cookieCon a {
+        width: 100%;
     }
 
     .errorPage center section {
         width: 90% !important;
+        padding: 10px !important;
+        margin: 0px;
+        margin-top: 30px !important;
+        background-color: transparent !important;
     }
+
+    .errorPage center section h2 {
+        font-size: 27px;
+    }
+
+    .errorPage center section p {
+        font-size: 13px;
+    }
+
+    .errorPage center section a {
+        width: 100%;
+        font-size: 13px !important;
+        padding: 5px 10px;
+    }
+
+
 
     body {
         background-color: #fff !important;
@@ -72,7 +106,19 @@
         font-size: 35px !important;
         min-width: 65px !important;
         min-height: 65px !important;
-        padding-top: 3px !important;
+        padding-top: 4px !important;
+    }
+
+    .mainBody .displayWindow {
+        height: unset !important;
+        box-shadow: none !important;
+        border-radius: 0px !important;
+    }
+
+
+    .mainBody .displayWindow .imageWindow {
+        width: 100% !important;
+        height: 500px !important;
     }
 
     .wrapperOnMobile {
@@ -87,18 +133,7 @@
         display: inline-block !important;
         border-radius: 30px !important;
         border: none !important;
-        /* overflow: hidden auto !important; */
-        /* height: 380px !important; */
-    }
-
-    .mainBody .displayWindow {
-        height: unset !important;
-    }
-
-
-    .mainBody .displayWindow .imageWindow {
-        width: 100% !important;
-        height: 500px !important;
+        box-shadow: 0px 3px 10px #ddd !important;
     }
 
     .statusBar {
@@ -195,7 +230,6 @@
         width: 100%;
         text-align: center !important;
         font-size: 25px;
-        color: #000;
     }
 
     .onMobile .mobileNavigator ul li a small {
@@ -283,6 +317,7 @@
         height: 100% !important;
         background-size: cover !important;
         background-attachment: fixed;
+        background-color: #f8f8f8;
     }
 
     .Chat .ChatWindowHead {
@@ -294,7 +329,14 @@
 
     .Chat .ChatWindow .ChatWindowBody {
         margin: 70px 0px;
-        height: 50% !important;
+        height: auto !important;
+        background-color: transparent !important;
+    }
+
+    .Chat .ChatWindow .ChatWindowBody .chatAlertBelow a#chatAlertBelowBtn {
+        margin: 0px !important;
+        margin-right: 20px !important;
+
     }
 
     .Chat .ChatWindow .ChatWindowBody ul.chat-message-list li div {
