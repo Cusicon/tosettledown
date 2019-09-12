@@ -5,18 +5,6 @@
 <!-- Call Style Script Tag Here -->
 <% script('/lib/scripts/app/chat.js') -%>
 
-<style>
-    @media screen and (max-width: 576px) {
-
-        /* .logoHeader { */
-        /* display: none; */
-        /* } */
-        body {
-            overflow: hidden !important;
-        }
-    }
-</style>
-
 <div class="row page-identifier" data-page-name="chat">
     <div class="displayWindow col-md-12 row Chat"
         style="border-radius: 0px; padding: 0px; border-left: 1px solid #eee; overflow: visible;">
@@ -87,7 +75,7 @@
 
 
         <section class="col-md-8 ChatWindow">
-            <div class="chat-window-holder" style="display: none">
+            <div class="chat-window-holder" style="display: none;">
                 <div class="ChatWindowHead">
                     <div class="float-left">
                         <div class="onMobile float-left">
@@ -115,15 +103,22 @@
                                 </a>
 
                                 <div class="dropdownContent" id="dropdownContent">
-                                    <a id="favourite-drpdown" href="javascript:void(0);">Add to favourites</a>
-                                    <a href="#" class="hide">Give a gift</a>
-                                    <a href="#" class="hide">Delete conversation</a>
-                                    <a href="#" class="color">Block or Report</a>
+                                    <a id="share" href="javascript:void(0);"
+                                        onclick="share(`${location.origin}/app/profile/${activeChat}`);">
+                                        Share
+                                        <span class="fi-share" class="color"
+                                            style="font-size: 18px; float: right !important;"></span>
+                                    </a>
+                                    <a id="addFavourite" href="javascript:void(0);">Add to favourites</a>
+                                    <a href="#" id="giveAGift" class="hide">Give a gift</a>
+                                    <a href="#" id="deleteConversation" class="hide">Delete conversation</a>
+                                    <a href="#" id="blockOrReport" class="color">Block or Report</a>
                                     <div class="separator"></div>
                                     <a id="profile-link" href="javascript:void(0);" class="dropdownBottom"
                                         style="color: #000;">
                                         View profile
-                                        <span class="typcn typcn-user float-right"></span>
+                                        <span class="typcn typcn-user"
+                                            style="font-size: 18px; float: right !important;"></span>
                                     </a>
                                 </div>
                             </div>
@@ -159,15 +154,14 @@
                 </div>
             </div>
 
-            <div class="go-back-encounter text-muted" style="position: relative; top: 225px; text-align: center;">
+            <div class="go-back-encounter text-muted" style="position: relative; top: 200px; text-align: center;">
                 <div>
-                    <h1 class="typcn typcn-messages" style="font-size: 50px;"></h1>
+                    <img src="/lib/img/logo/logo-icon.png" width="150" alt="Tosettledown">
+                    <h4 style="font-weight: 200;">Start chatting immediately...</h4>
+                    <p>
+                    <a href="/app/encounters" class="color">See encounters</a>
+                    </p>
                 </div>
-                <div>
-                    <p>Start a conversation immediately...</p>
-                </div>
-                <a href="/app/encounters" role="button" class="btn waves-effect waves-light bg-Primary_color">See
-                    encounters</a>
             </div>
 
         </section>

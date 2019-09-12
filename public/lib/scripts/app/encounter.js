@@ -1,34 +1,35 @@
 // show quickMessagePopUp
 (function quickMessagePopUp() {
-    let sendAMessageBtn = $("#sendAMessage");
-    sendAMessageBtn.click(() => {
-        $(".overlayNav").css({
-            "background-color": "#00000066"
+        let sendAMessageBtn = $("#sendAMessage");
+        sendAMessageBtn.click(() => {
+            $(".overlayNav").css({
+                "background-color": "#00000066"
+            });
+            $(".quickMessagePopUp").css({
+                "bottom": "-10%"
+            }).show(300);
         });
-        $(".quickMessagePopUp").css({
-            "bottom": "-10%"
-        }).show(300);
-    });
 
-    // Close on Clicking outside the popUp 
-    $('.navMiddle').click(() => {
-        $(".quickMessagePopUp textarea").val("");
-        $(".overlayNav").css({
-            "background-color": "transparent"
+        // Close on Clicking outside the popUp 
+        $('.navMiddle').click(() => {
+            $(".quickMessagePopUp textarea").val("");
+            $(".overlayNav").css({
+                "background-color": "transparent"
+            });
+            $(".quickMessagePopUp").css({
+                "bottom": "-50%"
+            }).hide(500);
+        }).scroll(() => {
+            $(".quickMessagePopUp textarea").val("");
+            $(".overlayNav").css({
+                "background-color": "transparent"
+            });
+            $(".quickMessagePopUp").css({
+                "bottom": "-50%"
+            }).hide(500);
         });
-        $(".quickMessagePopUp").css({
-            "bottom": "-50%"
-        }).hide(500);
-    }).scroll(() => {
-        $(".quickMessagePopUp textarea").val("");
-        $(".overlayNav").css({
-            "background-color": "transparent"
-        });
-        $(".quickMessagePopUp").css({
-            "bottom": "-50%"
-        }).hide(500);
-    });
-})();
+    }
+)();
 
 function activeProfileMenu() {
     $(".profileFooter header a.photos").click((e) => {

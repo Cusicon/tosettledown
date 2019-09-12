@@ -295,6 +295,7 @@
 
     .Chat .ChatList {
         border: 0px !important;
+        height: unset;
     }
 
     .Chat .ChatList .ChatHead {
@@ -305,8 +306,8 @@
         margin-top: 0px !important;
     }
 
-    .Chat .ChatList .ChatBody {
-        height: 385px !important;
+    .Chat .ChatList .ChatBody ul li.user.active {
+        background-color: transparent !important;
     }
 
     .Chat .ChatWindow {
@@ -315,9 +316,10 @@
         left: -120%;
         width: 100% !important;
         height: 100% !important;
-        background-size: cover !important;
-        background-attachment: fixed;
         background-color: #f8f8f8;
+        background-attachment: fixed;
+        /* background-image: url('/lib/img/wallpaper.jpg'); */
+        /* background-position: bottom right !important; */
     }
 
     .Chat .ChatWindowHead {
@@ -331,6 +333,8 @@
         margin: 70px 0px;
         height: auto !important;
         background-color: transparent !important;
+        background-image: none !important;
+        background-position: right !important;
     }
 
     .Chat .ChatWindow .ChatWindowBody .chatAlertBelow a#chatAlertBelowBtn {

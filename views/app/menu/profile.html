@@ -45,8 +45,8 @@
                                                     <h5 style="font-weight: lighter;">
                                                         Bio</h5>
                                                     <textarea type="text" name="bio" class="form-control"
-                                                        placeholder="Enter Bio here..."
-                                                        maxlength="200" required><%= profile_user.personalInfo.bio %></textarea>
+                                                        placeholder="Enter Bio here..." maxlength="200"
+                                                        required><%= profile_user.personalInfo.bio %></textarea>
                                                     <small id="passwordHelp" class="form-text  float-right">Max:
                                                         200 characters.</small>
                                                 </div>
@@ -133,7 +133,8 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <select name="relationship" id="relationship" class="form-control" required>
+                                                    <select name="relationship" id="relationship" class="form-control"
+                                                        required>
                                                         <option label="What's your relationship status..."></option>
                                                         <option value="Single"
                                                             <%= profile_user.personalInfo.relationship == 'Single' ? 'selected' : '' %>>
@@ -322,11 +323,16 @@
                                         <div class="separator"></div>
                                     </span>
                                     <% } %>
+                                    <a id="share" href="javascript:void(0);"
+                                        onclick="share(`${location.href}`);">
+                                        Share
+                                        <span class="fi-share" class="color"
+                                            style="font-size: 18px; float: right !important;"></span>
+                                    </a>
                                     <% if (user.username != profile_user.username) { %>
                                     <a id="favourite-drpdown" href="javascript:void(0);"
                                         data-username="<%=profile_user.username%>">Add to favourites</a>
                                     <% } %>
-                                    <a href="#">Share</a>
                                     <% if (user.username == profile_user.username) { %>
                                     <div class="onMobile">
                                         <a href="/app/visitors">Visitors</a>

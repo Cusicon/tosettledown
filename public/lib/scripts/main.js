@@ -8,7 +8,22 @@ $(document).ready(() => {
         alert(mode, mode, text);
     }
     message.html("");
+
+
+
 });
+
+// Share a profile
+function share(text) {
+    var $temp = $("<input>"); // Create and invisible input tag
+    $("body").append($temp); // Append it to body
+    text = $temp.val(text).select(); // 
+    text = String(text);
+    document.execCommand("copy");
+    $temp.remove();
+
+    mySnackbar(`Link copied!`);
+}
 
 function alert(icon, mode, msg, buttons = [], buttonAction) {
     let upperMode = mode.replace(mode.charAt(0), mode.charAt(0).toUpperCase());
@@ -56,10 +71,18 @@ if (!Array.last) {
     };
 }
 
+// Load this functions at App routes only!!!
 (() => {
     if (location.href.includes('/app/') && !location.href.includes('/signin/out')) {
         console.log("At app")
         userMustHaveAPhoto();
+        if (window.outerWidth > 576) {
+            makeDisplayWindowScreenHeight([
+                ".displayWindow",
+                ".ChatList",
+                ".ChatWindowBody"
+            ]);
+        }
     } else {
         console.log("Not at app")
     }
@@ -88,7 +111,7 @@ function userMustHaveAPhoto() {
             } else if (photos.length === 1) { // If user has one photo, set it as avatar
                 let photoID = photos[0]._id;
                 let photoNAME = photos[0].name;
-                let checkForProfileImage = document.getElementById("profileImage").style.backgroundImage.includes(photoNAME)
+                let checkForProfileImage = (document.getElementById("profileImage") != null) ? document.getElementById("profileImage").style.backgroundImage.includes(photoNAME) : ''
                 if (!checkForProfileImage) {
                     $.ajax({
                         url: `/app/profile/update/${username}/setAvatar/${photoID}`,
@@ -97,11 +120,40 @@ function userMustHaveAPhoto() {
                             if (location.href.includes(__url)) {
                                 location.replace(__url);
                                 console.log("ProfileImage changed!");
-                            } else console.log("ProfileImage not changed!");
+                            }
+                            // else console.log("ProfileImage not changed!");
                         }
                     });
                 }
             }
         }
     });
+}
+
+function makeDisplayWindowScreenHeight(selectors = []) {
+    var documentHeight = document.documentElement.clientHeight;
+    if (!location.href.includes("encounters")) {
+        selectors.forEach(element => {
+
+            if (element.toString().includes(".ChatWindowBody")) {
+                let ChatWindowHeadHeight = $(".ChatWindowHead").height(),
+                    ChatWindowFooterHeight = $(".ChatWindowFooter").height(),
+                    totalHeight = ChatWindowHeadHeight + ChatWindowFooterHeight,
+                    ChatWindowBodyHeight = documentHeight - totalHeight;
+                $(element).css({
+                    "height": `${ChatWindowBodyHeight - 40}`
+                });
+            } else {
+
+                $(element).css({
+                    "height": `${documentHeight}`
+                });
+
+            }
+        })
+    }
+
+    $(".displayWindow").css({
+        "height": `${documentHeight}`
+    })
 }

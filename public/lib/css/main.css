@@ -136,8 +136,9 @@ h6 {
   width: 13px;
   height: 13px;
   float: left;
-  border: 1.5px solid #fff;
+  border: 2px solid #fff;
   border-radius: 100%;
+  background-color: #eee !important;
 }
 
 .is_online {

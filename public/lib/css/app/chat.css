@@ -5,8 +5,10 @@
 }
 
 .Chat .ChatList {
+    height: 500px;
     padding: 0px;
     border-right: 1px solid #eee;
+    overflow: hidden scroll;
 }
 
 .Chat .ChatList .ChatHead {
@@ -20,8 +22,7 @@
 
 .Chat .ChatList .ChatBody {
     background-color: #fff;
-    overflow: hidden scroll;
-    height: 500px;
+    overflow-x: hidden;
 }
 
 .Chat .ChatList .ChatBody ul {
@@ -32,6 +33,7 @@
     display: block;
     height: 71px;
     width: 100%;
+    border-left: 1px solid #eee;
     border-bottom: 1px solid #eee;
 }
 
@@ -40,13 +42,12 @@ li.user:last-child {
 }
 
 .Chat .ChatList .ChatBody ul li.user:hover {
-    box-shadow: 0px 1px 100px #0000002a !important;
+    box-shadow: 0px 1px 50px #0000002a !important;
     cursor: pointer;
-    /* background-color: rgba(0, 0, 0, 0.11) !important; */
 }
 
 .Chat .ChatList .ChatBody ul li.user.active {
-    box-shadow: 0px 1px 100px #0000002a !important;
+    background-color: #eeeeee86;
 }
 
 .Chat .ChatList .ChatBody ul li.user div.image-holder {
@@ -68,7 +69,8 @@ li.user:last-child {
     position: relative;
     width: 13px;
     height: 13px;
-    border: 1px solid #fff;
+    border: 2px solid #fff;
+    background-color: #eee;
     border-radius: 100%;
 }
 
@@ -107,7 +109,7 @@ li.user:last-child {
 
 .Chat .ChatWindow .ChatWindowHead {
     display: block;
-    border-bottom: 1px solid #eee;
+    border-bottom: 2px solid #eee;
     background-color: #fff;
     padding: 10px 20px;
     height: 70px;
@@ -147,6 +149,9 @@ li.user:last-child {
     height: 500px;
     padding: 5px;
     background-color: #f8f8f8;
+    background-attachment: fixed;
+    /* background-image: url('/lib/img/wallpaper.jpg'); */
+    /* background-position: bottom right !important; */
 
 }
 
@@ -326,7 +331,6 @@ li.user:last-child {
 .Chat .ChatWindow .ChatWindowHead div.activity_status.lazy-box-loader {
     width: 13px;
     height: 13px;
-    /*margin-top: 4px;*/
     background-color: #eee !important;
 }
 
@@ -395,7 +399,7 @@ li.user:last-child {
 }
 
 .no-available .content-holder {
-    margin: 45% auto 0% auto;
+    margin: 30% auto 0% auto;
 }
 
 .no-available img {

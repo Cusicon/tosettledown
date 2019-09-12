@@ -108,17 +108,19 @@
             </div>
 
             <div class="detailsCon col-lg-4 col-md-12 col-sm-12" id="detailsCon">
+                <a href="javascript: void(0);" class="color" id="share"
+                    style="padding: 0px 10px; font-size: 20px; text-align: right; display: block;"
+                    onclick="share(`${document.getElementById('username')}`);">
+                    <i class="fi-share"></i>
+                </a>
                 <div class="detailsHeader">
-                    <h3 style="margin-bottom: 0px;">
+                    <h3 style="margin: 0px;">
                         <span>
                             <span id="fullname"></span>,
                             <span id="age"></span>
                         </span>
                         <div style="font-size: 15px; margin-top: 10px;">
-                            <a href="#" id="username" title=""></a>
-                            <a href="javascript: void(0);" class="color" id="share" style="padding: 5px 10px; font-size: 18px;">
-                                <i class="fi-share"></i>
-                            </a>
+                            <a href="#" id="username" style="font-weight: 600;" title=""></a>
                         </div>
                     </h3>
                 </div>

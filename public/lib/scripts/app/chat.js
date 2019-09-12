@@ -51,8 +51,11 @@ $(document).on('ready', () => {
 
                 //Sort ChatList To Dom, Putting User To Dom
                 populateChatUserList('all')
-                // Put Active User On windowChatDiv
-                populateWindowChat()
+                if (location.href.includes("/app/chats?user=")) {
+                    // Put Active User On windowChatDiv
+                    populateWindowChat()
+                    enterChatsWindow();
+                }
 
                 //Fire Resolver
                 setInterval(newChatResolver, 100); //-- resolve new chat from socket
@@ -65,9 +68,6 @@ $(document).on('ready', () => {
             },
         });
     }
-
-
-
 
 
     //======================= BUILDING THE LIST LAYOUT ==================
@@ -401,28 +401,28 @@ $(document).on('ready', () => {
             populateWindowChat(username);
             markAllActiveMsgAsRead()
             enterChatsWindow();
+            $("textarea").trigger("focus")
         }
-
-        function enterChatsWindow() {
-            let ChatList = $(".ChatList");
-            let ChatWindow = $(".ChatWindow");
-            if (ChatWindow.css("left") !== "0px") {
-                ChatWindow.css({
-                    "left": "0px",
-                    "transition": "ease .5s"
-                });
-                $(".mobileNavigator").css({
-                    "bottom": "-50%",
-                    "transition": "ease .5s"
-                })
-                ChatList.css({
-                    "display": "none"
-                })
-                
-                ChatWindow[0].scrollTop = ChatWindow[0].scrollHeight;
-            }
-        };
     });
+
+    function enterChatsWindow() {
+        let ChatList = $(".ChatList");
+        let ChatWindow = $(".ChatWindow");
+        if (ChatWindow.css("left") !== "0px") {
+            ChatWindow.css({
+                "left": "0px",
+                "transition": "ease .5s"
+            });
+            $(".mobileNavigator").css({
+                "bottom": "-50%",
+                "transition": "ease .5s"
+            })
+            ChatList.css({
+                "display": "none"
+            })
+            ChatWindow[0].scrollTop = ChatWindow[0].scrollHeight;
+        }
+    };
 
     // Go back to ChatList
     $(".backtoChatList").on("click", (e) => {
@@ -446,7 +446,7 @@ $(document).on('ready', () => {
         populateChatUserList($(this).val())
     })
 
-    $("#favourite-drpdown").on('click', function () {
+    $("#addFavourite").on('click', function () {
         $.ajax({
             url: '/app/encounters/addFavourite',
             data: {
