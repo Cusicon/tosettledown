@@ -152,8 +152,4 @@ function makeDisplayWindowScreenHeight(selectors = []) {
             }
         })
     }
-
-    $(".displayWindow").css({
-        "height": `${documentHeight}`
-    })
 }
