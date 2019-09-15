@@ -115,33 +115,6 @@ $(document).on('ready', function (e) {
         });
     }
 
-    $('#editProfileForm').on('submit',  function (e) {
-        e.preventDefault();
-        let formData = new FormData(this);
-        console.log(formData);
-
-        let form = $(this);
-        $.ajax({
-            type: 'POST',
-            url: form.attr('action'),
-            data: new FormData(this),
-            dataType: 'json',
-            contentType: false,
-            cache: false,
-            processData:false,
-            beforeSend: function(){
-                console.log('about to submit form')
-            },
-            success: function(response){ //console.log(response);
-                console.log(response)
-            },
-            error: function (error) {
-                console.log(error)
-            }
-        });
-        console.log($(this).serialize())
-    })
-
     $('.userPhoto').on('click', function (e) {
 
         let element = $(this);
@@ -161,15 +134,12 @@ $(document).on('ready', function (e) {
         let element = $(this)
         let image_id = element.data('image-id')
 
-        console.log(image_id)
         /* Ajax Request For Updating Profile Picture*/
         $.ajax({
             url: `/app/profile/avatar/update`,
             method: "POST",
             data :{photo_id : image_id},
             success: function(response) {
-                console.log(response);
-
                 if(response.status === 'success'){
                     mySnackbar(response.message)
                     let location = response.photo.location;
@@ -193,11 +163,4 @@ $(document).on('ready', function (e) {
             }
         });
     })
-
-
-
-
-
-
-
 })
