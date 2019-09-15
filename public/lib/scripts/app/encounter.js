@@ -255,7 +255,7 @@ function scrollImg(type) {
     let currentPhoto = parseInt(currentPhotoElement.text());
     let totalPhoto = parseInt($('#totalPhotos').text());
     let renderBox = $('.renderUserPhotos');
-    let imgSize = parseInt(renderBox.width());
+    let imgSize = parseFloat(window.getComputedStyle(renderBox.get()[0]).width);
 
     if (type === 'next') {
 
