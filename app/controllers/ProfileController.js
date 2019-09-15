@@ -5,7 +5,6 @@ let Visitor = require('@models/visitor');
 
 
 module["exports"] = class ProfileController {
-
     static show(req, res) {
         let username = req.params.username;
         User.getUserByUsername(username, (err, user) => {
@@ -59,8 +58,6 @@ module["exports"] = class ProfileController {
 
     static update(req, res) {
         let id = req.user.id;
-        // Values from Body
-        console.log(req.body)
         let fullname = req.body.fullname.trim();
         let bio = req.body.bio.trim();
         let height = req.body.height.trim();
@@ -109,8 +106,8 @@ module["exports"] = class ProfileController {
                     res.send({
                         status: 'success',
                         message: 'Update Successful',
-                        errors: errors,
-                        data: user,
+                        errors: null,
+                        data: {user: user},
                     });
                     userLog(`"${req.user.username}" just updated their profile.`);
                     console.log(`@${req.user.username} just updated their profile!, @ ${new Date().toTimeString()}`);

@@ -29,7 +29,21 @@ function addPhotosPreview(input, placeToInsertImagePreview) {
             reader.readAsDataURL(input.files[i]);
         }
     }
-};
+}
+
+$('#addPhotosForm').on('submit', function (e) {
+    e.preventDefault();
+    let fileInput = $(this).find('input#addPhotos')[0];
+    let fileToUpload = fileInput.files[0];
+
+    let fr = new FileReader();
+    fr.onload = (f => {
+        console.log(f.target.result);
+    });
+    fr.readAsDataURL(fileToUpload);
+
+    console.log(fileToUpload);
+});
 
 function showPhotosSelected() {
     // Photos preview
@@ -93,7 +107,7 @@ $("#like").on('click', function(e){
     });
 })
 
-$("#favourite, #favourite-drpdown").on('click', function(e){
+$("#favourite, #favourite-drpdown").on('click', function(){
     let value = $(this).data('username');
 
     $.ajax({
@@ -108,20 +122,47 @@ $("#favourite, #favourite-drpdown").on('click', function(e){
     });
 })
 
-$(document).on('ready', function (e) {
+$(document).on('ready', function () {
     if($('.nophoto').length > 0){
         alert("/lib/img/logo/favicon.png", "Must upload a photo", "Sorry, you are required to upload at least one photo!", [null,"Upload photo"], () => {
             $('#addPhotosBtn').trigger('click');
         });
     }
 
-    $('.userPhoto').on('click', function (e) {
+    $('#editProfileForm').on('submit',  function (e) {
+        e.preventDefault();
+        let data = getFormData(this)
+        let form = $(this);
+        $.ajax({
+            type: 'POST',
+            url: form.attr('action'),
+            data: data,
+            dataType: 'json',
+
+            beforeSend: function(){
+                console.log('about to submit form')
+            },
+            success: function(response){
+                mySnackbar(response.message);
+                updateDOMInfoAfterUpdateAction(response);
+            },
+            error: function (error) {
+                console.log(error.message);
+                mySnackbar('Error Occur While Updating');
+            },
+        });
+    })
+
+    function updateDOMInfoAfterUpdateAction(){
+        // Update the dom information, like fullname and he others after request successfully goes through
+    }
+
+    $('.userPhoto').on('click', function () {
 
         let element = $(this);
-        let image_link = element.css('background-image').replace('url(','').replace(')','').replace(/\"/gi, "");
+        let image_link = element.css('background-image').replace('url(','').replace(')','').replace(/"/gi, "");
         let image_id = element.data('image-id');
         if($('#displayImage').length > 0){
-            console.log(element)
             $('#displayImage').attr('src', image_link)
         }
         if($('#setAvatarBtn').length > 0){
@@ -134,12 +175,15 @@ $(document).on('ready', function (e) {
         let element = $(this)
         let image_id = element.data('image-id')
 
+        console.log(image_id)
         /* Ajax Request For Updating Profile Picture*/
         $.ajax({
             url: `/app/profile/avatar/update`,
             method: "POST",
             data :{photo_id : image_id},
             success: function(response) {
+                console.log(response);
+
                 if(response.status === 'success'){
                     mySnackbar(response.message)
                     let location = response.photo.location;
@@ -163,4 +207,5 @@ $(document).on('ready', function (e) {
             }
         });
     })
+
 })

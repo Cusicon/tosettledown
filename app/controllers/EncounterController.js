@@ -162,7 +162,7 @@ module["exports"] = class EncounterController {
                     return true
                 } else {
                     let diffSec = Math.abs(Moment(likedUserObj.liked_at).diff(Moment(), 'seconds'))
-                    return (diffSec <= IntervalInSec);
+                    return (diffSec >= IntervalInSec);
                 }
             });
         }).then(exceptionUsersObj => {
