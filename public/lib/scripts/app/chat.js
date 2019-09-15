@@ -51,8 +51,11 @@ $(document).on('ready', () => {
 
                 //Sort ChatList To Dom, Putting User To Dom
                 populateChatUserList('all')
-                // Put Active User On windowChatDiv
-                populateWindowChat()
+                if (location.href.includes("/app/chats?user=")) {
+                    // Put Active User On windowChatDiv
+                    populateWindowChat()
+                    enterChatsWindow();
+                }
 
                 //Fire Resolver
                 setInterval(newChatResolver, 100); //-- resolve new chat from socket
@@ -65,9 +68,6 @@ $(document).on('ready', () => {
             },
         });
     }
-
-
-
 
 
     //======================= BUILDING THE LIST LAYOUT ==================
@@ -96,7 +96,6 @@ $(document).on('ready', () => {
                         <div class="content-holder">
                             <img src="/lib/img/logo/logo-icon.png" alt="Logo">  
                             <h5 class="text-muted">No chats or messages...</h5>
-                        </div>
                         </div>
                     </li>`);
             }
@@ -169,8 +168,8 @@ $(document).on('ready', () => {
                 chats.forEach(chat => {
                     chats_list_box.append(buildChatMessage(chat));
                 })
-                let element = $(".ChatWindowBody");
-                element[0].scrollTop = element[0].scrollHeight;
+                let ChatWindowBody = $(".ChatWindowBody");
+                ChatWindowBody[0].scrollTop = ChatWindowBody[0].scrollHeight;
             }
         }
     }
@@ -326,7 +325,7 @@ $(document).on('ready', () => {
         window.location.href = `/app/profile/${activeChat}`;
     })
 
-    function sendChat(){
+    function sendChat() {
         let toUser = activeChat;
         let user = `@${toUser}`;
         let message_holder = $('#message-input');
@@ -360,6 +359,11 @@ $(document).on('ready', () => {
 
             $('.chat-message-list').append(buildChatMessage(message, true));
             message_holder.val('');
+
+            let ChatWindowBody = $(".ChatWindowBody"),
+                ChatWindow = $(".ChatWindow");
+            ChatWindowBody[0].scrollTop = ChatWindowBody[0].scrollHeight;
+            ChatWindow[0].scrollTop = ChatWindow[0].scrollHeight;
         }
     }
 
@@ -401,27 +405,53 @@ $(document).on('ready', () => {
             element.find('.communication-status').html(``).data('unread-msg', 0);
             populateWindowChat(username);
             markAllActiveMsgAsRead()
+            enterChatsWindow();
+            $("textarea").trigger("focus")
         }
-        (function enterChatsWindow() {
-            let ChatWindow = $(".ChatWindow");
-            if (ChatWindow.css("left") !== "0px") {
-                ChatWindow.css({
-                    "left": "0px",
-                    "transition": "ease .5s"
-                });
-                $(".mobileNavigator").css({
-                    "bottom": "-50%",
-                    "transition": "ease .5s"
-                })
-            }
-        })();
+    });
+
+    function enterChatsWindow() {
+        let ChatList = $(".ChatList");
+        let ChatWindow = $(".ChatWindow");
+        if (ChatWindow.css("left") !== "0px") {
+            ChatWindow.css({
+                "left": "0px",
+                "transition": "ease .5s"
+            });
+            $(".mobileNavigator").css({
+                "bottom": "-50%",
+                "transition": "ease .5s"
+            })
+            ChatList.css({
+                "display": "none"
+            })
+            ChatWindow[0].scrollTop = ChatWindow[0].scrollHeight;
+        }
+    };
+
+    // Go back to ChatList
+    $(".backtoChatList").on("click", (e) => {
+        let ChatList = $(".ChatList");
+        let ChatWindow = $(".ChatWindow");
+        let mobileNavigator = $(".mobileNavigator");
+        ChatWindow.css({
+            'left': '-120%',
+            'transition': 'ease .3s'
+        });
+        mobileNavigator.css({
+            'bottom': '0%',
+            'transition': 'ease .3s'
+        });
+        ChatList.css({
+            "display": "block"
+        });
     });
 
     $('#searchUsers').on('change', function () {
         populateChatUserList($(this).val())
     })
 
-    $("#favourite-drpdown").on('click', function () {
+    $("#addFavourite").on('click', function () {
         $.ajax({
             url: '/app/encounters/addFavourite',
             data: {
@@ -535,7 +565,7 @@ $(document).on('ready', () => {
                         comm_stat.html('')
                     }
                 }
-            }, 3000);
+            }, 4000);
 
         });
     }

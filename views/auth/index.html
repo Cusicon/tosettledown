@@ -27,8 +27,8 @@
                 <p>
                     Tosettledown (TSD) is a <b>Matchmaking</b> and <b>Dating</b> platform inspired by the way singles
                     communicate.
-                    From been single to getting married, you can promote and sell marriage related items and
-                    contents, ie. Wedding Rings, Wedding Gowns, Suit Blazzers etc, alongside other interesting items.
+                    From been single to getting married, you also can promote and sell marriage related items and
+                    contents, ie. Wedding rings, Wedding gowns etc, alongside other interesting items.
                 </p>
                 <br>
                 <div class="btnCon waves-effect waves-light">
@@ -68,8 +68,8 @@
                     <!-- Password -->
                     <div class="form-group mb-4">
                         <input type="password" name="password" id="reg_password" class="form-control"
-                            aria-describedby="passwordHelp" placeholder="Password" minlength="8" maxlength="30"
-                            required>
+                            placeholder="Password" minlength="8" maxlength="30"
+                            title="Password must be 8 characters and above." required>
                     </div>
                     <!-- Gender & DOB -->
                     <div class="form-row">
@@ -77,13 +77,14 @@
                         <div class="col-7 col-md-7 col-sm-6 col-auto mb-3">
                             <input type="date" name="dob" id="dob" placeholder="dd/mm/yyyy"
                                 max="<%= new Date().getFullYear() - 18 %>-01-31"
-                                min="<%= new Date().getFullYear() - 100 %>-12-31" class="form-control" required>
+                                min="<%= new Date().getFullYear() - 100 %>-12-31"
+                                title="Sorry, you must be above 18 years." class="form-control" required>
                         </div>
                         <!-- Gender -->
                         <div class="col-5 col-md-5 col-sm-6 col-auto mb-3">
                             <select name="gender" id="gender" class="form-control"
                                 style="border-radius: 15px !important;" required>
-                                <option label="Gender">Gender</option>
+                                <option label="Gender" value="">Gender</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
                             </select>
@@ -126,11 +127,13 @@
                         <input type="password" name="password" id="password" class="form-control" placeholder="Password"
                             autocomplete required>
                     </div>
-                    <!-- Remember me -->
-                    <div class="custom-control custom-checkbox mb-4" style="padding-left: 30px;">
-                        <input type="checkbox" id="remember" name="remember" class="custom-control-input"
-                            value="remember" checked>
-                        <label class="custom-control-label" for="remember">Remember Me</label>
+                    <div class="mb-2">
+                        <!-- Remember me -->
+                        <div class="custom-control custom-checkbox mb-2" style="padding-left: 30px;">
+                            <input type="checkbox" id="remember" name="remember" class="custom-control-input"
+                                value="remember" checked>
+                            <label class="custom-control-label" for="remember">Remember Me</label>
+                        </div>
                     </div>
                     <!-- Sign Btn -->
                     <div class="loginFoot">
@@ -140,8 +143,13 @@
                         </div>
                         <div class="text-center">
                             <small>
-                                <a href="/#regForm" onclick="$('#loginBtn').trigger('click');">
-                                    Not a user?, Sign Up</a>
+                                <a href="/#regForm" class="text-dark float-left"
+                                    onclick="$('#loginBtn').trigger('click');">
+                                    Not a user?, Sign Up
+                                </a>
+
+                                <!-- Forgot Password -->
+                                <a href="/forgotPassword" class="float-right">Forgot password?</a>
                             </small>
                         </div>
                     </div>

@@ -92,6 +92,13 @@ section.Frame .infoCon div#jb {
 
 section.Frame .infoCon div#jb h1 {
   font-size: 70px;
+  font-family: 'Oleo Script',
+  sans-serif;
+}
+
+section.Frame .infoCon div#jb h1 span#jb_lovers {
+  padding: 0px 5px !important;
+  border-radius: 5px;
 }
 
 section.Frame .infoCon div#jb p {

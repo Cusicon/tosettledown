@@ -1,4 +1,4 @@
-@media (max-width: 576px) {
+@media screen and (max-width: 576px) {
 
     .windowFrame {
         max-width: 100% !important;
@@ -11,6 +11,15 @@
 
     iframe#adsCon {
         display: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: 400;
     }
 
     .onMobile {
@@ -37,17 +46,51 @@
     .termsCon,
     .cookieCon {
         padding: 10px !important;
+        background-color: transparent !important;
     }
 
     .policyCon h2,
     .termsCon h2,
     .cookieCon h2 {
-        font-size: 20px !important;
+        font-size: 18px !important;
+    }
+
+    .policyCon p,
+    .termsCon p,
+    .cookieCon p {
+        line-height: 20px;
+        font-size: 13px !important;
+    }
+
+    .policyCon a,
+    .termsCon a,
+    .cookieCon a {
+        width: 100%;
     }
 
     .errorPage center section {
         width: 90% !important;
+        padding: 10px !important;
+        margin: 0px;
+        margin-top: 30px !important;
+        background-color: transparent !important;
     }
+
+    .errorPage center section h2 {
+        font-size: 27px;
+    }
+
+    .errorPage center section p {
+        font-size: 13px;
+    }
+
+    .errorPage center section a {
+        width: 100%;
+        font-size: 13px !important;
+        padding: 5px 10px;
+    }
+
+
 
     body {
         background-color: #fff !important;
@@ -63,7 +106,19 @@
         font-size: 35px !important;
         min-width: 65px !important;
         min-height: 65px !important;
-        padding-top: 3px !important;
+        padding-top: 4px !important;
+    }
+
+    .mainBody .displayWindow {
+        height: unset !important;
+        box-shadow: none !important;
+        border-radius: 0px !important;
+    }
+
+
+    .mainBody .displayWindow .imageWindow {
+        width: 100% !important;
+        height: 500px !important;
     }
 
     .wrapperOnMobile {
@@ -74,22 +129,11 @@
         display: unset !important;
     }
 
-    .mainBody .displayWindow {
-        height: auto !important;
-        border: none !important;
-    }
-
     .wrapperOnMobile .displayWindow {
         display: inline-block !important;
-        box-shadow: 0px 5px 10px #7c7c7c71 !important;
-        border-radius: 20px !important;
-        /* overflow: hidden auto !important; */
-        /* height: 430px !important; */
-    }
-
-    .mainBody .displayWindow .imageWindow {
-        width: 100% !important;
-        height: 500px !important;
+        border-radius: 30px !important;
+        border: none !important;
+        box-shadow: 0px 3px 10px #ddd !important;
     }
 
     .statusBar {
@@ -186,7 +230,6 @@
         width: 100%;
         text-align: center !important;
         font-size: 25px;
-        color: #000;
     }
 
     .onMobile .mobileNavigator ul li a small {
@@ -252,28 +295,56 @@
 
     .Chat .ChatList {
         border: 0px !important;
+        height: unset;
+    }
+
+    .Chat .ChatList .ChatHead {
+        border: 0px !important;
+    }
+
+    .Chat .ChatList .ChatHead h3 {
+        margin-top: 0px !important;
+    }
+
+    .Chat .ChatList .ChatBody ul li.user.active {
+        background-color: transparent !important;
     }
 
     .Chat .ChatWindow {
-        position: absolute;
-        background-image: url('/lib/img/wallpaper2.jpg');
+        position: fixed;
+        top: 0%;
         left: -120%;
         width: 100% !important;
         height: 100% !important;
-        background-size: cover !important;
+        background-color: #f8f8f8;
         background-attachment: fixed;
+        /* background-image: url('/lib/img/wallpaper.jpg'); */
+        /* background-position: bottom right !important; */
     }
 
     .Chat .ChatWindowHead {
-        padding: 5px !important;
         position: fixed;
         top: 0%;
+        padding: 5px 10px !important;
         width: 100%;
     }
 
     .Chat .ChatWindow .ChatWindowBody {
         margin: 70px 0px;
         height: auto !important;
+        background-color: transparent !important;
+        background-image: none !important;
+        background-position: right !important;
+    }
+
+    .Chat .ChatWindow .ChatWindowBody .chatAlertBelow a#chatAlertBelowBtn {
+        margin: 0px !important;
+        margin-right: 20px !important;
+
+    }
+
+    .Chat .ChatWindow .ChatWindowBody ul.chat-message-list li div {
+        max-width: 250px !important;
     }
 
     .Chat .ChatWindowHead .float-left:first-child {
@@ -289,8 +360,6 @@
         position: fixed;
         bottom: 0%;
         width: 100%;
-        border-top: 1px solid #eee;
-        box-shadow: 0px -1px 5px #c9c9c928 !important;
     }
 
     .Chat .ChatWindow .ChatWindowHead h6#chat-username-holder {

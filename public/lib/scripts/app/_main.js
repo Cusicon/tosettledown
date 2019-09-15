@@ -76,28 +76,31 @@ function showDropdown() {
 showDropdown();
 
 /* Requesting Desktop Notification */
-(function requestWebDesktopNotificationPermission() {
-    if (window.Notification) {
-        Notification.requestPermission().then(function (status) {
-            if (status != "granted") {
-                console.log(`Notification ${status}!`);
-                // alert("/lib/img/logo/favicon.png",
-                //     "Turn on Notifications",
-                //     "Know right away when people follow you or like and comment on your photos.",
-                //     ["Cancel", "Turn on"],
-                //     () => {
-
-                //     }
-                // );
-            } else {
-                console.log(`Notification ${status}!`);
-            }
-        });
-    } else {
-        //-- snackbar here
-        alert("/lib/img/logo/favicon.png", "Turn on Notifications", "Sorry, your browser doesn\'t support notifications", [null, "Close"]);
-    }
-})();
+// (function requestWebDesktopNotificationPermission() {
+//     if (window.Notification) {
+//         Notification.requestPermission().then(function (status) {
+//             if (status != "granted") {
+//                 console.log(`Notification ${status}!`);
+//                 alert("/lib/img/logo/favicon.png",
+//                     "Turn on Notifications",
+//                     "Know right away when people follow you or like and comment on your photos.",
+//                     ["Cancel", "Turn on"],
+//                     () => {
+//                         // Request Permission again
+//                         if (window.Notification) {
+//                             Notification.requestPermission().then(function (status) {})
+//                         }
+//                     }
+//                 );
+//             } else {
+//                 console.log(`Notification ${status}!`);
+//             }
+//         });
+//     } else {
+//         //-- snackbar here
+//         alert("/lib/img/logo/favicon.png", "Turn on Notifications", "Sorry, your browser doesn\'t support notifications", [null, "Close"]);
+//     }
+// })();
 
 $(document).on('ready', () => {
     let page_name = $('.page-identifier').data('page-name');

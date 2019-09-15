@@ -8,28 +8,33 @@ module["exports"] = class EncounterController {
         res.render('./app/menu/encounters', {
             title: "Encounters",
         });
+
+        console.log("MY IP", require('address').ip());
     }
 
     static getUserAndPhoto(req, res) {
         EncounterController.getOneUserAndPictures(req, res);
     }
 
-    static addToLikeAndGetAnotherUser(req, res){
-        Like.findOne({liker:req.user.username, liked_user:req.query.username}).then(like => {
-            if(like) {
-                if(!like.isLiked && req.query.type === 'like'){
+    static addToLikeAndGetAnotherUser(req, res) {
+        Like.findOne({
+            liker: req.user.username,
+            liked_user: req.query.username
+        }).then(like => {
+            if (like) {
+                if (!like.isLiked && req.query.type === 'like') {
                     like.isLiked = true;
                     like.liked_at = new Date().toDateString();
                     like.save()
                 }
                 EncounterController.getOneUserAndPictures(req, res);
-            }else {
+            } else {
                 like = new Like({
                     liker: req.user.username,
                     liked_user: req.query.username,
                     isLiked: (req.query.type === 'like'),
                 })
-                like.save(()=> {
+                like.save(() => {
                     EncounterController.getOneUserAndPictures(req, res);
                 })
             }
@@ -43,10 +48,13 @@ module["exports"] = class EncounterController {
         });
     }
 
-    static addToLike(req, res){
-        Like.findOne({liker:req.user.username, liked_user:req.query.username}).then(like => {
-            if(like) {
-                if(!like.isLiked && req.query.type === 'like'){
+    static addToLike(req, res) {
+        Like.findOne({
+            liker: req.user.username,
+            liked_user: req.query.username
+        }).then(like => {
+            if (like) {
+                if (!like.isLiked && req.query.type === 'like') {
                     like.isLiked = true;
                     like.liked_at = new Date().toDateString();
                     like.save(() => {
@@ -65,13 +73,13 @@ module["exports"] = class EncounterController {
                         }
                     })
                 }
-            }else {
+            } else {
                 like = new Like({
                     liker: req.user.username,
                     liked_user: req.query.username,
                     isLiked: (req.query.type === 'like'),
                 })
-                like.save(()=> {
+                like.save(() => {
                     res.send({
                         data: {
                             status: "success",
@@ -90,30 +98,33 @@ module["exports"] = class EncounterController {
         });
     }
 
-    static addToFavorite(req, res){
-        Favourite.findOne({user:req.user.username, favourite_user:req.query.username}).then(favourite => {
-            if(favourite) {
+    static addToFavorite(req, res) {
+
+        Favourite.findOne({
+            user: req.user.username,
+            favourite_user: req.query.username
+        }).then(favourite => {
+            if (favourite) {
                 res.send({
                     data: {
                         status: "success",
                         message: "Already Added"
                     }
                 })
-            }else {
+            } else {
                 favourite = new Favourite({
                     user: req.user.username,
                     favourite_user: req.query.username,
                 })
-                favourite.save((err)=> {
-                    if(err)
-                    {
+                favourite.save((err) => {
+                    if (err) {
                         res.send({
                             data: {
                                 status: "error",
                                 message: "Error Occur"
                             }
                         })
-                    }else {
+                    } else {
                         res.send({
                             data: {
                                 status: "success",
@@ -133,11 +144,19 @@ module["exports"] = class EncounterController {
         });
     }
 
+    static showOnlyUsersWithPhotos(req, res) {
+
+    }
+
     static getOneUserAndPictures(req, res) {
         let gender = req.user.gender === "male" ? "female" : "male";
-        let IntervalInSec = 10 * 60; // 10 Minutes // {number of min} * 60 => time in seconds
 
-        Like.find({liker:req.user.username}).then(likedUsersObj => {
+        // {number of min} * 60 => time in seconds
+        let IntervalInSec = 10 * 60; // 10 Minutes
+        Like.find({
+            liker: req.user.username
+        }).then(likedUsersObj => {
+
             return likedUsersObj.filter((likedUserObj) => {
                 if (likedUserObj.isLiked === true) {
                     return true
@@ -148,14 +167,25 @@ module["exports"] = class EncounterController {
             });
         }).then(exceptionUsersObj => {
             exceptionUsersObj = exceptionUsersObj.map(obj => obj.liked_user);
-            User.aggregate([
-                { $match : {username: {$nin: exceptionUsersObj}, gender: gender} },
-                { $sample: { size: 1 } }
+
+            User.aggregate([{
+                    $match: {
+                        username: {
+                            $nin: exceptionUsersObj
+                        },
+                        gender: gender
+                    }
+                },
+                {
+                    $sample: {
+                        size: 1
+                    }
+                }
             ]).then(user => {
-                if(user.length === 1){
+                if (user.length === 1) {
                     user = new User(user.pop()); // To cast the user from aggregate to user trait
                     if (user) {
-                        user.photos().then( photos => {
+                        user.photos().then(photos => {
                             res.send({
                                 data: {
                                     photos: photos,
@@ -171,7 +201,7 @@ module["exports"] = class EncounterController {
                             })
                         });
                     }
-                }else {
+                } else {
                     res.send({
                         data: {
                             photos: null,

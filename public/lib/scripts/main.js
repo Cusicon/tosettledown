@@ -8,7 +8,22 @@ $(document).ready(() => {
         alert(mode, mode, text);
     }
     message.html("");
+
+
+
 });
+
+// Share a profile
+function share(text) {
+    var $temp = $("<input>"); // Create and invisible input tag
+    $("body").append($temp); // Append it to body
+    text = $temp.val(text).select(); // 
+    text = String(text);
+    document.execCommand("copy");
+    $temp.remove();
+
+    mySnackbar(`Link copied!`);
+}
 
 function alert(icon, mode, msg, buttons = [], buttonAction) {
     let upperMode = mode.replace(mode.charAt(0), mode.charAt(0).toUpperCase());
@@ -54,4 +69,43 @@ if (!Array.last) {
     Array.prototype.last = function () {
         return this[this.length - 1];
     };
+}
+// Load this functions at App routes only!!!
+(() => {
+    if (location.href.includes('/app/') && !location.href.includes('/signin/out')) {
+        console.log("At app")
+        if (window.outerWidth > 576) {
+            makeDisplayWindowScreenHeight([
+                ".displayWindow",
+                ".ChatList",
+                ".ChatWindowBody"
+            ]);
+        }
+    } else {
+        console.log("Not at app")
+    }
+})();
+
+function makeDisplayWindowScreenHeight(selectors = []) {
+    var documentHeight = document.documentElement.clientHeight;
+    if (!location.href.includes("encounters")) {
+        selectors.forEach(element => {
+
+            if (element.toString().includes(".ChatWindowBody")) {
+                let ChatWindowHeadHeight = $(".ChatWindowHead").height(),
+                    ChatWindowFooterHeight = $(".ChatWindowFooter").height(),
+                    totalHeight = ChatWindowHeadHeight + ChatWindowFooterHeight,
+                    ChatWindowBodyHeight = documentHeight - totalHeight;
+                $(element).css({
+                    "height": `${ChatWindowBodyHeight - 40}`
+                });
+            } else {
+
+                $(element).css({
+                    "height": `${documentHeight}`
+                });
+
+            }
+        })
+    }
 }

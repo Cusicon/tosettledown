@@ -6,7 +6,7 @@ module['exports'] = class RegisterController {
         if (!req.user) {
 
             //-- Collect values from User and assign to variables
-            let fullname = req.body.fullname.trim();
+            let fullname = RegisterController.makeFullnameSentenseCase(req.body.fullname.trim());
             let username = req.body.username.trim().toLowerCase();
             let email = req.body.email.trim().toLowerCase();
             let password = req.body.password.trim();
@@ -81,5 +81,19 @@ module['exports'] = class RegisterController {
             }
 
         } else res.redirect(200, '/app/encounters')
+    }
+
+    static makeFullnameSentenseCase(fullname) {
+        fullname = fullname.toLowerCase();
+        let fullnameArr = fullname.split(" ");
+        let namesArr = []; 
+        let newFullname;
+        for (let i = 0; i < fullnameArr.length; i++) {
+            const nameSingle = fullnameArr[i];
+            let newName = nameSingle.replace(nameSingle.charAt(0), nameSingle.charAt(0).toUpperCase());
+            namesArr.push(newName);
+        }
+        newFullname = namesArr.join(" ");
+        return newFullname;
     }
 };

@@ -12,9 +12,9 @@ app.use(require('@routes/docs'));
 
 //-- Catch 404 and forward to error handler
 app.use((req, res, next) => {
-    // res.redirect("/");
     res.render('./error/404', { title: "Error" });
-    next(createError(404))
+    next();
+    // next(createError(404))
 });
 
 module["exports"] = app;

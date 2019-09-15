@@ -7,24 +7,26 @@
     /* Set a default minimum width */
     margin-left: -125px;
     /* Divide value of min-width by 2 */
-    background-color: #424242;
+    background-color: #202020ab;
     /* Black background color */
     color: #f2f2f2;
     /* White text color */
     text-align: center;
     /* Centered text */
-    border-radius: 15px;
+    border-radius: 5px;
+    font-size: 14px;
     /* Rounded borders */
     padding: 10px;
     /* Padding */
     position: fixed;
     /* Sit on top of the screen */
-    z-index: 100;
+    z-index: 5000;
     /* Add a z-index if needed */
     left: 50%;
     /* Center the snackbar */
     bottom: 60px;
     /* 60px from the bottom */
+    font-family: Verdana, Geneva, Tahoma, sans-serif
 }
 
 /* Show the snackbar when clicking on a button (class added with JavaScript) */

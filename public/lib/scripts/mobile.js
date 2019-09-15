@@ -12,7 +12,7 @@ $(function () {
 
 function mainMobile() {
     // Overide some inline css declared
-    overideInlineCss(".displayWindow", {
+    overrideInlineCss(".displayWindow", {
         "height": "unset !important",
         "margin-bottom": "unset !important",
         "padding": "0px !important",
@@ -36,14 +36,15 @@ function mainMobile() {
 
 function replaceWithAddPhotosBtn(element) {
     let username = $("#activeUser_username").text().trim().split("@")[1];
-    if (location.href.includes(`${username}`)) {
+    if (location.href.includes(`${username}`) && location.href.includes('/app/')) {
         $("#profileLinkCon").html(element);
         $(`[data-countbtn="0"]`).addClass("hide");
-    } else console.log("Not at user's profile page")
+    } 
+    // else console.log("Not at user's profile page")
 
 }
 
-function overideInlineCss(selector, changes = {}) {
+function overrideInlineCss(selector, changes = {}) {
     $(selector).css(changes);
 }
 

@@ -5,8 +5,10 @@
 }
 
 .Chat .ChatList {
+    height: 500px;
     padding: 0px;
     border-right: 1px solid #eee;
+    overflow: hidden scroll;
 }
 
 .Chat .ChatList .ChatHead {
@@ -20,8 +22,7 @@
 
 .Chat .ChatList .ChatBody {
     background-color: #fff;
-    overflow: scroll;
-    height: 490px;
+    overflow-x: hidden;
 }
 
 .Chat .ChatList .ChatBody ul {
@@ -32,6 +33,8 @@
     display: block;
     height: 71px;
     width: 100%;
+    border-left: 1px solid #eee;
+    border-bottom: 1px solid #eee;
 }
 
 li.user:last-child {
@@ -39,13 +42,12 @@ li.user:last-child {
 }
 
 .Chat .ChatList .ChatBody ul li.user:hover {
-    box-shadow: 0px 1px 100px #0000002a !important;
+    box-shadow: 0px 1px 50px #0000002a !important;
     cursor: pointer;
-    /* background-color: rgba(0, 0, 0, 0.11) !important; */
 }
 
 .Chat .ChatList .ChatBody ul li.user.active {
-    box-shadow: 0px 1px 100px #0000002a !important;
+    background-color: #eeeeee86;
 }
 
 .Chat .ChatList .ChatBody ul li.user div.image-holder {
@@ -54,6 +56,7 @@ li.user:last-child {
 
 
 .Chat .ChatList .ChatBody ul li.user div.profile-img {
+    margin-top: -15px;
     width: 50px;
     height: 50px;
     border-radius: 100%;
@@ -63,10 +66,11 @@ li.user:last-child {
 
 
 .chat-list li.user div.status {
-    position: absolute;
+    position: relative;
     width: 13px;
     height: 13px;
-    border: 1px solid #fff;
+    border: 2px solid #fff;
+    background-color: #eee;
     border-radius: 100%;
 }
 
@@ -100,12 +104,12 @@ li.user:last-child {
 
 .Chat .ChatWindow {
     padding: 0 !important;
-    background-color: #eee;
+    overflow: hidden auto !important;
 }
 
 .Chat .ChatWindow .ChatWindowHead {
     display: block;
-    border-bottom: 1px solid #eee;
+    border-bottom: 2px solid #eee;
     background-color: #fff;
     padding: 10px 20px;
     height: 70px;
@@ -144,6 +148,31 @@ li.user:last-child {
     overflow: scroll;
     height: 500px;
     padding: 5px;
+    background-color: #f8f8f8;
+    background-attachment: fixed;
+    /* background-image: url('/lib/img/wallpaper.jpg'); */
+    /* background-position: bottom right !important; */
+
+}
+
+/* .Chat .ChatWindow .ChatWindowBody .chatAlertBelow {} */
+
+.Chat .ChatWindow .ChatWindowBody .chatAlertBelow a#chatAlertBelowBtn {
+    position: fixed;
+    bottom: 150px;
+    right: 0px;
+    width: 50px;
+    height: 50px;
+    padding: 10px 12px;
+    margin: 50px;
+    border: 1px solid #eee;
+    background-color: #fff !important;
+    box-shadow: 0px .5px 15px #7777776c !important;
+    border-radius: 50%;
+}
+
+.Chat .ChatWindow .ChatWindowBody .chatAlertBelow a#chatAlertBelowBtn i {
+    font-size: 25px;
 }
 
 .Chat .ChatWindow .ChatWindowBody ul.chat-message-list {
@@ -164,7 +193,7 @@ li.user:last-child {
 }
 
 .Chat .ChatWindow .ChatWindowBody ul.chat-message-list li.outbox div {
-    border-radius: 25px 0px 25px 25px;
+    border-radius: 25px 25px 0px 25px;
     background-color: #ff6878;
     float: right;
 }
@@ -173,9 +202,9 @@ li.user:last-child {
     display: inline-block;
     padding: 10px 15px;
     color: #fff;
-    max-width: 250px;
+    max-width: 350px;
     overflow: hidden;
-    box-shadow: 0px 2.5px 0px #4949496c !important;
+    box-shadow: 0px .5px 2px #7777776c !important;
 }
 
 .Chat .ChatWindow .ChatWindowBody ul.chat-message-list li div .message {
@@ -262,7 +291,7 @@ li.user:last-child {
 }
 
 .chat-list li.user div.time.lazy-box-loader {
-    width: 55px;
+    width: 45px;
     height: 18px;
 }
 
@@ -272,7 +301,7 @@ li.user:last-child {
 }
 
 .chat-list li.user div.latest-message.lazy-box-loader {
-    width: 280px;
+    width: 180px;
     height: 18px;
     margin-top: 4px;
 }
@@ -302,7 +331,6 @@ li.user:last-child {
 .Chat .ChatWindow .ChatWindowHead div.activity_status.lazy-box-loader {
     width: 13px;
     height: 13px;
-    /*margin-top: 4px;*/
     background-color: #eee !important;
 }
 
@@ -338,6 +366,8 @@ li.user:last-child {
     height: 70px;
     background-color: #fff;
     padding-top: 10px !important;
+    border-top: 1px solid #eee;
+    box-shadow: 0px -1px 5px #c9c9c928 !important;
 }
 
 .ChatWindowFooter #message-input {
@@ -369,11 +399,11 @@ li.user:last-child {
 }
 
 .no-available .content-holder {
-    margin: 45% auto 0% auto;
+    margin: 30% auto 0% auto;
 }
 
 .no-available img {
-    width: 60px;
+    width: 80px;
     opacity: .5;
 }
 
