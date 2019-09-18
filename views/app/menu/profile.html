@@ -49,116 +49,116 @@
                                                         200 characters.</small>
                                                 </div>
                                             </div>
-
-                                            <!-- Other form inputs -->
-                                            <div class="editProfileLeft">
-                                                <div class="form-group">
-                                                    <h5 style="font-weight: lighter;">
-                                                        Location</h5>
-                                                    <input type="text" name="location" class="form-control"
-                                                        value="<%= profile_user.personalInfo.location %>"
-                                                        placeholder="Location Here...">
-                                                </div>
-                                                <div class=" form-group">
-                                                    <h5 style="font-weight: lighter;">
-                                                        Work & Occupation
-                                                    </h5>
-                                                    <input type="text" name="work" class="form-control"
-                                                        value="<%= profile_user.personalInfo.work %>"
-                                                        placeholder="Work Here...">
-                                                </div>
-                                                <div class=" form-group">
-                                                    <h5 style="font-weight: lighter;">
-                                                        Education</h5>
-                                                    <div class="form-group">
-                                                        <select name="education" id="education" class="form-control">
-                                                            <option label="Your education status..." value="">Your education
-                                                                status...</option>
-                                                            <option value="Graduate"
-                                                                <%= profile_user.personalInfo.education == 'Graduate' ? 'selected' : '' %>>
-                                                                Graduate</option>
-                                                            <option value="Undergraduate"
-                                                                <%= profile_user.personalInfo.education == 'Undergraduate' ? 'selected' : '' %>>
-                                                                Undergraduate</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Other form inputs -->
-                                            <div class="editProfileLeft">
-                                                <div class="form-group">
-                                                    <h5 style="font-weight: lighter;">
-                                                        Personal Info(s)</h5>
-                                                    <select name="height" id="height" class="form-control" required
-                                                        aria-describedby="heightHelp">
-                                                        <option label="Your height..." value="">Your height...</option>
-                                                        <option value="Tall"
-                                                            <%= profile_user.personalInfo.height == 'Tall' ? 'selected' : '' %>>
-                                                            Tall</option>
-                                                        <option value="Average"
-                                                            <%= profile_user.personalInfo.height == 'Average' ? 'selected' : '' %>>
-                                                            Average</option>
-                                                        <option value="Short"
-                                                            <%= profile_user.personalInfo.height == 'Short' ? 'selected' : '' %>>
-                                                            Short</option>
-                                                    </select>
-                                                    <small id="heightHelp" class="form-text  float-right">Default:
-                                                        Average</small>
-                                                    <br>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="text" name="language" class="form-control"
-                                                        value="<%= profile_user.personalInfo.language %>"
-                                                        placeholder="What do you speak often..."
-                                                        title="What do you speak often..." required
-                                                        aria-describedby="languageHelp">
-                                                    <small id="languageHelp" class="form-text  float-right">Default:
-                                                        English</small>
-                                                    <br>
-                                                </div>
-                                                <div class="form-group">
-                                                    <select name="religion" id="religion" class="form-control" required>
-                                                        <option label="What's your religion..." value="">What's your
-                                                            religion...</option>
-                                                        <option value="Christianity"
-                                                            <%= profile_user.personalInfo.religion == 'Christianity' ? 'selected' : '' %>>
-                                                            Christianity</option>
-                                                        <option value="Islam"
-                                                            <%= profile_user.personalInfo.religion == 'Islam' ? 'selected' : '' %>>
-                                                            Islam</option>
-                                                        <option value="Others"
-                                                            <%= profile_user.personalInfo.religion == 'Others' ? 'selected' : '' %>>
-                                                            Others</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <select name="relationship" id="relationship" class="form-control"
-                                                        required>
-                                                        <option label="What's your relationship status..."></option>
-                                                        <option value="Single"
-                                                            <%= profile_user.personalInfo.relationship == 'Single' ? 'selected' : '' %>>
-                                                            Single</option>
-                                                        <option value="Dating"
-                                                            <%= profile_user.personalInfo.relationship == 'Dating' ? 'selected' : '' %>>
-                                                            Dating</option>
-                                                        <option value="Married"
-                                                            <%= profile_user.personalInfo.relationship == 'Married' ? 'selected' : '' %>>
-                                                            Married</option>
-                                                        <option value="Divorced"
-                                                            <%= profile_user.personalInfo.relationship == 'Divorced' ? 'selected' : '' %>>
-                                                            Divorced</option>
-                                                    </select>
-
-                                                </div>
-                                            </div>
-
-                                            <p class="float-left" style="width: 90%;">
-                                                    <i class="typcn typcn-warning text-warning" style="font-size: 20px;"></i>
-                                                    <b>Note:</b>
-                                                    Username can't be modified or changed
-                                            </p>
                                         </div>
+
+                                        <!-- Other form inputs -->
+                                        <div class="editProfileLeft col-md-8">
+                                            <div class="form-group">
+                                                <h5 style="font-weight: lighter;">
+                                                    Location</h5>
+                                                <input type="text" name="location" class="form-control"
+                                                    value="<%= profile_user.personalInfo.location %>"
+                                                    placeholder="Location Here...">
+                                            </div>
+                                            <div class=" form-group">
+                                                <h5 style="font-weight: lighter;">
+                                                    Work & Occupation
+                                                </h5>
+                                                <input type="text" name="work" class="form-control"
+                                                    value="<%= profile_user.personalInfo.work %>"
+                                                    placeholder="Work Here...">
+                                            </div>
+                                            <div class=" form-group">
+                                                <h5 style="font-weight: lighter;">
+                                                    Education</h5>
+                                                <div class="form-group">
+                                                    <select name="education" id="education" class="form-control">
+                                                        <option label="Your education status..." value="">Your education
+                                                            status...</option>
+                                                        <option value="Graduate"
+                                                            <%= profile_user.personalInfo.education == 'Graduate' ? 'selected' : '' %>>
+                                                            Graduate</option>
+                                                        <option value="Undergraduate"
+                                                            <%= profile_user.personalInfo.education == 'Undergraduate' ? 'selected' : '' %>>
+                                                            Undergraduate</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Other form inputs -->
+                                        <div class="editProfileLeft col-md-4">
+                                            <div class="form-group">
+                                                <h5 style="font-weight: lighter;">
+                                                    Personal Info(s)</h5>
+                                                <select name="height" id="height" class="form-control" required
+                                                    aria-describedby="heightHelp">
+                                                    <option label="Your height..." value="">Your height...</option>
+                                                    <option value="Tall"
+                                                        <%= profile_user.personalInfo.height == 'Tall' ? 'selected' : '' %>>
+                                                        Tall</option>
+                                                    <option value="Average"
+                                                        <%= profile_user.personalInfo.height == 'Average' ? 'selected' : '' %>>
+                                                        Average</option>
+                                                    <option value="Short"
+                                                        <%= profile_user.personalInfo.height == 'Short' ? 'selected' : '' %>>
+                                                        Short</option>
+                                                </select>
+                                                <small id="heightHelp" class="form-text  float-right">Default:
+                                                    Average</small>
+                                                <br>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="language" class="form-control"
+                                                    value="<%= profile_user.personalInfo.language %>"
+                                                    placeholder="What do you speak often..."
+                                                    title="What do you speak often..." required
+                                                    aria-describedby="languageHelp">
+                                                <small id="languageHelp" class="form-text  float-right">Default:
+                                                    English</small>
+                                                <br>
+                                            </div>
+                                            <div class="form-group">
+                                                <select name="religion" id="religion" class="form-control" required>
+                                                    <option label="What's your religion..." value="">What's your
+                                                        religion...</option>
+                                                    <option value="Christianity"
+                                                        <%= profile_user.personalInfo.religion == 'Christianity' ? 'selected' : '' %>>
+                                                        Christianity</option>
+                                                    <option value="Islam"
+                                                        <%= profile_user.personalInfo.religion == 'Islam' ? 'selected' : '' %>>
+                                                        Islam</option>
+                                                    <option value="Others"
+                                                        <%= profile_user.personalInfo.religion == 'Others' ? 'selected' : '' %>>
+                                                        Others</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <select name="relationship" id="relationship" class="form-control"
+                                                    required>
+                                                    <option label="What's your relationship status..."></option>
+                                                    <option value="Single"
+                                                        <%= profile_user.personalInfo.relationship == 'Single' ? 'selected' : '' %>>
+                                                        Single</option>
+                                                    <option value="Dating"
+                                                        <%= profile_user.personalInfo.relationship == 'Dating' ? 'selected' : '' %>>
+                                                        Dating</option>
+                                                    <option value="Married"
+                                                        <%= profile_user.personalInfo.relationship == 'Married' ? 'selected' : '' %>>
+                                                        Married</option>
+                                                    <option value="Divorced"
+                                                        <%= profile_user.personalInfo.relationship == 'Divorced' ? 'selected' : '' %>>
+                                                        Divorced</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+
+                                        <p class="float-left" style="width: 90%;">
+                                                <i class="typcn typcn-warning text-warning" style="font-size: 20px;"></i>
+                                                <b>Note:</b>
+                                                Username can't be modified or changed
+                                        </p>
                                     </form>
 
                                     <br>
