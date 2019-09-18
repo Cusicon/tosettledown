@@ -91,24 +91,19 @@ module["exports"] = class ProfileController {
         let errors = req.validationErrors();
 
         if (errors) {
-            res.send({
-                status: 'error',
-                message: 'validation error',
-                errors: errors,
-                data: null
-            });
+            req.flash('error', errors.pop().message);
+            res.redirect(`/app/profile/${req.user.username}`);
 
         } else {
-            User.getUserByIdandUpdate(id, newUser, (err, user) => {
+            User.getUserByIdandUpdate(id, newUser, (err) => {
                 if (err) {
+                    req.flash('error', 'Error Occur');
+                    res.redirect(`/app/profile/${req.user.username}`);
                     console.log(err);
                 } else {
-                    res.send({
-                        status: 'success',
-                        message: 'Update Successful',
-                        errors: null,
-                        data: {user: user},
-                    });
+                    req.flash('success', 'Update Successful');
+                    res.redirect(`/app/profile/${req.user.username}`);
+
                     userLog(`"${req.user.username}" just updated their profile.`);
                     console.log(`@${req.user.username} just updated their profile!, @ ${new Date().toTimeString()}`);
                 }
@@ -122,7 +117,7 @@ module["exports"] = class ProfileController {
     static async addPhotos(req, res) {
         let medialibrary = new MediaLibrary(req, res);
         await medialibrary.addMedia('addPhotos', (req, res, photo) => {
-            console.log(photo);
+            req.flash('success', 'Uploaded Successful');
             res.redirect(`/app/profile/${req.user.username}`);
         });
     }

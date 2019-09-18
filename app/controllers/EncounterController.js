@@ -144,10 +144,6 @@ module["exports"] = class EncounterController {
         });
     }
 
-    static showOnlyUsersWithPhotos(req, res) {
-
-    }
-
     static getOneUserAndPictures(req, res) {
         let gender = req.user.gender === "male" ? "female" : "male";
 

@@ -1,13 +1,3 @@
-function displaymoreDetails() {
-    let dropdownToggleBtn = $("#dropdownToggleBtn");
-    let moreDetails = $(".moreDetails");
-    moreDetails.slideUp();
-    dropdownToggleBtn.click(() => {
-        moreDetails.slideToggle();
-    });
-}
-displaymoreDetails();
-
 // Multiple images preview engine in browser
 function addPhotosPreview(input, placeToInsertImagePreview) {
     if (input.files) {
@@ -31,50 +21,6 @@ function addPhotosPreview(input, placeToInsertImagePreview) {
     }
 }
 
-$('#addPhotosForm').on('submit', function (e) {
-    e.preventDefault();
-    let fileInput = $(this).find('input#addPhotos')[0];
-    let fileToUpload = fileInput.files[0];
-
-    let fr = new FileReader();
-    fr.onload = (f => {
-        console.log(f.target.result);
-    });
-    fr.readAsDataURL(fileToUpload);
-
-    console.log(fileToUpload);
-});
-
-function showPhotosSelected() {
-    // Photos preview
-    $("#addPhotos").on("change", function () {
-        if (this.files.length != 0) {
-            if (this.files.length <= 5) {
-                $("div.addPhotosCon .info center").html('');
-                // Empty displayCon, before changing it's value
-                $("div.addPhotosCon .info .displayCon div#container").html("");
-                $("div.addPhotosCon .info .displayCon div#container").removeClass("hide").html(
-                    addPhotosPreview(this, "div.addPhotosCon .info .displayCon div#container")
-                );
-            } else {
-                alert("warning", "Warning", "Only, 5 photos are permitted!");
-            }
-        } else {
-            var previewInfo = `
-            <div style="text-align: center; width: 100%; padding-top: 72px; height: 232px;">
-            <h4 style="font-weight: lighter;">Click &nbsp;<b>+</b>&nbsp; to
-            select your photos</h4>
-            <p style="margin-bottom: 10px; display: block; color: #ccc;">Note:
-            To upload photos, select all images at once.</p>
-            </div>
-            `;
-            $("div.addPhotosCon .info .displayCon").html('').addClass("hide");
-            $("div.addPhotosCon .info center").html(previewInfo);
-        }
-    });
-}
-showPhotosSelected();
-
 function cropImage() {
     const selectedPhoto = document.getElementById('selectedPhoto');
     const cropper = new Cropper(selectedPhoto, {
@@ -91,36 +37,6 @@ function cropImage() {
     });
 }
 
-$("#like").on('click', function(e){
-    let value = $(this).data('username');
-
-    $.ajax({
-        url: '/app/encounters/addLike',
-        data: {
-            username: value,
-            type: 'like',
-        },
-        method: "GET",
-        success: (response) => {
-            mySnackbar(response.data.message)
-        },
-    });
-})
-
-$("#favourite, #favourite-drpdown").on('click', function(){
-    let value = $(this).data('username');
-
-    $.ajax({
-        url: '/app/encounters/addFavourite',
-        data: {
-            username: value,
-        },
-        method: "GET",
-        success: (response) => {
-            mySnackbar(response.data.message)
-        },
-    });
-})
 
 $(document).on('ready', function () {
     if($('.nophoto').length > 0){
@@ -129,33 +45,74 @@ $(document).on('ready', function () {
         });
     }
 
-    $('#editProfileForm').on('submit',  function (e) {
-        e.preventDefault();
-        let data = getFormData(this)
-        let form = $(this);
-        $.ajax({
-            type: 'POST',
-            url: form.attr('action'),
-            data: data,
-            dataType: 'json',
+    (function displaymoreDetails() {
+        let dropdownToggleBtn = $("#dropdownToggleBtn");
+        let moreDetails = $(".moreDetails");
+        moreDetails.slideUp();
+        dropdownToggleBtn.click(() => {
+            moreDetails.slideToggle();
+        });
+    })();
 
-            beforeSend: function(){
-                console.log('about to submit form')
+    (function showPhotosSelected() {
+        // Photos preview
+        $("#addPhotos").on("change", function () {
+            if (this.files.length != 0) {
+                if (this.files.length <= 5) {
+                    $("div.addPhotosCon .info center").html('');
+                    // Empty displayCon, before changing it's value
+                    $("div.addPhotosCon .info .displayCon div#container").html("");
+                    $("div.addPhotosCon .info .displayCon div#container").removeClass("hide").html(
+                        addPhotosPreview(this, "div.addPhotosCon .info .displayCon div#container")
+                    );
+                } else {
+                    alert("warning", "Warning", "Only, 5 photos are permitted!");
+                }
+            } else {
+                var previewInfo = `
+            <div style="text-align: center; width: 100%; padding-top: 72px; height: 232px;">
+            <h4 style="font-weight: lighter;">Click &nbsp;<b>+</b>&nbsp; to
+            select your photos</h4>
+            <p style="margin-bottom: 10px; display: block; color: #ccc;">Note:
+            To upload photos, select all images at once.</p>
+            </div>
+            `;
+                $("div.addPhotosCon .info .displayCon").html('').addClass("hide");
+                $("div.addPhotosCon .info center").html(previewInfo);
+            }
+        });
+    })();
+
+    $("#like").on('click', function(e){
+        let value = $(this).data('username');
+
+        $.ajax({
+            url: '/app/encounters/addLike',
+            data: {
+                username: value,
+                type: 'like',
             },
-            success: function(response){
-                mySnackbar(response.message);
-                updateDOMInfoAfterUpdateAction(response);
-            },
-            error: function (error) {
-                console.log(error.message);
-                mySnackbar('Error Occur While Updating');
+            method: "GET",
+            success: (response) => {
+                mySnackbar(response.data.message)
             },
         });
     })
 
-    function updateDOMInfoAfterUpdateAction(){
-        // Update the dom information, like fullname and he others after request successfully goes through
-    }
+    $("#favourite, #favourite-drpdown").on('click', function(){
+        let value = $(this).data('username');
+
+        $.ajax({
+            url: '/app/encounters/addFavourite',
+            data: {
+                username: value,
+            },
+            method: "GET",
+            success: (response) => {
+                mySnackbar(response.data.message)
+            },
+        });
+    })
 
     $('.userPhoto').on('click', function () {
 

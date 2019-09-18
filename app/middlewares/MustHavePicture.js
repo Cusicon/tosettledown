@@ -10,7 +10,7 @@ module["exports"] = function (req, res, next) {
                 next();
             }else{
 
-                if(req.path.includes('/profile/')){
+                if(req.path.includes('/profile/') && req.param.username === req.user.username){
                     next()
                 }else{
                     res.redirect(`/app/profile/${req.user.username}`);
@@ -20,5 +20,4 @@ module["exports"] = function (req, res, next) {
     }else{
         res.redirect(`/`);
     }
-
 };

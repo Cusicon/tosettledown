@@ -12,11 +12,8 @@ router.get("/encounters/addFavourite", (require('@app/controllers/EncounterContr
 //-- profile Router
 router.get("/profile/:username", (require('@app/controllers/ProfileController')).show);
 router.post("/profile/update/:username", (require('@app/controllers/ProfileController')).update);
-
 router.post("/profile/addPhotos", (require('@app/controllers/ProfileController')).addPhotos);
 router.post("/profile/avatar/update", (require('@app/controllers/ProfileController')).setAvatar);
-
-
 router.get("/profile", (req, res) => res.redirect("/app/encounters"));
 
 //-- chats Router
