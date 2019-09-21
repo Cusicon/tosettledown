@@ -94,32 +94,58 @@ module["exports"] = class EncounterController {
             favourite_user: req.query.username
         }).then(favourite => {
             if (favourite) {
-                res.send({
-                    data: {
-                        status: "success",
-                        message: "Already Added"
-                    }
-                })
+                if (favourite.isFavourited) {
+                    Favourite.findByIdAndUpdate(favourite._id, {
+                        isFavourited: false
+                    }, (err, result) => {
+                        res.send({
+                            data: {
+                                status: "success",
+                                message: "Removed from favourites..."
+                            }
+                        })
+
+                        console.log(result);
+
+                    });
+                } else {
+                    Favourite.findByIdAndUpdate(favourite._id, {
+                        isFavourited: true
+                    }, (err, result) => {
+                        res.send({
+                            data: {
+                                status: "success",
+                                message: "Added back to favourites..."
+                            }
+                        })
+
+                        console.log(result);
+
+                    });
+                }
             } else {
                 favourite = new Favourite({
                     user: req.user.username,
+                    isFavourited: true,
                     favourite_user: req.query.username,
                 })
-                favourite.save((err) => {
+                favourite.save((err, result) => {
                     if (err) {
                         res.send({
                             data: {
                                 status: "error",
-                                message: "Error Occur"
+                                message: "Sorry, error occured..."
                             }
                         })
                     } else {
                         res.send({
                             data: {
                                 status: "success",
-                                message: "Added Successfully"
+                                message: "Added to favourites..."
                             }
                         })
+
+                        console.log(result);
                     }
                 })
             }

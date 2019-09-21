@@ -3,7 +3,7 @@
     /* Be faded a little */
     visibility: hidden;
     /* Hidden by default. Visible on click */
-    min-width: 260px;
+    min-width: 280px;
     /* Set a default minimum width */
     margin-left: -125px;
     /* Divide value of min-width by 2 */
@@ -24,8 +24,8 @@
     /* Add a z-index if needed */
     left: 50%;
     /* Center the snackbar */
-    bottom: 60px;
-    /* 60px from the bottom */
+    bottom: 80px;
+    /* 80px from the bottom */
     font-family: Verdana, Geneva, Tahoma, sans-serif
 }
 
@@ -48,7 +48,7 @@ However, delay the fade out process for 2.5 seconds */
     }
 
     to {
-        bottom: 60px;
+        bottom: 80px;
         opacity: .9;
     }
 }
@@ -60,14 +60,14 @@ However, delay the fade out process for 2.5 seconds */
     }
 
     to {
-        bottom: 60px;
+        bottom: 80px;
         opacity: .9;
     }
 }
 
 @-webkit-keyframes fadeout {
     from {
-        bottom: 60px;
+        bottom: 80px;
         opacity: .9;
     }
 
@@ -79,7 +79,7 @@ However, delay the fade out process for 2.5 seconds */
 
 @keyframes fadeout {
     from {
-        bottom: 60px;
+        bottom: 80px;
         opacity: .9;
     }
 

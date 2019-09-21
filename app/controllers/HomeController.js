@@ -146,18 +146,19 @@ module["exports"] = class HomeController{
             {
                 $lookup: {
                     from : 'users',
-                    localField: 'user',
+                    localField: 'favourite_user',
                     foreignField: 'username',
                     as: 'favouriteObj'
                 }
             },
-            { $match: { favourite_user: req.user.username } },
+            { $match: { user: req.user.username, isFavourited: true } },
 
         ]).then(favourites => {
             favourites = favourites.map(favourite => {
                 favourite.favouriteObj = new User(favourite.favouriteObj[0]);
                 return favourite;
             })
+            console.log(favourites);
             res.render('./app/menu/favourites', { title: "Favourites", favourites:favourites });
         });
     }

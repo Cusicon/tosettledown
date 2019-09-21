@@ -152,11 +152,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <p class="float-left" style="width: 90%;">
-                                            <i class="typcn typcn-warning text-warning" style="font-size: 20px;"></i>
-                                            <b>Note:</b>
-                                            Username can't be modified or changed
-                                        </p>
                                     </form>
                                     <br>
                                     <!-- Modal footer -->
@@ -184,28 +179,28 @@
                             </div>
                             <div class="modal-body" style="padding: 5px; text-align: center !important;">
                                 <a href="#"
-                                    style="font-weight: 400; border-bottom: 1px solid #eee; display: block; padding: 8px;"
+                                    style="font-weight: 400; border-bottom: 1px solid #f3f3f3; display: block; padding: 8px;"
                                     data-dismiss="modal">
                                     <i style="font-size: 20px;" class="typcn typcn-user"></i>
                                     &nbsp; Account
                                 </a>
 
                                 <a href="#"
-                                    style="font-weight: 400; border-bottom: 1px solid #eee; display: block; padding: 8px;"
+                                    style="font-weight: 400; border-bottom: 1px solid #f3f3f3; display: block; padding: 8px;"
                                     data-dismiss="modal">
                                     <i style="font-size: 20px;" class="typcn typcn-credit-card"></i>
                                     &nbsp;Payments
                                 </a>
 
                                 <a href="#"
-                                    style="font-weight: 400; border-bottom: 1px solid #eee; display: block; padding: 8px;"
+                                    style="font-weight: 400; border-bottom: 1px solid #f3f3f3; display: block; padding: 8px;"
                                     data-dismiss="modal">
                                     <i style="font-size: 20px;" class="typcn typcn-key-outline"></i>
                                     &nbsp;Security
                                 </a>
 
                                 <a href="#"
-                                    style="font-weight: 400; border-bottom: 1px solid #eee; display: block; padding: 8px;"
+                                    style="font-weight: 400; border-bottom: 1px solid #f3f3f3; display: block; padding: 8px;"
                                     data-dismiss="modal">
                                     <i style="font-size: 20px;" class="typcn typcn-support"></i>
                                     &nbsp; Help
@@ -317,7 +312,7 @@
                                 <div class="dropdownContent" id="dropdownContent">
                                     <% if (user.username != profile_user.username) { %>
                                     <span class="onMobile">
-                                        <a href="/app/chats/<%= profile_user.username %>">
+                                        <a href="/app/chats/<%= profile_user.username %>" style="font-weight: 500 !important;">
                                             Chat <%= profile_user.gender == "male" ? "Him" : "Her" %> up
                                         </a>
                                         <div class="separator"></div>
@@ -330,7 +325,7 @@
                                             style="font-size: 18px; float: right !important;"></span>
                                     </a>
                                     <% if (user.username != profile_user.username) { %>
-                                    <a id="favourite-drpdown" href="javascript:void(0);"
+                                    <a id="favourite-dropdown" href="javascript:void(0);"
                                         data-username="<%=profile_user.username%>">Add to favourites</a>
                                     <% } %>
                                     <% if (user.username == profile_user.username) { %>

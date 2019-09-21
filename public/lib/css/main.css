@@ -225,7 +225,7 @@ h6 {
 .dropdownContent a {
   display: block;
   color: #0f0f0f;
-  padding: 5px 20px;
+  padding: 7px 20px;
   text-decoration: none;
 }
 
@@ -258,7 +258,7 @@ h6 {
 a.activeProfile {
   display: inline-block;
   border-radius: 100%;
-  padding: 2px !important;
+  padding: 1px !important;
   background-color: #eee;
 }
 
@@ -268,7 +268,7 @@ a.activeProfile.hasStories {
 
 a.activeProfile.noStories {
   background-image: none;
-  background-color: #cecece;
+  background-color: #303030;
 }
 
 a div.image {

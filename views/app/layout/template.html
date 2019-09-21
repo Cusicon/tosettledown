@@ -42,24 +42,23 @@
         style="border-bottom: 1px solid #eee; margin-bottom: 3px; width: 100%; padding: 15px; height: 70px; margin-bottom: 10px;">
         <div class="logoMobileCon">
             <span id="profileLinkCon">
-                <a href="/app/profile/<%= user.username %>" class="activeProfile hasStories"
-                    style="float: right;">
+                <a href="/app/profile/<%= user.username %>" class="activeProfile hasStories" style="float: right;">
                     <div class="image"
-                        style=" width: 35px; height: 35px; border-radius: 100%; background-image: url('<%= user.avatar %>');">
+                        style=" width: 40px; height: 40px; border-radius: 100%; background-image: url('<%= user.avatar %>');">
                     </div>
                 </a>
             </span>
 
+            <img src="/lib/img/logo/logo-icon.png" style="float: left; margin-top: -5px;"
+                width="55" id="logo" alt="Tosettledown">
             <center>
-                <img src="/lib/img/logo/logo-icon.png" style="float: left; margin-top: -5px;" width="55" id="logo"
-                    alt="Tosettledown">
-                <img src="/lib/img/logo/logo-text.png" style="padding-top: 1.5px;" width="130" id="logo"
+                <img src="/lib/img/logo/logo-text.png" style="padding-top: 1.5px;" width="140" id="logo"
                     alt="Tosettledown">
             </center>
         </div>
     </div>
     <!-- The actual snackbar -->
-    <div id="snackbar">Welcome to Tosettledown...</div>
+    <div id="snackbar">Tosettledown :: Built for Lovers</div>
     <section class="windowFrame container row" id="windowFrame">
         <!-- ProfileBar -->
         <%-partial('/app/layout/profileBar.html')%>
@@ -77,9 +76,10 @@
 
     <div class="onMobile">
         <div class="mobileNavigator">
-            <ul class="row">
+            <ul class="">
                 <li class="col-2">
-                    <a href="/app/encounters" class="<%= title.toLowerCase() == 'encounters' ? 'activeMenu' : 'text-darker' %>">
+                    <a href="/app/encounters"
+                        class="<%= title.toLowerCase() == 'encounters' ? 'activeMenu' : 'text-darker' %>">
                         <i class="typcn typcn-compass"></i>
                         <small>Encounters</small>
                     </a>
@@ -93,7 +93,8 @@
                 </li>
                 <li class="col-1"></li>
                 <li class="col-2">
-                    <a href="/app/matched" class="<%= title.toLowerCase() == 'matched' ? 'activeMenu' : 'text-darker' %>">
+                    <a href="/app/matched"
+                        class="<%= title.toLowerCase() == 'matched' ? 'activeMenu' : 'text-darker' %>">
                         <i class="typcn typcn-point-of-interest"></i>
                         <small>Matched</small>
                     </a>

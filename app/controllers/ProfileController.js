@@ -214,5 +214,4 @@ module["exports"] = class ProfileController {
 
         });
     }
-
 };

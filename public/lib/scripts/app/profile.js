@@ -94,7 +94,7 @@ $("#like").on('click', function(e){
     });
 })
 
-$("#favourite, #favourite-drpdown").on('click', function(e){
+$("#favourite, #favourite-dropdown").on('click', function(e){
     let value = $(this).data('username');
 
     $.ajax({

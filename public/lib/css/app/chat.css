@@ -33,8 +33,6 @@
     display: block;
     height: 71px;
     width: 100%;
-    border-left: 1px solid #eee;
-    border-bottom: 1px solid #eee;
 }
 
 li.user:last-child {

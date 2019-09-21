@@ -129,7 +129,7 @@ $(document).on('ready', () => {
                     </div>
                     <div class="message-holder">
                         <div class="time text-muted">${time}</div>
-                        <div class="username text-dark" data-username="${associate.username}">${associate.name.split(" ")[0]}</div>
+                        <div class="username text-dark" style="font-weight: 500 !important;" data-username="${associate.username}">${associate.name.split(" ")[0]}</div>
                         <div class="latest-message text-muted">${last_msg.trunc(25)}</div>
                         <div class="communication-status" data-unread-msg="${unread}">${comm_stat}</div>
                     </div>
