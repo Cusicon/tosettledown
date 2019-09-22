@@ -52,7 +52,7 @@ function showPhotosSelected() {
             <h4 style="font-weight: lighter;">Click &nbsp;<b>+</b>&nbsp; to
             select your photos</h4>
             <p style="margin-bottom: 10px; display: block; color: #ccc;">Note:
-            To upload photos, select all images at once.</p>
+            To upload photos, select one at a time.</p>
             </div>
             `;
             $("div.addPhotosCon .info .displayCon").html('').addClass("hide");
