@@ -52,15 +52,19 @@
             </span>
 
             <span id="mobileLogoId" style="height: 44px;">
-                <span style="display: inline-block; font-size: 24px; font-weight: 500; padding: 5px 0px;">
-                    <% if(title.toLowerCase() == 'encounters') { %>
-                    <img src="/lib/img/logo/logoLandscape.png" style="width: 155px;" id="logo" alt="Tosettledown">
-                    <% } else { %>
-                    <a href="javascript:void(0);" id="backtoChatList" class="backtoChatList"
-                        style="display: inline-block; font-size: 20px; padding: 0px 10px 0px 5px;">
+                <span style="display: inline-block; font-size: 20px; font-weight: 500; padding: 9px 0px;">
+                    <% if(title.toLowerCase() == 'favourites' || title.toLowerCase() == 'visitors') { %>
+                    <a href="javascript:void(0);" id="backToPreviousPage" class="backToPreviousPage"
+                        style="display: inline-block; font-size: 16px; padding: 0px 15px 0px 5px;"
+                        onclick="history.back();">
                         <i class="icon-arrow-left"></i>
                     </a>
-                    <%= title %>
+                    <span style="display: inline-block;">
+                        <%= title %>
+                    </span>
+                    <% } else { %>
+                    <img src="/lib/img/logo/logoLandscape.png" style="width: 160px; margin-top: -8px;" id="logo"
+                        alt="Tosettledown">
                     <% } %>
                 </span>
             </span>
