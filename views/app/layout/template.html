@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="pinkish-red" content="#ff6878">
     <title><%='Tosettledown :: ' + title %></title>
     <!-- Components -->
     <link href="/components/css/bootstrap.min.css" rel="stylesheet" />
@@ -39,22 +40,31 @@
         <% })} %>
     </div>
     <div class="onMobile logoHeader"
-        style="border-bottom: 1px solid #eee; margin-bottom: 3px; width: 100%; padding: 15px; height: 70px; margin-bottom: 10px;">
+        style="box-shadow: 0px -1px 5px #1f1f1f28 !important; border-bottom: 1px solid #eee; padding: 10px; width: 100%; margin-bottom: 10px;">
         <div class="logoMobileCon">
             <span id="profileLinkCon">
-                <a href="/app/profile/<%= user.username %>" class="activeProfile hasStories" style="float: right;">
+                <a href="/app/profile/<%= user.username %>" class="activeProfile hasStories"
+                    style="margin-top: 3px; float: right;">
                     <div class="image"
-                        style=" width: 40px; height: 40px; border-radius: 100%; background-image: url('<%= user.avatar %>');">
+                        style="width: 35px; height: 35px; border-radius: 100%; background-image: url('<%= user.avatar %>');">
                     </div>
                 </a>
             </span>
 
-            <img src="/lib/img/logo/logo-icon.png" style="float: left; margin-top: -5px;"
-                width="55" id="logo" alt="Tosettledown">
-            <center>
-                <img src="/lib/img/logo/logo-text.png" style="padding-top: 1.5px;" width="140" id="logo"
-                    alt="Tosettledown">
-            </center>
+            <span id="mobileLogoId" style="height: 44px;">
+                <span style="display: inline-block; font-size: 24px; font-weight: 500; padding: 5px 0px;">
+                    <% if(title.toLowerCase() == 'encounters') { %>
+                    <img src="/lib/img/logo/logoLandscape.png" style="width: 155px;" id="logo" alt="Tosettledown">
+                    <% } else { %>
+                    <a href="javascript:void(0);" id="backtoChatList" class="backtoChatList"
+                        style="display: inline-block; font-size: 20px; padding: 0px 10px 0px 5px;">
+                        <i class="icon-arrow-left"></i>
+                    </a>
+                    <%= title %>
+                    <% } %>
+                </span>
+            </span>
+
         </div>
     </div>
     <!-- The actual snackbar -->
@@ -79,31 +89,37 @@
             <ul class="">
                 <li class="col-2">
                     <a href="/app/encounters"
-                        class="<%= title.toLowerCase() == 'encounters' ? 'activeMenu' : 'text-darker' %>">
-                        <i class="typcn typcn-compass"></i>
-                        <small>Encounters</small>
+                        class="<%= title.toLowerCase() == 'encounters' ? 'activeMenu' : 'text-menu-dark' %>">
+                        <i style="font-size: 18px; padding: 0px 0px 0px 0px;"
+                            class="<%= title.toLowerCase() == 'encounters' ? 'dripicons-home' : 'dripicons-home' %>"></i>
+                        <small style="font-size: 65% !important;">Encounters</small>
                     </a>
                 </li>
                 <li class="col-1"></li>
                 <li class="col-2">
-                    <a href="/app/chats" class="<%= title.toLowerCase() == 'chats' ? 'activeMenu' : 'text-darker' %>">
-                        <i class="typcn typcn-messages"></i>
-                        <small>Chats</small>
+                    <a href="/app/chats"
+                        class="<%= title.toLowerCase() == 'chats' ? 'activeMenu' : 'text-menu-dark' %>">
+                        <i style="font-size: 22px; padding: 5px 0px;"
+                            class="<%= title.toLowerCase() == 'chats' ? 'fa fa-comments' : 'fa fa-comments-o' %>"></i>
+                        <small style="font-size: 65% !important;">Chats</small>
                     </a>
                 </li>
                 <li class="col-1"></li>
                 <li class="col-2">
                     <a href="/app/matched"
-                        class="<%= title.toLowerCase() == 'matched' ? 'activeMenu' : 'text-darker' %>">
-                        <i class="typcn typcn-point-of-interest"></i>
-                        <small>Matched</small>
+                        class="<%= title.toLowerCase() == 'matched' ? 'activeMenu' : 'text-menu-dark' %>">
+                        <i style="font-size: 22px; padding: 5px 0px;"
+                            class="<%= title.toLowerCase() == 'matched' ? 'fa fa-gg' : 'fa fa-gg' %>"></i>
+                        <small style="font-size: 65% !important;">Matched</small>
                     </a>
                 </li>
                 <li class="col-1"></li>
                 <li class="col-2">
-                    <a href="/app/likes" class="<%= title.toLowerCase() == 'likes' ? 'activeMenu' : 'text-darker' %>">
-                        <i class="typcn typcn-heart-half-outline"></i>
-                        <small>Likes</small>
+                    <a href="/app/likes"
+                        class="<%= title.toLowerCase() == 'likes' ? 'activeMenu' : 'text-menu-dark' %>">
+                        <i style="font-size: 22px; padding: 5px 0px;"
+                            class="<%= title.toLowerCase() == 'likes' ? 'fa fa-heartbeat' : 'fa fa-heartbeat' %>"></i>
+                        <small style="font-size: 65% !important;">Likes</small>
                     </a>
                 </li>
             </ul>

@@ -1,7 +1,14 @@
 <!-- Footer -->
 <br>
 <footer class="footer text-muted float-right" style="border: none; left: unset;">
-    <small>All right reserved, &copy; <%= new Date().getFullYear() %> <b class="text-dark">Tosettledown (TSD), Inc.</b></small>
+    <small>
+        All right reserved
+        <%= new Date().getFullYear() == 2019 ? new String(`&copy; ${new Date().getFullYear()}`) : "" %>
+        <b class="text-dark">Tosettledown (TSD), Inc.</b>
+        <br>
+        <span class="float-right <%= new Date().getFullYear() == 2019 ? 'hide' : 'show' %>">&copy;
+            <%= new String(`2019 - ${new Date().getFullYear()}`) %></span>
+    </small>
 </footer>
 <br><br>
 

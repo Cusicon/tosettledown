@@ -225,7 +225,7 @@ h6 {
 .dropdownContent a {
   display: block;
   color: #0f0f0f;
-  padding: 7px 20px;
+  padding: 8px 20px;
   text-decoration: none;
 }
 
@@ -258,7 +258,7 @@ h6 {
 a.activeProfile {
   display: inline-block;
   border-radius: 100%;
-  padding: 1px !important;
+  padding: 2px !important;
   background-color: #eee;
 }
 
@@ -322,13 +322,13 @@ a:active {
   text-decoration: none;
 }
 
-.activeMenu {
+.activeMenu * {
   font-weight: 500 !important;
   color: #ff6878 !important;
 }
 
-.text-darker {
-  color: #000000 !important;
+.text-menu-dark {
+  color: #46030373 !important;
 }
 
 div.separator {

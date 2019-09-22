@@ -24,9 +24,9 @@
     /* Add a z-index if needed */
     left: 50%;
     /* Center the snackbar */
-    bottom: 80px;
+    bottom: 55px;
     /* 80px from the bottom */
-    font-family: Verdana, Geneva, Tahoma, sans-serif
+    font-size: 13px;
 }
 
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
@@ -43,48 +43,48 @@ However, delay the fade out process for 2.5 seconds */
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {
     from {
-        bottom: 0;
+        /* bottom: 0; */
         opacity: 0;
     }
 
     to {
-        bottom: 80px;
+        /* bottom: 80px; */
         opacity: .9;
     }
 }
 
 @keyframes fadein {
     from {
-        bottom: 0;
+        /* bottom: 0; */
         opacity: 0;
     }
 
     to {
-        bottom: 80px;
+        /* bottom: 80px; */
         opacity: .9;
     }
 }
 
 @-webkit-keyframes fadeout {
     from {
-        bottom: 80px;
+        /* bottom: 80px; */
         opacity: .9;
     }
 
     to {
-        bottom: 0;
+        /* bottom: 0; */
         opacity: 0;
     }
 }
 
 @keyframes fadeout {
     from {
-        bottom: 80px;
+        /* bottom: 80px; */
         opacity: .9;
     }
 
     to {
-        bottom: 0;
+        /* bottom: 0; */
         opacity: 0;
     }
 }

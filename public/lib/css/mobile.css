@@ -34,6 +34,14 @@
         display: block;
     }
 
+    a.activeProfile {
+        padding: 2px !important;
+    }
+
+    a.activeProfile div.image {
+        border-width: 1.5px !important;
+    }
+
     .editProfileCon {
         background-color: #fff !important;
         padding: 0px !important;
@@ -46,7 +54,7 @@
 
     .modal-header h4,
     .modal-body h5 {
-        font-weight: 500 !important;
+        font-weight: 400 !important;
     }
 
     .modal-body .editProfile {
@@ -70,6 +78,17 @@
         width: 100%;
     }
 
+    #snackbar {
+        /* visibility: visible !important; */
+        width: 100% !important;
+        left: 0px !important;
+        margin: 0% !important;
+        border-radius: 0px !important;
+    }
+
+    .activeMenu * {
+        font-weight: bold !important;
+    }
 
     .policyCon,
     .termsCon,
@@ -165,7 +184,7 @@
 
     .wrapperOnMobile .displayWindow {
         display: inline-block !important;
-        border-radius: 30px !important;
+        border-radius: 15px !important;
         border: none !important;
         box-shadow: 0px 3px 10px #ddd !important;
     }
@@ -242,6 +261,7 @@
     }
 
     .profileMain .profileFooter {
+        border: none !important;
         margin-top: 110px !important;
     }
 
@@ -361,6 +381,7 @@
         top: 0%;
         padding: 5px 10px !important;
         width: 100%;
+        box-shadow: 0px -1px 5px #1f1f1f28 !important;
     }
 
     .Chat .ChatWindow .ChatWindowBody {

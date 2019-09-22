@@ -246,8 +246,9 @@
                                                     style="text-align: center; width: 100%; padding-top: 56px; height: 232px;">
                                                     <h4 style="font-weight: lighter;">Click &nbsp;<b>+</b>&nbsp; to
                                                         select your photos</h4>
-                                                    <p style="margin-bottom: 10px; display: block; color: #ccc;">Note:
-                                                        To upload photos, select all images at once.</p>
+                                                    <p style="margin-bottom: 10px; display: block;"
+                                                        class="text-menu-dark">Note:
+                                                        To upload photos, select one at a time.</p>
                                                 </div>
                                             </center>
                                             <input type="file" name="addPhotos" id="addPhotos" class="hide"
@@ -257,6 +258,14 @@
                                     <div class="separator"></div>
                                     <button type="submit" role="button"
                                         class="btn waves-effect waves-light bg-Primary_color">Save</button>
+                                    <div class="onMobile">
+                                        <center>
+                                            <!-- <small> -->
+                                                <a href="javascript: void(0);" data-dismiss="modal" aria-hidden="true"
+                                                    class="text-menu-dark" style="padding: 5px; margin-top: 5px;">Cancel</a>
+                                            <!-- </small> -->
+                                        </center>
+                                    </div>
                                 </form>
                             </div>
                         </div><!-- /.modal-content -->
@@ -272,9 +281,13 @@
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content" style="background-color: transparent;">
                         <div class="modal-header" style="border: 0px;">
-                            <h4 class="modal-title" id="addPhotosModal" style="color: #fff !important;">Photo <span
-                                    class="bg-Primary_color" style="border-radius: 5px; padding: 5px;">Preview</span>
+                            <h4 class="modal-title" id="addPhotosModal" style="color: #fff !important;">Photo 
+                                <span class="bg-Primary_color" style="border-radius: 5px; padding: 5px;">Preview</span>
                             </h4>
+                            <button type="button" class="btn waves-effect waves-light" data-dismiss="modal"
+                                aria-hidden="true" style="padding: 5px 10px !important;">
+                                <i class="typcn typcn-times" style="color: #fff; font-size: 20px;"></i>
+                            </button>
                         </div>
                         <div class="displayImageCon"
                             style="padding: 10px 0px; background-color: transparent; text-align: center !important;">
@@ -312,14 +325,14 @@
                                 <div class="dropdownContent" id="dropdownContent">
                                     <% if (user.username != profile_user.username) { %>
                                     <span class="onMobile">
-                                        <a href="/app/chats/<%= profile_user.username %>" style="font-weight: 500 !important;">
+                                        <a href="/app/chats/<%= profile_user.username %>"
+                                            style="font-weight: 500 !important;">
                                             Chat <%= profile_user.gender == "male" ? "Him" : "Her" %> up
                                         </a>
                                         <div class="separator"></div>
                                     </span>
                                     <% } %>
-                                    <a id="share" href="javascript:void(0);"
-                                        onclick="share(`${location.href}`);">
+                                    <a id="share" href="javascript:void(0);" onclick="share(`${location.href}`);">
                                         Share
                                         <span class="fi-share" class="color"
                                             style="font-size: 18px; float: right !important;"></span>
@@ -371,7 +384,7 @@
                                     <ul class="profileHeadWrapperBtn">
                                         <% if (user.username != profile_user.username) { %>
                                         <!-- Like and Dislike -->
-                                        <li style="display: inline-block;">
+                                        <li>
                                             <a href="javascript: void(0);" id="like" title="Like"
                                                 data-username="<%=profile_user.username%>"
                                                 style="border: 1px solid #ececec; color: #ff6878 !important;">
@@ -394,6 +407,7 @@
                                 <h6 style="font-size: 13px;"><b>@<%= profile_user.username %></b></h6>
                             </div>
                             <div class="bio float-left ">
+                                <small style="font-size: 13px; font-weight: 500;">Bio</small>
                                 <p>
                                     <%= profile_user.personalInfo.bio %>
                                 </p>
