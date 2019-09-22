@@ -62,7 +62,15 @@ module["exports"] = class User extends Model {
     }
 
     async photos() {
-        return await Photo.find({user_id: this.id});
+        // return await Photo.find({user_id: this.id});
+        return await Photo.find({
+            $or: [{
+                    user_id: this.id,
+                },
+                {
+                    model_id: this.id
+                }]
+        });
     }
 
     get fullname() {
@@ -89,12 +97,11 @@ module["exports"] = class User extends Model {
         return false;
     }
 
-    get avatar(){
-        if(super.avatar)
-        {
+    get avatar() {
+        if (super.avatar) {
             return super.avatar;
-        }else {
-            return (this.gender === 'male')? `/lib/img/assets/reduced/male.png` : `/lib/img/assets/reduced/female.png`;
+        } else {
+            return (this.gender === 'male') ? `/lib/img/assets/reduced/male.png` : `/lib/img/assets/reduced/female.png`;
         }
     }
 }

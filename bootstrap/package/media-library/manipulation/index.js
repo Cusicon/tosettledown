@@ -13,7 +13,7 @@ class Manipulation{
 
     manipulate(file){
         return Jimp.read(file.path)
-            .then(file => file.resize(this.option.width, this.option.height)
+            .then(file => file//resize(this.option.width, this.option.height)
                     .quality(this.option.quality)
                     .getBufferAsync(file.getMIME())
             ).catch(err => {
