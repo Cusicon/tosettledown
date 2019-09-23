@@ -9,12 +9,12 @@ module["exports"] = function (req, res, next) {
                 }
                 next();
             } else {
-                next();
-                // if (req.path.includes(`/profile/${req.user.username}`)) {
-                //     next()
-                // } else {
-                //     res.redirect(`/app/profile/${req.user.username}`);
-                // }
+                // next();
+                if (req.user.avatar != null) {
+                    next()
+                } else {
+                    res.redirect(`/app/profile/${req.user.username}`);
+                }
             }
         });
     } else {
