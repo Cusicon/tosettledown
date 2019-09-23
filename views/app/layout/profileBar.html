@@ -31,7 +31,7 @@
                 <ul class="row">
                     <li class="col-md-1 col-sm-0" style="width: unset;"></li>
                     <li class="col-md-5 col-sm-5" style="width: unset;">
-                        <a href="javascript: void(0);" onclick="mySnackbar('Youre on free mode!');" data-href="/app/wallet/balance" id="settlesBalance" title="Settle wallet and balance.">
+                        <a href="javascript: void(0);" onclick="mySnackbar('You\'re on free mode!');" data-href="/app/wallet/balance" id="settlesBalance" title="Settle wallet and balance.">
                             <center>
                                 <img src="/lib/img/assets/reduced/settle-topup.png" alt="settlesLogo" width="35"
                                     id="settleImg">
@@ -43,7 +43,7 @@
                         </a>
                     </li>
                     <li class="col-md-5 col-sm-5" style="width: unset;">
-                        <a href="javascript: void(0);" onclick="mySnackbar('Youre on free mode!');" data-href="/app/packages/premium" id="getPremium" title="Activate premium.">
+                        <a href="javascript: void(0);" onclick="mySnackbar('You\'re on free mode!');" data-href="/app/packages/premium" id="getPremium" title="Activate premium.">
                             <center>
                                 <img src="/lib/img/assets/reduced/premium-topup.png" alt="premiumLogo" width="37"
                                     id="premium">
@@ -63,26 +63,26 @@
                 <li>
                     <a href="/app/encounters" class="<%= title.toLowerCase() == 'encounters' ? 'activeMenu' : '' %>"
                         id="encounters">
-                        <span><i class="typcn typcn-compass"></i> &nbsp; Encounters</span>
+                        <span><i class="<%= title.toLowerCase() == 'encounters' ? 'fa fa-hourglass' : 'fa fa-hourglass-half' %>"></i> &nbsp; Encounters</span>
                         <span class="badge float-right hide">New</span>
                     </a>
                 </li>
                 <li>
                     <a href="/app/chats" class="<%= title.toLowerCase() == 'chats' ? 'activeMenu' : '' %>" id="chats">
-                        <span><i class="typcn typcn-messages"></i> &nbsp; Chats</span>
+                        <span><i class="<%= title.toLowerCase() == 'chats' ? 'fa fa-comments' : 'fa fa-comments-o' %>"></i> &nbsp; Chats</span>
                         <span class="badge float-right hide">New</span>
                     </a>
                 </li>
                 <li>
                     <a href="/app/matched" class="<%= title.toLowerCase() == 'matched' ? 'activeMenu' : '' %>"
                         id="matched">
-                        <span><i class="typcn typcn-point-of-interest"></i> &nbsp; Matched</span>
+                        <span><i class="<%= title.toLowerCase() == 'matched' ? 'fa fa-gg' : 'fa fa-gg' %>"></i> &nbsp; Matched</span>
                         <span class="badge float-right hide">New</span>
                     </a>
                 </li>
                 <li>
                     <a href="/app/likes" class="<%= title.toLowerCase() == 'likes' ? 'activeMenu' : '' %>" id="likes">
-                        <span><i class="typcn typcn-heart-half-outline"></i> &nbsp; Likes</span>
+                        <span><i class="<%= title.toLowerCase() == 'likes' ? 'fa fa-heartbeat' : 'fa fa-heartbeat' %>"></i> &nbsp; Likes</span>
                         <span class="badge float-right hide">New</span>
                     </a>
                 </li>
@@ -96,7 +96,7 @@
                 <li>
                     <a href="/app/favourites" class="<%= title.toLowerCase() == 'favourites' ? 'activeMenu' : '' %>"
                         id="favourites">
-                        <span><i class="typcn typcn-star-full-outline"></i> &nbsp; Favourites</span>
+                        <span><i class="<%= title.toLowerCase() == 'favourites' ? 'fa fa-star' : 'fa fa-star-half-o' %>"></i> &nbsp; Favourites</span>
                         <span class="badge float-right hide">New</span>
                     </a>
                 </li>

@@ -32,7 +32,7 @@
                 </p>
                 <br>
                 <div class="btnCon waves-effect waves-light">
-                    <a href="/#loginForm" role="button" class="btn waves-effect waves-light" style="width: 100px;"
+                    <a href="/#loginForm" role="button" class="btn waves-effect waves-light" style="min-width: 100px;"
                         id="loginBtn">Sign
                         In</a>
                 </div>
@@ -99,8 +99,8 @@
                             style="padding: 15px 0px !important; margin-bottom: 5px;"
                             aria-describedby="submitFormHelp">Sign
                             up with Tosettledown (TSD)</button>
-                        <small id="submitFormHelp" class="form-text text-muted">By clicking
-                            <i>"Sign Up with Tosettledown (TSD)"</i>,
+                        <small id="submitFormHelp" class="text-muted">By clicking
+                            <b class="text-dark"><i>"Sign Up with Tosettledown (TSD)"</i></b>,
                             you agree to our <a href="/terms">terms of services</a>, <a href="/policy">privacy
                                 policy</a> and <a href="/cookie">cookie policy</a>.
                         </small>
@@ -159,10 +159,15 @@
             <!-- END OF SIGN IN -->
             <!--            footer-->
             <footer class="footer text-muted float-right" style="padding: 10px; padding-right: 40px;">
-                <br>
                 <footer class="footer text-muted float-right" style="border: none; left: unset;">
-                    <small>All right reserved &copy; <%= new Date().getFullYear() %> <b class="text-dark">Tosettledown
-                            (TSD), Inc.</b></small>
+                    <small>
+                        All right reserved
+                        <%= new Date().getFullYear() == 2019 ? new String(`&copy; ${new Date().getFullYear()}`) : "" %>
+                        <b class="text-dark">Tosettledown (TSD), Inc.</b>
+                        <br>
+                        <span class="float-right <%= new Date().getFullYear() == 2019 ? 'hide' : 'show' %>">&copy;
+                            <%= new String(`2019 - ${new Date().getFullYear()}`) %></span>
+                    </small>
                 </footer>
                 <br><br>
             </footer>

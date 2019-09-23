@@ -225,7 +225,7 @@ h6 {
 .dropdownContent a {
   display: block;
   color: #0f0f0f;
-  padding: 5px 20px;
+  padding: 8px 20px;
   text-decoration: none;
 }
 
@@ -268,7 +268,7 @@ a.activeProfile.hasStories {
 
 a.activeProfile.noStories {
   background-image: none;
-  background-color: #cecece;
+  background-color: #303030;
 }
 
 a div.image {
@@ -322,13 +322,13 @@ a:active {
   text-decoration: none;
 }
 
-.activeMenu {
+.activeMenu * {
   font-weight: 500 !important;
   color: #ff6878 !important;
 }
 
-.text-darker {
-  color: #000000 !important;
+.text-menu-dark {
+  color: #46030373 !important;
 }
 
 div.separator {

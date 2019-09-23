@@ -1,22 +1,23 @@
 module["exports"] = function (req, res, next) {
 
-    if(req.user) {
+    if (req.user) {
         req.user.photos().then(photos => {
-            if(photos.length > 0){
-                if(req.user.avatar == null){
+            if (photos.length > 0) {
+                if (req.user.avatar == null) {
                     req.user.avatar = photos[0].location;
                     req.user.save();
                 }
                 next();
-            }else{
-                if(req.path.includes(`/profile/${req.user.username}`)){
-                    next()
-                }else{
-                    res.redirect(`/app/profile/${req.user.username}`);
-                }
+            } else {
+                next();
+                // if (req.path.includes(`/profile/${req.user.username}`)) {
+                //     next()
+                // } else {
+                //     res.redirect(`/app/profile/${req.user.username}`);
+                // }
             }
         });
-    }else{
+    } else {
         res.redirect(`/`);
     }
 };

@@ -34,12 +34,60 @@
         display: block;
     }
 
+    a.activeProfile {
+        padding: 2px !important;
+    }
+
+    a.activeProfile div.image {
+        border-width: 1.5px !important;
+    }
+
+    .editProfileCon {
+        background-color: #fff !important;
+        padding: 0px !important;
+    }
+
+    .modal-header,
+    .modal-body {
+        padding: 15px !important;
+    }
+
+    .modal-header h4,
+    .modal-body h5 {
+        font-weight: 400 !important;
+    }
+
+    .modal-body .editProfile {
+        padding: 0px !important;
+    }
+
+    .modal-body .editProfile .container-fluid {
+        padding: 10px !important;
+    }
+
+    .modal-body .editProfile .editProfileLeft,
+    .modal-body .editProfile .editProfileRight {
+        padding: 0px 10px !important;
+    }
+
     .modal .modal-dialog .modal-title {
         font-size: 20px;
     }
 
     .modal .btn.bg-Primary_color {
         width: 100%;
+    }
+
+    #snackbar {
+        /* visibility: visible !important; */
+        width: 100% !important;
+        left: 0px !important;
+        margin: 0% !important;
+        border-radius: 0px !important;
+    }
+
+    .activeMenu * {
+        font-weight: bold !important;
     }
 
     .policyCon,
@@ -68,7 +116,8 @@
         width: 100%;
     }
 
-    .errorPage center section {
+    .errorPage center section,
+    .verifyMessage center section {
         width: 90% !important;
         padding: 10px !important;
         margin: 0px;
@@ -76,15 +125,19 @@
         background-color: transparent !important;
     }
 
-    .errorPage center section h2 {
+    .errorPage center section h2,
+    .verifyMessage center section h2 {
         font-size: 27px;
     }
 
-    .errorPage center section p {
+    .errorPage center section p,
+    .verifyMessage center section p {
         font-size: 13px;
     }
 
-    .errorPage center section a {
+    .errorPage center section a,
+    .errorPage center section button,
+    .verifyMessage center section a {
         width: 100%;
         font-size: 13px !important;
         padding: 5px 10px;
@@ -131,7 +184,7 @@
 
     .wrapperOnMobile .displayWindow {
         display: inline-block !important;
-        border-radius: 30px !important;
+        border-radius: 15px !important;
         border: none !important;
         box-shadow: 0px 3px 10px #ddd !important;
     }
@@ -208,12 +261,13 @@
     }
 
     .profileMain .profileFooter {
+        border: none !important;
         margin-top: 110px !important;
     }
 
     .onMobile .mobileNavigator {
         position: fixed;
-        bottom: 0%;
+        bottom: -1px;
         width: 100%;
         z-index: 100;
         box-shadow: 0px -1px 5px #1f1f1f28 !important;
@@ -222,14 +276,14 @@
     }
 
     .onMobile .mobileNavigator ul li {
-        display: inline-flex;
+        display: inline-grid;
         margin: 0px;
     }
 
     .onMobile .mobileNavigator ul li a * {
         width: 100%;
         text-align: center !important;
-        font-size: 25px;
+        font-size: 23px;
     }
 
     .onMobile .mobileNavigator ul li a small {
@@ -327,6 +381,7 @@
         top: 0%;
         padding: 5px 10px !important;
         width: 100%;
+        box-shadow: 0px -1px 5px #1f1f1f28 !important;
     }
 
     .Chat .ChatWindow .ChatWindowBody {

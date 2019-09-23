@@ -153,12 +153,6 @@
 
                                             </div>
                                         </div>
-
-                                        <p class="float-left" style="width: 90%;">
-                                                <i class="typcn typcn-warning text-warning" style="font-size: 20px;"></i>
-                                                <b>Note:</b>
-                                                Username can't be modified or changed
-                                        </p>
                                     </form>
 
                                     <br>
@@ -178,41 +172,41 @@
 
                 <!-- Settings Modal -->
                 <div class="modal fade settingsCon" id="settingsCon" tabindex="-1" role="dialog"
-                        aria-labelledby="SettingsModal" style="display: none;" aria-hidden="true">
-                        <div class="modal-dialog modal-md modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title" id="SettingsModal">Profile <span class="bg-Primary_color"
-                                            style="border-radius: 5px; padding: 5px;">Settings</span></h4>
-                                </div>
-                                <div class="modal-body" style="padding: 5px; text-align: center !important;">
-                                    <a href="#"
-                                        style="font-weight: 400; border-bottom: 1px solid #eee; display: block; padding: 8px;"
-                                        data-dismiss="modal">
-                                        <i style="font-size: 20px;" class="typcn typcn-user"></i>
-                                        &nbsp; Account
-                                    </a>
+                    aria-labelledby="SettingsModal" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog modal-md modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="SettingsModal">Profile <span class="bg-Primary_color"
+                                        style="border-radius: 5px; padding: 5px;">Settings</span></h4>
+                            </div>
+                            <div class="modal-body" style="padding: 5px; text-align: center !important;">
+                                <a href="#"
+                                    style="font-weight: 400; border-bottom: 1px solid #f3f3f3; display: block; padding: 8px;"
+                                    data-dismiss="modal">
+                                    <i style="font-size: 20px;" class="typcn typcn-user"></i>
+                                    &nbsp; Account
+                                </a>
 
-                                    <a href="#"
-                                        style="font-weight: 400; border-bottom: 1px solid #eee; display: block; padding: 8px;"
-                                        data-dismiss="modal">
-                                        <i style="font-size: 20px;" class="typcn typcn-credit-card"></i>
-                                        &nbsp;Payments
-                                    </a>
+                                <a href="#"
+                                    style="font-weight: 400; border-bottom: 1px solid #f3f3f3; display: block; padding: 8px;"
+                                    data-dismiss="modal">
+                                    <i style="font-size: 20px;" class="typcn typcn-credit-card"></i>
+                                    &nbsp;Payments
+                                </a>
 
-                                    <a href="#"
-                                        style="font-weight: 400; border-bottom: 1px solid #eee; display: block; padding: 8px;"
-                                        data-dismiss="modal">
-                                        <i style="font-size: 20px;" class="typcn typcn-key-outline"></i>
-                                        &nbsp;Security
-                                    </a>
+                                <a href="#"
+                                    style="font-weight: 400; border-bottom: 1px solid #f3f3f3; display: block; padding: 8px;"
+                                    data-dismiss="modal">
+                                    <i style="font-size: 20px;" class="typcn typcn-key-outline"></i>
+                                    &nbsp;Security
+                                </a>
 
-                                    <a href="#"
-                                        style="font-weight: 400; border-bottom: 1px solid #eee; display: block; padding: 8px;"
-                                        data-dismiss="modal">
-                                        <i style="font-size: 20px;" class="typcn typcn-support"></i>
-                                        &nbsp; Help
-                                    </a>
+                                <a href="#"
+                                    style="font-weight: 400; border-bottom: 1px solid #f3f3f3; display: block; padding: 8px;"
+                                    data-dismiss="modal">
+                                    <i style="font-size: 20px;" class="typcn typcn-support"></i>
+                                    &nbsp; Help
+                                </a>
 
                                     <!-- Sign Out -->
                                     <a href="/auth/0/signin/out" id="SignOut" class="color"
@@ -254,8 +248,9 @@
                                                     style="text-align: center; width: 100%; padding-top: 56px; height: 232px;">
                                                     <h4 style="font-weight: lighter;">Click &nbsp;<b>+</b>&nbsp; to
                                                         select your photos</h4>
-                                                    <p style="margin-bottom: 10px; display: block; color: #ccc;">Note:
-                                                        To upload photos, select all images at once.</p>
+                                                    <p style="margin-bottom: 10px; display: block;"
+                                                        class="text-menu-dark">Note:
+                                                        To upload photos, select one at a time.</p>
                                                 </div>
                                             </center>
                                             <input type="file" name="addPhotos" id="addPhotos" class="hide"
@@ -265,6 +260,14 @@
                                     <div class="separator"></div>
                                     <button type="submit" role="button"
                                         class="btn waves-effect waves-light bg-Primary_color">Save</button>
+                                    <div class="onMobile">
+                                        <center>
+                                            <!-- <small> -->
+                                            <a href="javascript: void(0);" data-dismiss="modal" aria-hidden="true"
+                                                class="text-menu-dark" style="padding: 10px; margin-top: 5px;">Cancel</a>
+                                            <!-- </small> -->
+                                        </center>
+                                    </div>
                                 </form>
                             </div>
                         </div><!-- /.modal-content -->
@@ -279,9 +282,13 @@
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content" style="background-color: transparent;">
                         <div class="modal-header" style="border: 0px;">
-                            <h4 class="modal-title" id="addPhotosModal" style="color: #fff !important;">Photo <span
-                                    class="bg-Primary_color" style="border-radius: 5px; padding: 5px;">Preview</span>
+                            <h4 class="modal-title" id="addPhotosModal" style="color: #fff !important;">Photo
+                                <span class="bg-Primary_color" style="border-radius: 5px; padding: 5px;">Preview</span>
                             </h4>
+                            <button type="button" class="btn waves-effect waves-light" data-dismiss="modal"
+                                aria-hidden="true" style="padding: 5px 10px !important;">
+                                <i class="typcn typcn-times" style="color: #fff; font-size: 20px;"></i>
+                            </button>
                         </div>
                         <div class="displayImageCon"
                             style="padding: 10px 0px; background-color: transparent; text-align: center !important;">
@@ -322,21 +329,10 @@
 
                                 <div class="dropdownContent" id="dropdownContent">
                                     <% if (user.username != profile_user.username) { %>
-                                        <span class="onMobile">
-                                            <a href="/app/chats/<%= profile_user.username %>">
-                                                Chat <%= profile_user.gender == "male" ? "Him" : "Her" %> up
-                                            </a>
-                                            <div class="separator"></div>
-                                        </span>
-
-                                        <a id="favourite-drpdown" href="javascript:void(0);"
-                                           data-username="<%=profile_user.username%>">Add to favourites</a>
-
-                                        <a id="share" href="javascript:void(0);"
-                                           onclick="share(`${location.href}`);">
-                                            Share
-                                            <span class="fi-share color"
-                                                  style="font-size: 18px; float: right !important;"></span>
+                                    <span class="onMobile">
+                                        <a href="/app/chats/<%= profile_user.username %>"
+                                            style="font-weight: 500 !important;">
+                                            Chat <%= profile_user.gender == "male" ? "Him" : "Her" %> up
                                         </a>
 
                                         <a href="#" class="color">Block or Report</a>
@@ -361,12 +357,39 @@
                                            data-target=".editProfileCon">Edit profile</a>
 
                                         <div class="separator"></div>
-
-                                        <a href="#" class="dropdownBottom" id="settingsBtn" data-toggle="modal"
-                                           data-target=".settingsCon" style="color: #000;">
-                                            Settings
-                                            <span class="typcn typcn-cog float-right"></span>
-                                        </a>
+                                    </span>
+                                    <% } %>
+                                    <a id="share" href="javascript:void(0);" onclick="share(`${location.href}`);">
+                                        Share
+                                        <span class="fi-share" class="color"
+                                            style="font-size: 18px; float: right !important;"></span>
+                                    </a>
+                                    <% if (user.username != profile_user.username) { %>
+                                    <a id="favourite-dropdown" href="javascript:void(0);"
+                                        data-username="<%=profile_user.username%>">Add to favourites</a>
+                                    <% } %>
+                                    <% if (user.username == profile_user.username) { %>
+                                    <div class="onMobile">
+                                        <a href="/app/visitors">Visitors</a>
+                                    </div>
+                                    <div class="onMobile">
+                                        <a href="/app/favourites">Favourites</a>
+                                    </div>
+                                    <% } %>
+                                    <% if (user.username == profile_user.username) { %>
+                                    <a href="#" id="editProfileBtn" data-toggle="modal"
+                                        data-target=".editProfileCon">Edit profile</a>
+                                    <% } %>
+                                    <% if (user.username != profile_user.username) { %>
+                                    <a href="#" class="color">Block or Report</a>
+                                    <% } %>
+                                    <% if (user.username == profile_user.username) { %>
+                                    <div class="separator"></div>
+                                    <a href="#" class="dropdownBottom" id="settingsBtn" data-toggle="modal"
+                                        data-target=".settingsCon" style="color: #000;">
+                                        Settings
+                                        <span class="typcn typcn-cog float-right"></span>
+                                    </a>
                                     <% } %>
                                 </div>
                             </div>
@@ -386,14 +409,14 @@
                                     </a>
                                     <ul class="profileHeadWrapperBtn">
                                         <% if (user.username != profile_user.username) { %>
-                                            <!-- Like and Dislike -->
-                                            <li style="display: inline-block;">
-                                                <a href="javascript: void(0);" id="like" title="Like"
-                                                    data-username="<%=profile_user.username%>"
-                                                    style="border: 1px solid #ececec; color: #ff6878 !important;">
-                                                    <i class="typcn typcn-heart-full-outline"></i>
-                                                </a>
-                                            </li>
+                                        <!-- Like and Dislike -->
+                                        <li>
+                                            <a href="javascript: void(0);" id="like" title="Like"
+                                                data-username="<%=profile_user.username%>"
+                                                style="border: 1px solid #ececec; color: #ff6878 !important;">
+                                                <i class="typcn typcn-heart-full-outline"></i>
+                                            </a>
+                                        </li>
                                         <% } %>
                                     </ul>
                                 </div>
@@ -410,14 +433,17 @@
                                 <h6 style="font-size: 13px;"><b>@<%= profile_user.username %></b></h6>
                             </div>
                             <div class="bio float-left ">
-                                <p><%= profile_user.personalInfo.bio %></p>
+                                <small style="font-size: 13px; font-weight: 500;">Bio</small>
+                                <p>
+                                    <%= profile_user.personalInfo.bio %>
+                                </p>
                             </div>
                         </div>
                     </div>
 
                     <a href=javascript:void(0); id="dropdownToggleBtn"
                         class="float-right dropdownToggleBtn text-dark btn waves-effect waves-light" role="button"
-                        style="font-size: 30px; padding: 5px 10px 0px 10px !important;">
+                        style="font-size: 30px; padding: 5px 5px 0px 5px !important;">
                         <i class="pe-7s-angle-down-circle"></i>
                     </a>
                 </footer>

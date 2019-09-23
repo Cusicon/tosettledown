@@ -62,14 +62,16 @@ module["exports"] = class User extends Model {
     }
 
     async photos() {
-        // return await Photo.find({user_id: this.id});
         return await Photo.find({
-            $or: [{
-                    user_id: this.id,
+            model: 'user',
+            $or: [
+                {
+                    user_id: this.id
                 },
                 {
                     model_id: this.id
-                }]
+                }
+            ]
         });
     }
 

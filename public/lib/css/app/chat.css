@@ -33,8 +33,6 @@
     display: block;
     height: 71px;
     width: 100%;
-    border-left: 1px solid #eee;
-    border-bottom: 1px solid #eee;
 }
 
 li.user:last-child {
@@ -109,10 +107,12 @@ li.user:last-child {
 
 .Chat .ChatWindow .ChatWindowHead {
     display: block;
-    border-bottom: 2px solid #eee;
+    border-bottom: 1px solid #eee;
     background-color: #fff;
     padding: 10px 20px;
     height: 70px;
+    /* box-shadow: 0px -1px 5px #c9c9c959 !important; */
+    box-shadow: 0px -1px 5px #1f1f1f28 !important;
 }
 
 .Chat .ChatWindow .ChatWindowHead div#chat-profile-img {
@@ -367,7 +367,7 @@ li.user:last-child {
     background-color: #fff;
     padding-top: 10px !important;
     border-top: 1px solid #eee;
-    box-shadow: 0px -1px 5px #c9c9c928 !important;
+    box-shadow: 0px -1px 5px #1f1f1f28 !important;
 }
 
 .ChatWindowFooter #message-input {
