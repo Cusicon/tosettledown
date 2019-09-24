@@ -234,8 +234,6 @@
                                 </a>
                             </div>
                             <div class="modal-body" style="padding: 15px; text-align: center !important;">
-                                <form id="addPhotosForm">
-                                    <!-- Image previewer -->
                                     <div style="position: relative;" class="addPhotosCon">
                                         <!-- Display container -->
                                         <div class="info">
@@ -264,14 +262,13 @@
                                             class="btn-block btn waves-effect waves-light bg-Primary_color">Done</button>
 
                                     <div class="onMobile">
-                                        <center>
+                                        <div style="text-align: center;">
                                             <!-- <small> -->
                                             <a href="javascript: void(0);" data-dismiss="modal" aria-hidden="true"
                                                 class="text-menu-dark" style="padding: 10px; margin-top: 5px;">Cancel</a>
                                             <!-- </small> -->
-                                        </center>
+                                        </div>
                                     </div>
-                                </form>
                             </div>
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
@@ -315,105 +312,68 @@
                 <header>
                     <ul>
                         <% if (user.username != profile_user.username) { %>
-                            <li>
-                                <a href="/app/chats/<%= profile_user.username %>"
-                                    class="btn waves-effect waves-light bg-Primary_color" id="chatBtn" role="button"
-                                    style="padding: 10px 25px; margin-right: 10px; text-align: center;">
-                                    Chat <b><%= profile_user.fullname.firstname %></b> up</a>
-                            </li>
+                        <li>
+                            <a href="/app/chats/<%= profile_user.username %>"
+                               class="btn waves-effect waves-light bg-Primary_color" id="chatBtn" role="button"
+                               style="padding: 10px 25px; margin-right: 10px; text-align: center;">
+                                Chat <b><%= profile_user.fullname.firstname %></b> up</a>
+                        </li>
                         <% } %>
 
                         <li>
                             <div class="dropdown">
                                 <a href="#" class="btn waves-effect waves-light dropBtn" id="dropBtn" role="button"
-                                    style="padding: 13px 5px 10px 5px !important; color: #1a1a1a;">
+                                   style="padding: 13px 5px 10px 5px !important; color: #1a1a1a;">
                                     <i class="icon-options-vertical" style="font-size: 20px;"></i>
                                 </a>
 
                                 <div class="dropdownContent" id="dropdownContent">
                                     <% if (user.username != profile_user.username) { %>
                                     <span class="onMobile">
-                                        <a href="/app/chats/<%= profile_user.username %>"
-                                            style="font-weight: 500 !important;">
-                                            Chat <%= profile_user.gender == "male" ? "Him" : "Her" %> up
-                                        </a>
+                                            <a href="/app/chats/<%= profile_user.username %>">
+                                                Chat <%= profile_user.gender == "male" ? "Him" : "Her" %> up
+                                            </a>
+                                            <div class="separator"></div>
+                                        </span>
 
-                                        <a id="share" href="javascript:void(0);" onclick="share(`${location.href}`);">
-                                            Share
-                                            <span class="fi-share" class="color"
-                                                  style="font-size: 18px; float: right !important;"></span>
-                                        </a>
+                                    <a id="favourite-drpdown" href="javascript:void(0);"
+                                       data-username="<%=profile_user.username%>">Add to favourites</a>
 
-                                        <div class="separator"></div>
+                                    <a id="share" href="javascript:void(0);"
+                                       onclick="share(`${location.href}`);">
+                                        Share
+                                        <span class="fi-share color"
+                                              style="font-size: 18px; float: right !important;"></span>
+                                    </a>
 
-                                        <a href="#" class="color">Block or Report</a>
-                                    </span>
-
+                                    <a href="#" class="color">Block or Report</a>
 
                                     <% } else { %>
 
-                                        <a id="share" href="javascript:void(0);"
-                                           onclick="share(`${location.href}`);">
-                                            Share
-                                            <span class="fi-share color"
-                                                  style="font-size: 18px; float: right !important;"></span>
-                                        </a>
-
-                                        <div class="onMobile">
-                                            <a href="/app/visitors">Visitors</a>
-                                        </div>
-                                        <div class="onMobile">
-                                            <a href="/app/favourites">Favourites</a>
-                                        </div>
-
-                                        <a href="#" id="editProfileBtn" data-toggle="modal"
-                                           data-target=".editProfileCon">Edit profile</a>
-
-                                        <div class="separator"></div>
-
-                                        <a href="#" class="dropdownBottom" id="settingsBtn" data-toggle="modal"
-                                           data-target=".settingsCon" style="color: #000;">
-                                        Settings
-                                        <span class="typcn typcn-cog float-right"></span>
-                                    </a>
-                                    <% } %>
-
-
-                                    <a id="share" href="javascript:void(0);" onclick="share(`${location.href}`);">
+                                    <a id="share" href="javascript:void(0);"
+                                       onclick="share(`${location.href}`);">
                                         Share
-                                        <span class="fi-share" class="color"
-                                            style="font-size: 18px; float: right !important;"></span>
+                                        <span class="fi-share color"
+                                              style="font-size: 18px; float: right !important;"></span>
                                     </a>
 
-                                    <% if (user.username != profile_user.username) { %>
-                                    <a id="favourite-dropdown" href="javascript:void(0);"
-                                        data-username="<%=profile_user.username%>">Add to favourites</a>
-                                    <% } %>
-                                    <% if (user.username == profile_user.username) { %>
                                     <div class="onMobile">
                                         <a href="/app/visitors">Visitors</a>
                                     </div>
                                     <div class="onMobile">
                                         <a href="/app/favourites">Favourites</a>
                                     </div>
-                                    <% } %>
-                                    <% if (user.username == profile_user.username) { %>
+
                                     <a href="#" id="editProfileBtn" data-toggle="modal"
-                                        data-target=".editProfileCon">Edit profile</a>
-                                    <% } %>
-                                    <% if (user.username != profile_user.username) { %>
-                                    <a href="#" class="color">Block or Report</a>
-                                    <% } %>
-                                    <% if (user.username == profile_user.username) { %>
+                                       data-target=".editProfileCon">Edit profile</a>
+
                                     <div class="separator"></div>
+
                                     <a href="#" class="dropdownBottom" id="settingsBtn" data-toggle="modal"
-                                        data-target=".settingsCon" style="color: #000;">
+                                       data-target=".settingsCon" style="color: #000;">
                                         Settings
                                         <span class="typcn typcn-cog float-right"></span>
                                     </a>
-
-
-
                                     <% } %>
                                 </div>
                             </div>
@@ -479,22 +439,22 @@
                         <section class="row">
                             <div class="viewProfileLeft col-md-8">
                                 <div class="form-group">
-                                    <h5 class="" style="font-weight: lighter; font-weight: 500;">Location</h5>
+                                    <h5 class="" style="font-weight: 500;">Location</h5>
                                     <p><%= profile_user.personalInfo.location %></p>
                                 </div>
                                 <div class="form-group">
-                                    <h5 class="" style="font-weight: lighter; font-weight: 500;">Work & Occupation
+                                    <h5 class="" style="font-weight: 500;">Work & Occupation
                                     </h5>
                                     <p><%= profile_user.personalInfo.work %></p>
                                 </div>
                                 <div class="form-group">
-                                    <h5 class="" style="font-weight: lighter; font-weight: 500;">Education</h5>
+                                    <h5 class="" style="font-weight: 500;">Education</h5>
                                     <p><%= profile_user.personalInfo.education %></p>
                                 </div>
                             </div>
 
                             <div class="viewProfileRight col-md-4">
-                                <h5 class="" style="font-weight: lighter; font-weight: 500;">Personal Info(s)</h5>
+                                <h5 class="" style="font-weight: 500;">Personal Info(s)</h5>
                                 <div class="editPersonalInfo form-group">
                                     <div class="form-group">
                                         <p><small class="">Height:
@@ -532,9 +492,8 @@
 
                                 <% if (user.username == profile_user.username) { %>
                                     <li class="col-1 col-md-1 col-sm-1">
-                                        <a href=javascript:void(0); class="text-dark btn waves-effect waves-light addImages"
-                                            id="addPhotosBtn" role="button" data-toggle="modal" data-countbtn="0"
-                                            data-target=".addPhotosCon" onclick="$('#addPhotos').trigger('click');">
+                                        <a href=javascript:void(0); class="addPhotoBtn text-dark btn waves-effect waves-light addImages"
+                                            id="addPhotosBtn" role="button" data-countbtn="0">
                                             <i class="typcn typcn-plus-outline"></i>
                                         </a>
                                     </li>
@@ -576,9 +535,8 @@
                                     <br>
                                     <p style="font-size: 15px !important;">When you upload your photos, they will appear here on
                                         your profile...</p>
-                                    <a href=javascript:void(0); class="color btn waves-effect waves-light" id="addPhotosBtn"
-                                       role="button" data-toggle="modal" data-target=".addPhotosCon"
-                                       onclick="$('#addPhotos').trigger('click');">
+                                    <a href=javascript:void(0); class="addPhotoBtn color btn waves-effect waves-light" id="addPhotosBtn"
+                                       role="button">
                                         Upload your first photo.
                                     </a>
                                     <div class="nophoto"></div>

@@ -53,45 +53,6 @@ class DigitalOceanStorage {
         return  await media.save();
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     upload(model, name, newName = null, callback){
 
         let filename = function(req, file, cb){

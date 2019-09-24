@@ -6,13 +6,13 @@ function addPhotosPreview(input, placeToInsertImagePreview) {
             $(placeToInsertImagePreview).html($($.parseHTML("<img>"))
                 .attr({
                     src: event.target.result,
-                    style: `max-width: 100%; max-height: 500px`,
+                    style: `width: 100%; height: 500px`,
                     id: "selectedPhoto",
                     class: "cropper-img-holder",
                     alt: "Photo"
                 })
             ).removeClass("hide");
-            initCropper('.cropper-img-holder')
+            initCropper('.cropper-img-holder');
         };
         reader.readAsDataURL(input.files[0]);
     }
@@ -26,20 +26,18 @@ function initCropper(imageHolder) {
 
         }
     });
-
         // On crop button clicked
     $('#crop_button').on('click', function (e) {
         e.preventDefault();
         let fileData = document.getElementById('addPhotos').files.item(0);
         let imgDataUrl = cropper.getCroppedCanvas().toDataURL(fileData.type, 60);
 
-        let formData = {};
-
-        // Pass the image file name as the third parameter if necessary.
-        formData.base64Data = imgDataUrl;
-        formData.name = fileData.name;
-        formData.mimetype = fileData.type;
-        formData.size = fileData.size;
+        let formData = {
+            base64Data :imgDataUrl,
+            name :fileData.name,
+            mimetype :fileData.type,
+            size :fileData.size,
+        };
 
         $.ajax('/app/profile/addPhotos', {
             method: "POST",
@@ -115,6 +113,11 @@ $(document).on('ready', function () {
             }
         });
     })();
+
+    $('.addPhotoBtn').on('click', (e) => {
+        $('#addPhotos').trigger('click');
+        $('.addPhotosCon').modal('show');
+    })
 
     $("#like").on('click', function(){
         let value = $(this).data('username');
