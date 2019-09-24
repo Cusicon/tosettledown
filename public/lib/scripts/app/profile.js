@@ -20,17 +20,14 @@ function addPhotosPreview(input, placeToInsertImagePreview) {
 
 function initCropper(imageHolder) {
     let image = $(imageHolder)[0];
-    console.log(image)
-    console.log(image)
     let cropper = new Cropper(image, {
-        aspectRatio: 1 / 1,
+        aspectRatio: 1,
         crop: function (e) {
-            console.log(e.detail.x);
-            console.log(e.detail.y);
+
         }
     });
 
-    // On crop button clicked
+        // On crop button clicked
     $('#crop_button').on('click', function (e) {
         e.preventDefault();
         let fileData = document.getElementById('addPhotos').files.item(0);
@@ -44,24 +41,35 @@ function initCropper(imageHolder) {
         formData.mimetype = fileData.type;
         formData.size = fileData.size;
 
-        console.log(formData);
-
-        // Use `jQuery.ajax` method for example
         $.ajax('/app/profile/addPhotos', {
             method: "POST",
             data: formData,
-            success() {
-                console.log('Upload success');
+            success(response) {
+                $("div.addPhotosCon").addClass('hide').modal('hide');
+                mySnackbar(response.message)
+                appendImageToDOM(response.data.photo, 'ul.images-holder');
+
             },
-            error() {
-                console.log('Upload error');
+            error(err) {
+                mySnackbar(err.message);
             },
         });
-        $('.profileImg').css('background-image', `url('${imgDataUrl}')`);
         return false;
     });
+}
 
+function appendImageToDOM(photo, container){
+    let html = `<li class="col-md-4 col-sm-6">
+                    <a href="javascript:void(0);" data-toggle="modal" data-target=".displayPhotosCon"
+                        style="background-image: url('${photo.location}'); width: 280px;"
+                        data-image-id="${photo._id}"
+                        class="userPhoto"></a>
+                </li>`;
 
+    if($('.no-picture-message').length > 0){
+        $('.no-picture-message').remove();
+    }
+    $(container).prepend(html);
 }
 
 $(document).on('ready', function () {
@@ -83,7 +91,7 @@ $(document).on('ready', function () {
     (function showPhotosSelected() {
         // Photos preview
         $("#addPhotos").on("change", function () {
-            if (this.files.length != 0) {
+            if (this.files.length !== 0) {
                 if (this.files.length <= 5) {
                     $("div.addPhotosCon .info center").html('');
                     // Empty displayCon, before changing it's value
@@ -108,7 +116,7 @@ $(document).on('ready', function () {
         });
     })();
 
-    $("#like").on('click', function(e){
+    $("#like").on('click', function(){
         let value = $(this).data('username');
 
         $.ajax({
@@ -139,8 +147,7 @@ $(document).on('ready', function () {
         });
     })
 
-    $('.userPhoto').on('click', function () {
-
+    $(document).on('click', '.userPhoto', function () {
         let element = $(this);
         let image_link = element.css('background-image').replace('url(','').replace(')','').replace(/"/gi, "");
         let image_id = element.data('image-id');
@@ -164,11 +171,9 @@ $(document).on('ready', function () {
             method: "POST",
             data :{photo_id : image_id},
             success: function(response) {
-                console.log(response);
-
                 if(response.status === 'success'){
                     mySnackbar(response.message)
-                    let location = response.photo.location;
+                    let location = response.data.photo.location;
 
                     if($('.profileImg').length > 0){
                         $('.profileImg').each(function () {

@@ -234,8 +234,7 @@
                                 </a>
                             </div>
                             <div class="modal-body" style="padding: 15px; text-align: center !important;">
-                                <form action="/app/profile/addPhotos"
-                                    enctype="multipart/form-data" id="addPhotosForm" method="POST">
+                                <form id="addPhotosForm">
                                     <!-- Image previewer -->
                                     <div style="position: relative;" class="addPhotosCon">
                                         <!-- Display container -->
@@ -260,9 +259,6 @@
                                     </div>
 
                                     <div class="separator"></div>
-
-<!--                                    <button type="submit" role="button"-->
-<!--                                        class="btn waves-effect waves-light bg-Primary_color">Save</button>-->
 
                                     <button id="crop_button" type="submit" role="button"
                                             class="btn-block btn waves-effect waves-light bg-Primary_color">Done</button>
@@ -538,7 +534,7 @@
                 <footer>
                     <div style="text-align: center;">
                         <% if (typeof photos != "undefined" && photos.length > 0) { %>
-                            <ul class="row">
+                            <ul class="images-holder row">
                                 <% photos.forEach(photo => { %>
                                         <!-- Duplicate Here... -->
                                         <li class="col-md-4 col-sm-6">
@@ -550,7 +546,8 @@
                                 <% }) %>
                             </ul>
                         <% } else {%>
-                            <% if (photos.length == 0 && profile_user.username == user.username) { %>
+                            <div class="no-picture-message">
+                                <% if (photos.length == 0 && profile_user.username == user.username) { %>
                                 <section style="padding: 10px;">
                                     <div style="font-size: 80px;">
                                         <i class="fi-marquee-plus"></i>
@@ -559,13 +556,13 @@
                                     <p style="font-size: 15px !important;">When you upload your photos, they will appear here on
                                         your profile...</p>
                                     <a href=javascript:void(0); class="color btn waves-effect waves-light" id="addPhotosBtn"
-                                        role="button" data-toggle="modal" data-target=".addPhotosCon"
-                                        onclick="$('#addPhotos').trigger('click');">
+                                       role="button" data-toggle="modal" data-target=".addPhotosCon"
+                                       onclick="$('#addPhotos').trigger('click');">
                                         Upload your first photo.
                                     </a>
                                     <div class="nophoto"></div>
                                 </section>
-                            <% } else { %>
+                                <% } else { %>
                                 <section style="padding: 10px;">
                                     <span style="font-size: 80px;">
                                         <i class="dripicons-photo-group"></i>
@@ -574,7 +571,8 @@
                                         photos, Tell
                                         <%= profile_user.gender == 'male' ? 'Him' : "Her" %> to upload some.</p>
                                 </section>
-                            <% } %>
+                                <% } %>
+                            </div>
                         <% } %>
                     </div>
                 </footer>

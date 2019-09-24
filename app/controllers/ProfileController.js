@@ -120,6 +120,7 @@ module["exports"] = class ProfileController {
         await medialibrary.addMediaFromBase64( (req, res, photo) => {
             res.send({
                 'status': 'success',
+                'message': 'Upload Successful',
                 'data': {
                     photo: photo
                 }
@@ -146,8 +147,10 @@ module["exports"] = class ProfileController {
                     }else{
                         res.send({
                             status: 'success',
-                            photo: photo,
-                            message: 'profile picture updated successfully'
+                            message: 'profile picture updated successfully',
+                            'data': {
+                                photo: photo
+                            }
                         })
                         userLog(`"${req.user.username}" just updated their profile picture.`);
                         console.log(`@${req.user.username} just updated their profile picture!, @ ${new Date().toTimeString()}`);
