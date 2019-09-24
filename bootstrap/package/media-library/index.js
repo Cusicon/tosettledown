@@ -108,8 +108,6 @@ class MediaLibrary extends Media {
             size : this.req.body.size,
         };
 
-        console.log(this.req.body);
-
         let buffer = this.decodeBase64Image(this.req.body.base64Data);
         await this.instance.uploadBuffer(file, buffer);
         let photo = await this.instance.saveToDatabase(this.req.user);

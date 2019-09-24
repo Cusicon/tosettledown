@@ -13,7 +13,6 @@ function addPhotosPreview(input, placeToInsertImagePreview) {
                 })
             ).removeClass("hide");
             initCropper('.cropper-img-holder')
-            // setTimeout(() => {initCropper('.cropper-img-holder')}, 1000);
         };
         reader.readAsDataURL(input.files[0]);
     }
