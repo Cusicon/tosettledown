@@ -67,7 +67,7 @@ function appendImageToDOM(photo, container){
                 </li>`;
 
     if($('.no-picture-message').length > 0){
-        $('.no-picture-message').remove();
+        $('.image-holder-container').html(`<ul class="images-holder row"> </ul>`)
     }
     $(container).prepend(html);
 }

@@ -532,17 +532,17 @@
 
 
                 <footer>
-                    <div style="text-align: center;">
+                    <div class="image-holder-container" style="text-align: center;">
                         <% if (typeof photos != "undefined" && photos.length > 0) { %>
                             <ul class="images-holder row">
                                 <% photos.forEach(photo => { %>
-                                        <!-- Duplicate Here... -->
-                                        <li class="col-md-4 col-sm-6">
-                                            <a href="javascript:void(0);" data-toggle="modal" data-target=".displayPhotosCon"
-                                                style="background-image: url('<%= photo.location %>'); width: 280px;"
-                                                data-image-id="<%= photo.id %>"
-                                                class="userPhoto"></a>
-                                        </li>
+                                    <!-- Duplicate Here... -->
+                                    <li class="col-md-4 col-sm-6">
+                                        <a href="javascript:void(0);" data-toggle="modal" data-target=".displayPhotosCon"
+                                            style="background-image: url('<%= photo.location %>'); width: 280px;"
+                                            data-image-id="<%= photo.id %>"
+                                            class="userPhoto"></a>
+                                    </li>
                                 <% }) %>
                             </ul>
                         <% } else {%>

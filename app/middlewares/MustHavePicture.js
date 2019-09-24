@@ -9,7 +9,7 @@ module["exports"] = function (req, res, next) {
                 }
                 next();
             }else{
-                if(req.path.includes(`/profile/${req.user.username}`)){
+                if(req.path.includes(`/profile/${req.user.username}`) || req.path.includes(`/profile/addPhotos`)){
                     next()
                 }else{
                     res.redirect(`/app/profile/${req.user.username}`);
