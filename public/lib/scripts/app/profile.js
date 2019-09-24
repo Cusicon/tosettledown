@@ -51,8 +51,6 @@ function initCropper(imageHolder) {
         $.ajax('/app/profile/addPhotos', {
             method: "POST",
             data: formData,
-            processData: false,
-            contentType: false,
             success() {
                 console.log('Upload success');
             },

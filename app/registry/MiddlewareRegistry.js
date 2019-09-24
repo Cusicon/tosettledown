@@ -2,16 +2,13 @@ module["exports"] = {
 
     globalMiddleware: [
         // require("morgan")("dev"), //-- use logger
-        require("body-parser").urlencoded({
-            extended: true
-        }), //-- use bodyParser
+        require("body-parser").json({limit: '50mb', extended: true}), //-- use bodyParser
+        require("body-parser").urlencoded({limit: '50mb', extended: true}), //-- use bodyParser
         require("connect-flash")(),
         require("cookie-parser")(), //-- use cookieParser
         require("express-ejs-layouts"), //-- use expressLayouts
-        require("express").json(), //-- use express.json
-        require("express").urlencoded({
-            extended: false
-        }), //-- use express.urlencoded
+        require("express").json({limit: '50mb', extended: true}), //-- use express.json
+        require("express").urlencoded({limit: '50mb', extended: true}), //-- use express.urlencoded
         require("express").static(public_path()), //-- set public static directory
         require("express-session")({
             secret: config('app', 'key'),

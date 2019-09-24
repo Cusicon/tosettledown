@@ -117,6 +117,8 @@ module["exports"] = class ProfileController {
     static async addPhotos(req, res) {
         let medialibrary = new MediaLibrary(req, res);
 
+        console.log(req.body);
+
         await medialibrary.addMediaFromBase64( (req, res, photo) => {
             // req.flash('success', 'Uploaded Successful');
             // res.redirect(`/app/profile/${req.user.username}`);
@@ -125,10 +127,10 @@ module["exports"] = class ProfileController {
             })
         });
 
-        await medialibrary.addMedia('addPhotos', (req, res, photo) => {
-            // req.flash('success', 'Uploaded Successful');
-            res.redirect(`/app/profile/${req.user.username}`);
-        });
+        // await medialibrary.addMedia('addPhotos', (req, res, photo) => {
+        //     // req.flash('success', 'Uploaded Successful');
+        //     res.redirect(`/app/profile/${req.user.username}`);
+        // });
     }
 
     static setAvatar(req, res) {
