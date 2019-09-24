@@ -239,27 +239,34 @@
                                     <!-- Image previewer -->
                                     <div style="position: relative;" class="addPhotosCon">
                                         <!-- Display container -->
-                                        <div class="info" style="position: inherit;">
-                                            <div class="displayCon" style="overflow: hidden; overflow-x: auto;">
-                                                <div id="container"></div>
-                                            </div>
-                                            <center>
-                                                <div
-                                                    style="text-align: center; width: 100%; padding-top: 56px; height: 232px;">
-                                                    <h4 style="font-weight: lighter;">Click &nbsp;<b>+</b>&nbsp; to
-                                                        select your photos</h4>
-                                                    <p style="margin-bottom: 10px; display: block;"
-                                                        class="text-menu-dark">Note:
-                                                        To upload photos, select one at a time.</p>
+                                        <div class="info">
+                                            <div class="displayCon">
+                                                <div id="container">
+                                                    <div style="text-align: center;">
+                                                        <div
+                                                            style="text-align: center; width: 100%; padding-top: 56px; height: 232px;">
+                                                            <h4 style="font-weight: lighter;">Click &nbsp;<b>+</b>&nbsp; to
+                                                                select your photos</h4>
+                                                            <p style="margin-bottom: 10px; display: block;"
+                                                               class="text-menu-dark">Note:
+                                                                To upload photos, select one at a time.</p>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </center>
+                                            </div>
                                             <input type="file" name="addPhotos" id="addPhotos" class="hide"
                                                 accept="image/*" required>
                                         </div>
                                     </div>
+
                                     <div class="separator"></div>
-                                    <button type="submit" role="button"
-                                        class="btn waves-effect waves-light bg-Primary_color">Save</button>
+
+<!--                                    <button type="submit" role="button"-->
+<!--                                        class="btn waves-effect waves-light bg-Primary_color">Save</button>-->
+
+                                    <button id="crop_button" type="submit" role="button"
+                                            class="btn waves-effect waves-light bg-Primary_color">Done</button>
+
                                     <div class="onMobile">
                                         <center>
                                             <!-- <small> -->

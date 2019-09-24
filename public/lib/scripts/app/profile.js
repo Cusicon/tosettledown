@@ -1,70 +1,84 @@
 // Multiple images preview engine in browser
 function addPhotosPreview(input, placeToInsertImagePreview) {
     if (input.files) {
-        var filesAmount = input.files.length;
 
-        for (var i = 0; i < filesAmount; i++) {
-            var reader = new FileReader();
-
-            reader.onload = function (event) {
-                $($.parseHTML("<img>"))
-                    .attr({
-                        src: event.target.result,
-                        style: "margin: auto .2%; max-width: 50%;",
-                        id: "selectedPhoto",
-                        alt: "Photo"
-                    })
-                    .prependTo(placeToInsertImagePreview);
-            };
-            reader.readAsDataURL(input.files[i]);
-        }
+        let reader = new FileReader();
+        reader.onload = function (event) {
+            $(placeToInsertImagePreview).html($($.parseHTML("<img>"))
+                .attr({
+                    src: event.target.result,
+                    style: `max-width: 100%; max-height: 500px`,
+                    id: "selectedPhoto",
+                    class: "cropper-img-holder",
+                    alt: "Photo"
+                })
+            );
+            initCropper('.cropper-img-holder')
+            // setTimeout(() => {initCropper('.cropper-img-holder')}, 1000);
+        };
+        reader.readAsDataURL(input.files[0]);
     }
-};
+}
 
-function showPhotosSelected() {
-    // Photos preview
-    $("#addPhotos").on("change", function () {
-        if (this.files.length != 0) {
-            if (this.files.length <= 5) {
-                $("div.addPhotosCon .info center").html('');
-                // Empty displayCon, before changing it's value
-                $("div.addPhotosCon .info .displayCon div#container").html("");
-                $("div.addPhotosCon .info .displayCon div#container").removeClass("hide").html(
-                    addPhotosPreview(this, "div.addPhotosCon .info .displayCon div#container")
-                );
-            } else {
-                alert("warning", "Warning", "Only, 5 photos are permitted!");
-            }
-        } else {
-            var previewInfo = `
-            <div style="text-align: center; width: 100%; padding-top: 72px; height: 232px;">
-            <h4 style="font-weight: lighter;">Click &nbsp;<b>+</b>&nbsp; to
-            select your photos</h4>
-            <p style="margin-bottom: 10px; display: block; color: #ccc;">Note:
-            To upload photos, select one at a time.</p>
-            </div>
-            `;
-            $("div.addPhotosCon .info .displayCon").html('').addClass("hide");
-            $("div.addPhotosCon .info center").html(previewInfo);
+function initCropper(imageHolder){
+    let image = $(imageHolder)[0];
+    console.log(image)
+    console.log(image)
+    let cropper = new Cropper(image, {
+        aspectRatio: 1 / 1,
+        crop: function(e) {
+            console.log(e.detail.x);
+            console.log(e.detail.y);
         }
     });
+
+    // On crop button clicked
+    $('#crop_button').on('click', function(e) {
+        e.preventDefault();
+        let imgDataUrl = cropper.getCroppedCanvas().toDataURL();
+        let fileData = $("#addPhotos")[0].files[0];
+
+        cropper.getCroppedCanvas().toBlob((blob) => {
+            const formData = new FormData();
+
+            // Pass the image file name as the third parameter if necessary.
+            formData.append('blob', blob);
+            formData.append('name', fileData.name);
+            formData.append('mime', fileData.type);
+            formData.append('size', fileData.size);
+
+            console.log(formData)
+
+            // // Use `jQuery.ajax` method for example
+            // $.ajax('/path/to/upload', {
+            //     method: "POST",
+            //     data: formData,
+            //     processData: false,
+            //     contentType: false,
+            //     success() {
+            //         console.log('Upload success');
+            //     },
+            //     error() {
+            //         console.log('Upload error');
+            //     },
+            // });
+        });
+
+        // $('.cropper-img-holder').attr('src', imgDataUrl);
+
+        // $('.cropper-hide').attr('src', imgDataUrl);
+        $('.profileImg').css('background-image', `url('${imgDataUrl}')`);
+
+        // image.attr('src', imgDataUrl);
+        return false;
+
+
+        // document.getElementById("cropped_result").appendChild(img)
+    })
 }
 
-function cropImage() {
-    const selectedPhoto = document.getElementById('selectedPhoto');
-    const cropper = new Cropper(selectedPhoto, {
-        aspectRatio: 1 / 1,
-        crop(event) {
-            console.log(event.detail.x);
-            console.log(event.detail.y);
-            console.log(event.detail.width);
-            console.log(event.detail.height);
-            console.log(event.detail.rotate);
-            console.log(event.detail.scaleX);
-            console.log(event.detail.scaleY);
-        },
-    });
-}
+
+
 
 
 $(document).on('ready', function () {
@@ -98,7 +112,7 @@ $(document).on('ready', function () {
                     alert("warning", "Warning", "Only, 5 photos are permitted!");
                 }
             } else {
-                var previewInfo = `
+                let previewInfo = `
             <div style="text-align: center; width: 100%; padding-top: 72px; height: 232px;">
             <h4 style="font-weight: lighter;">Click &nbsp;<b>+</b>&nbsp; to
             select your photos</h4>
