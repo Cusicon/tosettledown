@@ -9,12 +9,16 @@ module["exports"] = function (req, res, next) {
                 }
                 next();
             } else {
-                // next();
-                if (req.user.avatar != null) {
-                    next()
-                } else {
-                    res.redirect(`/app/profile/${req.user.username}`);
-                }
+                // if (req.path.includes(`/profile/${req.user.username}`)) {
+                //     if (req.user.avatar != null) {
+                //         next();
+                //     } else {
+                //         req.flash('success', 'Set Avatar!');
+                //     }
+                // } else {
+                //     res.redirect(`/app/profile/${req.user.username}`);
+                // }
+                next();
             }
         });
     } else {

@@ -529,7 +529,7 @@
                         <% } %>
                         <% if (photos.length == 0 && profile_user.username == user.username) { %>
                         <section style="padding: 10px;">
-                            <div style="font-size: 80px;">
+                            <div id="icon" style="font-size: 70px;">
                                 <i class="fi-marquee-plus"></i>
                             </div>
                             <br>
@@ -544,7 +544,7 @@
                         <% } %>
                         <% if (photos.length == 0 && profile_user.username != user.username) { %>
                         <section style="padding: 10px;">
-                            <span style="font-size: 80px;">
+                            <span id="icon" style="font-size: 70px;">
                                 <i class="dripicons-photo-group"></i>
                             </span>
                             <p style="font-size: 15px;">Sorry, <b><%= profile_user.fullname.firstname %></b> has no
