@@ -158,7 +158,6 @@ module["exports"] = class HomeController{
                 favourite.favouriteObj = new User(favourite.favouriteObj[0]);
                 return favourite;
             })
-            console.log(favourites);
             res.render('./app/menu/favourites', { title: "Favourites", favourites:favourites });
         });
     }

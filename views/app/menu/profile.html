@@ -223,7 +223,7 @@
                     aria-labelledby="addPhotosModal" style="display: none;" aria-hidden="true">
                     <div class="modal-dialog modal-lg modal-dialog-centered">
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <div class="modal-header" style="padding: 5px 20px 5px 20px !important; ">
                                 <h4 class="modal-title" id="addPhotosModal">Add <span class="bg-Primary_color"
                                         style="border-radius: 5px; padding: 5px;">Photos</span>
                                 </h4>
@@ -233,42 +233,41 @@
                                     <i class="typcn typcn-plus"></i>
                                 </a>
                             </div>
-                            <div class="modal-body" style="padding: 15px; text-align: center !important;">
-                                    <div style="position: relative;" class="addPhotosCon">
-                                        <!-- Display container -->
-                                        <div class="info">
-                                            <div class="displayCon">
-                                                <div id="container">
-                                                    <div style="text-align: center;">
-                                                        <div
-                                                            style="text-align: center; width: 100%; padding-top: 56px; height: 232px;">
-                                                            <h4 style="font-weight: lighter;">Click &nbsp;<b>+</b>&nbsp; to
-                                                                select your photos</h4>
-                                                            <p style="margin-bottom: 10px; display: block;"
-                                                               class="text-menu-dark">Note:
-                                                                To upload photos, select one at a time.</p>
-                                                        </div>
+
+                            <div class="modal-body" style="padding: 0 !important; text-align: center !important;">
+                                <div style="padding-right:0 !important; position: relative;" class="addPhotosCon">
+                                    <!-- Display container -->
+                                    <div class="info">
+                                        <div class="displayCon">
+                                            <div id="container">
+                                                <div style="text-align: center;">
+                                                    <div
+                                                        style="text-align: center; width: 100%; padding-top: 56px; height: 232px;">
+                                                        <h4 style="font-weight: lighter;">Click &nbsp;<b>+</b>&nbsp; to
+                                                            select your photos</h4>
+                                                        <p style="margin-bottom: 10px; display: block;"
+                                                           class="text-menu-dark">Note:
+                                                            To upload photos, select one at a time.</p>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <input type="file" name="addPhotos" id="addPhotos" class="hide"
-                                                accept="image/*" required>
                                         </div>
+                                        <input type="file" name="addPhotos" id="addPhotos" class="hide"
+                                            accept="image/*" required>
                                     </div>
+                                </div>
 
-                                    <div class="separator"></div>
+                                <button id="crop_button" type="submit" role="button"
+                                        class="btn-block btn waves-effect waves-light bg-Primary_color">Done</button>
 
-                                    <button id="crop_button" type="submit" role="button"
-                                            class="btn-block btn waves-effect waves-light bg-Primary_color">Done</button>
-
-                                    <div class="onMobile">
-                                        <div style="text-align: center;">
-                                            <!-- <small> -->
-                                            <a href="javascript: void(0);" data-dismiss="modal" aria-hidden="true"
-                                                class="text-menu-dark" style="padding: 10px; margin-top: 5px;">Cancel</a>
-                                            <!-- </small> -->
-                                        </div>
+                                <div class="onMobile">
+                                    <div style="text-align: center;">
+                                        <!-- <small> -->
+                                        <a href="javascript: void(0);" data-dismiss="modal" aria-hidden="true"
+                                            class="text-menu-dark" style="padding: 10px; margin-top: 5px;">Cancel</a>
+                                        <!-- </small> -->
                                     </div>
+                                </div>
                             </div>
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
@@ -279,10 +278,10 @@
             <!-- Photos Display Modal -->
             <div class="modal fade displayPhotosCon" id="displayPhotosCon" tabindex="-1" role="dialog"
                 aria-labelledby="displayPhotoModal" style="display: none;" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content" style="background-color: transparent;">
                         <div class="modal-header" style="border: 0px;">
-                            <h4 class="modal-title" id="addPhotosModal" style="color: #fff !important;">Photo
+                            <h4 class="modal-title" style="color: #fff !important;">Photo
                                 <span class="bg-Primary_color" style="border-radius: 5px; padding: 5px;">Preview</span>
                             </h4>
                             <button type="button" class="btn waves-effect waves-light" data-dismiss="modal"
@@ -296,10 +295,10 @@
                                 style="border: 1px solid transparent; max-height: 500px; max-width: 100%;">
                             <% if (profile_user.username == user.username) { %>
                                 <br>
-                                <a href="/app/profile/update/<%= profile_user.username %>/setAvatar"
-                                    class="btn waves-effect waves-light bg-Primary_color" style="margin: 15px 0px;"
-                                    role="button" data-image-id="" id="setAvatarBtn">
-                                    Set as Display Picture</a>
+                                <button
+                                    class="setAvatarBtn btn waves-effect waves-light bg-Primary_color" style="margin: 15px 0px;"
+                                    role="button" id="setAvatarBtn">
+                                    Set as Display Picture</button>
                             <% } %>
                         </div>
                     </div><!-- /.modal-content -->
@@ -329,51 +328,52 @@
 
                                 <div class="dropdownContent" id="dropdownContent">
                                     <% if (user.username != profile_user.username) { %>
-                                    <span class="onMobile">
+                                        <span class="onMobile">
                                             <a href="/app/chats/<%= profile_user.username %>">
                                                 Chat <%= profile_user.gender == "male" ? "Him" : "Her" %> up
                                             </a>
-                                            <div class="separator"></div>
                                         </span>
 
-                                    <a id="favourite-drpdown" href="javascript:void(0);"
-                                       data-username="<%=profile_user.username%>">Add to favourites</a>
+                                        <div class="separator"></div>
 
-                                    <a id="share" href="javascript:void(0);"
-                                       onclick="share(`${location.href}`);">
-                                        Share
-                                        <span class="fi-share color"
-                                              style="font-size: 18px; float: right !important;"></span>
-                                    </a>
+                                        <a id="favourite-drpdown" href="javascript:void(0);"
+                                           data-username="<%=profile_user.username%>">Add to favourites</a>
 
-                                    <a href="#" class="color">Block or Report</a>
+                                        <a class="share" href="javascript:void(0);"
+                                           onclick="share(`${location.href}`);">
+                                            Share
+                                            <span class="fi-share color"
+                                                  style="font-size: 18px; float: right !important;"></span>
+                                        </a>
+
+                                        <a href="#" class="color">Block or Report</a>
 
                                     <% } else { %>
 
-                                    <a id="share" href="javascript:void(0);"
-                                       onclick="share(`${location.href}`);">
-                                        Share
-                                        <span class="fi-share color"
-                                              style="font-size: 18px; float: right !important;"></span>
-                                    </a>
+                                        <a class="share" href="javascript:void(0);"
+                                           onclick="share(`${location.href}`);">
+                                            Share
+                                            <span class="fi-share color"
+                                                  style="font-size: 18px; float: right !important;"></span>
+                                        </a>
 
-                                    <div class="onMobile">
-                                        <a href="/app/visitors">Visitors</a>
-                                    </div>
-                                    <div class="onMobile">
-                                        <a href="/app/favourites">Favourites</a>
-                                    </div>
+                                        <div class="onMobile">
+                                            <a href="/app/visitors">Visitors</a>
+                                        </div>
+                                        <div class="onMobile">
+                                            <a href="/app/favourites">Favourites</a>
+                                        </div>
 
-                                    <a href="#" id="editProfileBtn" data-toggle="modal"
-                                       data-target=".editProfileCon">Edit profile</a>
+                                        <a href="#" id="editProfileBtn" data-toggle="modal"
+                                           data-target=".editProfileCon">Edit profile</a>
 
-                                    <div class="separator"></div>
+                                        <div class="separator"></div>
 
-                                    <a href="#" class="dropdownBottom" id="settingsBtn" data-toggle="modal"
-                                       data-target=".settingsCon" style="color: #000;">
-                                        Settings
-                                        <span class="typcn typcn-cog float-right"></span>
-                                    </a>
+                                        <a href="#" class="dropdownBottom" id="settingsBtn" data-toggle="modal"
+                                           data-target=".settingsCon" style="color: #000;">
+                                            Settings
+                                            <span class="typcn typcn-cog float-right"></span>
+                                        </a>
                                     <% } %>
                                 </div>
                             </div>
@@ -493,7 +493,7 @@
                                 <% if (user.username == profile_user.username) { %>
                                     <li class="col-1 col-md-1 col-sm-1">
                                         <a href=javascript:void(0); class="addPhotoBtn text-dark btn waves-effect waves-light addImages"
-                                            id="addPhotosBtn" role="button" data-countbtn="0">
+                                           role="button" data-countbtn="0">
                                             <i class="typcn typcn-plus-outline"></i>
                                         </a>
                                     </li>
@@ -535,7 +535,7 @@
                                     <br>
                                     <p style="font-size: 15px !important;">When you upload your photos, they will appear here on
                                         your profile...</p>
-                                    <a href=javascript:void(0); class="addPhotoBtn color btn waves-effect waves-light" id="addPhotosBtn"
+                                    <a href=javascript:void(0); class="addPhotoBtn color btn waves-effect waves-light"
                                        role="button">
                                         Upload your first photo.
                                     </a>
@@ -547,8 +547,7 @@
                                         <i class="dripicons-photo-group"></i>
                                     </span>
                                     <p style="font-size: 15px;">Sorry, <b><%= profile_user.fullname.firstname %></b> has no
-                                        photos, Tell
-                                        <%= profile_user.gender == 'male' ? 'Him' : "Her" %> to upload some.</p>
+                                        photos, Tell <%= profile_user.gender == 'male' ? 'Him' : "Her" %> to upload some.</p>
                                 </section>
                                 <% } %>
                             </div>

@@ -3,10 +3,11 @@ function addPhotosPreview(input, placeToInsertImagePreview) {
     if (input.files) {
         let reader = new FileReader();
         reader.onload = function (event) {
+            $('.addPhotosCon').css('padding-right', '0px')
             $(placeToInsertImagePreview).html($($.parseHTML("<img>"))
                 .attr({
                     src: event.target.result,
-                    style: `width: 100%; height: 500px`,
+                    style: `width: 100%; max-height: ${window.outerHeight - 50}px`,
                     id: "selectedPhoto",
                     class: "cropper-img-holder",
                     alt: "Photo"
@@ -23,7 +24,6 @@ function initCropper(imageHolder) {
     let cropper = new Cropper(image, {
         aspectRatio: 1,
         crop: function (e) {
-
         }
     });
         // On crop button clicked
@@ -39,9 +39,14 @@ function initCropper(imageHolder) {
             size :fileData.size,
         };
 
+
+
         $.ajax('/app/profile/addPhotos', {
             method: "POST",
             data: formData,
+            beforeSend: () => {
+                $('#crop_button').html(`<div class="lds-ripple"><div></div><div></div></div>`)  ;
+            },
             success(response) {
                 $("div.addPhotosCon").addClass('hide').modal('hide');
                 mySnackbar(response.message)
@@ -51,6 +56,8 @@ function initCropper(imageHolder) {
             error(err) {
                 mySnackbar(err.message);
             },
+        }).success(() => {
+            $('#crop_button').html(`Done`);
         });
         return false;
     });
@@ -86,37 +93,33 @@ $(document).on('ready', function () {
         });
     })();
 
-    (function showPhotosSelected() {
-        // Photos preview
-        $("#addPhotos").on("change", function () {
-            if (this.files.length !== 0) {
-                if (this.files.length <= 5) {
-                    $("div.addPhotosCon .info center").html('');
-                    // Empty displayCon, before changing it's value
-                    $("div.addPhotosCon .info .displayCon div#container").html("");
-                    addPhotosPreview(this, "div.addPhotosCon .info .displayCon div#container")
-                    // $("div.addPhotosCon .info .displayCon div#container").removeClass("hide");
-                } else {
-                    alert("warning", "Warning", "Only, 5 photos are permitted!");
-                }
+    $("#addPhotos").on("change", function () {
+        if (this.files.length !== 0) {
+            if (this.files.length <= 5) {
+                $("div.addPhotosCon .info center").html('');
+                // Empty displayCon, before changing it's value
+                $("div.addPhotosCon .info .displayCon div#container").html("");
+                addPhotosPreview(this, "div.addPhotosCon .info .displayCon div#container")
+                // $("div.addPhotosCon .info .displayCon div#container").removeClass("hide");
             } else {
-                let previewInfo = `
-            <div style="text-align: center; width: 100%; padding-top: 72px; height: 232px;">
-            <h4 style="font-weight: lighter;">Click &nbsp;<b>+</b>&nbsp; to
-            select your photos</h4>
-            <p style="margin-bottom: 10px; display: block; color: #ccc;">Note:
-            To upload photos, select all images at once.</p>
-            </div>
-            `;
-                $("div.addPhotosCon .info .displayCon").html('').addClass("hide");
-                $("div.addPhotosCon .info center").html(previewInfo);
+                alert("warning", "Warning", "Only, 5 photos are permitted!");
             }
-        });
-    })();
+        } else {
+            let previewInfo = `
+                    <div style="text-align: center; width: 100%; padding-top: 72px; height: 232px;">
+                    <h4 style="font-weight: lighter;">Click &nbsp;<b>+</b>&nbsp; to
+                    select your photos</h4>
+                    <p style="margin-bottom: 10px; display: block; color: #ccc;">Note:
+                    To upload photos, select all images at once.</p>
+                    </div> `;
+            $("div.addPhotosCon .info .displayCon .container").html(previewInfo).removeClass("hide");
+        }
+    });
 
-    $('.addPhotoBtn').on('click', (e) => {
+    $('.addPhotoBtn').on('click', e => {
         $('#addPhotos').trigger('click');
         $('.addPhotosCon').modal('show');
+        e.preventDefault();
     })
 
     $("#like").on('click', function(){
@@ -162,13 +165,11 @@ $(document).on('ready', function () {
         }
     })
 
-    $('#setAvatarBtn').on('click', function (e) {
+    $(document).on('click', '.setAvatarBtn' , function(e) {
         e.preventDefault();
-        let element = $(this)
-        let image_id = element.data('image-id')
+        let element = $(this);
+        let image_id = element.attr('data-image-id');
 
-        console.log(image_id)
-        /* Ajax Request For Updating Profile Picture*/
         $.ajax({
             url: `/app/profile/avatar/update`,
             method: "POST",
@@ -178,16 +179,18 @@ $(document).on('ready', function () {
                     mySnackbar(response.message)
                     let location = response.data.photo.location;
 
-                    if($('.profileImg').length > 0){
-                        $('.profileImg').each(function () {
-                            $(this).css('background-image', `url('${location}')`);
-                        })
-                    }
-                    if($('.profileImage').length > 0){
-                        $('.profileImage').each(function () {
-                            $(this).css('background-image', `url('${location}')`);
-                        })
-                    }
+                    setTimeout(() => {
+                        if($('.profileImg').length > 0){
+                            $('.profileImg').each(function () {
+                                $(this).css('background-image', `url('${location}')`);
+                            })
+                        }
+                        if($('.profileImage').length > 0){
+                            $('.profileImage').each(function () {
+                                $(this).css('background-image', `url('${location}')`);
+                            })
+                        }
+                    }, 1000)
                 }else{
                     mySnackbar(response.message)
                 }
