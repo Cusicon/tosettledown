@@ -38,5 +38,6 @@ class LocalStorage {
         console.log(`@${model.username} just uploaded some photos!, @ ${new Date().toTimeString()}`);
         return  await media.save();
     }
+
 }
 module.exports = LocalStorage;

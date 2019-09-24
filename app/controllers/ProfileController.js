@@ -116,6 +116,15 @@ module["exports"] = class ProfileController {
      */
     static async addPhotos(req, res) {
         let medialibrary = new MediaLibrary(req, res);
+
+        await medialibrary.addMediaFromBase64( (req, res, photo) => {
+            // req.flash('success', 'Uploaded Successful');
+            // res.redirect(`/app/profile/${req.user.username}`);
+            res.send({
+                'status': 'success'
+            })
+        });
+
         await medialibrary.addMedia('addPhotos', (req, res, photo) => {
             // req.flash('success', 'Uploaded Successful');
             res.redirect(`/app/profile/${req.user.username}`);

@@ -87,8 +87,10 @@ class MediaLibrary extends Media {
             try{
                 await this.uploadToTemp(name);
                 let buffer = await this.manipulateMedia(this.req.file)
+
                 await this.instance.uploadBuffer(this.req.file, buffer)
                 let photo = await this.instance.saveToDatabase(this.req.user);
+
                 this.removeTempFile(this.req.file).catch(err => console.log(err));
                 callback(this.req, this.res, photo)
             }catch (err) {
@@ -97,6 +99,32 @@ class MediaLibrary extends Media {
         } else {
             throw new Error('The Media Instance Can\'t be Null');
         }
+    }
+
+    async addMediaFromBase64(callback){
+        let file = {
+            originalname : this.req.body.name,
+            mimetype : this.req.body.mimetype,
+            size : this.req.body.size,
+        };
+
+        console.log(this.req.body);
+
+        let buffer = this.decodeBase64Image(this.req.body.base64Data);
+        await this.instance.uploadBuffer(file, buffer);
+        let photo = await this.instance.saveToDatabase(this.req.user);
+        callback(this.req, this.res, photo)
+    }
+
+    decodeBase64Image(dataString)
+    {
+        let matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+
+        if (matches.length !== 3)
+        {
+            return new Error('Invalid input string');
+        }
+        return new Buffer(matches[2], 'base64');
     }
 }
 module.exports = MediaLibrary;

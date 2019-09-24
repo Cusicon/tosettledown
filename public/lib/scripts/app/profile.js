@@ -40,26 +40,26 @@ function initCropper(imageHolder) {
         let formData = {};
 
         // Pass the image file name as the third parameter if necessary.
-        formData.imgData = imgDataUrl;
+        formData.base64Data = imgDataUrl;
         formData.name = fileData.name;
-        formData.mime = fileData.type;
+        formData.mimetype = fileData.type;
         formData.size = fileData.size;
 
         console.log(formData);
 
-        // // Use `jQuery.ajax` method for example
-        // $.ajax('/path/to/upload', {
-        //     method: "POST",
-        //     data: formData,
-        //     processData: false,
-        //     contentType: false,
-        //     success() {
-        //         console.log('Upload success');
-        //     },
-        //     error() {
-        //         console.log('Upload error');
-        //     },
-        // });
+        // Use `jQuery.ajax` method for example
+        $.ajax('/app/profile/addPhotos', {
+            method: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success() {
+                console.log('Upload success');
+            },
+            error() {
+                console.log('Upload error');
+            },
+        });
         $('.profileImg').css('background-image', `url('${imgDataUrl}')`);
         return false;
     });
