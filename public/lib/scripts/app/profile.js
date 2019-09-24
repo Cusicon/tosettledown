@@ -1,7 +1,6 @@
 // Multiple images preview engine in browser
 function addPhotosPreview(input, placeToInsertImagePreview) {
     if (input.files) {
-
         let reader = new FileReader();
         reader.onload = function (event) {
             $(placeToInsertImagePreview).html($($.parseHTML("<img>"))
@@ -12,7 +11,7 @@ function addPhotosPreview(input, placeToInsertImagePreview) {
                     class: "cropper-img-holder",
                     alt: "Photo"
                 })
-            );
+            ).removeClass("hide");
             initCropper('.cropper-img-holder')
             // setTimeout(() => {initCropper('.cropper-img-holder')}, 1000);
         };
@@ -20,66 +19,53 @@ function addPhotosPreview(input, placeToInsertImagePreview) {
     }
 }
 
-function initCropper(imageHolder){
+function initCropper(imageHolder) {
     let image = $(imageHolder)[0];
     console.log(image)
     console.log(image)
     let cropper = new Cropper(image, {
         aspectRatio: 1 / 1,
-        crop: function(e) {
+        crop: function (e) {
             console.log(e.detail.x);
             console.log(e.detail.y);
         }
     });
 
     // On crop button clicked
-    $('#crop_button').on('click', function(e) {
+    $('#crop_button').on('click', function (e) {
         e.preventDefault();
-        let imgDataUrl = cropper.getCroppedCanvas().toDataURL();
-        let fileData = $("#addPhotos")[0].files[0];
+        let fileData = document.getElementById('addPhotos').files.item(0);
+        let imgDataUrl = cropper.getCroppedCanvas().toDataURL(fileData.type, 60);
 
-        cropper.getCroppedCanvas().toBlob((blob) => {
-            const formData = new FormData();
+        let formData = {};
 
-            // Pass the image file name as the third parameter if necessary.
-            formData.append('blob', blob);
-            formData.append('name', fileData.name);
-            formData.append('mime', fileData.type);
-            formData.append('size', fileData.size);
+        // Pass the image file name as the third parameter if necessary.
+        formData.imgData = imgDataUrl;
+        formData.name = fileData.name;
+        formData.mime = fileData.type;
+        formData.size = fileData.size;
 
-            console.log(formData)
+        console.log(formData);
 
-            // // Use `jQuery.ajax` method for example
-            // $.ajax('/path/to/upload', {
-            //     method: "POST",
-            //     data: formData,
-            //     processData: false,
-            //     contentType: false,
-            //     success() {
-            //         console.log('Upload success');
-            //     },
-            //     error() {
-            //         console.log('Upload error');
-            //     },
-            // });
-        });
-
-        // $('.cropper-img-holder').attr('src', imgDataUrl);
-
-        // $('.cropper-hide').attr('src', imgDataUrl);
+        // // Use `jQuery.ajax` method for example
+        // $.ajax('/path/to/upload', {
+        //     method: "POST",
+        //     data: formData,
+        //     processData: false,
+        //     contentType: false,
+        //     success() {
+        //         console.log('Upload success');
+        //     },
+        //     error() {
+        //         console.log('Upload error');
+        //     },
+        // });
         $('.profileImg').css('background-image', `url('${imgDataUrl}')`);
-
-        // image.attr('src', imgDataUrl);
         return false;
+    });
 
 
-        // document.getElementById("cropped_result").appendChild(img)
-    })
 }
-
-
-
-
 
 $(document).on('ready', function () {
     if($('.nophoto').length > 0){
@@ -105,9 +91,8 @@ $(document).on('ready', function () {
                     $("div.addPhotosCon .info center").html('');
                     // Empty displayCon, before changing it's value
                     $("div.addPhotosCon .info .displayCon div#container").html("");
-                    $("div.addPhotosCon .info .displayCon div#container").removeClass("hide").html(
-                        addPhotosPreview(this, "div.addPhotosCon .info .displayCon div#container")
-                    );
+                    addPhotosPreview(this, "div.addPhotosCon .info .displayCon div#container")
+                    // $("div.addPhotosCon .info .displayCon div#container").removeClass("hide");
                 } else {
                     alert("warning", "Warning", "Only, 5 photos are permitted!");
                 }
