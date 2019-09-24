@@ -338,7 +338,17 @@
                                             Chat <%= profile_user.gender == "male" ? "Him" : "Her" %> up
                                         </a>
 
+                                        <a id="share" href="javascript:void(0);" onclick="share(`${location.href}`);">
+                                            Share
+                                            <span class="fi-share" class="color"
+                                                  style="font-size: 18px; float: right !important;"></span>
+                                        </a>
+
+                                        <div class="separator"></div>
+
                                         <a href="#" class="color">Block or Report</a>
+                                    </span>
+
 
                                     <% } else { %>
 
@@ -360,13 +370,21 @@
                                            data-target=".editProfileCon">Edit profile</a>
 
                                         <div class="separator"></div>
-                                    </span>
+
+                                        <a href="#" class="dropdownBottom" id="settingsBtn" data-toggle="modal"
+                                           data-target=".settingsCon" style="color: #000;">
+                                        Settings
+                                        <span class="typcn typcn-cog float-right"></span>
+                                    </a>
                                     <% } %>
+
+
                                     <a id="share" href="javascript:void(0);" onclick="share(`${location.href}`);">
                                         Share
                                         <span class="fi-share" class="color"
                                             style="font-size: 18px; float: right !important;"></span>
                                     </a>
+
                                     <% if (user.username != profile_user.username) { %>
                                     <a id="favourite-dropdown" href="javascript:void(0);"
                                         data-username="<%=profile_user.username%>">Add to favourites</a>
@@ -393,6 +411,9 @@
                                         Settings
                                         <span class="typcn typcn-cog float-right"></span>
                                     </a>
+
+
+
                                     <% } %>
                                 </div>
                             </div>
