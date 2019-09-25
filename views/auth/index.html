@@ -66,7 +66,7 @@
                         </div>
                     </div>
                     <!-- Password -->
-                    <div class="form-group mb-4">
+                    <div class="form-group mb-3">
                         <input type="password" name="password" id="reg_password" class="form-control"
                             placeholder="Password" minlength="8" maxlength="30"
                             title="Password must be 8 characters and above." required>
@@ -74,16 +74,55 @@
                     <!-- Gender & DOB -->
                     <div class="form-row">
                         <!-- DOB -->
-                        <div class="col-7 col-md-7 col-sm-6 col-auto mb-3">
-                            <input type="date" name="dob" id="dob" placeholder="dd/mm/yyyy"
-                                max="<%= new Date().getFullYear() - 18 %>-01-31"
-                                min="<%= new Date().getFullYear() - 100 %>-12-31"
-                                title="Sorry, you must be above 18 years." class="form-control" required>
+                        <div class="col-12 col-auto mb-3">
+                            <span class="format hide">Date format: Year-Month-Date</span>
+                            <div class="col-auto row">
+                                <div class="col-5">
+                                    <select name="dobMonth" id="dobMonth" class="form-control" aria-placeholder="Month"
+                                        required>
+                                        <option label="Month"></option>
+                                        <option value="01">January</option>
+                                        <option value="02">Feburary</option>
+                                        <option value="03">March</option>
+                                        <option value="04">April</option>
+                                        <option value="05">May</option>
+                                        <option value="06">June</option>
+                                        <option value="07">July</option>
+                                        <option value="08">August</option>
+                                        <option value="09">September</option>
+                                        <option value="10">October</option>
+                                        <option value="11">November</option>
+                                        <option value="12">December</option>
+                                    </select>
+                                </div>
+                                <div class="col-3" style="padding-left: 0px;">
+                                    <select name="dobDay" id="dobDay" class="form-control" aria-placeholder="Day"
+                                        required>
+                                        <option label="Day"></option>
+                                        <% for (let i = 1; i <= 31; i++) { %>
+                                            <% let nI = Number(i).toString().length == 1 ? `0${i}` : i; %>
+                                        <option value="<%= nI %>"><%= nI %></option>
+                                        <% } %>
+                                    </select>
+                                    <small></small>
+                                </div>
+                                <div class="col-4" style="padding-left: 0px;">
+                                    <select name="dobYear" id="dobYear" class="form-control" aria-placeholder="Year"
+                                        required>
+                                        <option label="Year"></option>
+                                        <% let allowedYears = 100; %>
+                                        <% for (let i = 18; i <= allowedYears; i++) { %>
+                                        <option value="<%= new Date().getFullYear() - i %>">
+                                            <%= new Date().getFullYear() - i %>
+                                        </option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <!-- Gender -->
-                        <div class="col-5 col-md-5 col-sm-6 col-auto mb-3">
-                            <select name="gender" id="gender" class="form-control"
-                                style="border-radius: 15px !important;" required>
+                        <div class="col-12 col-auto mb-3">
+                            <select name="gender" id="gender" class="form-control" required>
                                 <option label="Gender" value="">Gender</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
@@ -98,9 +137,9 @@
                         <button type="submit" id="regSubmitForm" class="form-control btn bg-success text-light"
                             style="padding: 15px 0px !important; margin-bottom: 5px;"
                             aria-describedby="submitFormHelp">Sign
-                            up with Tosettledown (TSD)</button>
+                            up with Tosettledown</button>
                         <small id="submitFormHelp" class="text-muted">By clicking
-                            <b class="text-dark"><i>"Sign Up with Tosettledown (TSD)"</i></b>,
+                            <b class="text-dark"><i>"Sign up with Tosettledown"</i></b>,
                             you agree to our <a href="/terms">terms of services</a>, <a href="/policy">privacy
                                 policy</a> and <a href="/cookie">cookie policy</a>.
                         </small>
@@ -154,16 +193,16 @@
                         </div>
                     </div>
                 </div>
-                <br><br>
+                <br><br><br>
             </form>
             <!-- END OF SIGN IN -->
             <!--            footer-->
             <footer class="footer text-muted float-right" style="padding: 10px; padding-right: 40px;">
                 <footer class="footer text-muted float-right" style="border: none; left: unset;">
-                    <small>
+                    <small style="font-size: 75%;">
                         All right reserved
                         <%= new Date().getFullYear() == 2019 ? new String(`&copy; ${new Date().getFullYear()}`) : "" %>
-                        <b class="text-dark">Tosettledown (TSD), Inc.</b>
+                        <b class="text-dark">Tosettledown, Inc.</b>
                         <br>
                         <span class="float-right <%= new Date().getFullYear() == 2019 ? 'hide' : 'show' %>">&copy;
                             <%= new String(`2019 - ${new Date().getFullYear()}`) %></span>

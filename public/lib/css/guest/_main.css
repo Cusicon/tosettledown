@@ -14,10 +14,19 @@ a[href]:hover {
 .form-control,
 .btn {
   padding: 10px 20px;
-  border-radius: 15px !important;
+  border-radius: 5px !important;
   color: unset;
   box-shadow: none !important;
   border: none !important;
+}
+
+@media screen and (max-width: 576px) {
+
+  .form-control,
+  .btn {
+    padding: 10px 15px;
+    border-radius: 15px !important;
+  }
 }
 
 button,
@@ -93,7 +102,7 @@ section.Frame .infoCon div#jb {
 section.Frame .infoCon div#jb h1 {
   font-size: 70px;
   font-family: 'Oleo Script',
-  sans-serif;
+    sans-serif;
 }
 
 section.Frame .infoCon div#jb h1 span#jb_lovers {

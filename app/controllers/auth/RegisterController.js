@@ -10,7 +10,7 @@ module['exports'] = class RegisterController {
             let username = req.body.username.trim().toLowerCase();
             let email = req.body.email.trim().toLowerCase();
             let password = req.body.password.trim();
-            let dob = req.body.dob;
+            let dob = `${req.body.dobYear}-${req.body.dobMonth}-${req.body.dobDay}`;
             let gender = req.body.gender.toLowerCase();
             let agreed_terms = true;
             let joined = new Date().toDateString();
@@ -20,7 +20,9 @@ module['exports'] = class RegisterController {
             req.checkBody("username", "Username is Needed!.").notEmpty();
             req.checkBody("email", "Email is Needed!.").notEmpty().isEmail();
             req.checkBody("password", "Password is Needed!.").notEmpty();
-            req.checkBody("dob", "Date of Birth is Essential!.").notEmpty();
+            req.checkBody("dobYear", "Date of Birth is Essential!.").notEmpty();
+            req.checkBody("dobMonth", "Date of Birth is Essential!.").notEmpty();
+            req.checkBody("dobDay", "Date of Birth is Essential!.").notEmpty();
             req.checkBody("gender", "Gender is Needed!.").notEmpty();
 
             //-- Check for validation Error
@@ -86,7 +88,7 @@ module['exports'] = class RegisterController {
     static makeFullnameSentenseCase(fullname) {
         fullname = fullname.toLowerCase();
         let fullnameArr = fullname.split(" ");
-        let namesArr = []; 
+        let namesArr = [];
         let newFullname;
         for (let i = 0; i < fullnameArr.length; i++) {
             const nameSingle = fullnameArr[i];
