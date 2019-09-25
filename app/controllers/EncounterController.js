@@ -8,8 +8,6 @@ module["exports"] = class EncounterController {
         res.render('./app/menu/encounters', {
             title: "Encounters",
         });
-
-        console.log("MY IP", require('address').ip());
     }
 
     static getUserAndPhoto(req, res) {
@@ -145,7 +143,7 @@ module["exports"] = class EncounterController {
                         res.send({
                             data: {
                                 status: "error",
-                                message: "Sorry, error occured..."
+                                message: "Sorry, error occurred..."
                             }
                         })
                     } else {
@@ -170,27 +168,25 @@ module["exports"] = class EncounterController {
         });
     }
 
-    static getOneUserAndPictures(req, res) {
+    async static getOneUserAndPictures(req, res) {
         let gender = req.user.gender === "male" ? "female" : "male";
-
         // {number of min} * 60 => time in seconds
         let IntervalInSec = 10 * 60; // 10 Minutes
-        Like.find({
-            liker: req.user.username
-        }).then(likedUsersObj => {
 
-            return likedUsersObj.filter((likedUserObj) => {
-                if (likedUserObj.isLiked === true) {
-                    return true
-                } else {
-                    let diffSec = Math.abs(Moment(likedUserObj.liked_at).diff(Moment(), 'seconds'))
-                    return (diffSec >= IntervalInSec);
-                }
-            });
-        }).then(exceptionUsersObj => {
-            exceptionUsersObj = exceptionUsersObj.map(obj => obj.liked_user);
+        let likedUsersObj = await Like.find({ liker: req.user.username})
+        let exceptionUsersObj = likedUsersObj.filter((likedUserObj) => {
+            if (likedUserObj.isLiked === true) {
+                return true
+            } else {
+                let diffSec = Math.abs(Moment(likedUserObj.liked_at).diff(Moment(), 'seconds'))
+                return (diffSec >= IntervalInSec);
+            }
+        });
+        exceptionUsersObj = exceptionUsersObj.map(obj => obj.liked_user);
 
-            User.aggregate([{
+
+            User.aggregate([
+                {
                     $match: {
                         username: {
                             $nin: exceptionUsersObj
@@ -203,6 +199,8 @@ module["exports"] = class EncounterController {
                         size: 1
                     }
                 }
+
+
             ]).then(user => {
                 if (user.length === 1) {
                     user = new User(user.pop()); // To cast the user from aggregate to user trait
@@ -231,14 +229,13 @@ module["exports"] = class EncounterController {
                         }
                     })
                 }
-            })
-        }).catch(err => {
-            res.send({
-                data: {
-                    status: "error",
-                    message: err.message
-                }
-            })
-        });
+            }).catch(err => {
+                res.send({
+                    data: {
+                        status: "error",
+                        message: err.message
+                    }
+                })
+            });
     }
 };
