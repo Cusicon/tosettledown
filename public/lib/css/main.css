@@ -334,7 +334,7 @@ a:active {
 div.separator {
   margin-top: 5px;
   margin-bottom: 5px;
-  border-top: 0.5px solid #eee;
+  border-top: 1px solid #ddd;
 }
 
 

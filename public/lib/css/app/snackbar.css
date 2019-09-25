@@ -14,7 +14,7 @@
     text-align: center;
     /* Centered text */
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 15px;
     /* Rounded borders */
     padding: 10px;
     /* Padding */
@@ -26,7 +26,6 @@
     /* Center the snackbar */
     bottom: 55px;
     /* 80px from the bottom */
-    font-size: 13px;
 }
 
 /* Show the snackbar when clicking on a button (class added with JavaScript) */

@@ -13,8 +13,8 @@
         style="height: 620px; overflow: hidden; overflow-y: scroll; border-radius: 0px; padding: 10px 15px; border-left: 1px solid #eee;">
         <div class="profileMain">
             <% if (user.username == profile_user.username) { %>
-                <!-- Space for modals -->
-                <div class="modalCon">
+            <!-- Space for modals -->
+            <div class="modalCon">
                 <!-- Edit Profile Modal -->
                 <div class="modal fade editProfileCon" tabindex="-1" role="dialog" aria-labelledby="editProfileModal"
                     style="display: none;" aria-hidden="true">
@@ -208,15 +208,15 @@
                                     &nbsp; Help
                                 </a>
 
-                                    <!-- Sign Out -->
-                                    <a href="/auth/0/signin/out" id="SignOut" class="color"
-                                        style="font-weight: 400; display: block; padding: 8px;">
-                                        &nbsp; Sign Out
-                                    </a>
-                                </div>
-                            </div><!-- /.modal-content -->
-                        </div><!-- /.modal-dialog -->
-                    </div>
+                                <!-- Sign Out -->
+                                <a href="/auth/0/signin/out" id="SignOut" class="color"
+                                    style="font-weight: 400; display: block; padding: 8px;">
+                                    &nbsp; Sign Out
+                                </a>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
 
                 <!-- Add Photos Modal -->
                 <div class="modal fade addPhotosCon" id="addPhotosCon" tabindex="-1" role="dialog"
@@ -244,10 +244,11 @@
                                                     <div style="text-align: center;">
                                                         <div
                                                             style="text-align: center; width: 100%; padding-top: 56px; height: 232px;">
-                                                            <h4 style="font-weight: lighter;">Click &nbsp;<b>+</b>&nbsp; to
+                                                            <h4 style="font-weight: lighter;">Click &nbsp;<b>+</b>&nbsp;
+                                                                to
                                                                 select your photos</h4>
                                                             <p style="margin-bottom: 10px; display: block;"
-                                                               class="text-menu-dark">Note:
+                                                                class="text-menu-dark">Note:
                                                                 To upload photos, select one at a time.</p>
                                                         </div>
                                                     </div>
@@ -261,13 +262,14 @@
                                     <div class="separator"></div>
 
                                     <button id="crop_button" type="submit" role="button"
-                                            class="btn-block btn waves-effect waves-light bg-Primary_color">Done</button>
+                                        class="btn waves-effect waves-light bg-Primary_color">Save</button>
 
                                     <div class="onMobile">
                                         <center>
                                             <!-- <small> -->
                                             <a href="javascript: void(0);" data-dismiss="modal" aria-hidden="true"
-                                                class="text-menu-dark" style="padding: 10px; margin-top: 5px;">Cancel</a>
+                                                class="text-menu-dark"
+                                                style="padding: 10px; margin-top: 5px;">Cancel</a>
                                             <!-- </small> -->
                                         </center>
                                     </div>
@@ -298,11 +300,11 @@
                             <img src="" id="displayImage" alt="image" data-dismiss="modal"
                                 style="border: 1px solid transparent; max-height: 500px; max-width: 100%;">
                             <% if (profile_user.username == user.username) { %>
-                                <br>
-                                <a href="/app/profile/update/<%= profile_user.username %>/setAvatar"
-                                    class="btn waves-effect waves-light bg-Primary_color" style="margin: 15px 0px;"
-                                    role="button" data-image-id="" id="setAvatarBtn">
-                                    Set as Display Picture</a>
+                            <br>
+                            <a href="/app/profile/update/<%= profile_user.username %>/setAvatar"
+                                class="btn waves-effect waves-light bg-Primary_color" style="margin: 15px 0px;"
+                                role="button" data-image-id="" id="setAvatarBtn">
+                                Set as Display Picture</a>
                             <% } %>
                         </div>
                     </div><!-- /.modal-content -->
@@ -315,12 +317,12 @@
                 <header>
                     <ul>
                         <% if (user.username != profile_user.username) { %>
-                            <li>
-                                <a href="/app/chats/<%= profile_user.username %>"
-                                    class="btn waves-effect waves-light bg-Primary_color" id="chatBtn" role="button"
-                                    style="padding: 10px 25px; margin-right: 10px; text-align: center;">
-                                    Chat <b><%= profile_user.fullname.firstname %></b> up</a>
-                            </li>
+                        <li>
+                            <a href="/app/chats/<%= profile_user.username %>"
+                                class="btn waves-effect waves-light bg-Primary_color" id="chatBtn" role="button"
+                                style="padding: 10px 25px; margin-right: 10px; text-align: center;">
+                                Chat <b><%= profile_user.fullname.firstname %></b> up</a>
+                        </li>
                         <% } %>
 
                         <li>
@@ -334,38 +336,14 @@
                                     <% if (user.username != profile_user.username) { %>
                                     <span class="onMobile">
                                         <a href="/app/chats/<%= profile_user.username %>"
-                                            style="font-weight: 500 !important;">
+                                            style="font-weight: 500 !important;" class="color">
                                             Chat <%= profile_user.gender == "male" ? "Him" : "Her" %> up
                                         </a>
-
-                                        <a href="#" class="color">Block or Report</a>
-
-                                    <% } else { %>
-
-                                        <a id="share" href="javascript:void(0);"
-                                           onclick="share(`${location.href}`);">
-                                            Share
-                                            <span class="fi-share color"
-                                                  style="font-size: 18px; float: right !important;"></span>
-                                        </a>
-
-                                        <div class="onMobile">
-                                            <a href="/app/visitors">Visitors</a>
-                                        </div>
-                                        <div class="onMobile">
-                                            <a href="/app/favourites">Favourites</a>
-                                        </div>
-
-                                        <a href="#" id="editProfileBtn" data-toggle="modal"
-                                           data-target=".editProfileCon">Edit profile</a>
-
-                                        <div class="separator"></div>
                                     </span>
                                     <% } %>
                                     <a id="share" href="javascript:void(0);" onclick="share(`${location.href}`);">
                                         Share
-                                        <span class="fi-share" class="color"
-                                            style="font-size: 18px; float: right !important;"></span>
+                                        <span class="fi-share" style="font-size: 18px; float: right !important;"></span>
                                     </a>
                                     <% if (user.username != profile_user.username) { %>
                                     <a id="favourite-dropdown" href="javascript:void(0);"
@@ -383,15 +361,15 @@
                                     <a href="#" id="editProfileBtn" data-toggle="modal"
                                         data-target=".editProfileCon">Edit profile</a>
                                     <% } %>
+                                    <div class="separator"></div>
                                     <% if (user.username != profile_user.username) { %>
                                     <a href="#" class="color">Block or Report</a>
                                     <% } %>
                                     <% if (user.username == profile_user.username) { %>
-                                    <div class="separator"></div>
                                     <a href="#" class="dropdownBottom" id="settingsBtn" data-toggle="modal"
                                         data-target=".settingsCon" style="color: #000;">
                                         Settings
-                                        <span class="typcn typcn-cog float-right"></span>
+                                        <span class="fi-cog float-right"></span>
                                     </a>
                                     <% } %>
                                 </div>
@@ -505,18 +483,19 @@
                                 <li class="col-1 col-md-1 col-sm-1"></li>
                                 <li class="col-10 col-md-10 col-sm-10">
                                     <a href=javascript:void(0); class="text-dark photos ">
-                                        <span class="active"><i class="typcn typcn-th-large-outline"></i>&nbsp;PHOTOS</span>
+                                        <span class="active"><i
+                                                class="typcn typcn-th-large-outline"></i>&nbsp;PHOTOS</span>
                                     </a>
                                 </li>
 
                                 <% if (user.username == profile_user.username) { %>
-                                    <li class="col-1 col-md-1 col-sm-1">
-                                        <a href=javascript:void(0); class="text-dark btn waves-effect waves-light addImages"
-                                            id="addPhotosBtn" role="button" data-toggle="modal" data-countbtn="0"
-                                            data-target=".addPhotosCon" onclick="$('#addPhotos').trigger('click');">
-                                            <i class="typcn typcn-plus-outline"></i>
-                                        </a>
-                                    </li>
+                                <li class="col-1 col-md-1 col-sm-1">
+                                    <a href=javascript:void(0); class="text-dark btn waves-effect waves-light addImages"
+                                        id="addPhotosBtn" role="button" data-toggle="modal" data-countbtn="0"
+                                        data-target=".addPhotosCon" onclick="$('#addPhotos').trigger('click');">
+                                        <i class="typcn typcn-plus-outline"></i>
+                                    </a>
+                                </li>
                                 <% } %>
 
                                 <!-- In the future -->
@@ -534,45 +513,45 @@
                 <footer>
                     <div class="image-holder-container" style="text-align: center;">
                         <% if (typeof photos != "undefined" && photos.length > 0) { %>
-                            <ul class="images-holder row">
-                                <% photos.forEach(photo => { %>
-                                    <!-- Duplicate Here... -->
-                                    <li class="col-md-4 col-sm-6">
-                                        <a href="javascript:void(0);" data-toggle="modal" data-target=".displayPhotosCon"
-                                            style="background-image: url('<%= photo.location %>'); width: 280px;"
-                                            data-image-id="<%= photo.id %>"
-                                            class="userPhoto"></a>
-                                    </li>
-                                <% }) %>
-                            </ul>
+                        <ul class="images-holder row">
+                            <% photos.forEach(photo => { %>
+                            <!-- Duplicate Here... -->
+                            <li class="col-md-4 col-sm-6">
+                                <a href="javascript:void(0);" data-toggle="modal" data-target=".displayPhotosCon"
+                                    style="background-image: url('<%= photo.location %>');"
+                                    data-image-id="<%= photo.id %>" class="userPhoto"></a>
+                            </li>
+                            <% }) %>
+                        </ul>
                         <% } else {%>
-                            <div class="no-picture-message">
-                                <% if (photos.length == 0 && profile_user.username == user.username) { %>
-                                <section style="padding: 10px;">
-                                    <div style="font-size: 80px;">
-                                        <i class="fi-marquee-plus"></i>
-                                    </div>
-                                    <br>
-                                    <p style="font-size: 15px !important;">When you upload your photos, they will appear here on
-                                        your profile...</p>
-                                    <a href=javascript:void(0); class="color btn waves-effect waves-light" id="addPhotosBtn"
-                                       role="button" data-toggle="modal" data-target=".addPhotosCon"
-                                       onclick="$('#addPhotos').trigger('click');">
-                                        Upload your first photo.
-                                    </a>
-                                    <div class="nophoto"></div>
-                                </section>
-                                <% } else { %>
-                                <section style="padding: 10px;">
-                                    <span style="font-size: 80px;">
-                                        <i class="dripicons-photo-group"></i>
-                                    </span>
-                                    <p style="font-size: 15px;">Sorry, <b><%= profile_user.fullname.firstname %></b> has no
-                                        photos, Tell
-                                        <%= profile_user.gender == 'male' ? 'Him' : "Her" %> to upload some.</p>
-                                </section>
-                                <% } %>
-                            </div>
+                        <div class="no-picture-message">
+                            <% if (photos.length == 0 && profile_user.username == user.username) { %>
+                            <section style="padding: 10px;">
+                                <div style="font-size: 70px;">
+                                    <i class="fi-marquee-plus"></i>
+                                </div>
+                                <br>
+                                <p style="font-size: 15px !important;">When you upload your photos, they will appear
+                                    here on
+                                    your profile...</p>
+                                <a href=javascript:void(0); class="color btn waves-effect waves-light" id="addPhotosBtn"
+                                    role="button" data-toggle="modal" data-target=".addPhotosCon"
+                                    onclick="$('#addPhotos').trigger('click');">
+                                    Upload your first photo.
+                                </a>
+                                <div class="num_photo"></div>
+                            </section>
+                            <% } else { %>
+                            <section style="padding: 10px;">
+                                <span style="font-size: 70px;">
+                                    <i class="dripicons-photo-group"></i>
+                                </span>
+                                <p style="font-size: 15px;">Sorry, <b><%= profile_user.fullname.firstname %></b> has no
+                                    photos, Tell
+                                    <%= profile_user.gender == 'male' ? 'Him' : "Her" %> to upload some.</p>
+                            </section>
+                            <% } %>
+                        </div>
                         <% } %>
                     </div>
                 </footer>

@@ -61,7 +61,7 @@ function initCropper(imageHolder) {
 function appendImageToDOM(photo, container){
     let html = `<li class="col-md-4 col-sm-6">
                     <a href="javascript:void(0);" data-toggle="modal" data-target=".displayPhotosCon"
-                        style="background-image: url('${photo.location}'); width: 280px;"
+                        style="background-image: url('${photo.location}'); width: 100%;"
                         data-image-id="${photo._id}"
                         class="userPhoto"></a>
                 </li>`;
@@ -73,7 +73,7 @@ function appendImageToDOM(photo, container){
 }
 
 $(document).on('ready', function () {
-    if($('.nophoto').length > 0){
+    if($('.num_photo').length > 0){
         alert("/lib/img/logo/favicon.png", "Must upload a photo", "Sorry, you are required to upload at least one photo!", [null,"Upload photo"], () => {
             $('#addPhotosBtn').trigger('click');
         });
@@ -149,7 +149,9 @@ $(document).on('ready', function () {
 
     $(document).on('click', '.userPhoto', function () {
         let element = $(this);
-        let image_link = element.css('background-image').replace('url(','').replace(')','').replace(/"/gi, "");
+        // let image_link = element.css('background-image').replace('url(','').replace(')','').replace(/"/gi, "");
+        let image_link = element.css('background-image')
+        image_link = image_link.slice(5, image_link.length - 2);
         let image_id = element.data('image-id');
         if($('#displayImage').length > 0){
             $('#displayImage').attr('src', image_link)
