@@ -108,6 +108,8 @@ section.Frame .infoCon div#jb h1 {
 section.Frame .infoCon div#jb h1 span#jb_lovers {
   padding: 0px 5px !important;
   border-radius: 5px;
+  font-family: 'Oleo Script',
+    sans-serif;
 }
 
 section.Frame .infoCon div#jb p {
