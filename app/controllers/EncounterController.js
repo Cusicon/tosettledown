@@ -20,9 +20,8 @@ module["exports"] = class EncounterController {
             liked_user: req.query.username
         }).then(like => {
             if (like) {
-                if (!like.isLiked && req.query.type === 'like') {
-                    like.isLiked = true;
-                    like.liked_at = new Date().toDateString();
+                if (!like.isLiked) {
+                    like.isLiked = (req.query.type === 'like');
                     like.save()
                 }
                 EncounterController.getOneUserAndPictures(req, res);
@@ -52,9 +51,8 @@ module["exports"] = class EncounterController {
             liked_user: req.query.username
         }).then(like => {
             if (like) {
-                if (!like.isLiked && req.query.type === 'like') {
-                    like.isLiked = true;
-                    like.liked_at = new Date().toDateString();
+                if (!like.isLiked) {
+                    like.isLiked = (req.query.type === 'like');
                     like.save(() => {
                         res.send({
                             data: {
@@ -105,31 +103,27 @@ module["exports"] = class EncounterController {
             if (favourite) {
                 if (favourite.isFavourited) {
                     Favourite.findByIdAndUpdate(favourite._id, {
-                        isFavourited: false
-                    }, (err, result) => {
+                        isFavourited: false,
+                        favourite_at: Moment().toISOString(),
+                    }, () => {
                         res.send({
                             data: {
                                 status: "success",
                                 message: "Removed from favourites..."
                             }
                         })
-
-                        console.log(result);
-
                     });
                 } else {
                     Favourite.findByIdAndUpdate(favourite._id, {
-                        isFavourited: true
-                    }, (err, result) => {
+                        isFavourited: true,
+                        favourite_at: Moment().toISOString(),
+                    }, () => {
                         res.send({
                             data: {
                                 status: "success",
                                 message: "Added back to favourites..."
                             }
                         })
-
-                        console.log(result);
-
                     });
                 }
             } else {
@@ -137,8 +131,9 @@ module["exports"] = class EncounterController {
                     user: req.user.username,
                     isFavourited: true,
                     favourite_user: req.query.username,
+                    favourite_at: Moment().toISOString(),
                 })
-                favourite.save((err, result) => {
+                favourite.save((err) => {
                     if (err) {
                         res.send({
                             data: {
@@ -153,8 +148,6 @@ module["exports"] = class EncounterController {
                                 message: "Added to favourites..."
                             }
                         })
-
-                        console.log(result);
                     }
                 })
             }
@@ -168,21 +161,31 @@ module["exports"] = class EncounterController {
         });
     }
 
-    async static getOneUserAndPictures(req, res) {
+    static async getOneUserAndPictures(req, res) {
         let gender = req.user.gender === "male" ? "female" : "male";
-        // {number of min} * 60 => time in seconds
-        let IntervalInSec = 10 * 60; // 10 Minutes
+        let Interval = Moment().subtract(2, 'minute');
 
-        let likedUsersObj = await Like.find({ liker: req.user.username})
-        let exceptionUsersObj = likedUsersObj.filter((likedUserObj) => {
-            if (likedUserObj.isLiked === true) {
-                return true
-            } else {
-                let diffSec = Math.abs(Moment(likedUserObj.liked_at).diff(Moment(), 'seconds'))
-                return (diffSec >= IntervalInSec);
-            }
-        });
-        exceptionUsersObj = exceptionUsersObj.map(obj => obj.liked_user);
+        let likedUsersObj = await Like.find({
+            liker: req.user.username,
+            $or: [
+                {isLiked : true},
+                {isLiked : false, liked_at: {$gte: Interval.toISOString() }},
+            ]
+        })
+        
+        console.log(Moment().utc().toISOString())
+
+        // let exceptionUsersObj = likedUsersObj.filter((likedUserObj) => {
+        //     if (likedUserObj.isLiked === true) {
+        //         return true
+        //     } else {
+        //         let diffSec = Math.abs(Moment(likedUserObj.liked_at).diff(Moment(), 'seconds'))
+        //         return (diffSec >= IntervalInSec);
+        //     }
+        // });
+
+        let exceptionUsersObj = likedUsersObj.map(obj => obj.liked_user);
+
 
 
             User.aggregate([

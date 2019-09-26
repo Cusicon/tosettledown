@@ -8,7 +8,7 @@ let like_schema = mongoose.Schema({
     },
     liked_at: {
         type: Date,
-        default: new Date().toDateString()
+        default: Date.now
     },
 });
 
