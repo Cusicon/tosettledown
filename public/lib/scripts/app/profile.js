@@ -30,37 +30,38 @@ function initCropper(imageHolder) {
     $('#crop_button').on('click', function (e) {
         e.preventDefault();
         let fileData = document.getElementById('addPhotos').files.item(0);
-        let imgDataUrl = cropper.getCroppedCanvas().toDataURL(fileData.type, 60);
+        if(cropper && fileData){
+            let imgDataUrl = cropper.getCroppedCanvas().toDataURL(fileData.type, 60);
 
-        let formData = {
-            base64Data :imgDataUrl,
-            name :fileData.name,
-            mimetype :fileData.type,
-            size :fileData.size,
-        };
+            let formData = {
+                base64Data :imgDataUrl,
+                name :fileData.name,
+                mimetype :fileData.type,
+                size :fileData.size,
+            };
 
-        $.ajax('/app/profile/addPhotos', {
-            method: "POST",
-            data: formData,
-            beforeSend: () => {
-                $('#crop_button').html(`<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>`)  ;
-            },
-            success(response) {
-                $("div.addPhotosCon").addClass('hide').modal('hide');
-                mySnackbar(response.message)
-                appendImageToDOM(response.data.photo, 'ul.images-holder');
-                $('#crop_button').html(`Done`);
-            },
-            error(err) {
-                mySnackbar(err.message);
-                $('#crop_button').html(`Done`);
-            },
-        });
+            $.ajax('/app/profile/addPhotos', {
+                method: "POST",
+                data: formData,
+                beforeSend: () => {
+                    $('#crop_button').html(`<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>`)  ;
+                },
+                success(response) {
+                    $("div.addPhotosCon").addClass('hide').modal('hide');
+                    mySnackbar(response.message)
+                    appendImageToDOM(response.data.photo, 'ul.images-holder');
+                    cropper = null;
+                    $('#crop_button').html(`Done`);
+                },
+                error(err) {
+                    mySnackbar(err.message);
+                    $('#crop_button').html(`Done`);
+                },
+            });
+        }else{
+            mySnackbar('Select a photo to upload first');
+        }
         return false;
-    });
-
-    $('.image-upload-action-holder #cancel_button').on('click', function () {
-        $("div.addPhotosCon").addClass('hide').modal('hide');
     });
 }
 
@@ -76,6 +77,23 @@ function appendImageToDOM(photo, container){
         $('.image-holder-container').html(`<ul class="images-holder row"> </ul>`)
     }
     $(container).prepend(html);
+    resetCropBox();
+}
+
+function resetCropBox(){
+    let previewInfo = `
+                <div style="text-align: center; background-color: #54535214;">
+                    <div
+                        style="text-align: center; width: 100%; padding-top: 56px; height: 232px;">
+                        <h4 style="font-weight: lighter;">Click &nbsp;<b>+</b>&nbsp; to
+                            select your photos</h4>
+                        <p style="margin-bottom: 10px; display: block;"
+                           class="text-menu-dark">Note:
+                            To upload photos, select one at a time.</p>
+                    </div>
+                </div>
+             `;
+    $("div.addPhotosCon .info .displayCon div#container").html(previewInfo).removeClass("hide");
 }
 
 $(document).on('ready', function () {
@@ -97,23 +115,12 @@ $(document).on('ready', function () {
     $("#addPhotos").on("change", function () {
         if (this.files.length !== 0) {
             if (this.files.length <= 5) {
-                $("div.addPhotosCon .info center").html('');
-                // Empty displayCon, before changing it's value
-                $("div.addPhotosCon .info .displayCon div#container").html("");
                 addPhotosPreview(this, "div.addPhotosCon .info .displayCon div#container")
-                // $("div.addPhotosCon .info .displayCon div#container").removeClass("hide");
             } else {
                 alert("warning", "Warning", "Only, 5 photos are permitted!");
             }
         } else {
-            let previewInfo = `
-                    <div style="text-align: center; width: 100%; padding-top: 72px; height: 232px;">
-                    <h4 style="font-weight: lighter;">Click &nbsp;<b>+</b>&nbsp; to
-                    select your photos</h4>
-                    <p style="margin-bottom: 10px; display: block; color: #ccc;">Note:
-                    To upload photos, select all images at once.</p>
-                    </div> `;
-            $("div.addPhotosCon .info .displayCon .container").html(previewInfo).removeClass("hide");
+            resetCropBox();
         }
     });
 
@@ -125,6 +132,11 @@ $(document).on('ready', function () {
         });
         e.preventDefault();
     })
+
+    $('.image-upload-action-holder #cancel_button').on('click', function () {
+        $("div.addPhotosCon").addClass('hide').modal('hide');
+        resetCropBox();
+    });
 
     $("#like").on('click', function(){
         let value = $(this).data('username');
