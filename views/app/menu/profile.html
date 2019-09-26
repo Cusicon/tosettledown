@@ -257,8 +257,15 @@
                                     </div>
                                 </div>
 
-                                <button id="crop_button" type="submit" role="button"
-                                        class="btn-block btn waves-effect waves-light bg-Primary_color">Done</button>
+                                <div class="image-upload-action-holder">
+                                    <button id="cancel_button" type="submit" role="button"
+                                            class="btn-block btn waves-effect waves-light bg-Primary_color">Cancel</button>
+
+                                    <button id="crop_button" type="submit" role="button"
+                                            class="btn-block btn waves-effect waves-light bg-Primary_color">Done</button>
+                                </div>
+
+
 
                                 <div class="onMobile">
                                     <div style="text-align: center;">
@@ -280,23 +287,27 @@
                 aria-labelledby="displayPhotoModal" style="display: none;" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content" style="background-color: transparent;">
-                        <div class="modal-header" style="border: 0px;">
-                            <h4 class="modal-title" style="color: #fff !important;">Photo
+                        <div class="modal-header"
+                             style="padding: 10px 20px;
+                                background-color:white;
+                                border: 0;
+                        ">
+                            <h4 class="modal-title" style="color: #000 !important;">Photo
                                 <span class="bg-Primary_color" style="border-radius: 5px; padding: 5px;">Preview</span>
                             </h4>
                             <button type="button" class="btn waves-effect waves-light" data-dismiss="modal"
                                 aria-hidden="true" style="padding: 5px 10px !important;">
-                                <i class="typcn typcn-times" style="color: #fff; font-size: 20px;"></i>
+                                <i class="typcn typcn-times" style="color: #000; font-size: 20px;"></i>
                             </button>
                         </div>
                         <div class="displayImageCon"
-                            style="padding: 10px 0px; background-color: transparent; text-align: center !important;">
+                            style="background-color: transparent; text-align: center !important;">
                             <img src="" id="displayImage" alt="image" data-dismiss="modal"
-                                style="border: 1px solid transparent; max-height: 500px; max-width: 100%;">
+                                style="max-height: 500px; max-width: 100%;">
                             <% if (profile_user.username == user.username) { %>
                                 <br>
                                 <button
-                                    class="setAvatarBtn btn waves-effect waves-light bg-Primary_color" style="margin: 15px 0px;"
+                                    class="setAvatarBtn btn-block btn waves-effect waves-light bg-Primary_color"
                                     role="button" id="setAvatarBtn">
                                     Set as Display Picture</button>
                             <% } %>
@@ -518,7 +529,7 @@
                                 <% photos.forEach(photo => { %>
                                     <!-- Duplicate Here... -->
                                     <li class="col-md-4 col-sm-6">
-                                        <a href="javascript:void(0);" data-toggle="modal" data-target=".displayPhotosCon"
+                                        <a href="javascript:void(0);"
                                             style="background-image: url('<%= photo.location %>'); width: 280px;"
                                             data-image-id="<%= photo.id %>"
                                             class="userPhoto"></a>

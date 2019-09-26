@@ -39,27 +39,28 @@ function initCropper(imageHolder) {
             size :fileData.size,
         };
 
-
-
         $.ajax('/app/profile/addPhotos', {
             method: "POST",
             data: formData,
             beforeSend: () => {
-                $('#crop_button').html(`<div class="lds-ripple"><div></div><div></div></div>`)  ;
+                $('#crop_button').html(`<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>`)  ;
             },
             success(response) {
                 $("div.addPhotosCon").addClass('hide').modal('hide');
                 mySnackbar(response.message)
                 appendImageToDOM(response.data.photo, 'ul.images-holder');
-
+                $('#crop_button').html(`Done`);
             },
             error(err) {
                 mySnackbar(err.message);
+                $('#crop_button').html(`Done`);
             },
-        }).success(() => {
-            $('#crop_button').html(`Done`);
         });
         return false;
+    });
+
+    $('.image-upload-action-holder #cancel_button').on('click', function () {
+        $("div.addPhotosCon").addClass('hide').modal('hide');
     });
 }
 
@@ -118,7 +119,10 @@ $(document).on('ready', function () {
 
     $('.addPhotoBtn').on('click', e => {
         $('#addPhotos').trigger('click');
-        $('.addPhotosCon').modal('show');
+        $('.addPhotosCon').modal({
+            backdrop: 'static',
+            keyboard: false
+        });
         e.preventDefault();
     })
 
@@ -163,6 +167,10 @@ $(document).on('ready', function () {
         if($('#setAvatarBtn').length > 0){
             $('#setAvatarBtn').attr('data-image-id', image_id)
         }
+        $('.displayPhotosCon').modal({
+                backdrop: 'static',
+                keyboard: false
+        });
     })
 
     $(document).on('click', '.setAvatarBtn' , function(e) {
@@ -174,11 +182,12 @@ $(document).on('ready', function () {
             url: `/app/profile/avatar/update`,
             method: "POST",
             data :{photo_id : image_id},
+            beforeSend: () => {
+                $('#setAvatarBtn').html(`<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>`)  ;
+            },
             success: function(response) {
                 if(response.status === 'success'){
-                    mySnackbar(response.message)
                     let location = response.data.photo.location;
-
                     setTimeout(() => {
                         if($('.profileImg').length > 0){
                             $('.profileImg').each(function () {
@@ -190,6 +199,8 @@ $(document).on('ready', function () {
                                 $(this).css('background-image', `url('${location}')`);
                             })
                         }
+                        mySnackbar(response.message)
+                        $('#setAvatarBtn').html(`Set as Display Picture`)
                     }, 1000)
                 }else{
                     mySnackbar(response.message)
@@ -197,6 +208,7 @@ $(document).on('ready', function () {
             },
             error: function () {
                 mySnackbar('Error Occur While Updating Profile Picture');
+                $('#setAvatarBtn').html(`Set as Display Picture`)
             }
         });
     })

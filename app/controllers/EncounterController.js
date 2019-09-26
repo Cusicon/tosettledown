@@ -10,57 +10,63 @@ module["exports"] = class EncounterController {
         });
     }
 
-    static getUserAndPhoto(req, res) {
-        EncounterController.getOneUserAndPictures(req, res);
+    static async getUserAndPhoto(req, res) {
+        await EncounterController.getOneUserAndPictures(req, res);
     }
 
-    static addToLikeAndGetAnotherUser(req, res) {
-        Like.findOne({
-            liker: req.user.username,
-            liked_user: req.query.username
-        }).then(like => {
+    static async addToLikeAndGetAnotherUser(req, res) {
+        try{
+            let like = await Like.findOne({
+                liker: req.user.username,
+                liked_user: req.query.username
+            })
+
             if (like) {
                 if (!like.isLiked) {
                     like.isLiked = (req.query.type === 'like');
-                    like.save()
+                    like.liked_at = Moment().toISOString();
+                    await like.save()
                 }
-                EncounterController.getOneUserAndPictures(req, res);
+                await EncounterController.getOneUserAndPictures(req, res);
             } else {
                 like = new Like({
                     liker: req.user.username,
                     liked_user: req.query.username,
                     isLiked: (req.query.type === 'like'),
                 })
-                like.save(() => {
-                    EncounterController.getOneUserAndPictures(req, res);
-                })
+                if (await like.save()){
+                    await EncounterController.getOneUserAndPictures(req, res);
+                }
             }
-        }).catch(err => {
+        }catch(err){
             res.send({
                 data: {
                     status: "error",
                     message: err.message
                 }
             })
-        });
+        }
     }
 
-    static addToLike(req, res) {
-        Like.findOne({
-            liker: req.user.username,
-            liked_user: req.query.username
-        }).then(like => {
+    static async addToLike(req, res) {
+        try{
+            let like = await Like.findOne({
+                liker: req.user.username,
+                liked_user: req.query.username
+            })
+
             if (like) {
                 if (!like.isLiked) {
                     like.isLiked = (req.query.type === 'like');
-                    like.save(() => {
+                    like.liked_at = Moment().toISOString();
+                    if(await like.save()){
                         res.send({
                             data: {
                                 status: "success",
                                 message: "Added Successfully"
                             }
                         })
-                    })
+                    }
                 } else {
                     res.send({
                         data: {
@@ -75,56 +81,43 @@ module["exports"] = class EncounterController {
                     liked_user: req.query.username,
                     isLiked: (req.query.type === 'like'),
                 })
-                like.save(() => {
+                if(await like.save()){
                     res.send({
                         data: {
                             status: "success",
                             message: "Added Successfully"
                         }
                     })
-                })
+                }
             }
-        }).catch(err => {
+        }catch(err){
             res.send({
                 data: {
                     status: "error",
                     message: err.message
                 }
             })
-        });
+        }
     }
 
-    static addToFavorite(req, res) {
+    static async addToFavorite(req, res) {
 
-        Favourite.findOne({
-            user: req.user.username,
-            favourite_user: req.query.username
-        }).then(favourite => {
+        try {
+            let favourite = await Favourite.findOne({
+                user: req.user.username,
+                favourite_user: req.query.username
+            });
+
             if (favourite) {
-                if (favourite.isFavourited) {
-                    Favourite.findByIdAndUpdate(favourite._id, {
-                        isFavourited: false,
-                        favourite_at: Moment().toISOString(),
-                    }, () => {
-                        res.send({
-                            data: {
-                                status: "success",
-                                message: "Removed from favourites..."
-                            }
-                        })
-                    });
-                } else {
-                    Favourite.findByIdAndUpdate(favourite._id, {
-                        isFavourited: true,
-                        favourite_at: Moment().toISOString(),
-                    }, () => {
-                        res.send({
-                            data: {
-                                status: "success",
-                                message: "Added back to favourites..."
-                            }
-                        })
-                    });
+                favourite.isFavourited = !favourite.isFavourited;
+                favourite.favourite_at = Moment().toISOString()
+                if(await favourite.save()){
+                    res.send({
+                        data: {
+                            status: "success",
+                            message: (favourite.isFavourited) ? "Added back to favourites..." : "Removed from favourites..."
+                        }
+                    })
                 }
             } else {
                 favourite = new Favourite({
@@ -133,66 +126,43 @@ module["exports"] = class EncounterController {
                     favourite_user: req.query.username,
                     favourite_at: Moment().toISOString(),
                 })
-                favourite.save((err) => {
-                    if (err) {
-                        res.send({
-                            data: {
-                                status: "error",
-                                message: "Sorry, error occurred..."
-                            }
-                        })
-                    } else {
-                        res.send({
-                            data: {
-                                status: "success",
-                                message: "Added to favourites..."
-                            }
-                        })
-                    }
-                })
+                if(await favourite.save()){
+                    res.send({
+                        data: {
+                            status: "success",
+                            message: "Added to favourites..."
+                        }
+                    })
+                }
             }
-        }).catch(err => {
+        }catch(err){
             res.send({
                 data: {
                     status: "error",
                     message: err.message
                 }
             })
-        });
+        }
     }
 
     static async getOneUserAndPictures(req, res) {
-        let gender = req.user.gender === "male" ? "female" : "male";
-        let Interval = Moment().subtract(2, 'minute');
+        try {
+            let gender = req.user.gender === "male" ? "female" : "male";
+            let Interval = Moment().subtract(2, 'minute');
 
-        let likedUsersObj = await Like.find({
-            liker: req.user.username,
-            $or: [
-                {isLiked : true},
-                {isLiked : false, liked_at: {$gte: Interval.toISOString() }},
-            ]
-        })
-        
-        console.log(Moment().utc().toISOString())
+            let likedUsersObj = await Like.find({
+                liker: req.user.username,
+                $or: [
+                    {isLiked : true},
+                    {isLiked : false, liked_at: {$gte: Interval.toISOString() }},
+                ]
+            });
 
-        // let exceptionUsersObj = likedUsersObj.filter((likedUserObj) => {
-        //     if (likedUserObj.isLiked === true) {
-        //         return true
-        //     } else {
-        //         let diffSec = Math.abs(Moment(likedUserObj.liked_at).diff(Moment(), 'seconds'))
-        //         return (diffSec >= IntervalInSec);
-        //     }
-        // });
-
-        let exceptionUsersObj = likedUsersObj.map(obj => obj.liked_user);
-
-
-
-            User.aggregate([
+            let user = await User.aggregate([
                 {
                     $match: {
                         username: {
-                            $nin: exceptionUsersObj
+                            $nin: likedUsersObj.map(obj => obj.liked_user)
                         },
                         gender: gender
                     }
@@ -202,43 +172,32 @@ module["exports"] = class EncounterController {
                         size: 1
                     }
                 }
+            ]);
 
-
-            ]).then(user => {
-                if (user.length === 1) {
-                    user = new User(user.pop()); // To cast the user from aggregate to user trait
-                    if (user) {
-                        user.photos().then(photos => {
-                            res.send({
-                                data: {
-                                    photos: photos,
-                                    user: user
-                                }
-                            })
-                        }).catch(err => {
-                            res.send({
-                                data: {
-                                    status: "error",
-                                    message: err.message
-                                }
-                            })
-                        });
-                    }
-                } else {
-                    res.send({
-                        data: {
-                            photos: null,
-                            user: null
-                        }
-                    })
-                }
-            }).catch(err => {
+            if(user.length === 1){
+                user = new User(user.pop()); // To cast the user from aggregate to user trait
+                let photos = await  user.photos();
                 res.send({
                     data: {
-                        status: "error",
-                        message: err.message
+                        photos: photos,
+                        user: user
                     }
                 })
-            });
+            }else{
+                res.send({
+                    data: {
+                        photos: null,
+                        user: null
+                    }
+                })
+            }
+        }catch (err) {
+            res.send({
+                data: {
+                    status: "error",
+                    message: err.message
+                }
+            })
+        }
     }
 };
