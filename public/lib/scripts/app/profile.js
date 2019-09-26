@@ -77,7 +77,7 @@ function initCropper(imageHolder) {
 function appendImageToDOM(photo, container) {
     let html = `<li class="col-md-4 col-sm-6">
                     <a href="javascript:void(0);" data-toggle="modal" data-target=".displayPhotosCon"
-                        style="background-image: url('${photo.location}'); width: 100%;"
+                        style="background-image: url('${photo.location}'); width: 280px;"
                         data-image-id="${photo._id}"
                         class="userPhoto"></a>
                 </li>`;
