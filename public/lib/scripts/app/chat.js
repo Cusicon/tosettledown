@@ -125,7 +125,7 @@ $(document).on('ready', () => {
                 <li id='${associate.username.toLowerCase()}-chat-listing' data-username="${associate.username.toLowerCase()}" class="user user-chat-listing">
                     <div class="image-holder">
                         <div class="status ${is_online}"></div>
-                        <div class="profile-img" style="background-image: url(${associate.avatar})"></div>
+                        <div class="profile-img" style="background-image: url('${associate.avatar}')"></div>
                     </div>
                     <div class="message-holder">
                         <div class="time text-muted">${time}</div>
@@ -157,7 +157,7 @@ $(document).on('ready', () => {
             //-- user property to dom
             $('#chat-status').removeClass('is_online').removeClass('is_offline').addClass(is_online)
             $('#chat-username-holder').text(user.name);
-            $('#chat-profile-img').css('background-image', `url(${user.avatar})`);
+            $('#chat-profile-img').css('background-image', `url('${user.avatar}')`);
 
             chats_list_box.find('*').remove();
 
@@ -181,16 +181,16 @@ $(document).on('ready', () => {
 
         if (is_outbox_or_inbox === 'outbox') {
             if (chat.sent_at) {
-                message_status = `<i class="typcn typcn-tick"></i>`;
+                message_status = `<i class="fa fa-check"></i>`;
             }
             if (chat.delivered_at) {
-                message_status = `<i class="typcn typcn-tick"></i><i class="typcn typcn-tick" style="margin-left: -7px; opacity: .7;"></i>`;
+                message_status = `<i class="fa fa-check"></i><i class="fa fa-check" style="margin-left: -7px; opacity: .7;"></i>`;
             }
             if (chat.read_at) {
-                message_status = `<i class="typcn typcn-thumb-ok"></i>`;
+                message_status = `<i class="fa fa-check"></i><i class="fa fa-check" style="margin-left: -6px; opacity: .7;"></i>`;
             }
             if (sending) {
-                message_status = `<i class="fa fa-spinner fa-1"></i>`;
+                message_status = `<i class="fa fa-clock-o"></i>`;
             }
         }
 
@@ -198,7 +198,7 @@ $(document).on('ready', () => {
              <li id="chat-${chat.u_id}" class="${is_outbox_or_inbox}">
                 <div class="">
                     <span class="message">${chat.message}</span>
-                    <span class="time">${moment(chat.sent_at).fromNow()} <span id="message-status">${message_status}</span></span>
+                    <span class="time">${moment(chat.sent_at).fromNow()} &nbsp; <span id="message-status">${message_status}</span></span>
                 </div>
             </li>
         `;

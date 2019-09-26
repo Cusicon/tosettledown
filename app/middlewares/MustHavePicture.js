@@ -1,18 +1,14 @@
 let User = require('@models/user');
 module["exports"] = function (req, res, next) {
 
-    if(req.user) {
+    if (req.user) {
         req.user.photos().then(photos => {
             if(photos.length > 0){
                 if(req.user.avatar.includes('/lib/img/assets/reduced')){
                     User.getUserByIdandUpdate(req.user.id, {
                         avatar: photos[0].location
                     }, (err) => {
-                        if(err){
-                            throw new Error(err.message || 'photo not found');
-                        }else{
-                            next();
-                        }
+                        err ? console.log("Error: ", err) : next(); console.log("Avatar updated!", req.user.avatar);
                     });
                 }else {
                     next();
@@ -20,12 +16,12 @@ module["exports"] = function (req, res, next) {
             }else{
                 if(req.path.includes(`/profile/${req.user.username}`) || req.path.includes(`/profile/addPhotos`)){
                     next()
-                }else{
+                } else {
                     res.redirect(`/app/profile/${req.user.username}`);
                 }
             }
         });
-    }else{
+    } else {
         res.redirect(`/`);
     }
 };

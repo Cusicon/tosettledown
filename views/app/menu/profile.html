@@ -13,8 +13,8 @@
         style="height: 620px; overflow: hidden; overflow-y: scroll; border-radius: 0px; padding: 10px 15px; border-left: 1px solid #eee;">
         <div class="profileMain">
             <% if (user.username == profile_user.username) { %>
-                <!-- Space for modals -->
-                <div class="modalCon">
+            <!-- Space for modals -->
+            <div class="modalCon">
                 <!-- Edit Profile Modal -->
                 <div class="modal fade editProfileCon" tabindex="-1" role="dialog" aria-labelledby="editProfileModal"
                     style="display: none;" aria-hidden="true">
@@ -208,15 +208,15 @@
                                     &nbsp; Help
                                 </a>
 
-                                    <!-- Sign Out -->
-                                    <a href="/auth/0/signin/out" id="SignOut" class="color"
-                                        style="font-weight: 400; display: block; padding: 8px;">
-                                        &nbsp; Sign Out
-                                    </a>
-                                </div>
-                            </div><!-- /.modal-content -->
-                        </div><!-- /.modal-dialog -->
-                    </div>
+                                <!-- Sign Out -->
+                                <a href="/auth/0/signin/out" id="SignOut" class="color"
+                                    style="font-weight: 400; display: block; padding: 8px;">
+                                    &nbsp; Sign Out
+                                </a>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
 
                 <!-- Add Photos Modal -->
                 <div class="modal fade addPhotosCon" id="addPhotosCon" tabindex="-1" role="dialog"
@@ -233,7 +233,6 @@
                                     <i class="typcn typcn-plus"></i>
                                 </a>
                             </div>
-
                             <div class="modal-body" style="padding: 0 !important; text-align: center !important;">
                                 <div style="padding-right:0 !important; position: relative;" class="addPhotosCon">
                                     <!-- Display container -->
@@ -313,8 +312,8 @@
                         <% if (user.username != profile_user.username) { %>
                         <li>
                             <a href="/app/chats/<%= profile_user.username %>"
-                               class="btn waves-effect waves-light bg-Primary_color" id="chatBtn" role="button"
-                               style="padding: 10px 25px; margin-right: 10px; text-align: center;">
+                                class="btn waves-effect waves-light bg-Primary_color" id="chatBtn" role="button"
+                                style="padding: 10px 25px; margin-right: 10px; text-align: center;">
                                 Chat <b><%= profile_user.fullname.firstname %></b> up</a>
                         </li>
                         <% } %>
@@ -334,17 +333,18 @@
                                             </a>
                                         </span>
 
-                                        <div class="separator"></div>
-
-                                        <a id="favourite-drpdown" href="javascript:void(0);"
-                                           data-username="<%=profile_user.username%>">Add to favourites</a>
-
                                         <a class="share" href="javascript:void(0);"
                                            onclick="share(`${location.href}`);">
                                             Share
                                             <span class="fi-share color"
                                                   style="font-size: 18px; float: right !important;"></span>
                                         </a>
+
+                                        <a id="favourite-drpdown" href="javascript:void(0);"
+                                           data-username="<%=profile_user.username%>">Add to favourites</a>
+
+
+                                        <div class="separator"></div>
 
                                         <a href="#" class="color">Block or Report</a>
 
@@ -486,7 +486,8 @@
                                 <li class="col-1 col-md-1 col-sm-1"></li>
                                 <li class="col-10 col-md-10 col-sm-10">
                                     <a href=javascript:void(0); class="text-dark photos ">
-                                        <span class="active"><i class="typcn typcn-th-large-outline"></i>&nbsp;PHOTOS</span>
+                                        <span class="active"><i
+                                                class="typcn typcn-th-large-outline"></i>&nbsp;PHOTOS</span>
                                     </a>
                                 </li>
 
