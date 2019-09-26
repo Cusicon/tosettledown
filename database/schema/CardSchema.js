@@ -4,7 +4,7 @@ let card_schema = mongoose.Schema({
     cvc: {type:Number, default: null},
     expiry_date: {type:String, default: null},
     number:{type: Number, default: null},
-    created_at:{type: Date, default: new Date().toDateString()},
+    created_at:{type: Date, default: Date.now},
 });
 
 module['exports'].schema = card_schema;

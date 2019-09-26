@@ -8,7 +8,7 @@ let favourite_schema = mongoose.Schema({
     },
     favourite_at: {
         type: Date,
-        default: new Date().toDateString()
+        default: Date.now
     },
 });
 

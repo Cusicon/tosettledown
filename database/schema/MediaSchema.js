@@ -7,8 +7,8 @@ let media_schema = mongoose.Schema({
     size: {type: String},
     path: {type: String},
     location: {type: String},
-    created_at: {type: Date, default: new Date().toDateString()},
-    updated_at: {type: Date, default: new Date().toDateString()},
+    created_at: {type: Date, default: Date.now},
+    updated_at: {type: Date, default: Date.now},
     is_visible: {type: Boolean, default: true},
 });
 
