@@ -3,7 +3,6 @@ const passport = require('passport/lib');
 const RememberMeStrategy = require('passport-remember-me/lib').Strategy;
 const LocalStrategy = require('passport-local/lib').Strategy;
 const GoogleStrategy = require('passport-google-oauth20/lib').Strategy;
-
 const User = require('@models/user');
 
 
@@ -36,8 +35,8 @@ passport.use(new LocalStrategy({
                     });
                 }
 
-                User.comparePassword(password, user.password, (err, isMatch) => {
-                    if (err) throw Error;
+                User.comparePassword(password, user.password)
+                .then(isMatch => {
                     if (!isMatch) {
                         return done(null, false, {
                             message: "Invalid Password"
@@ -47,6 +46,9 @@ passport.use(new LocalStrategy({
                         console.log(`"@${user.username}" has signed in, @ ${new Date().toTimeString()}`);
                         return done(null, user);
                     }
+                })
+                .catch(err => {
+                    throw err;
                 });
             });
         });

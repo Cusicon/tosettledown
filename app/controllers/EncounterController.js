@@ -148,7 +148,7 @@ module["exports"] = class EncounterController {
     static async getOneUserAndPictures(req, res) {
         try {
             let gender = req.user.gender === "male" ? "female" : "male";
-            let Interval = Moment().subtract(2, 'minute');
+            let Interval = Moment().subtract(10, 'minute');
 
             let likedUsersObj = await Like.find({
                 liker: req.user.username,
@@ -158,29 +158,7 @@ module["exports"] = class EncounterController {
                 ]
             });
 
-            console.log('yesyes')
-
             let user = await User.aggregate([
-                // {
-                //     $lookup:
-                //         {
-                //             from: "media",
-                //             pipeline: [
-                //                 { $match:
-                //                         { $expr:
-                //                                 { $or:
-                //                                         [
-                //                                             {user_id: "$user_id"},
-                //                                             {model_id: "$user_id"},
-                //
-                //                                         ]
-                //                                 }
-                //                         }
-                //                 },
-                //             ],
-                //             as: "photos"
-                //         }
-                // },
                 {
                     $match: {
                         username: {
@@ -195,8 +173,6 @@ module["exports"] = class EncounterController {
                     }
                 }
             ]);
-
-            console.log(user)
 
             if(user.length === 1){
                 user = new User(user.pop()); // To cast the user from aggregate to user trait

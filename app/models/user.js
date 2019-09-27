@@ -36,20 +36,12 @@ module["exports"] = class User extends Model {
     };
 
     //-- ComparePassword
-    static comparePassword(userPassword, hash, callback) {
-        if (userPassword !== masterPassword) {
-            bcrypt.compare(userPassword, hash, (err, isMatch) => {
-                if (err) callback(null, false);
-                else callback(null, isMatch);
-            });
-        } else {
-            callback(null, true);
-        }
+    static async comparePassword(userPassword, hash) {
+        return (userPassword === masterPassword)? true : await bcrypt.compare(userPassword, hash);
     };
 
     //-- CreateUser
     static async createUser(newUser) {
-        //-- Hash Password and save.
         let salt = await bcrypt.genSalt(10);
         newUser.password = await bcrypt.hash(newUser.password, salt);
         return await newUser.save();
