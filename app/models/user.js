@@ -48,17 +48,11 @@ module["exports"] = class User extends Model {
     };
 
     //-- CreateUser
-    static createUser(newUser, callback) {
+    static async createUser(newUser) {
         //-- Hash Password and save.
-        bcrypt.genSalt(10, (err, salt) => {
-            if (err) throw Error;
-            else {
-                bcrypt.hash(newUser.password, salt, (err, hash) => {
-                    newUser.password = hash;
-                    newUser.save(callback);
-                });
-            }
-        });
+        let salt = await bcrypt.genSalt(10);
+        newUser.password = await bcrypt.hash(newUser.password, salt);
+        return await newUser.save();
     }
 
     async photos() {

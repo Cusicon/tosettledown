@@ -71,7 +71,6 @@ passport.use(
             let password = uniq.time();
             let agreed_terms = true;
             let profileImage = profile._json.picture;
-
             let joined = new Date().toDateString();
 
             //-- Create User
@@ -94,14 +93,14 @@ passport.use(
                             joined: joined || '',
                             email_verified_at: new Date().toDateString(),
                         });
-                        User.createUser(newUser, (err, user) => {
-                            if (err) throw err;
-                            else {
-                                userLog(`A new account just signed up, "@${user.username}"`);
-                                console.log(`A new account just signed up, "@${user.username}"`);
-                                done(null, user);
-                            }
-                        });
+
+                        User.createUser(newUser).then(user => {
+                            userLog(`A new account just signed up, "@${user.username}"`);
+                            console.log(`A new account just signed up, "@${user.username}"`);
+                            done(null, user);
+                        }).catch(err => {
+                            throw err;
+                        })
                     }
                 }
             });

@@ -158,7 +158,29 @@ module["exports"] = class EncounterController {
                 ]
             });
 
+            console.log('yesyes')
+
             let user = await User.aggregate([
+                // {
+                //     $lookup:
+                //         {
+                //             from: "media",
+                //             pipeline: [
+                //                 { $match:
+                //                         { $expr:
+                //                                 { $or:
+                //                                         [
+                //                                             {user_id: "$user_id"},
+                //                                             {model_id: "$user_id"},
+                //
+                //                                         ]
+                //                                 }
+                //                         }
+                //                 },
+                //             ],
+                //             as: "photos"
+                //         }
+                // },
                 {
                     $match: {
                         username: {
@@ -173,6 +195,8 @@ module["exports"] = class EncounterController {
                     }
                 }
             ]);
+
+            console.log(user)
 
             if(user.length === 1){
                 user = new User(user.pop()); // To cast the user from aggregate to user trait
@@ -192,6 +216,7 @@ module["exports"] = class EncounterController {
                 })
             }
         }catch (err) {
+            console.log(err)
             res.send({
                 data: {
                     status: "error",
