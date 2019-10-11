@@ -32,13 +32,12 @@ class MediaLibrary extends Media {
         }
     }
 
-    async addMediaFromBase64(callback){
+    async addMediaFromBase64(){
         try {
             let file = this.refactorFileData(this.req.body),
                 buffer = this.decodeBase64Image(this.req.body.base64Data),
-                mediaObject = await this.instance.uploadBuffer(file, buffer),
-                photo = await this.saveToDatabase(mediaObject);
-            callback(this.req, this.res, photo)
+                mediaObject = await this.instance.uploadBuffer(file, buffer);
+                return await this.saveToDatabase(mediaObject);
         }catch (e) {
             throw e;
         }

@@ -114,18 +114,31 @@ module["exports"] = class ProfileController {
     /**
      *  Saves the photos into the DB
      */
-    static async addPhotos(req, res) {
-        let medialibrary = new MediaLibrary(req, res);
+    static async addPhotos(req, res)
+    {
 
-        await medialibrary.addMediaFromBase64( (req, res, photo) => {
-            res.send({
-                'status': 'success',
-                'message': 'Upload Successful',
-                'data': {
-                    photo: photo
-                }
-            })
-        });
+        try {
+            let medialibrary = new MediaLibrary(req, res),
+                photo = await medialibrary.addMediaFromBase64();
+
+            if(photo){
+                res.send({
+                    'status': 'success',
+                    'message': 'Upload Successful',
+                    'data': {
+                        photo: photo
+                    }
+                })
+            }else {
+                res.send({
+                    'status': 'error',
+                    'message': 'Error Occur uploading',
+                    'data': null
+                })
+            }
+        }catch (e) {
+            throw e;
+        }
     }
 
     static setAvatar(req, res) {
