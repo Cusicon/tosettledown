@@ -21,32 +21,25 @@ class CloudinaryStorage {
 
     async uploadBuffer(file, buffer){
 
-        let destination = path.join(this.req.user.id.toString() , 'photos', Date.now().toString());
-        let name = file.originalname;
-        let uploadPath = path.join(destination, name);
-
         let mimetype = Mime.extension(file.mimetype);
         let dataUri = new Datauri();
-        dataUri.format(`.${mimetype}`, buffer);
-        let dataBase64 = dataUri.content;
-
+        let dataBase64 = dataUri.format(`.${mimetype}`, buffer).content;
         let options = {
-            resource_type: 'image',
-            public_id: uploadPath,
+            folder: path.join(this.req.user.id.toString() , 'photos', Date.now().toString()),
+            public_id: path.parse(file.originalname).name,
             overwrite: true,
+            invalidate: false,
         }
 
         try{
             let data = await cloudinary.v2.uploader.upload(dataBase64, options);
-
-            console.log(data)
-
             return {
                 disk: this.filesystem,
                 name : path.basename(url.parse(data.secure_url || data.url).pathname),
                 mime_type : file.mimetype,
                 size : data.bytes,
-                path : destination,
+                path : (data.version) ? path.join(`v${data.version}`, path.parse(`${data.public_id}.${data.format}`).dir)
+                                        :path.parse(`${data.public_id}.${data.format}`).dir,
                 location : data.secure_url || data.url,
             }
         }catch(e){

@@ -33,14 +33,19 @@ class MediaLibrary extends Media {
     }
 
     async addMediaFromBase64(callback){
-        let file = this.refactorFileData(this.req.body),
-            buffer = this.decodeBase64Image(this.req.body.base64Data),
-            mediaObject = await this.instance.uploadBuffer(file, buffer),
-            photo = await this.instance.saveToDatabase(mediaObject);
-        callback(this.req, this.res, photo)
+        try {
+            let file = this.refactorFileData(this.req.body),
+                buffer = this.decodeBase64Image(this.req.body.base64Data),
+                mediaObject = await this.instance.uploadBuffer(file, buffer),
+                photo = await this.saveToDatabase(mediaObject);
+            callback(this.req, this.res, photo)
+        }catch (e) {
+            throw e;
+        }
     }
 
-    refactorFileData(file){
+    refactorFileData(file)
+    {
         return {
             originalname: file.name.replace(" ", "-"),
             mimetype: file.mimetype,
@@ -51,94 +56,21 @@ class MediaLibrary extends Media {
     decodeBase64Image(dataString)
     {
         let matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
-
-        if (matches.length !== 3)
-        {
-            return new Error('Invalid input string');
-        }
-        return new Buffer(matches[2], 'base64');
+        return (matches.length !== 3)? new Error('Invalid input string') : new Buffer(matches[2], 'base64');
     }
 
-    async saveToDatabase(mediaObject){
-        mediaObject.user_id = this.req.user.id;
-        let media = new Media(mediaObject);
-
-        userLog(`"${model.username}" just uploaded some photos.`);
-        console.log(`@${model.username} just uploaded some photos!, @ ${new Date().toTimeString()}`);
-        return  await media.save();
-    }
-
-    /*---------------- OLD FUNCTION ---------------*/
-
-    async uploadToTemp(name) {
-
-        let temp_path = config('medialibrary', (Var) => {
-            return Var.temporary_directory_path
-        });
-
-        let filename = function (req, file, cb) {
-            let name = `${req.user._id}_${Date.now().toString()}`;
-            name = name.concat(path.extname(file.originalname));
-            cb(null, name)
-        }
-
-        let file_filter = function (req, file, callback) {
-            let ext = path.extname(file.originalname);
-            if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
-                return callback(new Error('Only images are allowed'))
-            }
-            callback(null, true)
-        }
-
-        let storage = multer.diskStorage({
-            destination: temp_path,
-            filename: filename,
-            fileFilter: file_filter,
-        })
-
+    async saveToDatabase(mediaObject)
+    {
         try {
-            let uploadConfig = multer({
-                storage: storage,
-                limits: {fileSize: 5242880}, // Max: 5MB
-            })
-            const upload = util.promisify(uploadConfig.single(name));
-            await upload(this.req, this.res);
-        } catch (err) {
-            throw err;
+            mediaObject.user_id = this.req.user.id;
+            let media = new Media(mediaObject);
+
+            userLog(`"${this.req.user.username}" just uploaded some photos.`);
+            console.log(`@${this.req.user.username} just uploaded some photos!, @ ${new Date().toTimeString()}`);
+            return  await media.save();
+        }catch (e) {
+            throw e;
         }
     }
-
-    async manipulateMedia(file){
-        let manipulation = new Manipulation()
-        return await manipulation.manipulate(file)
-    }
-
-    async removeTempFile(file){
-        fs.unlink(file.path, (err) => {
-            if (err) throw err;
-            console.log(`${path.basename(file.path)} was deleted after upload`)
-        });
-    }
-
-    async addMedia(name, callback) {
-        if (this.instance !== null) {
-            try{
-                await this.uploadToTemp(name);
-                let buffer = await this.manipulateMedia(this.req.file)
-
-                await this.instance.uploadBuffer(this.req.file, buffer)
-                let photo = await this.instance.saveToDatabase(this.req.user);
-
-                this.removeTempFile(this.req.file).catch(err => console.log(err));
-                callback(this.req, this.res, photo)
-            }catch (err) {
-                throw err
-            }
-        } else {
-            throw new Error('The Media Instance Can\'t be Null');
-        }
-    }
-
-
 }
 module.exports = MediaLibrary;
