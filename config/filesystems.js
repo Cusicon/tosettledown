@@ -61,6 +61,14 @@ module['exports'] = {
             'url' : get_env('DO_URL'),
         },
 
+        'cloudinary' : { // Pointing to cloudinary
+            'driver' : 'cloudinary',
+            'api_key' : get_env('CLOUDINARY_API_KEY'),
+            'api_secret' : get_env('CLOUDINARY_SECRET_KEY'),
+            'cloud_name' : get_env('CLOUDINARY_CLOUD_NAME'),
+            'url' : get_env('CLOUDINARY_URL'),
+        },
+
     }
 }
 
