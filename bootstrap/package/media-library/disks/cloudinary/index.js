@@ -3,7 +3,6 @@ const Datauri = require('datauri');
 const Mime = require('mime-types')
 const path = require('path');
 const url = require("url");
-const Media = require('@models/media')
 
 class CloudinaryStorage {
 
@@ -33,7 +32,7 @@ class CloudinaryStorage {
 
         let options = {
             resource_type: 'image',
-            public_id: uploadPath.split('.').slice(0, -1).join('.').replace(" ", "_").replace("-", "_"),
+            public_id: uploadPath,
             overwrite: true,
         }
 
@@ -42,40 +41,17 @@ class CloudinaryStorage {
 
             console.log(data)
 
-
-
-            file.newDestination = data.secure_url || data.url;
-            file.newPath = destination
-
-
-            let mediaObject = {
+            return {
+                disk: this.filesystem,
                 name : path.basename(url.parse(data.secure_url || data.url).pathname),
                 mime_type : file.mimetype,
                 size : data.bytes,
-                path : ,
+                path : destination,
                 location : data.secure_url || data.url,
             }
-
-            this.file = file;
         }catch(e){
             throw e;
         }
-    }
-
-    async saveToDatabase(model){
-        let media = new Media({
-            user_id: model.id,
-            disk: this.filesystem,
-
-            name: this.file.originalname,
-            mime_type: this.file.mimetype,
-            size: this.file.size,
-            path: this.file.newPath,
-            location: this.file.newDestination
-        });
-        userLog(`"${model.username}" just uploaded some photos.`);
-        console.log(`@${model.username} just uploaded some photos!, @ ${new Date().toTimeString()}`);
-        return  await media.save();
     }
 }
 module.exports = CloudinaryStorage;

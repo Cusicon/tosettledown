@@ -3,8 +3,8 @@ const path = require('path')
 const multer = require('multer');
 const Media = require('@models/media');
 const Manipulation = require('@media-library/manipulation')
-// noinspection NodeJsCodingAssistanceForCoreModules
 const util = require('util');
+
 
 class MediaLibrary extends Media {
 
@@ -31,6 +31,44 @@ class MediaLibrary extends Media {
             console.error(err)
         }
     }
+
+    async addMediaFromBase64(callback){
+        let file = this.refactorFileData(this.req.body),
+            buffer = this.decodeBase64Image(this.req.body.base64Data),
+            mediaObject = await this.instance.uploadBuffer(file, buffer),
+            photo = await this.instance.saveToDatabase(mediaObject);
+        callback(this.req, this.res, photo)
+    }
+
+    refactorFileData(file){
+        return {
+            originalname: file.name.replace(" ", "-"),
+            mimetype: file.mimetype,
+            size: file.size,
+        };
+    }
+
+    decodeBase64Image(dataString)
+    {
+        let matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+
+        if (matches.length !== 3)
+        {
+            return new Error('Invalid input string');
+        }
+        return new Buffer(matches[2], 'base64');
+    }
+
+    async saveToDatabase(mediaObject){
+        mediaObject.user_id = this.req.user.id;
+        let media = new Media(mediaObject);
+
+        userLog(`"${model.username}" just uploaded some photos.`);
+        console.log(`@${model.username} just uploaded some photos!, @ ${new Date().toTimeString()}`);
+        return  await media.save();
+    }
+
+    /*---------------- OLD FUNCTION ---------------*/
 
     async uploadToTemp(name) {
 
@@ -101,28 +139,6 @@ class MediaLibrary extends Media {
         }
     }
 
-    async addMediaFromBase64(callback){
-        let file = {
-            originalname : this.req.body.name,
-            mimetype : this.req.body.mimetype,
-            size : this.req.body.size,
-        };
 
-        let buffer = this.decodeBase64Image(this.req.body.base64Data);
-        await this.instance.uploadBuffer(file, buffer);
-        let photo = await this.instance.saveToDatabase(this.req.user);
-        callback(this.req, this.res, photo)
-    }
-
-    decodeBase64Image(dataString)
-    {
-        let matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
-
-        if (matches.length !== 3)
-        {
-            return new Error('Invalid input string');
-        }
-        return new Buffer(matches[2], 'base64');
-    }
 }
 module.exports = MediaLibrary;
