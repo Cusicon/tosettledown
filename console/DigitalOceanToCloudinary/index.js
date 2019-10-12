@@ -1,9 +1,23 @@
 const Media = require('@models/media');
-const path = require('path')
+
+const cloudinary = require('cloudinary');
+const Datauri = require('datauri');
+const Mime = require('mime-types')
+const path = require('path');
+const url = require("url");
 
 module.exports = class DigitalOceanToCloudinary{
     constructor(){
         this.args = null;
+
+        this.filesystem = 'cloudinary';
+        this.disk = config('filesystems', (Var) => { return Var['disks'][this.filesystem] })
+
+        cloudinary.config({
+            cloud_name: this.disk.cloud_name,
+            api_key: this.disk.api_key,
+            api_secret: this.disk.api_secret,
+        });
 
         console.log('Starting DO to CLOUDINARY MIGRATION')
     }
@@ -18,10 +32,18 @@ module.exports = class DigitalOceanToCloudinary{
 
             console.info(`Total Number Of Media Is ${medias.length} \n`);
 
-            for(const media of medias){
+            for(const media of medias)
+            {
+                let data = await this.moveMedia(media);
 
-                console.log('moving....', media)
-                // await this.moveMedia(media);
+                media.disk = data.disk;
+                media.name = data.name;
+                media.mime_type = data.mime_type;
+                media.size = data.size;
+                media.path = data.path;
+                media.location = data.location;
+
+                console.log(await media.save());
             }
 
         }catch (e) {
@@ -29,23 +51,21 @@ module.exports = class DigitalOceanToCloudinary{
         }
     }
 
-    async moveMedia(media){
-
-
-
+    async moveMedia(media)
+    {
         let options = {
-            folder: path.join(this.req.user.id.toString() , 'photos', Date.now().toString()),
-            public_id: path.parse(path.basename(media.path)).name,
-
+            folder: path.parse(url.parse(media.location).pathname).dir.slice(1),
+            public_id: path.parse(path.basename(url.parse(media.location).pathname)).name.replace(" ", "-"),
             overwrite: true,
             invalidate: false,
         }
 
         try{
             let data = await cloudinary.v2.uploader.upload(media.location, options);
+            console.log(data);
 
             return {
-                disk: 'cloudinary',
+                disk: this.filesystem,
                 name : path.basename(url.parse(data.secure_url || data.url).pathname),
                 mime_type : media.mime_type,
                 size : data.bytes,

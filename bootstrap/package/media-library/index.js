@@ -1,9 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const multer = require('multer');
 const Media = require('@models/media');
-const Manipulation = require('@media-library/manipulation')
-const util = require('util');
 
 
 class MediaLibrary extends Media {
