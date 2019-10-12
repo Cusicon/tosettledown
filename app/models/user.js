@@ -83,6 +83,10 @@ module["exports"] = class User extends Model {
         return false;
     }
 
+    set avatar(value){
+        super.avatar = value;
+    }
+
     get avatar() {
         if (super.avatar) {
             return super.avatar;

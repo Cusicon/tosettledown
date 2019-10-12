@@ -1,8 +1,7 @@
 const Media = require('@models/media');
+const User = require('@models/user');
 
 const cloudinary = require('cloudinary');
-const Datauri = require('datauri');
-const Mime = require('mime-types')
 const path = require('path');
 const url = require("url");
 
@@ -29,9 +28,7 @@ module.exports = class DigitalOceanToCloudinary{
     async fire() {
         try{
             let medias = await Media.find({disk: 'digitalocean'});
-
             console.info(`Total Number Of Media Is ${medias.length} \n`);
-
             for(const media of medias)
             {
                 let data = await this.moveMedia(media);
@@ -42,8 +39,14 @@ module.exports = class DigitalOceanToCloudinary{
                 media.size = data.size;
                 media.path = data.path;
                 media.location = data.location;
-
                 console.log(await media.save());
+            }
+            let users = await User.find();
+
+            for(const user of users){
+                let media = await user.photos();
+                user.avatar = (media.length)? media[0].location : null;
+                await user.save();
             }
 
         }catch (e) {
@@ -62,8 +65,6 @@ module.exports = class DigitalOceanToCloudinary{
 
         try{
             let data = await cloudinary.v2.uploader.upload(media.location, options);
-            console.log(data);
-
             return {
                 disk: this.filesystem,
                 name : path.basename(url.parse(data.secure_url || data.url).pathname),
@@ -77,5 +78,4 @@ module.exports = class DigitalOceanToCloudinary{
             throw e;
         }
     }
-
 }
