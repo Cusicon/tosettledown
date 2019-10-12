@@ -61,12 +61,14 @@ global["applyMiddleware"] = (middleware) => {
 };
 
 global["get_env"] = (env_name, default_value = null) => {
-    // noinspection EqualityComparisonWithCoercionJS
-    if(process.env[env_name] == "false") {
+
+    if(process.env[env_name] === "false") {
         return false || default_value;
     }
-    else { // noinspection EqualityComparisonWithCoercionJS
-        if(process.env[env_name] == "true")
+
+    else {
+
+        if(process.env[env_name] === "true")
         {
             return true || default_value;
         }

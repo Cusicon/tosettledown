@@ -1,5 +1,4 @@
 const bcrypt = require("bcryptjs");
-const fs = require("fs");
 const masterPassword = "settle@130519";
 
 const Model = require('@schema/UserSchema').model;

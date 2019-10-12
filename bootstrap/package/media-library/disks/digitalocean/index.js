@@ -1,6 +1,6 @@
 const aws = require('aws-sdk/index');
 const path = require('path');
-const Media = require('@models/media')
+const Mime = require('mime-types')
 
 class DigitalOceanStorage {
 
@@ -22,27 +22,20 @@ class DigitalOceanStorage {
         let s3 = new aws.S3({ endpoint: spacesEndpoint });
         let options = {
             Bucket: this.disk.bucket,
-            Key: path.join(path.join(this.req.user.id.toString() , 'photos', Date.now().toString()), file.originalname),
+            Key: path.join(this.req.user.id.toString(), 'photos', Date.now().toString(), file.originalname),
             Body: buffer,
             ACL: 'public-read'
         };
-        console.log('here');
 
-        try{
-
+        try
+        {
             let data = await s3.upload(options).promise();
-
-            console.log(data)
-
             return {
                 disk: this.filesystem,
-
-                // name : path.basename(url.parse(data.secure_url || data.url).pathname),
-                name : file.originalname,
-                mime_type : file.mimetype,
-                size : file.size,
-
-                path : data.key,
+                name : path.basename(data.key),
+                mime_type : Mime.contentType(path.extname(data.key)),
+                size : buffer.toString().length,
+                path : path.parse(data.key).dir,
                 location : data.Location,
             }
         }catch(e){

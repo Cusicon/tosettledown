@@ -55,7 +55,8 @@
   "scripts": {
     "start": "node ./app.js",
     "dev": "nodemon ./app.js",
-    "seed": "node ./database/seeder/DatabaseSeeder.js"
+    "seed": "node ./database/seeder/DatabaseSeeder.js",
+    "console": "node ./console/index.js"
   },
   "keywords": [
     "tosettledown",
